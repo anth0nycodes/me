@@ -1,0 +1,33 @@
+---
+title: "The Rising Importance of Context Engineering"
+publishedAt: "2025-11-15"
+summary: "Why context engineering is replacing prompt engineering as the most critical skill for building reliable AI agents in 2025."
+---
+
+If you've been building with AI lately, you've probably noticed the shift. The days of "vibe coding"—throwing prompts at LLMs and hoping for the best—are giving way to something more systematic. Welcome to the era of **context engineering**.
+
+## From Prompts to Context
+
+Prompt engineering was the golden ticket for a while. But as we've scaled from simple completions to multi-turn agents that reason, use tools, and operate over extended time horizons, we've hit its limits.
+
+**Context engineering** is the evolution. While prompt engineering focuses on writing better instructions, context engineering addresses the entire information ecosystem: system prompts, tools, external data, message history, and real-time retrieval. It's about strategically curating every token that flows through your model.
+
+Research on "context rot" shows that LLM performance degrades as context windows grow. The transformer architecture's quadratic token relationships mean every new piece of information depletes your computational budget. You need to be deliberate about what context you provide, when, and how.
+
+## The Silent Failure Problem
+
+Agentic systems introduce failure modes that traditional monitoring can't catch. Your agent might pick the wrong tool, loop indefinitely, or hallucinate data that looks legitimate. These aren't crashes—they're **silent failures**, and they're everywhere.
+
+This is where **agentic observability** becomes critical. My friends at [The Context Company](https://thecontext.company) are tackling this head-on. They've built an observability platform that detects the silent failures standard monitoring misses—bad tool calls, infinite loops, and hallucinations—while providing full execution traces.
+
+What I love about their approach is how practical it is. Setup takes under 10 lines of code, integrates with Vercel AI SDK, LangChain, and LangGraph, and gives you the visibility to actually debug production failures. You can engineer perfect context, but if you can't observe how your agent uses it in production, you're flying blind.
+
+## Looking Forward
+
+The shift from prompt engineering to context engineering signals we're moving from treating LLMs as sophisticated autocomplete to building genuine autonomous systems. The teams that master context engineering and pair it with robust observability will build AI agents that actually work in production—not just demos, but systems that handle real workloads and recover gracefully.
+
+Context engineering isn't just a buzzword. It's the foundation of the next generation of AI systems.
+
+---
+
+*Shout out to the team at The Context Company for building the observability tools that make reliable agentic AI possible!*
