@@ -1,11 +1,11 @@
 import Link from "next/link";
 
 const links = [
-  { title: "email", href: "mailto:hoanganthony2207@gmail.com" },
-  { title: "x.com", href: "https://x.com/anth0nycodes" },
   { title: "github", href: "https://github.com/anth0nycodes" },
   { title: "linkedin", href: "https://www.linkedin.com/in/anth0nycodes" },
+  { title: "x", href: "https://x.com/anth0nycodes" },
   { title: "coffee chat ☕️", href: "https://cal.com/anth0nycodes" },
+  { title: "email", href: "mailto:hoanganthony2207@gmail.com" },
 ];
 
 export function LinksSection() {

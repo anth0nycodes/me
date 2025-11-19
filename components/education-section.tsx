@@ -6,7 +6,7 @@ export function EducationSection() {
     <section id="education">
       <div className="flex min-h-0 flex-col gap-5">
         <h2 className="text-2xl flex items-center gap-3 font-medium font-minecraft text-white">
-          <span className="text-primary">$</span> Education
+          <span className="text-primary">$</span> school lore
         </h2>
         <div className="flex flex-col gap-8">
           {DATA.education.map((education, id) => (

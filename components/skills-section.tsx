@@ -6,10 +6,10 @@ export function SkillsSection() {
     <section id="skills">
       <div className="flex min-h-0 flex-col gap-5">
         <h2 className="text-2xl flex items-center gap-3 font-medium font-minecraft text-white">
-          <span className="text-primary">$</span> Skills
+          <span className="text-primary">$</span> tech I&apos;ve worked with
         </h2>
         <div className="flex flex-wrap gap-3">
-          {DATA.skills.map((skill, id) => (
+          {DATA.skills.map((skill) => (
             <div
               className="p-2 border group hover:cursor-pointer"
               key={skill.name}

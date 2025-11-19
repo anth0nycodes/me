@@ -11,7 +11,7 @@ export type Item = {
 
 type SectionListProps = {
   title: string;
-  items: Item[];
+  items: readonly Item[];
   viewAllHref?: string;
   viewAllText?: string;
 };
