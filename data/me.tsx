@@ -153,7 +153,7 @@ export const DATA = {
     },
     {
       title: "muslim tech collaborative",
-      role: "creator / maintainer",
+      role: "contributor / maintainer",
       description:
         "community website for muslims interested in tech. 30+ universities involved",
       href: "https://mtc.so",
