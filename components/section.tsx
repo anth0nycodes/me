@@ -24,7 +24,7 @@ export function SectionList({
 }: SectionListProps) {
   return (
     <section className="flex flex-col gap-5">
-      <h2 className="text-2xl flex items-center gap-3 font-medium font-minecraft text-white">
+      <h2 className="text-2xl flex items-center gap-3 font-medium font-monocraft text-white">
         <span className="text-primary">$</span> {title}
       </h2>
       <div className="flex flex-col gap-8">

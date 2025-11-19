@@ -11,7 +11,7 @@ const links = [
 export function LinksSection() {
   return (
     <section className="flex flex-col gap-6">
-      <h2 className="text-2xl flex items-center gap-3 font-medium font-minecraft text-white">
+      <h2 className="text-2xl flex items-center gap-3 font-medium font-monocraft text-white">
         <span className="text-primary">$</span> you can find me here
       </h2>
       <div className="flex flex-wrap gap-4 text-sm">

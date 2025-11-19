@@ -5,7 +5,7 @@ export function EducationSection() {
   return (
     <section id="education">
       <div className="flex min-h-0 flex-col gap-5">
-        <h2 className="text-2xl flex items-center gap-3 font-medium font-minecraft text-white">
+        <h2 className="text-2xl flex items-center gap-3 font-medium font-monocraft text-white">
           <span className="text-primary">$</span> school lore
         </h2>
         <div className="flex flex-col gap-8">

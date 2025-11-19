@@ -43,6 +43,7 @@ html.lenis body {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-minecraft: var(--font-minecraft);
+  --font-monocraft: var(--font-monocraft);
 }
 
 @media (prefers-color-scheme: dark) {
