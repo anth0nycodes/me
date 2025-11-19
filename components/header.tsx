@@ -21,7 +21,7 @@ export function Header() {
         </span>
       </h1>
       {headerInfo.map((item, index) => (
-        <div className="flex items-center gap-2" key={index}>
+        <div className="flex items-center text-gray-400 gap-2" key={index}>
           <item.icon className="size-4" />
           <p>{item.text}</p>
         </div>
