@@ -123,13 +123,13 @@ export const DATA = {
     {
       school: "Lehman College",
       href: "https://www.lehman.cuny.edu/",
-      degree: "Bachelor's Degree of Computer Science (BS)",
+      degree: "B.S. in Computer Science",
       logoUrl: "/lehman.png",
       start: "2025",
       end: "Dropped Out 😎",
     },
     {
-      school: "DeWitt Clinton High School",
+      school: "DeWitt Clinton HS",
       href: "https://www.dewittclintonhs.com/",
       degree: "High School Diploma",
       logoUrl: "/clinton.png",
