@@ -5,7 +5,7 @@ import { useScramble } from "use-scramble";
 export function ScrambleText({
   text,
   className = "",
-  speed = 0.5,
+  speed = 1,
   tick = 1,
   step = 1,
   scramble = 5,

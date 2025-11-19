@@ -145,6 +145,13 @@ export const DATA = {
       href: "https://github.com/The-Context-Company/observatory",
     },
     {
+      title: "typescript-oop-guide",
+      role: "creator / maintainer",
+      description:
+        "comprehensive learning guide for OOP in TypeScript with 37 hands-on exercises",
+      href: "https://github.com/ah-materials/typescript-oop-guide",
+    },
+    {
       title: "muslim tech collaborative",
       role: "creator / maintainer",
       description:
