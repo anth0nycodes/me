@@ -17,11 +17,10 @@ export const DATA = {
     // Frontend Frameworks & Platforms
     { name: "Next.js", src: "https://nextjs.org/" },
     { name: "React.js", src: "https://react.dev/" },
-    { name: "React Native", src: "https://reactnative.dev/" },
-    { name: "Expo", src: "https://expo.dev/" },
 
     // Languages
     { name: "TypeScript", src: "https://www.typescriptlang.org/" },
+    { name: "Python", src: "https://www.python.org/" },
     { name: "Node.js", src: "https://nodejs.org/" },
 
     // Backend Frameworks
@@ -139,10 +138,17 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "rude-assistant",
+      role: "creator / maintainer",
+      description:
+        "A sarcastic AI assistant that roasts you when you aren't being productive.",
+      href: "https://github.com/anth0nycodes/rude-assistant",
+    },
+    {
       title: "observatory",
-      role: "contributor / maintainer",
-      description: "open-source project for AI-agent observability",
-      href: "https://github.com/The-Context-Company/observatory",
+      role: "contributor",
+      description: "open-source package for AI-agent observability",
+      href: "https://github.com/The-Context-Company/observatory/commits/main/?author=anth0nycodes",
     },
     {
       title: "typescript-oop-guide",
@@ -150,13 +156,6 @@ export const DATA = {
       description:
         "comprehensive learning guide for OOP in TypeScript with 37 hands-on exercises",
       href: "https://github.com/ah-materials/typescript-oop-guide",
-    },
-    {
-      title: "muslim tech collaborative",
-      role: "contributor / maintainer",
-      description:
-        "community website for muslims interested in tech. 30+ universities involved",
-      href: "https://mtc.so",
     },
   ],
 } as const;
