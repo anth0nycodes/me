@@ -138,6 +138,13 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "rude-assistant",
+      role: "creator / maintainer",
+      description:
+        "A sarcastic AI assistant that roasts you when you aren't being productive.",
+      href: "https://github.com/anth0nycodes/rude-assistant",
+    },
+    {
       title: "observatory",
       role: "contributor",
       description: "open-source package for AI-agent observability",
