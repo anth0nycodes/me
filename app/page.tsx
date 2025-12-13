@@ -4,6 +4,7 @@ import { LinksSection } from "@/components/links-section";
 import { EducationSection } from "@/components/education-section";
 import { SkillsSection } from "@/components/skills-section";
 import { DATA } from "@/data/me";
+import { Testimonials } from "@/components/testimonials";
 
 export default function HomePage() {
   return (
@@ -13,6 +14,7 @@ export default function HomePage() {
       <EducationSection />
       <SkillsSection />
       <SectionList title="projects" items={DATA.projects} />
+      <Testimonials />
       <LinksSection />
     </div>
   );
