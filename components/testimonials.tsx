@@ -78,7 +78,7 @@ export function Testimonials() {
           {duplicatedReviews.map((review, index) => (
             <div
               key={index}
-              className={`flex-[0_0_auto] ${
+              className={`flex-[0_0_auto] min-w-0 w-[300px] sm:w-max ${
                 index === duplicatedReviews.length - 1 ? "mr-4" : ""
               }`}
             >
