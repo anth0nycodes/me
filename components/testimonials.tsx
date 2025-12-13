@@ -1,5 +1,8 @@
-import { Marquee } from "@/components/ui/marquee";
+"use client";
+
 import Image from "next/image";
+import useEmblaCarousel from "embla-carousel-react";
+import AutoScroll from "embla-carousel-auto-scroll";
 
 interface ReviewCardProps {
   name: string;
@@ -24,14 +27,14 @@ const reviews = [
   {
     name: "Andrew Miller",
     role: "SWE @ Magic Hour (YC W24)",
-    body: "Anthony brought both technical skill and great energy to our projects at Magic Hour. He led key projects such as our new landing page and AI meme generator, and also went out of his way to help others ramp up quickly. He’s the kind of engineer who elevates the entire team. I would highly recommend him for any engineering role.",
+    body: "Anthony brought both technical skill and great energy to our projects at Magic Hour. He led key projects such as our new landing page and AI meme generator, and also went out of his way to help others ramp up quickly. He's the kind of engineer who elevates the entire team. I would highly recommend him for any engineering role.",
     src: "/andrew.png",
   },
 ];
 
 const ReviewCard = ({ name, role, body, src }: ReviewCardProps) => {
   return (
-    <figure className="relative size-full max-w-sm cursor-pointer overflow-hidden rounded-xl border border-gray-400 p-4">
+    <figure className="relative size-full max-w-sm cursor-grab overflow-hidden rounded-xl border border-gray-400 p-4 select-none">
       <div className="flex flex-row items-center gap-2">
         <Image
           className="rounded-full"
@@ -39,6 +42,7 @@ const ReviewCard = ({ name, role, body, src }: ReviewCardProps) => {
           height={32}
           alt={`Testimonial from ${name}`}
           src={src}
+          draggable={false}
         />
         <div className="flex flex-col">
           <figcaption className="text-sm font-medium dark:text-white">
@@ -53,17 +57,36 @@ const ReviewCard = ({ name, role, body, src }: ReviewCardProps) => {
 };
 
 export function Testimonials() {
+  const [emblaRef] = useEmblaCarousel({ loop: true }, [
+    AutoScroll({
+      playOnInit: true,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+      speed: 0.3,
+    }),
+  ]);
+
+  const duplicatedReviews = [...reviews, ...reviews, ...reviews, ...reviews];
+
   return (
     <div className="flex min-h-0 flex-col gap-5">
       <h2 className="text-2xl flex items-center gap-3 font-medium font-monocraft text-white">
         <span className="text-primary">$</span> cool people said
       </h2>
-      <div className="relative flex w-full flex-col justify-center overflow-hidden">
-        <Marquee pauseOnHover className="[--duration:40s]">
-          {reviews.map((review) => (
-            <ReviewCard key={review.name} {...review} />
+      <div className="relative overflow-hidden" ref={emblaRef}>
+        <div className="flex gap-4">
+          {duplicatedReviews.map((review, index) => (
+            <div
+              key={index}
+              className={`flex-[0_0_auto] ${
+                index === duplicatedReviews.length - 1 ? "mr-4" : ""
+              }`}
+            >
+              <ReviewCard {...review} />
+            </div>
           ))}
-        </Marquee>
+        </div>
+
         <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
         <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
       </div>
