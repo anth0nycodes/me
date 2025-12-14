@@ -34,7 +34,7 @@ const reviews = [
 
 const ReviewCard = ({ name, role, body, src }: ReviewCardProps) => {
   return (
-    <figure className="relative size-full max-w-sm cursor-grab overflow-hidden rounded-xl border border-gray-400 p-4 select-none">
+    <figure className="relative size-full max-w-sm cursor-grab overflow-hidden rounded-xl border border-border bg-card p-4 select-none hover:border-foreground/30 transition-colors">
       <div className="flex flex-row items-center gap-2">
         <Image
           className="rounded-full"
@@ -45,10 +45,8 @@ const ReviewCard = ({ name, role, body, src }: ReviewCardProps) => {
           draggable={false}
         />
         <div className="flex flex-col">
-          <figcaption className="text-sm font-medium dark:text-white">
-            {name}
-          </figcaption>
-          <p className="text-xs font-medium dark:text-white/40">{role}</p>
+          <figcaption className="text-sm font-medium">{name}</figcaption>
+          <p className="text-xs font-medium text-muted-foreground">{role}</p>
         </div>
       </div>
       <blockquote className="mt-2 text-sm normal-case">{body}</blockquote>
@@ -70,8 +68,8 @@ export function Testimonials() {
 
   return (
     <div className="flex min-h-0 flex-col gap-5">
-      <h2 className="text-2xl flex items-center gap-3 font-medium font-monocraft text-white">
-        <span className="text-primary">$</span> cool people said
+      <h2 className="text-2xl flex items-center gap-3 font-medium">
+        <span>💬</span> cool people said
       </h2>
       <div className="relative overflow-hidden" ref={emblaRef}>
         <div className="flex gap-4">

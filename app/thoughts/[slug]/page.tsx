@@ -101,7 +101,7 @@ export default async function Blog({
         <BlogDate date={post.metadata.publishedAt} />
       </div>
       <article
-        className="prose dark:prose-invert"
+        className="prose prose-zinc max-w-none"
         dangerouslySetInnerHTML={{ __html: post.source }}
       ></article>
     </section>

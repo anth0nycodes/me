@@ -11,7 +11,7 @@ export const DATA = {
   description:
     "Software Engineer. Part-time LinkedIn warrior. I love building cool things.",
   summary:
-    "Hi, my name is Anthony Hoang and I'm based in NYC. I like creating cool things and learning new things.",
+    "hey — my name is Anthony Hoang and I'm based in NYC. I like creating cool things and learning new things. Whenever I'm not coding, I'm either spending time with loved ones, consuming gym videos, or going to the gym.",
   avatarUrl: "/mepfpupdated.png",
   skills: [
     // Frontend Frameworks & Platforms

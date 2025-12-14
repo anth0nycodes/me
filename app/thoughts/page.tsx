@@ -13,9 +13,9 @@ export default async function ThoughtsPage() {
 
   return (
     <section>
-      <h1 className="font-monocraft lowercase text-3xl mb-8 tracking-tighter">
+      <h1 className="lowercase text-3xl mb-8 tracking-tighter font-medium">
         <span className="inline-flex gap-3 items-center">
-          <span className="text-primary">$</span>
+          💭
           <ScrambleText text="My Thoughts" />
         </span>
       </h1>

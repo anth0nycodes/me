@@ -11,8 +11,8 @@ const links = [
 export function LinksSection() {
   return (
     <section className="flex flex-col gap-6">
-      <h2 className="text-2xl flex items-center gap-3 font-medium font-monocraft text-white">
-        <span className="text-primary">$</span> where to find me
+      <h2 className="text-2xl flex items-center gap-3 font-medium">
+        <span>🔗</span> where to find me
       </h2>
       <div className="flex flex-wrap gap-4 text-sm">
         {links.map((link, index) => (
@@ -20,7 +20,7 @@ export function LinksSection() {
             key={index}
             href={link.href}
             target="_blank"
-            className="text-gray-400 hover:text-primary transition-colors duration-200"
+            className="text-muted-foreground hover:text-primary transition-colors duration-200"
           >
             {link.title}
           </Link>

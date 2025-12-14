@@ -23,10 +23,6 @@ const fontMinecraft = localFont({
   variable: "--font-minecraft",
 });
 
-const fontMonocraft = localFont({
-  src: "../fonts/Monocraft.ttf",
-  variable: "--font-monocraft",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(DATA.url),
@@ -69,7 +65,7 @@ export default function RootLayout({
     <html lang="en">
       <ReactLenis root>
         <body
-          className={`${geistSans.variable} ${fontMinecraft.variable} ${fontMonocraft.variable} ${geistMono.variable} w-full font-mono antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
+          className={`${geistSans.variable} ${fontMinecraft.variable} ${geistMono.variable} w-full font-sans antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
         >
           <TooltipProvider delayDuration={0}>
             {children}

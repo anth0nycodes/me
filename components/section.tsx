@@ -11,6 +11,7 @@ export type Item = {
 
 type SectionListProps = {
   title: string;
+  emoji: string;
   items: readonly Item[];
   viewAllHref?: string;
   viewAllText?: string;
@@ -18,26 +19,29 @@ type SectionListProps = {
 
 export function SectionList({
   title,
+  emoji,
   items,
   viewAllHref,
   viewAllText,
 }: SectionListProps) {
   return (
     <section className="flex flex-col gap-5">
-      <h2 className="text-2xl flex items-center gap-3 font-medium font-monocraft text-white">
-        <span className="text-primary">$</span> {title}
+      <h2 className="text-2xl flex items-center gap-3 font-medium">
+        <span>{emoji}</span>
+        {title}
       </h2>
       <div className="flex flex-col gap-8">
         {items.map((item, index) => (
-          <div key={index} className="group">
+          <div
+            key={index}
+            className="hover:bg-accent rounded-lg p-2 duration-200"
+          >
             <Link href={item.href} target="_blank">
-              <h3 className="text-xl font-semibold mb-1 text-white group-hover:text-primary transition-colors duration-200">
-                {item.title}
-              </h3>
-              <p className="text-sm text-gray-400 mb-2">
+              <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
+              <p className="text-sm mb-2">
                 {item.role} {item.period && `(${item.period})`}
               </p>
-              <p className="text-gray-300">{item.description}</p>
+              <p className="">{item.description}</p>
             </Link>
           </div>
         ))}
@@ -45,7 +49,7 @@ export function SectionList({
       {viewAllHref && (
         <Link
           href={viewAllHref}
-          className="inline-flex items-center gap-1 mt-6 text-accent hover:underline group"
+          className="inline-flex items-center gap-1 mt-6 text-foreground hover:underline group"
         >
           {viewAllText}{" "}
           <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
