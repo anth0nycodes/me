@@ -11,7 +11,7 @@ const sections = [
   <Header key="header" />,
   <SectionList
     key="work"
-    title="my nap-time detours"
+    title="what I did instead of nap"
     emoji="💼"
     items={DATA.work}
   />,

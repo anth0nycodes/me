@@ -69,7 +69,7 @@ export function Testimonials() {
   return (
     <div className="flex min-h-0 flex-col gap-5">
       <h2 className="text-2xl flex items-center gap-3 font-medium">
-        <span>💬</span> cool people said
+        <span>💬</span> cool people said this
       </h2>
       <div className="relative overflow-hidden" ref={emblaRef}>
         <div className="flex gap-4">
