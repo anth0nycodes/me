@@ -5,7 +5,7 @@ import { EducationSection } from "@/components/education-section";
 import { SkillsSection } from "@/components/skills-section";
 import { DATA } from "@/data/me";
 import { Testimonials } from "@/components/testimonials";
-import { MotionSection } from "@/components/motion-wrapper";
+import { MotionSection, MotionWrapper } from "@/components/motion-wrapper";
 
 const sections = [
   <Header key="header" />,
@@ -29,10 +29,10 @@ const sections = [
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col gap-16 lowercase mx-auto max-w-2xl w-full">
+    <MotionWrapper>
       {sections.map((section, idx) => (
         <MotionSection key={idx}>{section}</MotionSection>
       ))}
-    </div>
+    </MotionWrapper>
   );
 }
