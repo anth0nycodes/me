@@ -1,6 +1,3 @@
-import { Icons } from "@/components/icons";
-import { HomeIcon, BrainIcon } from "lucide-react";
-
 export const DATA = {
   name: "Anthony Hoang",
   initials: "AH",
@@ -9,7 +6,7 @@ export const DATA = {
   occupation: "Fullstack Engineer",
   locationLink: "https://www.google.com/maps/place/bronx",
   description:
-    "Software Engineer. Part-time LinkedIn warrior. I love building cool things.",
+    "Fullstack Engineer. Part-time LinkedIn warrior. I love building cool things.",
   summary:
     "hey — my name is Anthony Hoang and I'm based in NYC. I like creating cool things and learning new things. Whenever I'm not coding, I'm either spending time with loved ones, consuming gym videos, or going to the gym.",
   avatarUrl: "/mepfpupdated.png",
@@ -55,39 +52,6 @@ export const DATA = {
     // Design Tools
     { name: "Figma", src: "https://www.figma.com/" },
   ],
-  navbar: [
-    { href: "/", icon: HomeIcon, label: "Home" },
-    { href: "/thoughts", icon: BrainIcon, label: "Thoughts" },
-  ],
-  contact: {
-    email: "hoanganthony2207@gmail.com",
-    social: {
-      GitHub: {
-        name: "GitHub",
-        url: "https://github.com/anth0nycodes",
-        icon: Icons.github,
-        navbar: true,
-      },
-      LinkedIn: {
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/in/anth0nycodes/",
-        icon: Icons.linkedin,
-        navbar: true,
-      },
-      X: {
-        name: "X",
-        url: "https://x.com/anth0nycodes",
-        icon: Icons.x,
-        navbar: true,
-      },
-      Email: {
-        name: "Send Email",
-        url: "mailto:hoanganthony2207@gmail.com",
-        icon: Icons.email,
-        navbar: true,
-      },
-    },
-  },
   work: [
     {
       title: "magic hour (yc w24)",

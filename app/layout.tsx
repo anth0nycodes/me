@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 import { DATA } from "@/data/me";
 import { ReactNode } from "react";
 import { ReactLenis } from "@/utils/lenis";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/navbar";
 
 const geistSans = Geist({
@@ -16,11 +14,6 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
-
-const fontMinecraft = localFont({
-  src: "../fonts/Minecraft.ttf",
-  variable: "--font-minecraft",
 });
 
 export const metadata: Metadata = {
@@ -73,7 +66,7 @@ export default function RootLayout({
     <html lang="en">
       <ReactLenis root>
         <body
-          className={`${geistSans.variable} ${fontMinecraft.variable} ${geistMono.variable} w-full font-sans antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
+          className={`${geistSans.variable} ${geistMono.variable} w-full font-sans antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
         >
           <Navbar />
           {children}
