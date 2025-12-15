@@ -38,6 +38,7 @@ export const DATA = {
     // Styling & UI Libraries
     { name: "Tailwind CSS", src: "https://tailwindcss.com/" },
     { name: "Shadcn UI", src: "https://ui.shadcn.com/" },
+    { name: "Framer Motion", src: "https://motion.dev/" },
 
     // AI / SDKs
     { name: "Vercel AI SDK", src: "https://sdk.vercel.ai/" },
