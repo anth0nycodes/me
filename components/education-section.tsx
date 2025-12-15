@@ -2,7 +2,7 @@
 
 import { DATA } from "@/data/me";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   motion,
   useMotionValue,
@@ -21,12 +21,23 @@ export function EducationSection() {
   const [hoveredEducation, setHoveredEducation] = useState<
     (typeof DATA.education)[number] | null
   >(null);
+  const [displayedEducation, setDisplayedEducation] = useState<
+    (typeof DATA.education)[number] | null
+  >(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
     cursorX.set(clientX);
     cursorY.set(clientY);
   };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDisplayedEducation(hoveredEducation);
+    }, 200);
+
+    return () => clearTimeout(timeout);
+  }, [hoveredEducation]);
 
   return (
     <section id="education" onMouseMove={handleMouseMove}>
@@ -60,7 +71,7 @@ export function EducationSection() {
         }}
       >
         <AnimatePresence>
-          {hoveredEducation?.logoUrl && (
+          {displayedEducation?.logoUrl && (
             <motion.div
               className="relative -translate-x-1/2 -translate-y-1/2"
               initial={{
@@ -82,8 +93,8 @@ export function EducationSection() {
             >
               <div className="size-full max-w-sm rounded-lg overflow-hidden shadow-2xl border border-white/20">
                 <img
-                  src={hoveredEducation.logoUrl}
-                  alt={hoveredEducation.school}
+                  src={displayedEducation.logoUrl}
+                  alt={displayedEducation.school}
                   className="w-full h-full object-cover"
                 />
               </div>

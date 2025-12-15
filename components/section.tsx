@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   motion,
   useMotionValue,
@@ -42,12 +42,21 @@ export function SectionList({
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   const [hoveredItem, setHoveredItem] = useState<Item | null>(null);
+  const [displayedItem, setDisplayedItem] = useState<Item | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
     cursorX.set(clientX);
     cursorY.set(clientY);
   };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDisplayedItem(hoveredItem);
+    }, 200);
+
+    return () => clearTimeout(timeout);
+  }, [hoveredItem]);
 
   return (
     <section className="flex flex-col gap-5" onMouseMove={handleMouseMove}>
@@ -91,7 +100,7 @@ export function SectionList({
         }}
       >
         <AnimatePresence>
-          {hoveredItem?.image && (
+          {displayedItem?.image && (
             <motion.div
               className="relative -translate-x-1/2 -translate-y-1/2"
               initial={{
@@ -113,8 +122,8 @@ export function SectionList({
             >
               <div className="size-full max-w-sm rounded-lg overflow-hidden shadow-2xl border border-white/20">
                 <img
-                  src={hoveredItem.image}
-                  alt={hoveredItem.title}
+                  src={displayedItem.image}
+                  alt={displayedItem.title}
                   className="w-full h-full object-cover"
                 />
               </div>
