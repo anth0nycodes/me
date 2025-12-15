@@ -1,5 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  AnimatePresence,
+} from "framer-motion";
 
 export type Item = {
   title: string;
@@ -7,6 +16,7 @@ export type Item = {
   role: string;
   period?: string;
   description: string;
+  image?: string;
 };
 
 type SectionListProps = {
@@ -24,8 +34,23 @@ export function SectionList({
   viewAllHref,
   viewAllText,
 }: SectionListProps) {
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+
+  const springConfig = { damping: 50, stiffness: 300, mass: 0.5 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
+
+  const [hoveredItem, setHoveredItem] = useState<Item | null>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const { clientX, clientY } = e;
+    cursorX.set(clientX);
+    cursorY.set(clientY);
+  };
+
   return (
-    <section className="flex flex-col gap-5">
+    <section className="flex flex-col gap-5" onMouseMove={handleMouseMove}>
       <h2 className="text-2xl flex items-center gap-3 font-medium">
         <span>{emoji}</span>
         {title}
@@ -35,6 +60,8 @@ export function SectionList({
           <div
             key={index}
             className="hover:bg-accent rounded-lg p-2 duration-200"
+            onMouseEnter={() => setHoveredItem(item)}
+            onMouseLeave={() => setHoveredItem(null)}
           >
             <Link href={item.href} target="_blank">
               <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
@@ -55,6 +82,46 @@ export function SectionList({
           <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
         </Link>
       )}
+
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-50 hidden md:block"
+        style={{
+          x: cursorXSpring,
+          y: cursorYSpring,
+        }}
+      >
+        <AnimatePresence>
+          {hoveredItem?.image && (
+            <motion.div
+              className="relative -translate-x-1/2 -translate-y-1/2"
+              initial={{
+                opacity: 0,
+                scale: 0.8,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.8,
+              }}
+              transition={{
+                duration: 0.2,
+                ease: "easeOut",
+              }}
+            >
+              <div className="size-full max-w-sm rounded-lg overflow-hidden shadow-2xl border border-white/20">
+                <img
+                  src={hoveredItem.image}
+                  alt={hoveredItem.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </section>
   );
 }

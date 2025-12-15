@@ -95,6 +95,7 @@ export const DATA = {
       description:
         "polishing more UI and building more ai-powered tools for creators",
       href: "https://magichour.ai",
+      image: "/mh.png",
     },
     {
       title: "magic hour (yc w24)",
@@ -102,6 +103,7 @@ export const DATA = {
       period: "mar 2025 - aug 2025",
       description: "polishing UI and building ai-powered tools for creators",
       href: "https://magichour.ai",
+      image: "/mh.png",
     },
     {
       title: "revisiondojo (yc f24)",
@@ -109,6 +111,7 @@ export const DATA = {
       period: "jan 2025 - mar 2025",
       description: "figma stuff + UI polishing",
       href: "https://revisiondojo.com",
+      image: "/rd.png",
     },
     {
       title: "muslim tech collaborative",
@@ -116,6 +119,7 @@ export const DATA = {
       period: "dec 2024 - jan 2025",
       description: "revamped and rebuilt the community website",
       href: "https://mtc.so",
+      image: "/mtc.png",
     },
   ],
   education: [
@@ -123,7 +127,7 @@ export const DATA = {
       school: "Lehman College",
       href: "https://www.lehman.cuny.edu/",
       degree: "B.S. in Computer Science",
-      logoUrl: "/lehman.png",
+      logoUrl: "/lc.png",
       start: "2025",
       end: "Dropped Out 😎",
     },
@@ -131,7 +135,7 @@ export const DATA = {
       school: "DeWitt Clinton HS",
       href: "https://www.dewittclintonhs.com/",
       degree: "High School Diploma",
-      logoUrl: "/clinton.png",
+      logoUrl: "/dwc.png",
       start: "2021",
       end: "2025",
     },
@@ -142,6 +146,7 @@ export const DATA = {
       role: "contributor",
       description: "open-source package for AI-agent observability",
       href: "https://github.com/The-Context-Company/observatory/commits/main/?author=anth0nycodes",
+      image: "/ob.png",
     },
     {
       title: "typescript-oop-guide",
@@ -149,6 +154,7 @@ export const DATA = {
       description:
         "comprehensive learning guide for OOP in TypeScript with 37 hands-on exercises",
       href: "https://github.com/ah-materials/typescript-oop-guide",
+      image: "/ts.png",
     },
   ],
 } as const;
