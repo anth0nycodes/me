@@ -23,7 +23,6 @@ const fontMinecraft = localFont({
   variable: "--font-minecraft",
 });
 
-
 export const metadata: Metadata = {
   metadataBase: new URL(DATA.url),
   title: {
@@ -67,10 +66,8 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${fontMinecraft.variable} ${geistMono.variable} w-full font-sans antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
         >
-          <TooltipProvider delayDuration={0}>
-            {children}
-            <Navbar />
-          </TooltipProvider>
+          <Navbar />
+          {children}
         </body>
       </ReactLenis>
     </html>

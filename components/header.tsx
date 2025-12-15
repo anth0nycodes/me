@@ -2,6 +2,7 @@ import { DATA } from "@/data/me";
 import { ScrambleText } from "@/components/scramble-text";
 import { Building2, MapPin } from "lucide-react";
 import Image from "next/image";
+
 export function Header() {
   const headerInfo = [
     {
@@ -15,7 +16,7 @@ export function Header() {
   ];
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-5">
       <div className="flex gap-3 items-center">
         <Image
           src="/me.png"
@@ -43,14 +44,16 @@ export function Header() {
           </div>
         </div>
       </div>
-      <p>
-        hey, I&apos;m Anthony — a fullstack engineer based in NYC. i enjoy
-        building thoughtful products and learning new things.
-      </p>
-      <p>
-        when I&apos;m not coding, I&apos;m usually at the gym or spending time
-        with people i care about.
-      </p>
+      <div className="flex flex-col gap-3">
+        <p>
+          hey, I&apos;m Anthony — a fullstack engineer based in NYC. i enjoy
+          building thoughtful products and learning new things.
+        </p>
+        <p>
+          when I&apos;m not coding, I&apos;m usually at the gym or spending time
+          with people i care about.
+        </p>
+      </div>
     </div>
   );
 }
