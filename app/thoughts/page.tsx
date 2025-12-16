@@ -1,4 +1,3 @@
-import { ScrambleText } from "@/components/scramble-text";
 import { getBlogPosts } from "@/data/blog";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -16,7 +15,7 @@ export default async function ThoughtsPage() {
       <h1 className="lowercase text-3xl mb-8 tracking-tighter font-medium">
         <span className="inline-flex gap-3 items-center">
           💭
-          <ScrambleText text="My Thoughts" />
+          <span>my thoughts</span>
         </span>
       </h1>
       {posts

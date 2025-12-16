@@ -1,10 +1,8 @@
 "use client";
 
 import { DATA } from "@/data/me";
-import { ScrambleText } from "@/components/scramble-text";
 import { Building2, MapPin } from "lucide-react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Underline } from "./ui/underline";
 
 export function Header() {
@@ -31,9 +29,7 @@ export function Header() {
         />
         <div className="flex flex-col">
           <h1 className="text-xl font-medium lowercase">
-            <span className="inline-block">
-              <ScrambleText text={DATA.name} />
-            </span>
+            <span className="inline-block">{DATA.name}</span>
           </h1>
           <div className="flex gap-4">
             {headerInfo.map((item, index) => (

@@ -3,7 +3,6 @@ import { DATA } from "@/data/me";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogDate } from "@/components/blog-date";
-import { ScrambleText } from "@/components/scramble-text";
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
@@ -93,9 +92,7 @@ export default async function Blog({
         }}
       />
       <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
-        <span className="inline-block">
-          <ScrambleText text={post.metadata.title} />
-        </span>
+        <span className="inline-block">{post.metadata.title}</span>
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
         <BlogDate date={post.metadata.publishedAt} />
