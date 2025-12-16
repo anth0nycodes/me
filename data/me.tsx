@@ -108,13 +108,15 @@ export const DATA = {
   works: [
     {
       title: "magic-hour-01",
-      mp4Src: "/videos/mh.mp4",
-      webmSrc: "/videos/mh.webm",
+      description: "Landing page I designed and built for Magic Hour",
+      href: "https://www.youtube.com/watch?v=zSmqfayeMuQ",
+      thumbnailUrl: "/videos/mh-poster.jpg",
     },
     {
       title: "mtc-01",
-      mp4Src: "/videos/mtc.mp4",
-      webmSrc: "/videos/mtc.webm",
+      description: "Community website for Muslim Tech Collaborative",
+      href: "https://www.youtube.com/watch?v=rQvx48D8oAc",
+      thumbnailUrl: "/videos/mtc-poster.jpg",
     },
   ],
   projects: [
