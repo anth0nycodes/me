@@ -108,13 +108,13 @@ export const DATA = {
   works: [
     {
       title: "magic-hour-01",
-      description: "Landing page I designed and built for Magic Hour",
+      description: "Landing page I built for Magic Hour",
       href: "https://www.youtube.com/watch?v=zSmqfayeMuQ",
       thumbnailUrl: "/videos/mh-poster.jpg",
     },
     {
       title: "mtc-01",
-      description: "Community website for Muslim Tech Collaborative",
+      description: "Community website I built for Muslim Tech Collaborative",
       href: "https://www.youtube.com/watch?v=rQvx48D8oAc",
       thumbnailUrl: "/videos/mtc-poster.jpg",
     },
