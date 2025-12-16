@@ -6,6 +6,7 @@ import { SkillsSection } from "@/components/skills-section";
 import { DATA } from "@/data/me";
 import { Testimonials } from "@/components/testimonials";
 import { MotionSection, MotionWrapper } from "@/components/motion-wrapper";
+import { CreativeWorks } from "@/components/creative-works";
 
 const sections = [
   <Header key="header" />,
@@ -15,14 +16,15 @@ const sections = [
     emoji="💼"
     items={DATA.work}
   />,
-  <EducationSection key="education" />,
-  <SkillsSection key="skills" />,
+  <CreativeWorks key="creative-works" />,
   <SectionList
     key="projects"
-    title="projects"
+    title="other projects"
     emoji="🗂️"
     items={DATA.projects}
   />,
+  <EducationSection key="education" />,
+  <SkillsSection key="skills" />,
   <Testimonials key="testimonials" />,
   <LinksSection key="links" />,
 ];

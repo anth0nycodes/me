@@ -105,6 +105,18 @@ export const DATA = {
       end: "2025",
     },
   ],
+  works: [
+    {
+      title: "magic-hour-01",
+      mp4Src: "/videos/mh.mp4",
+      webmSrc: "/videos/mh.webm",
+    },
+    {
+      title: "mtc-01",
+      mp4Src: "/videos/mtc.mp4",
+      webmSrc: "/videos/mtc.webm",
+    },
+  ],
   projects: [
     {
       title: "observatory",
