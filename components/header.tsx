@@ -51,15 +51,15 @@ export function Header() {
       <div className="flex flex-col gap-3">
         <p>
           hey, I&apos;m Anthony — a{" "}
-          <Underline hexcode="#22a8f5" delay={0.65} duration={0.75}>
-            design engineer
+          <Underline hexcode="#22a8f5" delay={0.65} duration={1}>
+            fullstack engineer
           </Underline>{" "}
-          based in NYC. i enjoy creating{" "}
-          <Underline hexcode="#58CC02" delay={1.5} duration={0.75}>
-            visually appealing
-          </Underline>{" "}
-          user experiences that feel intentional, and{" "}
-          <Underline hexcode="#f5a623" delay={2.3} duration={0.75}>
+          with a frontend focus based in NYC. I enjoy building{" "}
+          <Underline hexcode="#58CC02" delay={1.5} duration={1}>
+            thoughtful user experiences{" "}
+          </Underline>
+          that make products feel better while{" "}
+          <Underline hexcode="#f5a623" delay={2.3} duration={1}>
             continuously learning
           </Underline>{" "}
           along the way.
