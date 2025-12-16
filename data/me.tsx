@@ -55,18 +55,10 @@ export const DATA = {
   work: [
     {
       title: "magic hour (yc w24)",
-      role: "software engineer",
-      period: "aug 2025 - sep 2025",
+      role: "software engineer intern -> software engineer",
+      period: "mar 2025 - sep 2025",
       description:
-        "polishing more UI and building more ai-powered tools for creators",
-      href: "https://magichour.ai",
-      image: "/mh.png",
-    },
-    {
-      title: "magic hour (yc w24)",
-      role: "software engineer intern",
-      period: "mar 2025 - aug 2025",
-      description: "polishing UI and building ai-powered tools for creators",
+        "polishing UI and building ai-powered tools for creators — full-time from aug",
       href: "https://magichour.ai",
       image: "/mh.png",
     },
@@ -107,16 +99,22 @@ export const DATA = {
   ],
   works: [
     {
-      title: "magic-hour-01",
+      title: "magic-hour-02",
       description: "Landing page I built for Magic Hour",
       href: "https://www.youtube.com/watch?v=zSmqfayeMuQ",
-      thumbnailUrl: "/videos/mh-poster.jpg",
+      thumbnailUrl: "/posters/mh-landing-poster.jpg",
+    },
+    {
+      title: "magic-hour-01",
+      description: "Library page UI work for Magic Hour",
+      href: "https://www.youtube.com/watch?v=GQv17nBuV70",
+      thumbnailUrl: "/posters/mh-library-poster.jpg",
     },
     {
       title: "mtc-01",
       description: "Community website I built for Muslim Tech Collaborative",
       href: "https://www.youtube.com/watch?v=rQvx48D8oAc",
-      thumbnailUrl: "/videos/mtc-poster.jpg",
+      thumbnailUrl: "/posters/mtc-landing-poster.jpg",
     },
   ],
   projects: [
