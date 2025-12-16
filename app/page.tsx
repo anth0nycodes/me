@@ -23,7 +23,6 @@ const sections = [
     emoji="🗂️"
     items={DATA.projects}
   />,
-  <EducationSection key="education" />,
   <SkillsSection key="skills" />,
   <Testimonials key="testimonials" />,
   <LinksSection key="links" />,
