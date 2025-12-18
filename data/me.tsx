@@ -99,22 +99,28 @@ export const DATA = {
   ],
   works: [
     {
+      title: "design-stuff-01",
+      description: "Recreation of Magic UI's animated list",
+      href: "https://www.youtube.com/watch?v=rgZ0mqzkr8s",
+      thumbnailUrl: "/posters/design-stuff-01.jpg",
+    },
+    {
       title: "magic-hour-02",
       description: "Landing page I built for Magic Hour",
       href: "https://www.youtube.com/watch?v=zSmqfayeMuQ",
-      thumbnailUrl: "/posters/mh-landing-poster.jpg",
+      thumbnailUrl: "/posters/magic-hour-02.jpg",
     },
     {
       title: "magic-hour-01",
       description: "Library page UI work for Magic Hour",
       href: "https://www.youtube.com/watch?v=GQv17nBuV70",
-      thumbnailUrl: "/posters/mh-library-poster.jpg",
+      thumbnailUrl: "/posters/magic-hour-01.jpg",
     },
     {
       title: "mtc-01",
       description: "Community website I built for Muslim Tech Collaborative",
       href: "https://www.youtube.com/watch?v=rQvx48D8oAc",
-      thumbnailUrl: "/posters/mtc-landing-poster.jpg",
+      thumbnailUrl: "/posters/mtc-01.jpg",
     },
   ],
   projects: [
