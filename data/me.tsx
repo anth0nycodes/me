@@ -3,10 +3,10 @@ export const DATA = {
   initials: "AH",
   url: "https://anthonyhoang.dev",
   location: "nyc",
-  occupation: "Fullstack Engineer",
+  occupation: "Design Engineer",
   locationLink: "https://www.google.com/maps/place/bronx",
   description:
-    "fullstack engineer. part-time linkedin warrior. i love building things that look nice.",
+    "design engineer. part-time linkedin warrior. i love building things that look nice.",
   summary:
     "hey — my name is Anthony Hoang and I'm based in NYC. I like creating cool things and learning new things. Whenever I'm not coding, I'm either spending time with loved ones, consuming gym videos, or going to the gym.",
   avatarUrl: "/mepfpupdated.png",
@@ -17,11 +17,15 @@ export const DATA = {
 
     // Languages
     { name: "TypeScript", src: "https://www.typescriptlang.org/" },
-    { name: "Python", src: "https://www.python.org/" },
-    { name: "Node.js", src: "https://nodejs.org/" },
+
+    // Styling & UI Libraries
+    { name: "Tailwind CSS", src: "https://tailwindcss.com/" },
+    { name: "Shadcn UI", src: "https://ui.shadcn.com/" },
+    { name: "Framer Motion", src: "https://motion.dev/" },
 
     // Backend Frameworks
     { name: "Express.js", src: "https://expressjs.com/" },
+    { name: "Node.js", src: "https://nodejs.org/" },
     { name: "tRPC", src: "https://trpc.io/" },
 
     // Databases & ORM
@@ -31,11 +35,6 @@ export const DATA = {
 
     // Validation & Schema
     { name: "Zod", src: "https://zod.dev/" },
-
-    // Styling & UI Libraries
-    { name: "Tailwind CSS", src: "https://tailwindcss.com/" },
-    { name: "Shadcn UI", src: "https://ui.shadcn.com/" },
-    { name: "Framer Motion", src: "https://motion.dev/" },
 
     // AI / SDKs
     { name: "Vercel AI SDK", src: "https://sdk.vercel.ai/" },
