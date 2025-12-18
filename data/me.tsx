@@ -117,7 +117,7 @@ export const DATA = {
       thumbnailUrl: "/posters/magic-hour-01.jpg",
     },
     {
-      title: "mtc-01",
+      title: "mtc",
       description: "Community website I built for Muslim Tech Collaborative",
       href: "https://www.youtube.com/watch?v=rQvx48D8oAc",
       thumbnailUrl: "/posters/mtc-01.jpg",
