@@ -18,14 +18,14 @@ const childVariants = {
 
 export function MotionWrapper({ children }: { children: ReactNode }) {
   return (
-    <motion.div
+    <motion.main
       className="flex flex-col gap-16 lowercase mx-auto max-w-2xl w-full"
       variants={parentVariants}
       initial="hidden"
       whileInView="visible"
     >
       {children}
-    </motion.div>
+    </motion.main>
   );
 }
 export function MotionSection({ children }: { children: ReactNode }) {
