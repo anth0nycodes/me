@@ -33,19 +33,10 @@ export const DATA = {
     { name: "Drizzle ORM", src: "https://orm.drizzle.team/" },
     { name: "Supabase", src: "https://supabase.com/" },
 
-    // Validation & Schema
-    { name: "Zod", src: "https://zod.dev/" },
-
-    // AI / SDKs
-    { name: "Vercel AI SDK", src: "https://sdk.vercel.ai/" },
-    { name: "OpenAI API", src: "https://platform.openai.com/docs/" },
-
     // Deployment & Infrastructure
     { name: "Vercel", src: "https://vercel.com/" },
 
     // Developer Tools
-    { name: "Git", src: "https://git-scm.com/" },
-    { name: "Vite", src: "https://vitejs.dev/" },
     { name: "Linear", src: "https://linear.app/" },
 
     // Design Tools

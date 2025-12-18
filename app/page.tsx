@@ -1,7 +1,6 @@
 import { Header } from "@/components/header";
 import { SectionList } from "@/components/section";
 import { LinksSection } from "@/components/links-section";
-import { EducationSection } from "@/components/education-section";
 import { SkillsSection } from "@/components/skills-section";
 import { DATA } from "@/data/me";
 import { Testimonials } from "@/components/testimonials";
@@ -30,10 +29,12 @@ const sections = [
 
 export default function HomePage() {
   return (
-    <MotionWrapper>
-      {sections.map((section, idx) => (
-        <MotionSection key={idx}>{section}</MotionSection>
-      ))}
-    </MotionWrapper>
+    <main>
+      <MotionWrapper>
+        {sections.map((section, idx) => (
+          <MotionSection key={idx}>{section}</MotionSection>
+        ))}
+      </MotionWrapper>
+    </main>
   );
 }
