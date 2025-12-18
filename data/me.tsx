@@ -55,7 +55,7 @@ export const DATA = {
   work: [
     {
       title: "magic hour (yc w24)",
-      role: "software engineer intern -> software engineer",
+      role: "software engineer intern ➔ software engineer",
       period: "mar 2025 - sep 2025",
       description:
         "polishing UI and building ai-powered tools for creators — full-time from aug",
