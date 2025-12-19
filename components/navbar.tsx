@@ -6,6 +6,20 @@ import { useEffect } from "react";
 
 export default function Navbar() {
   const router = useRouter();
+  const navItems = [
+    {
+      text: "[h] home",
+      href: "/",
+    },
+    {
+      text: "[t] thoughts",
+      href: "/thoughts",
+    },
+    {
+      text: "[v] vault",
+      href: "/vault",
+    },
+  ];
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -16,6 +30,10 @@ export default function Navbar() {
       if (e.key === "t") {
         router.push("/thoughts");
       }
+
+      if (e.key === "v") {
+        router.push("/vault");
+      }
     };
 
     window.addEventListener("keydown", handler);
@@ -24,18 +42,15 @@ export default function Navbar() {
 
   return (
     <div className="flex gap-3 items-center max-w-2xl mx-auto mb-5">
-      <Link
-        href="/"
-        className="hover:text-primary text-muted-foreground transition-colors"
-      >
-        [h] home
-      </Link>
-      <Link
-        href="/thoughts"
-        className="hover:text-primary text-muted-foreground transition-colors"
-      >
-        [t] thoughts
-      </Link>
+      {navItems.map((item) => (
+        <Link
+          key={item.text}
+          href={item.href}
+          className="hover:text-primary text-muted-foreground transition-colors"
+        >
+          {item.text}
+        </Link>
+      ))}
     </div>
   );
 }

@@ -42,6 +42,32 @@ export const DATA = {
     // Design Tools
     { name: "Figma", src: "https://www.figma.com/" },
   ],
+  resources: [
+    {
+      title: "Refactoring UI",
+      description: "learn how to design beautiful user interfaces without relying on a designer",
+      author: "Adam W. & Steve S.",
+      src: "https://www.refactoringui.com/",
+    },
+    {
+      title: "Flora's Notes on Design Engineering",
+      description: "thoughtful insights on the intersection of design and engineering",
+      author: "Flora G.",
+      src: "https://www.floguo.com/notes/design-engineering",
+    },
+    {
+      title: "Web Interface Guidelines",
+      description: "comprehensive guidelines for building polished web interfaces",
+      author: "Vercel",
+      src: "https://vercel.com/design/guidelines",
+    },
+    {
+      title: "shadcn",
+      description: "beautifully designed components that you can copy and paste into your apps",
+      author: "Shadab (Shad) A.",
+      src: "https://ui.shadcn.com/",
+    },
+  ],
   work: [
     {
       title: "magic hour (yc w24)",
