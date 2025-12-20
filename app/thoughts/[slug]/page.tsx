@@ -98,7 +98,7 @@ export default async function Blog({
         <BlogDate date={post.metadata.publishedAt} />
       </div>
       <article
-        className="prose prose-zinc max-w-none"
+        className="prose max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground"
         dangerouslySetInnerHTML={{ __html: post.source }}
       ></article>
     </section>
