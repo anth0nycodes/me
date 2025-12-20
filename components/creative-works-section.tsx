@@ -8,6 +8,7 @@ import {
   useMotionValue,
   useSpring,
   AnimatePresence,
+  useReducedMotion,
 } from "framer-motion";
 
 export function CreativeWorksSection() {
@@ -31,6 +32,8 @@ export function CreativeWorksSection() {
     cursorY.set(clientY);
   };
 
+  const prefersReducedMotion = useReducedMotion();
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDisplayedWork(hoveredWork);
@@ -49,7 +52,9 @@ export function CreativeWorksSection() {
           {DATA.works.map((work) => (
             <div
               key={work.title}
-              onMouseEnter={() => setHoveredWork(work)}
+              onMouseEnter={() =>
+                setHoveredWork(prefersReducedMotion ? null : work)
+              }
               onMouseLeave={() => setHoveredWork(null)}
             >
               <CreativeWorkCard
@@ -61,46 +66,47 @@ export function CreativeWorksSection() {
           ))}
         </div>
       </div>
-
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50 hidden md:block"
-        style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
-        }}
-      >
-        <AnimatePresence>
-          {displayedWork?.thumbnailUrl && (
-            <motion.div
-              className="relative -translate-x-1/2 -translate-y-1/2"
-              initial={{
-                opacity: 0,
-                scale: 0.8,
-              }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-              }}
-              exit={{
-                opacity: 0,
-                scale: 0.8,
-              }}
-              transition={{
-                duration: 0.2,
-                ease: "easeOut",
-              }}
-            >
-              <div className="size-full max-w-sm rounded-lg overflow-hidden shadow-2xl border border-white/20">
-                <img
-                  src={displayedWork.thumbnailUrl}
-                  alt={displayedWork.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+      {!prefersReducedMotion && (
+        <motion.div
+          className="fixed top-0 left-0 pointer-events-none z-50 hidden md:block"
+          style={{
+            x: cursorXSpring,
+            y: cursorYSpring,
+          }}
+        >
+          <AnimatePresence>
+            {displayedWork?.thumbnailUrl && (
+              <motion.div
+                className="relative -translate-x-1/2 -translate-y-1/2"
+                initial={{
+                  opacity: 0,
+                  scale: 0.8,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.8,
+                }}
+                transition={{
+                  duration: 0.2,
+                  ease: "easeOut",
+                }}
+              >
+                <div className="size-full max-w-sm rounded-lg overflow-hidden shadow-2xl border border-white/20">
+                  <img
+                    src={displayedWork.thumbnailUrl}
+                    alt={displayedWork.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      )}
     </section>
   );
 }

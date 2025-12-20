@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ReactNode, useRef } from "react";
 import Realistic from "react-canvas-confetti/dist/presets/realistic";
 
@@ -31,16 +31,24 @@ export function Underline({
     controller.current?.shoot();
   };
 
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <>
-      <Realistic onInit={onInitHandler} />
+      {!prefersReducedMotion && <Realistic onInit={onInitHandler} />}
       <motion.span
         onClick={onShoot}
         className="inline cursor-pointer bg-no-repeat pb-0.5"
-        initial={{ backgroundSize: "0% 3px" }}
+        initial={{
+          backgroundSize: prefersReducedMotion ? "100% 3px" : "0% 3px",
+        }}
         whileInView={{ backgroundSize: "100% 3px" }}
         viewport={{ once: true }}
-        transition={{ delay: delay, duration: duration, ease: "easeInOut" }}
+        transition={{
+          delay: prefersReducedMotion ? 0 : delay,
+          duration: prefersReducedMotion ? 0 : duration,
+          ease: "easeInOut",
+        }}
         style={{
           backgroundImage: `linear-gradient(${hexcode}, ${hexcode})`,
           backgroundPosition: "0 calc(100% - 1px)",

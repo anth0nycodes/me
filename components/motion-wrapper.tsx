@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const parentVariants = {
   hidden: { opacity: 0 },
@@ -17,10 +17,12 @@ const childVariants = {
 };
 
 export function MotionWrapper({ children }: { children: ReactNode }) {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <motion.div
       className="flex flex-col gap-16 lowercase mx-auto max-w-2xl w-full"
-      variants={parentVariants}
+      variants={prefersReducedMotion ? {} : parentVariants}
       initial="hidden"
       whileInView="visible"
     >
@@ -28,6 +30,13 @@ export function MotionWrapper({ children }: { children: ReactNode }) {
     </motion.div>
   );
 }
+
 export function MotionSection({ children }: { children: ReactNode }) {
-  return <motion.div variants={childVariants}>{children}</motion.div>;
+  const prefersReducedMotion = useReducedMotion();
+
+  return (
+    <motion.div variants={prefersReducedMotion ? {} : childVariants}>
+      {children}
+    </motion.div>
+  );
 }

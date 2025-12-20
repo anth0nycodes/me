@@ -5,6 +5,7 @@ import { DATA } from "@/data/me";
 import { ReactNode } from "react";
 import { ReactLenis } from "@/utils/lenis";
 import Navbar from "@/components/navbar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -81,8 +82,15 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} w-full font-sans antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
         >
-          <Navbar />
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+            {children}
+          </ThemeProvider>
         </body>
       </ReactLenis>
     </html>

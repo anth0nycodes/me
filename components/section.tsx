@@ -8,6 +8,7 @@ import {
   useMotionValue,
   useSpring,
   AnimatePresence,
+  useReducedMotion,
 } from "framer-motion";
 
 export type Item = {
@@ -50,6 +51,8 @@ export function SectionList({
     cursorY.set(clientY);
   };
 
+  const prefersReducedMotion = useReducedMotion();
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDisplayedItem(hoveredItem);
@@ -69,7 +72,9 @@ export function SectionList({
           <div
             key={index}
             className="hover:bg-accent rounded-lg p-2 duration-200"
-            onMouseEnter={() => setHoveredItem(item)}
+            onMouseEnter={() =>
+              setHoveredItem(prefersReducedMotion ? null : item)
+            }
             onMouseLeave={() => setHoveredItem(null)}
           >
             <Link href={item.href} target="_blank">
@@ -91,46 +96,47 @@ export function SectionList({
           <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
         </Link>
       )}
-
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50 hidden md:block"
-        style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
-        }}
-      >
-        <AnimatePresence>
-          {displayedItem?.image && (
-            <motion.div
-              className="relative -translate-x-1/2 -translate-y-1/2"
-              initial={{
-                opacity: 0,
-                scale: 0.8,
-              }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-              }}
-              exit={{
-                opacity: 0,
-                scale: 0.8,
-              }}
-              transition={{
-                duration: 0.2,
-                ease: "easeOut",
-              }}
-            >
-              <div className="size-full max-w-sm rounded-lg overflow-hidden shadow-2xl border border-white/20">
-                <img
-                  src={displayedItem.image}
-                  alt={displayedItem.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+      {!prefersReducedMotion && (
+        <motion.div
+          className="fixed top-0 left-0 pointer-events-none z-50 hidden md:block"
+          style={{
+            x: cursorXSpring,
+            y: cursorYSpring,
+          }}
+        >
+          <AnimatePresence>
+            {displayedItem?.image && (
+              <motion.div
+                className="relative -translate-x-1/2 -translate-y-1/2"
+                initial={{
+                  opacity: 0,
+                  scale: 0.8,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.8,
+                }}
+                transition={{
+                  duration: 0.2,
+                  ease: "easeOut",
+                }}
+              >
+                <div className="size-full max-w-sm rounded-lg overflow-hidden shadow-2xl border border-white/20">
+                  <img
+                    src={displayedItem.image}
+                    alt={displayedItem.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      )}
     </section>
   );
 }

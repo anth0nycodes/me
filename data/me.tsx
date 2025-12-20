@@ -45,25 +45,35 @@ export const DATA = {
   resources: [
     {
       title: "Refactoring UI",
-      description: "learn how to design beautiful user interfaces without relying on a designer",
+      description:
+        "learn how to design beautiful user interfaces without relying on a designer",
       author: "Adam W. & Steve S.",
       src: "https://www.refactoringui.com/",
     },
     {
       title: "Flora's Notes on Design Engineering",
-      description: "thoughtful insights on the intersection of design and engineering",
+      description:
+        "thoughtful insights on the intersection of design and engineering",
       author: "Flora G.",
       src: "https://www.floguo.com/notes/design-engineering",
     },
     {
+      title: "Design Engineering at Vercel",
+      description: "learn what design engineering looks like at vercel",
+      author: "Vercel",
+      src: "https://vercel.com/blog/design-engineering-at-vercel",
+    },
+    {
       title: "Web Interface Guidelines",
-      description: "comprehensive guidelines for building polished web interfaces",
+      description:
+        "comprehensive guidelines for building polished web interfaces",
       author: "Vercel",
       src: "https://vercel.com/design/guidelines",
     },
     {
       title: "shadcn",
-      description: "beautifully designed components that you can copy and paste into your apps",
+      description:
+        "beautifully designed components that you can copy and paste into your apps",
       author: "Shadab (Shad) A.",
       src: "https://ui.shadcn.com/",
     },

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { ThemeToggler } from "./theme-toggler";
 
 export default function Navbar() {
   const router = useRouter();
@@ -51,6 +52,7 @@ export default function Navbar() {
           {item.text}
         </Link>
       ))}
+      <ThemeToggler />
     </div>
   );
 }

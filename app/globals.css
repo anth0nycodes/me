@@ -22,6 +22,26 @@
   --destructive-foreground: #fafaf9;
 }
 
+.dark {
+  --background: #09090b;
+  --foreground: #fafaf9;
+  --card: #18181b;
+  --card-foreground: #fafaf9;
+  --primary: #fafaf9;
+  --primary-foreground: #18181b;
+  --secondary: #27272a;
+  --secondary-foreground: #fafaf9;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --accent: #27272a;
+  --accent-foreground: #fafaf9;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #d4d4d8;
+  --destructive: #dc2626;
+  --destructive-foreground: #fafaf9;
+}
+
 html.lenis,
 html.lenis body {
   height: auto;
