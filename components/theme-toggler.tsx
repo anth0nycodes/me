@@ -1,11 +1,11 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
+import { MonitorCog, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 export function ThemeToggler() {
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -14,12 +14,22 @@ export function ThemeToggler() {
 
   if (!mounted) return null;
 
+  const cycleTheme = () => {
+    if (theme === "system") setTheme("light");
+    else if (theme === "light") setTheme("dark");
+    else setTheme("system");
+  };
+
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={cycleTheme}
       className="hover:text-primary text-muted-foreground cursor-pointer transition-colors"
     >
-      {theme === "dark" ? (
+      {theme === "system" ? (
+        <span className="flex items-center gap-1">
+          <MonitorCog className="size-4" aria-hidden="true" /> system
+        </span>
+      ) : resolvedTheme === "dark" ? (
         <span className="flex items-center gap-1">
           <Moon className="size-4" aria-hidden="true" /> dark
         </span>
