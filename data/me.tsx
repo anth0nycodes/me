@@ -151,6 +151,13 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "license-generator",
+      role: "creator / maintainer",
+      description: "open-source license generator for your repositories",
+      href: "https://github.com/anth0nycodes/license-generator",
+      image: "/posters/license-demo.jpg",
+    },
+    {
       title: "observatory",
       role: "contributor",
       description: "open-source package for AI-agent observability",
