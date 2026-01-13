@@ -151,6 +151,14 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "tracemark",
+      role: "creator / maintainer",
+      description:
+        "open-source Chrome extension that lets you draw over any webpage and copy/download the result as an image.",
+      href: "https://github.com/anth0nycodes/tracemark",
+      image: "/posters/tracemark.png",
+    },
+    {
       title: "license-generator",
       role: "creator / maintainer",
       description: "open-source license generator for your repositories",
