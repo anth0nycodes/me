@@ -51,6 +51,19 @@ export const DATA = {
       src: "https://www.refactoringui.com/",
     },
     {
+      title: "Web Interface Guidelines",
+      description:
+        "comprehensive guidelines for building polished web interfaces",
+      author: "Vercel",
+      src: "https://vercel.com/design/guidelines",
+    },
+    {
+      title: "Fonts Knowledge",
+      description: "a library of original guides to the world of typography",
+      author: "Google",
+      src: "https://fonts.google.com/knowledge",
+    },
+    {
       title: "Flora's Notes on Design Engineering",
       description:
         "thoughtful insights on the intersection of design and engineering",
@@ -62,13 +75,6 @@ export const DATA = {
       description: "learn what design engineering looks like at vercel",
       author: "Vercel",
       src: "https://vercel.com/blog/design-engineering-at-vercel",
-    },
-    {
-      title: "Web Interface Guidelines",
-      description:
-        "comprehensive guidelines for building polished web interfaces",
-      author: "Vercel",
-      src: "https://vercel.com/design/guidelines",
     },
     {
       title: "shadcn",
