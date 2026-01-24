@@ -9,7 +9,7 @@ export const DATA = {
     "design engineer. part-time linkedin warrior. i love building things that look nice.",
   summary:
     "hey — my name is Anthony Hoang and I'm based in NYC. I like creating cool things and learning new things. Whenever I'm not coding, I'm either spending time with loved ones, consuming gym videos, or going to the gym.",
-  avatarUrl: "/mepfpupdated.png",
+  avatarUrl: "/pfp.png",
   skills: [
     // Frontend Frameworks & Platforms
     { name: "Next.js", src: "https://nextjs.org/" },

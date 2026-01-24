@@ -21,7 +21,7 @@ export function Header() {
     <div className="flex flex-col gap-5">
       <div className="flex gap-3 items-center">
         <Image
-          src="/me.png"
+          src={DATA.avatarUrl}
           className="rounded-xl"
           width={50}
           height={50}
