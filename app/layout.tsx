@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/opengraph.png",
+        url: "https://anthonyhoang.dev/opengraph.png",
         width: 1200,
         height: 630,
         alt: DATA.name,
@@ -68,7 +68,8 @@ export const metadata: Metadata = {
   twitter: {
     title: `${DATA.name}`,
     card: "summary_large_image",
-    images: ["/opengraph.png"],
+    images: ["https://anthonyhoang.dev/opengraph.png"],
+    description: DATA.description,
   },
 };
 
