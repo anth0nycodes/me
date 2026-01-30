@@ -160,7 +160,7 @@ export const DATA = {
       title: "tracemark",
       role: "creator / maintainer",
       description:
-        "open-source Chrome extension that lets you draw over any webpage and copy/download the result as an image.",
+        "chrome extension that lets you markup/annotate any webpage and copy/export the result as an image.",
       href: "https://github.com/anth0nycodes/tracemark",
       image: "/posters/tracemark.png",
     },
