@@ -3,10 +3,10 @@ export const DATA = {
   initials: "AH",
   url: "https://anthonyhoang.dev",
   location: "nyc",
-  occupation: "Design Engineer",
+  occupation: "Founding Engineer",
   locationLink: "https://www.google.com/maps/place/bronx",
   description:
-    "design engineer. part-time linkedin warrior. i love building things that look nice.",
+    "fullstack engineer. part-time linkedin warrior. i love building things that look and feel nice.",
   summary:
     "hey — my name is Anthony Hoang and I'm based in NYC. I like creating cool things and learning new things. Whenever I'm not coding, I'm either spending time with loved ones, consuming gym videos, or going to the gym.",
   avatarUrl: "/pfp.png",
@@ -85,6 +85,14 @@ export const DATA = {
     },
   ],
   work: [
+    {
+      title: "mentiora",
+      role: "founding engineer",
+      period: "feb 2026 - present",
+      description: "building the best GCSE revision platform for students",
+      href: "https://mentiora.com",
+      image: "/mentiora.png",
+    },
     {
       title: "magic hour (yc w24)",
       role: "software engineer intern ➔ software engineer",

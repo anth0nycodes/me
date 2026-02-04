@@ -4,6 +4,7 @@ import { DATA } from "@/data/me";
 import { Building2, MapPin } from "lucide-react";
 import Image from "next/image";
 import { Underline } from "./ui/underline";
+import Link from "next/link";
 
 export function Header() {
   const headerInfo = [
@@ -38,7 +39,14 @@ export function Header() {
                 key={index}
               >
                 <item.icon className="size-4" />
-                <p>{item.text}</p>
+                <p>
+                  {item.text}{" "}
+                  {item.text === "Founding Engineer" && (
+                    <Link href="https://mentiora.com" target="_blank">
+                      <span className="hover:underline">&#64; mentiora</span>
+                    </Link>
+                  )}
+                </p>
               </div>
             ))}
           </div>
@@ -48,7 +56,7 @@ export function Header() {
         <p>
           hey, I&apos;m Anthony — a{" "}
           <Underline hexcode="#22a8f5" delay={0.65} duration={1}>
-            design engineer
+            fullstack engineer
           </Underline>{" "}
           based in NYC. I enjoy building beautiful and{" "}
           <Underline hexcode="#58CC02" delay={1.5} duration={1}>

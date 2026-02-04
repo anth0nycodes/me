@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     "Anthony Hoang",
     "Anthony Hoang portfolio",
     "anth0nycodes",
+    "Fullstack Engineer",
     "Design Engineer",
     "Design Engineer portfolio",
     "Frontend Design Engineer",
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://anthonyhoang.dev/opengraph.png",
+        url: "https://anthonyhoang.dev/og.png",
         width: 1200,
         height: 630,
         alt: DATA.name,
@@ -68,7 +69,7 @@ export const metadata: Metadata = {
   twitter: {
     title: `${DATA.name}`,
     card: "summary_large_image",
-    images: ["https://anthonyhoang.dev/opengraph.png"],
+    images: ["https://anthonyhoang.dev/og.png"],
     description: DATA.description,
   },
 };
