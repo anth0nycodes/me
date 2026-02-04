@@ -3,7 +3,7 @@ export const DATA = {
   initials: "AH",
   url: "https://anthonyhoang.dev",
   location: "nyc",
-  occupation: "Founding Engineer",
+  occupation: "Building",
   locationLink: "https://www.google.com/maps/place/bronx",
   description:
     "fullstack engineer. part-time linkedin warrior. i love building things that look and feel nice.",

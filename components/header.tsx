@@ -41,7 +41,7 @@ export function Header() {
                 <item.icon className="size-4" />
                 <p>
                   {item.text}{" "}
-                  {item.text === "Founding Engineer" && (
+                  {item.text === "Building" && (
                     <Link href="https://mentiora.com" target="_blank">
                       <span className="hover:underline">&#64; mentiora</span>
                     </Link>
