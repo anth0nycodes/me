@@ -87,7 +87,7 @@ export const DATA = {
   work: [
     {
       title: "mentiora",
-      role: "founding engineer",
+      role: "software engineer",
       period: "feb 2026 - present",
       description: "building the best GCSE revision platform for students",
       href: "https://mentiora.com",
