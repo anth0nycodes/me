@@ -3,7 +3,7 @@ export const DATA = {
   initials: "AH",
   url: "https://anthonyhoang.dev",
   location: "nyc",
-  occupation: "Building",
+  occupation: "fullstack Engineer",
   locationLink: "https://www.google.com/maps/place/bronx",
   description:
     "fullstack engineer. part-time linkedin warrior. i love building things that look and feel nice.",
@@ -85,14 +85,14 @@ export const DATA = {
     },
   ],
   work: [
-    {
-      title: "mentiora",
-      role: "software engineer",
-      period: "feb 2026 - present",
-      description: "building the best GCSE revision platform for students",
-      href: "https://mentiora.com",
-      image: "/mentiora.png",
-    },
+    // {
+    //   title: "mentiora",
+    //   role: "software engineer",
+    //   period: "feb 2026 - present",
+    //   description: "building the best GCSE revision platform for students",
+    //   href: "https://mentiora.com",
+    //   image: "/mentiora.png",
+    // },
     {
       title: "magic hour (yc w24)",
       role: "software engineer intern ➔ software engineer",

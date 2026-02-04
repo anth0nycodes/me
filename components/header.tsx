@@ -39,14 +39,7 @@ export function Header() {
                 key={index}
               >
                 <item.icon className="size-4" />
-                <p>
-                  {item.text}{" "}
-                  {item.text === "Building" && (
-                    <Link href="https://mentiora.com" target="_blank">
-                      <span className="hover:underline">&#64; mentiora</span>
-                    </Link>
-                  )}
-                </p>
+                <p>{item.text}</p>
               </div>
             ))}
           </div>
