@@ -160,9 +160,17 @@ export const DATA = {
       title: "tracemark",
       role: "creator / maintainer",
       description:
-        "chrome extension that lets you markup/annotate any webpage and copy/export the result as an image.",
+        "chrome extension that lets you markup/annotate any webpage and copy/export the result as an image",
       href: "https://github.com/anth0nycodes/tracemark",
       image: "/posters/tracemark.png",
+    },
+    {
+      title: "fabric-history",
+      role: "creator / maintainer",
+      description:
+        "a library built on top of Fabric.js that adds undo/redo functionality + canvas state history",
+      href: "https://github.com/anth0nycodes/fabric-history",
+      image: "/posters/fabric-history.png",
     },
     {
       title: "license-generator",
@@ -171,13 +179,13 @@ export const DATA = {
       href: "https://github.com/anth0nycodes/license-generator",
       image: "/posters/license-demo.jpg",
     },
-    {
-      title: "observatory",
-      role: "contributor",
-      description: "open-source package for AI-agent observability",
-      href: "https://github.com/The-Context-Company/observatory/commits/main/?author=anth0nycodes",
-      image: "/ob.png",
-    },
+    // {
+    //   title: "observatory",
+    //   role: "contributor",
+    //   description: "open-source package for AI-agent observability",
+    //   href: "https://github.com/The-Context-Company/observatory/commits/main/?author=anth0nycodes",
+    //   image: "/ob.png",
+    // },
     {
       title: "typescript-oop-guide",
       role: "creator / maintainer",
