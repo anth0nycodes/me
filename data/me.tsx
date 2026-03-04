@@ -33,6 +33,10 @@ export const DATA = {
     { name: "Drizzle ORM", src: "https://orm.drizzle.team/" },
     { name: "Supabase", src: "https://supabase.com/" },
 
+    // Testing
+    { name: "Vitest", src: "https://vitest.dev/" },
+    { name: "Jest", src: "https://jestjs.io/" },
+
     // Deployment & Infrastructure
     { name: "Vercel", src: "https://vercel.com/" },
 
