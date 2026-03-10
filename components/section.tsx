@@ -3,13 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useState, useEffect } from "react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  AnimatePresence,
-  useReducedMotion,
-} from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 
 export type Item = {
   title: string;
@@ -35,34 +29,22 @@ export function SectionList({
   viewAllHref,
   viewAllText,
 }: SectionListProps) {
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-
   const springConfig = { damping: 50, stiffness: 300, mass: 0.5 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
-
   const [hoveredItem, setHoveredItem] = useState<Item | null>(null);
   const [displayedItem, setDisplayedItem] = useState<Item | null>(null);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const { clientX, clientY } = e;
-    cursorX.set(clientX);
-    cursorY.set(clientY);
-  };
 
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDisplayedItem(hoveredItem);
-    }, 200);
+    }, 100);
 
     return () => clearTimeout(timeout);
   }, [hoveredItem]);
 
   return (
-    <section className="flex flex-col gap-5" onMouseMove={handleMouseMove}>
+    <section className="flex flex-col gap-5">
       <h2 className="text-2xl flex items-center gap-3 font-medium">
         <span>{emoji}</span>
         {title}
@@ -71,7 +53,7 @@ export function SectionList({
         {items.map((item, index) => (
           <div
             key={index}
-            className="hover:bg-accent rounded-lg p-2 duration-200"
+            className="hover:bg-accent hover:cursor-pointer relative rounded-lg p-2 duration-200"
             onMouseEnter={() =>
               setHoveredItem(prefersReducedMotion ? null : item)
             }
@@ -84,6 +66,27 @@ export function SectionList({
               </p>
               <p className="">{item.description}</p>
             </Link>
+            {displayedItem?.title === item.title && displayedItem?.image && (
+              <div className="absolute right-0 top-full mt-2 2xl:left-auto 2xl:right-0 2xl:top-0 2xl:mt-0 2xl:-translate-y-1/4 2xl:translate-x-[105%] pointer-events-none z-50 hidden md:block">
+                <AnimatePresence>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0, rotate: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ type: "spring", ...springConfig }}
+                    className="relative 2xl:rotate-0"
+                  >
+                    <div className="relative md:w-xs 2xl:w-sm rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-black/50 backdrop-blur-sm">
+                      <img
+                        src={displayedItem.image}
+                        alt={displayedItem.title}
+                        className="w-full h-auto object-cover"
+                      />
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -95,47 +98,6 @@ export function SectionList({
           {viewAllText}{" "}
           <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
         </Link>
-      )}
-      {!prefersReducedMotion && (
-        <motion.div
-          className="fixed top-0 left-0 pointer-events-none z-50 hidden md:block"
-          style={{
-            x: cursorXSpring,
-            y: cursorYSpring,
-          }}
-        >
-          <AnimatePresence>
-            {displayedItem?.image && (
-              <motion.div
-                className="relative -translate-x-1/2 -translate-y-1/2"
-                initial={{
-                  opacity: 0,
-                  scale: 0.8,
-                }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                exit={{
-                  opacity: 0,
-                  scale: 0.8,
-                }}
-                transition={{
-                  duration: 0.2,
-                  ease: "easeOut",
-                }}
-              >
-                <div className="size-full max-w-sm rounded-lg overflow-hidden shadow-2xl border border-white/20">
-                  <img
-                    src={displayedItem.image}
-                    alt={displayedItem.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
       )}
     </section>
   );
