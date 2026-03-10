@@ -64,7 +64,7 @@ export function SectionList({
               <p className="text-sm mb-2">
                 {item.role} {item.period && `(${item.period})`}
               </p>
-              <p className="">{item.description}</p>
+              <p>{item.description}</p>
             </Link>
             {displayedItem?.title === item.title && displayedItem?.image && (
               <div className="absolute right-0 top-full mt-2 2xl:left-auto 2xl:right-0 2xl:top-0 2xl:mt-0 2xl:-translate-y-1/4 2xl:translate-x-[105%] pointer-events-none z-50 hidden md:block">

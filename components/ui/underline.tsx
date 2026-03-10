@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import { ReactNode, useRef } from "react";
 import Realistic from "react-canvas-confetti/dist/presets/realistic";
 

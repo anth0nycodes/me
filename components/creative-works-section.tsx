@@ -3,7 +3,7 @@
 import { DATA } from "@/data/me";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 
 export function CreativeWorksSection() {
   const springConfig = { damping: 50, stiffness: 300, mass: 0.5 };
