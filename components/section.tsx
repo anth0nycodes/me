@@ -38,7 +38,7 @@ export function SectionList({
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDisplayedItem(hoveredItem);
-    }, 100);
+    }, 50);
 
     return () => clearTimeout(timeout);
   }, [hoveredItem]);
@@ -54,9 +54,7 @@ export function SectionList({
           <div
             key={index}
             className="hover:bg-accent hover:cursor-pointer relative rounded-lg p-2 duration-200"
-            onMouseEnter={() =>
-              setHoveredItem(prefersReducedMotion ? null : item)
-            }
+            onMouseEnter={() => setHoveredItem(item)}
             onMouseLeave={() => setHoveredItem(null)}
           >
             <Link href={item.href} target="_blank">
@@ -67,13 +65,27 @@ export function SectionList({
               <p>{item.description}</p>
             </Link>
             {displayedItem?.title === item.title && displayedItem?.image && (
-              <div className="absolute right-0 top-full mt-2 2xl:left-auto 2xl:right-0 2xl:top-0 2xl:mt-0 2xl:-translate-y-1/4 2xl:translate-x-[105%] pointer-events-none z-50 hidden md:block">
+              <div className="absolute right-0 top-full mt-2 2xl:left-auto 2xl:top-0 2xl:mt-0 2xl:-translate-y-1/4 2xl:translate-x-[105%] pointer-events-none z-50 hidden md:block">
                 <AnimatePresence>
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0, rotate: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ type: "spring", ...springConfig }}
+                    initial={
+                      prefersReducedMotion
+                        ? {}
+                        : { opacity: 0, scale: 0.9, y: 10 }
+                    }
+                    animate={
+                      prefersReducedMotion
+                        ? {}
+                        : { opacity: 1, scale: 1, y: 0, rotate: 1 }
+                    }
+                    exit={
+                      prefersReducedMotion ? {} : { opacity: 0, scale: 0.9 }
+                    }
+                    transition={
+                      prefersReducedMotion
+                        ? {}
+                        : { type: "spring", ...springConfig }
+                    }
                     className="relative 2xl:rotate-0"
                   >
                     <div className="relative md:w-xs 2xl:w-sm rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-black/50 backdrop-blur-sm">
