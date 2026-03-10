@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { useWebHaptics } from "web-haptics/react";
 
 export type Item = {
   title: string;
@@ -32,6 +33,7 @@ export function SectionList({
   const springConfig = { damping: 50, stiffness: 300, mass: 0.5 };
   const [hoveredItem, setHoveredItem] = useState<Item | null>(null);
   const [displayedItem, setDisplayedItem] = useState<Item | null>(null);
+  const { trigger } = useWebHaptics();
 
   const prefersReducedMotion = useReducedMotion();
 
@@ -54,10 +56,13 @@ export function SectionList({
           <div
             key={index}
             className="hover:bg-accent hover:cursor-pointer relative rounded-lg p-2 duration-200"
-            onMouseEnter={() => setHoveredItem(item)}
+            onMouseEnter={() => {
+              setHoveredItem(item);
+              trigger("selection");
+            }}
             onMouseLeave={() => setHoveredItem(null)}
           >
-            <Link href={item.href} target="_blank">
+            <Link href={item.href} target="_blank" onClick={() => trigger("light")}>
               <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
               <p className="text-sm mb-2">
                 {item.role} {item.period && `(${item.period})`}
@@ -105,6 +110,7 @@ export function SectionList({
       {viewAllHref && (
         <Link
           href={viewAllHref}
+          onClick={() => trigger("light")}
           className="inline-flex items-center gap-1 mt-6 text-foreground hover:underline group"
         >
           {viewAllText}{" "}

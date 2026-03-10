@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useWebHaptics } from "web-haptics/react";
 
 interface VaultCardProps {
   title: string;
@@ -8,8 +11,16 @@ interface VaultCardProps {
 }
 
 export function VaultCard({ title, src, author, description }: VaultCardProps) {
+  const { trigger } = useWebHaptics();
+
   return (
-    <Link key={title} target="_blank" href={src}>
+    <Link
+      key={title}
+      target="_blank"
+      href={src}
+      onMouseEnter={() => trigger("selection")}
+      onClick={() => trigger("light")}
+    >
       <div className="flex flex-col justify-between p-6 h-full border rounded-lg hover:bg-accent transition-colors group">
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">

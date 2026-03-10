@@ -35,7 +35,8 @@
     "remark-rehype": "^11.1.2",
     "tailwind-merge": "^3.5.0",
     "unified": "^11.0.5",
-    "use-scramble": "^2.2.15"
+    "use-scramble": "^2.2.15",
+    "web-haptics": "^0.0.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.1",

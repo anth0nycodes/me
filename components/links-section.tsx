@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useWebHaptics } from "web-haptics/react";
 
 const links = [
   { title: "github", href: "https://github.com/anth0nycodes" },
@@ -9,6 +12,8 @@ const links = [
 ];
 
 export function LinksSection() {
+  const { trigger } = useWebHaptics();
+
   return (
     <section className="flex flex-col gap-6">
       <h2 className="text-2xl flex items-center gap-3 font-medium">
@@ -20,6 +25,7 @@ export function LinksSection() {
             key={index}
             href={link.href}
             target="_blank"
+            onClick={() => trigger("light")}
             className="text-muted-foreground hover:text-primary transition-colors duration-200"
           >
             {link.title}

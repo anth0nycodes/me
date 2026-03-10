@@ -3,12 +3,14 @@
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
+import { useWebHaptics } from "web-haptics/react";
 
 interface ReviewCardProps {
   name: string;
   role: string;
   body: string;
   src: string;
+  onMouseEnter?: () => void;
 }
 
 const reviews = [
@@ -32,9 +34,12 @@ const reviews = [
   },
 ];
 
-const ReviewCard = ({ name, role, body, src }: ReviewCardProps) => {
+const ReviewCard = ({ name, role, body, src, onMouseEnter }: ReviewCardProps) => {
   return (
-    <figure className="relative size-full max-w-sm cursor-grab overflow-hidden rounded-xl border border-border bg-card p-4 select-none hover:border-foreground/30 transition-colors">
+    <figure
+      className="relative size-full max-w-sm cursor-grab overflow-hidden rounded-xl border border-border bg-card p-4 select-none hover:border-foreground/30 transition-colors"
+      onMouseEnter={onMouseEnter}
+    >
       <div className="flex flex-row items-center gap-2">
         <Image
           className="rounded-full"
@@ -55,6 +60,7 @@ const ReviewCard = ({ name, role, body, src }: ReviewCardProps) => {
 };
 
 export function Testimonials() {
+  const { trigger } = useWebHaptics();
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
     AutoScroll({
       playOnInit: true,
@@ -80,7 +86,7 @@ export function Testimonials() {
                 index === duplicatedReviews.length - 1 ? "mr-4" : ""
               }`}
             >
-              <ReviewCard {...review} />
+              <ReviewCard {...review} onMouseEnter={() => trigger("selection")} />
             </div>
           ))}
         </div>

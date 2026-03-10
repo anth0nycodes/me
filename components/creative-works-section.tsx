@@ -4,9 +4,11 @@ import { DATA } from "@/data/me";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { useWebHaptics } from "web-haptics/react";
 
 export function CreativeWorksSection() {
   const springConfig = { damping: 50, stiffness: 300, mass: 0.5 };
+  const { trigger } = useWebHaptics();
 
   const [hoveredWork, setHoveredWork] = useState<
     (typeof DATA.works)[number] | null
@@ -36,13 +38,17 @@ export function CreativeWorksSection() {
             <div
               key={work.title}
               className="relative"
-              onMouseEnter={() => setHoveredWork(work)}
+              onMouseEnter={() => {
+                setHoveredWork(work);
+                trigger("selection");
+              }}
               onMouseLeave={() => setHoveredWork(null)}
             >
               <CreativeWorkCard
                 title={work.title}
                 description={work.description}
                 href={work.href}
+                onLinkClick={() => trigger("light")}
               />
               {displayedWork?.title === work.title &&
                 displayedWork?.thumbnailUrl && (
@@ -92,15 +98,17 @@ interface CreativeWorkCardProps {
   title: string;
   description?: string;
   href?: string;
+  onLinkClick?: () => void;
 }
 
 export const CreativeWorkCard = ({
   title,
   description,
   href,
+  onLinkClick,
 }: CreativeWorkCardProps) => {
   return (
-    <Link href={href || "#"} target="_blank" className="block cursor-pointer">
+    <Link href={href || "#"} target="_blank" className="block cursor-pointer" onClick={onLinkClick}>
       <div>
         <div className="items-center flex-col hover:bg-accent rounded-lg p-2 duration-200">
           <div>

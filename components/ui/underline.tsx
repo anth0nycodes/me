@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { ReactNode, useRef } from "react";
 import Realistic from "react-canvas-confetti/dist/presets/realistic";
+import { useWebHaptics } from "web-haptics/react";
 
 interface UnderlineProps {
   hexcode: string;
@@ -18,6 +19,7 @@ export function Underline({
   children,
 }: UnderlineProps) {
   const controller = useRef<{ shoot: () => void } | null>(null);
+  const { trigger } = useWebHaptics();
 
   const onInitHandler = ({
     conductor,
@@ -29,6 +31,7 @@ export function Underline({
 
   const onShoot = () => {
     controller.current?.shoot();
+    trigger("success");
   };
 
   const prefersReducedMotion = useReducedMotion();
