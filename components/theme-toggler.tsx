@@ -3,10 +3,12 @@
 import { MonitorCog, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { useWebHaptics } from "web-haptics/react";
 
 export function ThemeToggler() {
   const { theme, resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const { trigger } = useWebHaptics();
 
   useEffect(() => {
     setMounted(true);
@@ -15,6 +17,7 @@ export function ThemeToggler() {
   if (!mounted) return null;
 
   const cycleTheme = () => {
+    trigger("selection");
     if (theme === "system") setTheme("light");
     else if (theme === "light") setTheme("dark");
     else setTheme("system");
