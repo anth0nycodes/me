@@ -90,11 +90,19 @@ export const DATA = {
   ],
   work: [
     {
-      title: "magic hour (yc w24)",
-      role: "software engineer intern ➔ software engineer",
-      period: "mar 2025 - sep 2025",
+      title: "deep24 (yc w24)",
+      role: "software engineer intern",
+      period: "mar 2026 - present",
       description:
-        "polishing UI and building ai-powered tools for creators — full-time from aug",
+        "building and polishing UI/UX for an ai-powered life coaching platform",
+      href: "https://deep24.com",
+      image: "/d24.png",
+    },
+    {
+      title: "magic hour (yc w24)",
+      role: "software engineer intern",
+      period: "mar 2025 - sep 2025",
+      description: "polishing UI/UX and building ai-powered tools for creators",
       href: "https://magichour.ai",
       image: "/mh.png",
     },
