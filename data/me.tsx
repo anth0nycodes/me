@@ -94,7 +94,7 @@ export const DATA = {
       role: "software engineer intern",
       period: "mar 2026 - present",
       description:
-        "building and polishing UI/UX for an ai-powered life coaching platform",
+        "polishing UI/UX for a platform where builders share how they work",
       href: "https://deep24.com",
       image: "/d24.png",
     },
