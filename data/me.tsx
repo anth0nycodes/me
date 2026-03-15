@@ -3,10 +3,10 @@ export const DATA = {
   initials: "AH",
   url: "https://anthonyhoang.dev",
   location: "nyc",
-  occupation: "Design Engineer",
+  occupation: "Web Engineer",
   locationLink: "https://www.google.com/maps/place/bronx",
   description:
-    "design engineer. part-time linkedin warrior. i love building things that look nice.",
+    "web engineer. professional doomscroller. i love building things that feel and look nice.",
   summary:
     "hey — my name is Anthony Hoang and I'm based in NYC. I like creating cool things and learning new things. Whenever I'm not coding, I'm either spending time with loved ones, consuming gym videos, or going to the gym.",
   avatarUrl: "/pfp.png",
