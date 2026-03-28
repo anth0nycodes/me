@@ -93,8 +93,7 @@ export const DATA = {
       title: "deep24 (yc w24)",
       role: "software engineer intern",
       period: "mar 2026 - present",
-      description:
-        "polishing UI/UX for a platform where builders share how they work",
+      description: "building the #1 AI talent agent that understands you",
       href: "https://deep24.com",
       image: "/d24.png",
     },
