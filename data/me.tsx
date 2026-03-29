@@ -30,7 +30,8 @@ export const DATA = {
 
     // Databases & ORM
     { name: "PostgreSQL", src: "https://www.postgresql.org/" },
-    { name: "Drizzle ORM", src: "https://orm.drizzle.team/" },
+    { name: "Prisma", src: "https://www.prisma.io/" },
+    { name: "Drizzle", src: "https://orm.drizzle.team/" },
     { name: "Supabase", src: "https://supabase.com/" },
 
     // Testing
