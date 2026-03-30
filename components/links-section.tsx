@@ -8,6 +8,7 @@ const links = [
   { title: "linkedin", href: "https://www.linkedin.com/in/anth0nycodes" },
   { title: "x", href: "https://x.com/anth0nycodes" },
   { title: "coffee chat ☕️", href: "https://cal.com/anth0nycodes" },
+  { title: "resume", href: "https://anthonyhoang.dev/resume.pdf" },
   { title: "email", href: "mailto:hoanganthony2207@gmail.com" },
 ];
 
