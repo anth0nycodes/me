@@ -143,6 +143,12 @@ export const DATA = {
   ],
   works: [
     {
+      title: "deep24-01",
+      description: "Landing page I built for Deep24",
+      href: "https://www.youtube.com/watch?v=0BPYzD_GVNI",
+      thumbnailUrl: "/posters/deep24-01.jpg",
+    },
+    {
       title: "design-stuff-01",
       description: "Recreation of Magic UI's animated list",
       href: "https://www.youtube.com/watch?v=rgZ0mqzkr8s",
@@ -169,14 +175,6 @@ export const DATA = {
   ],
   projects: [
     {
-      title: "tracemark",
-      role: "creator / maintainer",
-      description:
-        "chrome extension that lets you markup/annotate any webpage and copy/export the result as an image",
-      href: "https://github.com/anth0nycodes/tracemark",
-      image: "/posters/tracemark.png",
-    },
-    {
       title: "fabric-history",
       role: "creator / maintainer",
       description:
@@ -198,13 +196,13 @@ export const DATA = {
     //   href: "https://github.com/The-Context-Company/observatory/commits/main/?author=anth0nycodes",
     //   image: "/ob.png",
     // },
-    {
-      title: "typescript-oop-guide",
-      role: "creator / maintainer",
-      description:
-        "comprehensive learning guide for OOP in TypeScript with 37 hands-on exercises",
-      href: "https://github.com/ah-materials/typescript-oop-guide",
-      image: "/ts.png",
-    },
+    // {
+    //   title: "typescript-oop-guide",
+    //   role: "creator / maintainer",
+    //   description:
+    //     "comprehensive learning guide for OOP in TypeScript with 37 hands-on exercises",
+    //   href: "https://github.com/ah-materials/typescript-oop-guide",
+    //   image: "/ts.png",
+    // },
   ],
 } as const;
