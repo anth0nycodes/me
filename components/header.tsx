@@ -1,65 +1,57 @@
 "use client";
 
 import { DATA } from "@/data/me";
-import { Building2, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import Image from "next/image";
 import { Underline } from "./ui/underline";
 
 export function Header() {
-  const headerInfo = [
-    {
-      icon: MapPin,
-      text: DATA.location,
-    },
-    {
-      icon: Building2,
-      text: DATA.occupation,
-    },
-  ];
-
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex gap-3 items-center">
+    <div className="flex flex-col gap-6">
+      <div className="flex gap-4 items-center">
         <Image
           src={DATA.avatarUrl}
-          className="rounded-xl"
-          width={50}
-          height={50}
+          className="rounded-xl ring-1 ring-border"
+          width={56}
+          height={56}
           alt="Picture of me"
         />
-        <div className="flex flex-col">
-          <h1 className="text-xl font-medium lowercase">
-            <span className="inline-block">{DATA.name}</span>
+        <div className="flex flex-col gap-1">
+          <h1 className="text-2xl font-bold font-display tracking-tight lowercase">
+            {DATA.name}
           </h1>
-          <div className="flex gap-4">
-            {headerInfo.map((item, index) => (
-              <div
-                className="flex items-center text-muted-foreground gap-2"
-                key={index}
-              >
-                <item.icon className="size-4" />
-                <p>{item.text}</p>
-              </div>
-            ))}
+          <div className="flex items-center gap-3 text-sm text-muted-foreground">
+            <div className="flex items-center gap-1.5">
+              <MapPin className="size-3.5" />
+              <span>{DATA.location}</span>
+            </div>
+            <span className="text-border">·</span>
+            <div className="flex items-center gap-1.5">
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-glow/75" />
+                <span className="relative inline-flex size-2 rounded-full bg-glow" />
+              </span>
+              <span>{DATA.occupation}</span>
+            </div>
           </div>
         </div>
       </div>
       <div className="flex flex-col gap-3">
         <p>
           hey, I&apos;m Anthony — a{" "}
-          <Underline hexcode="#22a8f5" delay={0.65} duration={1}>
-            fullstack engineer
+          <Underline hexcode="#22c55e" delay={0.65} duration={1}>
+            roblox game developer
           </Underline>{" "}
-          based in NYC. I enjoy building beautiful and{" "}
-          <Underline hexcode="#58CC02" delay={1.5} duration={1}>
-            thoughtful user experiences
+          based in NYC. I enjoy building{" "}
+          <Underline hexcode="#06b6d4" delay={1.5} duration={1}>
+            fun and immersive game experiences
           </Underline>{" "}
-          that make products feel better, while{" "}
-          <Underline hexcode="#f5a623" delay={2.3} duration={1}>
+          that players love, while{" "}
+          <Underline hexcode="#eab308" delay={2.3} duration={1}>
             continuously learning
           </Underline>{" "}
           along the way.
-        </p>{" "}
+        </p>
         <p>
           when I&apos;m not coding, I&apos;m usually at the gym or spending time
           with people i care about.

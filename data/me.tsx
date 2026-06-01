@@ -3,90 +3,76 @@ export const DATA = {
   initials: "AH",
   url: "https://anthonyhoang.dev",
   location: "nyc",
-  occupation: "Fullstack Engineer",
+  occupation: "Roblox Game Developer",
   locationLink: "https://www.google.com/maps/place/bronx",
   description:
-    "fullstack engineer. professional doomscroller. i love building things that feel and look nice.",
+    "roblox game developer. professional doomscroller. i love building games that feel fun and look great.",
   summary:
     "hey — my name is Anthony Hoang and I'm based in NYC. I like creating cool things and learning new things. Whenever I'm not coding, I'm either spending time with loved ones, consuming gym videos, or going to the gym.",
   avatarUrl: "/pfp.png",
   skills: [
-    // Frontend Frameworks & Platforms
-    { name: "Next.js", src: "https://nextjs.org/" },
-    { name: "React.js", src: "https://react.dev/" },
-
     // Languages
+    { name: "Luau", src: "https://luau-lang.org/" },
+    { name: "Lua", src: "https://www.lua.org/" },
     { name: "TypeScript", src: "https://www.typescriptlang.org/" },
 
-    // Styling & UI Libraries
+    // Game Development
+    { name: "Roblox Studio", src: "https://create.roblox.com/" },
+    { name: "Wally", src: "https://wally.run/" },
+    { name: "Rojo", src: "https://rojo.space/" },
+
+    // 3D & Design
+    { name: "Blender", src: "https://www.blender.org/" },
+    { name: "Figma", src: "https://www.figma.com/" },
+
+    // Web Development
+    { name: "Next.js", src: "https://nextjs.org/" },
+    { name: "React.js", src: "https://react.dev/" },
     { name: "Tailwind CSS", src: "https://tailwindcss.com/" },
     { name: "Shadcn UI", src: "https://ui.shadcn.com/" },
-    { name: "Framer Motion", src: "https://motion.dev/" },
-
-    // Backend Frameworks
-    { name: "Express.js", src: "https://expressjs.com/" },
-    { name: "Node.js", src: "https://nodejs.org/" },
-    { name: "tRPC", src: "https://trpc.io/" },
-
-    // Databases & ORM
-    { name: "PostgreSQL", src: "https://www.postgresql.org/" },
-    { name: "Prisma", src: "https://www.prisma.io/" },
-    { name: "Drizzle", src: "https://orm.drizzle.team/" },
-    { name: "Supabase", src: "https://supabase.com/" },
-
-    // Testing
-    { name: "Vitest", src: "https://vitest.dev/" },
-    { name: "Jest", src: "https://jestjs.io/" },
-
-    // Deployment & Infrastructure
-    { name: "Vercel", src: "https://vercel.com/" },
-
-    // Developer Tools
-    { name: "Linear", src: "https://linear.app/" },
-
-    // Design Tools
-    { name: "Figma", src: "https://www.figma.com/" },
   ],
   resources: [
     {
-      title: "Refactoring UI",
+      title: "Roblox Creator Documentation",
       description:
-        "learn how to design beautiful user interfaces without relying on a designer",
-      author: "Adam W. & Steve S.",
-      src: "https://www.refactoringui.com/",
+        "official docs for building experiences on roblox — scripting, UI, physics, and more",
+      author: "Roblox",
+      src: "https://create.roblox.com/docs",
     },
     {
-      title: "Web Interface Guidelines",
+      title: "Luau Language Reference",
       description:
-        "comprehensive guidelines for building polished web interfaces",
-      author: "Vercel",
-      src: "https://vercel.com/design/guidelines",
+        "complete reference for Luau, Roblox's scripting language derived from Lua",
+      author: "Roblox",
+      src: "https://luau-lang.org/",
     },
     {
-      title: "Fonts Knowledge",
-      description: "a library of original guides to the world of typography",
-      author: "Google",
-      src: "https://fonts.google.com/knowledge",
-    },
-    {
-      title: "Flora's Notes on Design Engineering",
+      title: "DevForum",
       description:
-        "thoughtful insights on the intersection of design and engineering",
-      author: "Flora G.",
-      src: "https://www.floguo.com/notes/design-engineering",
+        "roblox's official developer forum — tutorials, resources, and community help",
+      author: "Roblox",
+      src: "https://devforum.roblox.com/",
     },
     {
-      title: "Design Engineering at Vercel",
-      description: "learn what design engineering looks like at vercel",
-      author: "Vercel",
-      src: "https://vercel.com/blog/design-engineering-at-vercel",
-    },
-    {
-      title: "shadcn",
+      title: "Blender Guru",
       description:
-        "beautifully designed components that you can copy and paste into your apps",
-      author: "Shadab (Shad) A.",
-      src: "https://ui.shadcn.com/",
+        "learn 3D modeling and design with one of the best blender tutorial creators",
+      author: "Andrew Price",
+      src: "https://www.youtube.com/@blenderguru",
+    },
+    {
+      title: "Wally",
+      description:
+        "package manager for roblox — manage dependencies for your projects",
+      author: "UpliftGames",
+      src: "https://wally.run/",
+    },
+    {
+      title: "Rojo",
+      description:
+        "bridge between your filesystem and roblox studio — enables professional workflows",
+      author: "Rojo",
+      src: "https://rojo.space/",
     },
   ],
   work: [
@@ -141,68 +127,14 @@ export const DATA = {
       end: "2025",
     },
   ],
-  works: [
-    {
-      title: "deep24-01",
-      description: "Landing page I built for Deep24",
-      href: "https://www.youtube.com/watch?v=0BPYzD_GVNI",
-      thumbnailUrl: "/posters/deep24-01.jpg",
-    },
-    {
-      title: "design-stuff-01",
-      description: "Recreation of Magic UI's animated list",
-      href: "https://www.youtube.com/watch?v=rgZ0mqzkr8s",
-      thumbnailUrl: "/posters/design-stuff-01.jpg",
-    },
-    {
-      title: "magic-hour-02",
-      description: "Landing page I built for Magic Hour",
-      href: "https://www.youtube.com/watch?v=zSmqfayeMuQ",
-      thumbnailUrl: "/posters/magic-hour-02.jpg",
-    },
-    {
-      title: "magic-hour-01",
-      description: "Library page UI work for Magic Hour",
-      href: "https://www.youtube.com/watch?v=GQv17nBuV70",
-      thumbnailUrl: "/posters/magic-hour-01.jpg",
-    },
-    {
-      title: "mtc",
-      description: "Community website I built for Muslim Tech Collaborative",
-      href: "https://www.youtube.com/watch?v=rQvx48D8oAc",
-      thumbnailUrl: "/posters/mtc-01.jpg",
-    },
-  ],
   projects: [
     {
-      title: "fabric-history",
-      role: "creator / maintainer",
+      title: "combat-testing",
+      role: "creator",
       description:
-        "a library built on top of Fabric.js that adds undo/redo functionality + canvas state history",
-      href: "https://github.com/anth0nycodes/fabric-history",
-      image: "/posters/fabric-history.png",
+        "a basic combat system in roblox — building out core fighting mechanics",
+      href: "https://github.com/anth0nycodes/combat-testing",
+      image: "/posters/combat-testing.png",
     },
-    {
-      title: "license-generator",
-      role: "creator / maintainer",
-      description: "open-source license generator for your repositories",
-      href: "https://github.com/anth0nycodes/license-generator",
-      image: "/posters/license-demo.jpg",
-    },
-    // {
-    //   title: "observatory",
-    //   role: "contributor",
-    //   description: "open-source package for AI-agent observability",
-    //   href: "https://github.com/The-Context-Company/observatory/commits/main/?author=anth0nycodes",
-    //   image: "/ob.png",
-    // },
-    // {
-    //   title: "typescript-oop-guide",
-    //   role: "creator / maintainer",
-    //   description:
-    //     "comprehensive learning guide for OOP in TypeScript with 37 hands-on exercises",
-    //   href: "https://github.com/ah-materials/typescript-oop-guide",
-    //   image: "/ts.png",
-    // },
   ],
 } as const;

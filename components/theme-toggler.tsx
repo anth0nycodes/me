@@ -26,7 +26,7 @@ export function ThemeToggler() {
   return (
     <button
       onClick={cycleTheme}
-      className="hover:text-primary text-muted-foreground cursor-pointer transition-colors"
+      className="hover:text-glow text-muted-foreground cursor-pointer transition-colors duration-200"
     >
       {theme === "system" ? (
         <span className="flex items-center gap-1">

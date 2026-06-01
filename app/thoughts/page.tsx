@@ -12,7 +12,7 @@ export default async function ThoughtsPage() {
 
   return (
     <section>
-      <h1 className="lowercase text-3xl mb-8 tracking-tighter font-medium">
+      <h1 className="lowercase text-3xl mb-8 tracking-tight font-display font-bold">
         <span className="inline-flex gap-3 items-center">
           💭
           <span>my thoughts</span>

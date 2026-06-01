@@ -42,7 +42,7 @@ export function EducationSection() {
   return (
     <section id="education" onMouseMove={handleMouseMove}>
       <div className="flex min-h-0 flex-col gap-5">
-        <h2 className="text-2xl flex items-center gap-3 font-medium">
+        <h2 className="text-2xl flex items-center gap-3 font-display font-semibold tracking-tight">
           <span>🎓</span> school lore
         </h2>
         <div className="flex flex-col gap-8">
@@ -121,7 +121,7 @@ export const EducationCard = ({
   return (
     <Link href={href || "#"} target="_blank" className="block cursor-pointer">
       <div>
-        <div className="items-center flex-col hover:bg-accent rounded-lg p-2 duration-200">
+        <div className="items-center flex-col border-l-2 border-transparent hover:border-glow/60 hover:bg-accent rounded-r-lg p-3 pl-4 transition-all duration-200">
           <div>
             <div className="flex items-center justify-between gap-x-2 text-base">
               <h3 className="inline-flex items-center justify-center font-semibold mb-1 text-xl">

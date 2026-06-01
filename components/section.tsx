@@ -47,15 +47,15 @@ export function SectionList({
 
   return (
     <section className="flex flex-col gap-5">
-      <h2 className="text-2xl flex items-center gap-3 font-medium">
+      <h2 className="text-2xl flex items-center gap-3 font-display font-semibold tracking-tight">
         <span>{emoji}</span>
         {title}
       </h2>
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-4">
         {items.map((item, index) => (
           <div
             key={index}
-            className="hover:bg-accent hover:cursor-pointer relative rounded-lg p-2 duration-200"
+            className="border-l-2 border-transparent hover:border-glow/60 hover:bg-accent hover:cursor-pointer hover:shadow-[0_0_20px_rgba(34,197,94,0.06)] relative rounded-r-lg p-3 pl-4 transition-all duration-200"
             onMouseEnter={() => {
               setHoveredItem(item);
               trigger("selection");

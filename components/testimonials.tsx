@@ -37,7 +37,7 @@ const reviews = [
 const ReviewCard = ({ name, role, body, src, onMouseEnter }: ReviewCardProps) => {
   return (
     <figure
-      className="relative size-full max-w-sm cursor-grab overflow-hidden rounded-xl border border-border bg-card p-4 select-none hover:border-foreground/30 transition-colors"
+      className="relative size-full max-w-sm cursor-grab overflow-hidden rounded-xl border border-border bg-card p-4 select-none hover:border-glow/30 hover:shadow-[0_0_15px_rgba(34,197,94,0.08)] transition-all duration-200"
       onMouseEnter={onMouseEnter}
     >
       <div className="flex flex-row items-center gap-2">
@@ -74,7 +74,7 @@ export function Testimonials() {
 
   return (
     <div className="flex min-h-0 flex-col gap-5">
-      <h2 className="text-2xl flex items-center gap-3 font-medium">
+      <h2 className="text-2xl flex items-center gap-3 font-display font-semibold tracking-tight">
         <span>💬</span> cool people said this
       </h2>
       <div className="relative overflow-hidden" ref={emblaRef}>

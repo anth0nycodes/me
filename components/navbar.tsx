@@ -50,18 +50,20 @@ export default function Navbar() {
   }, [router]);
 
   return (
-    <div className="flex gap-3 items-center max-w-2xl mx-auto mb-5">
+    <div className="flex gap-4 items-center max-w-2xl mx-auto mb-8 font-mono text-sm">
       {navItems.map((item) => (
         <Link
           key={item.text}
           href={item.href}
           onClick={() => trigger("light")}
-          className="hover:text-primary text-muted-foreground transition-colors"
+          className="text-muted-foreground hover:text-glow transition-colors duration-200"
         >
           {item.text}
         </Link>
       ))}
-      <ThemeToggler />
+      <div className="ml-auto">
+        <ThemeToggler />
+      </div>
     </div>
   );
 }

@@ -21,7 +21,7 @@ export function VaultCard({ title, src, author, description }: VaultCardProps) {
       onMouseEnter={() => trigger("selection")}
       onClick={() => trigger("light")}
     >
-      <div className="flex flex-col justify-between p-6 h-full border rounded-lg hover:bg-accent transition-colors group">
+      <div className="flex flex-col justify-between p-6 h-full border border-border rounded-lg hover:border-glow/30 hover:bg-accent hover:shadow-[0_0_15px_rgba(34,197,94,0.06)] transition-all duration-200 group">
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
             <p className="text-xl font-medium tracking-tighter group-hover:underline">

@@ -17,17 +17,17 @@ export function LinksSection() {
 
   return (
     <section className="flex flex-col gap-6">
-      <h2 className="text-2xl flex items-center gap-3 font-medium">
+      <h2 className="text-2xl flex items-center gap-3 font-display font-semibold tracking-tight">
         <span>🔗</span> where to find me
       </h2>
-      <div className="flex flex-wrap gap-4 text-sm">
+      <div className="flex flex-wrap gap-4 font-mono text-sm">
         {links.map((link, index) => (
           <Link
             key={index}
             href={link.href}
             target="_blank"
             onClick={() => trigger("light")}
-            className="text-muted-foreground hover:text-primary transition-colors duration-200"
+            className="text-muted-foreground hover:text-glow transition-colors duration-200"
           >
             {link.title}
           </Link>
