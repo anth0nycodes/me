@@ -61,9 +61,7 @@ export default function Navbar() {
           {item.text}
         </Link>
       ))}
-      <div className="ml-auto">
-        <ThemeToggler />
-      </div>
+      <ThemeToggler />
     </div>
   );
 }

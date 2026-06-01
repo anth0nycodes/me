@@ -26,19 +26,19 @@ export function ThemeToggler() {
   return (
     <button
       onClick={cycleTheme}
-      className="hover:text-glow text-muted-foreground cursor-pointer transition-colors duration-200"
+      className="hover:text-glow ml-auto text-muted-foreground cursor-pointer transition-colors duration-200"
     >
       {theme === "system" ? (
         <span className="flex items-center gap-1">
-          <MonitorCog className="size-4" aria-hidden="true" /> system
+          <MonitorCog className="size-4" aria-hidden="true" />
         </span>
       ) : resolvedTheme === "dark" ? (
         <span className="flex items-center gap-1">
-          <Moon className="size-4" aria-hidden="true" /> dark
+          <Moon className="size-4" aria-hidden="true" />
         </span>
       ) : (
         <span className="flex items-center gap-1">
-          <Sun className="size-4" aria-hidden="true" /> light
+          <Sun className="size-4" aria-hidden="true" />
         </span>
       )}
     </button>
