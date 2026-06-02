@@ -10,7 +10,7 @@ const sections = [
   <Header key="header" />,
   <SectionList
     key="work"
-    title="what I did instead of nap"
+    title="prior to roblox game dev"
     emoji="💼"
     items={DATA.work}
   />,
