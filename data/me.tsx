@@ -129,12 +129,11 @@ export const DATA = {
   ],
   projects: [
     {
-      title: "untitled-combat-testing",
+      title: "combat-system",
       role: "creator",
-      description:
-        "a basic combat system in roblox — building out core fighting mechanics",
-      href: "https://github.com/anth0nycodes/untitled-combat-testing",
-      image: "/posters/combat-testing.png",
+      description: "a basic combat system in roblox",
+      href: "https://github.com/anth0nycodes/combat-system",
+      image: "/posters/combat-system.png",
     },
   ],
 } as const;
