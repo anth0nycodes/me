@@ -4,27 +4,25 @@ export default function NotFound() {
   return (
     <div className="flex items-center justify-center">
       <div className="space-y-6 text-center">
-        <pre className="whitespace-pre font-mono text-glow/70">
+        <pre className="whitespace-pre">
           {`
- __    __   ______   __    __
-/  |  /  | /      \\ /  |  /  |
+ __    __   ______   __    __ 
+/  |  /  | /      \ /  |  /  |
 $$ |  $$ |/$$$$$$  |$$ |  $$ |
-$$ |__$$ |$$$  \\$$ |$$ |__$$ |
+$$ |__$$ |$$$  \$$ |$$ |__$$ |
 $$    $$ |$$$$  $$ |$$    $$ |
 $$$$$$$$ |$$ $$ $$ |$$$$$$$$ |
-      $$ |$$ \\$$$$ |      $$ |
+      $$ |$$ \$$$$ |      $$ |
       $$ |$$   $$$/       $$ |
-      $$/  $$$$$$/        $$/
+      $$/  $$$$$$/        $$/ 
           `}
         </pre>
-        <p className="text-muted-foreground font-mono">
-          level not found...
-        </p>
+        <p className="text-gray-400">you&apos;re not supposed to be here...</p>
         <Link
           href="/"
-          className="inline-block font-mono text-muted-foreground hover:text-glow transition-colors duration-200"
+          className="inline-block text-gray-400 hover:text-primary transition-colors"
         >
-          &gt; respawn home
+          return home
         </Link>
       </div>
     </div>

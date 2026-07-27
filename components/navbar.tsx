@@ -50,13 +50,13 @@ export default function Navbar() {
   }, [router]);
 
   return (
-    <div className="flex gap-4 items-center max-w-2xl mx-auto mb-8 font-mono text-sm">
+    <div className="flex gap-3 items-center max-w-2xl mx-auto mb-5">
       {navItems.map((item) => (
         <Link
           key={item.text}
           href={item.href}
           onClick={() => trigger("light")}
-          className="text-muted-foreground hover:text-glow transition-colors duration-200"
+          className="hover:text-primary text-muted-foreground transition-colors"
         >
           {item.text}
         </Link>

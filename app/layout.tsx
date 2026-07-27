@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Chakra_Petch } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { DATA } from "@/data/me";
 import { ReactNode } from "react";
@@ -18,12 +18,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const chakraPetch = Chakra_Petch({
-  variable: "--font-chakra-petch",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(DATA.url),
   title: {
@@ -36,12 +30,13 @@ export const metadata: Metadata = {
     "Anthony Hoang",
     "Anthony Hoang portfolio",
     "anth0nycodes",
-    "Roblox Game Developer",
-    "Roblox Developer portfolio",
-    "Roblox Game Dev",
-    "Luau Developer",
-    "Roblox Studio",
-    "Game Developer NYC",
+    "Fullstack Engineer",
+    "Fullstack Engineer portfolio",
+    "Frontend Engineer",
+    "UI Engineer",
+    "Design focused engineer",
+    "Engineer with design background",
+    "Frontend portfolio",
   ],
   openGraph: {
     title: `${DATA.name}`,
@@ -87,22 +82,14 @@ export default function RootLayout({
     <html lang="en">
       <ReactLenis root>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} ${chakraPetch.variable} w-full font-sans antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
+          className={`${geistSans.variable} ${geistMono.variable} w-full font-sans antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
         >
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
-            <div
-              className="fixed inset-0 pointer-events-none opacity-0 dark:opacity-100"
-              style={{
-                background:
-                  "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34, 197, 94, 0.04), transparent)",
-              }}
-              aria-hidden="true"
-            />
             <Navbar />
             {children}
             <Analytics />
