@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { useWebHaptics } from "web-haptics/react";
+import { cn } from "@/lib/utils";
 
 export type Item = {
   title: string;
@@ -12,6 +13,7 @@ export type Item = {
   role: string;
   period?: string;
   description: string;
+  status?: string;
   image?: string;
 };
 
@@ -21,6 +23,14 @@ type SectionListProps = {
   viewAllHref?: string;
   viewAllText?: string;
 };
+
+function determineStatusColor(status: string) {
+  if (status.toLowerCase() === "in development") {
+    return "border bg-yellow-500/15 border-yellow-600 text-yellow-600/80";
+  }
+
+  return "border bg-green-800/15 border-green-600 text-green-600/80";
+}
 
 export function SectionList({
   title,
@@ -67,6 +77,7 @@ export function SectionList({
             <Link
               href={item.href}
               target="_blank"
+              className="relative"
               onClick={() => trigger("light")}
             >
               <h3 className="text-sm font-semibold mb-1">{item.title}</h3>
@@ -76,6 +87,16 @@ export function SectionList({
               <p className="text-xs text-muted-foreground">
                 {item.description}
               </p>
+              {item.status && (
+                <span
+                  className={cn(
+                    "absolute top-1 right-1 px-2 py-1 text-[11px] rounded-md",
+                    determineStatusColor(item.status),
+                  )}
+                >
+                  {item.status}
+                </span>
+              )}
             </Link>
             {displayedItem?.title === item.title && displayedItem?.image && (
               <div className="absolute right-0 top-full mt-2 2xl:left-auto 2xl:top-0 2xl:mt-0 2xl:-translate-y-1/4 2xl:translate-x-[105%] pointer-events-none z-50 hidden md:block">

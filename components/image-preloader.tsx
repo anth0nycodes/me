@@ -25,6 +25,7 @@ export function ImagePreloader() {
 
       {/* project previews */}
       <link rel="preload" as="image" href="/posters/tracemark.png" />
+      <link rel="preload" as="image" href="/posters/mm2-weapons-scraper.png" />
       <link rel="preload" as="image" href="/posters/fabric-history.png" />
       <link rel="preload" as="image" href="/posters/license-demo.jpg" />
 

@@ -177,13 +177,24 @@ export const DATA = {
     {
       title: "tracemark",
       role: "creator / maintainer",
+      status: "in development",
       description:
         "chrome extension that lets you markup/annotate any webpage and copy/export the result as an image",
       href: "https://github.com/anth0nycodes/tracemark",
       image: "/posters/tracemark.png",
     },
     {
+      title: "mm2-weapons-scraper",
+      role: "creator / maintainer",
+      status: "in development",
+      description:
+        "data scraper for mm2.cheap that retrieves Murder Mystery 2 weapon listings for price and value analysis",
+      href: "https://github.com/anth0nycodes/mm2-weapons-scraper",
+      image: "/posters/mm2-weapons-scraper.png",
+    },
+    {
       title: "fabric-history",
+      status: "released",
       role: "creator / maintainer",
       description:
         "a library built on top of Fabric.js that adds undo/redo functionality + canvas state history",
@@ -192,6 +203,7 @@ export const DATA = {
     },
     {
       title: "license-generator",
+      status: "released",
       role: "creator / maintainer",
       description: "open-source license generator for your repositories",
       href: "https://github.com/anth0nycodes/license-generator",
