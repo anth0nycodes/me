@@ -1,5 +1,5 @@
 "use client";
-
+import { Dithering } from "@paper-design/shaders-react";
 import { DATA } from "@/data/me";
 import { Building2, MapPin } from "lucide-react";
 import Image from "next/image";
@@ -27,11 +27,11 @@ export function Header() {
           height={50}
           alt="Picture of me"
         />
-        <div className="flex flex-col">
-          <h1 className="text-xl font-medium lowercase">
+        <div className="flex flex-col gap-1">
+          <h1 className="font-medium lowercase">
             <span className="inline-block">{DATA.name}</span>
           </h1>
-          <div className="flex gap-4">
+          <div className="text-sm flex gap-4">
             {headerInfo.map((item, index) => (
               <div
                 className="flex items-center text-muted-foreground gap-2"
@@ -44,7 +44,7 @@ export function Header() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="text-sm flex flex-col gap-3">
         <p>
           hey, I&apos;m Anthony — a{" "}
           <Underline hexcode="#22a8f5" delay={0.65} duration={1}>
@@ -65,6 +65,15 @@ export function Header() {
           with people i care about.
         </p>
       </div>
+      <Dithering
+        className="w-full h-28"
+        colorBack="#141414"
+        colorFront="#8fb7b7"
+        shape="warp"
+        type="4x4"
+        size={2.375}
+        speed={0.25}
+      />
     </div>
   );
 }

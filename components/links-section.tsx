@@ -17,9 +17,14 @@ export function LinksSection() {
 
   return (
     <section className="flex flex-col gap-6">
-      <h2 className="text-2xl flex items-center gap-3 font-medium">
-        <span>🔗</span> where to find me
-      </h2>
+      <h3 className="border-b pb-2 border-[#222222] text-base font-medium">
+        <span>
+          where to find me
+          <sup className="ml-1.5 select-none text-muted-foreground text-xs">
+            (5)
+          </sup>
+        </span>
+      </h3>
       <div className="flex flex-wrap gap-4 text-sm">
         {links.map((link, index) => (
           <Link

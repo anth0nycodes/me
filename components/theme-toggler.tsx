@@ -30,15 +30,15 @@ export function ThemeToggler() {
     >
       {theme === "system" ? (
         <span className="flex items-center gap-1">
-          <MonitorCog className="size-4" aria-hidden="true" />
+          <MonitorCog className="size-3.5" aria-hidden="true" />
         </span>
       ) : resolvedTheme === "dark" ? (
         <span className="flex items-center gap-1">
-          <Moon className="size-4" aria-hidden="true" />
+          <Moon className="size-3.5" aria-hidden="true" />
         </span>
       ) : (
         <span className="flex items-center gap-1">
-          <Sun className="size-4" aria-hidden="true" />
+          <Sun className="size-3.5" aria-hidden="true" />
         </span>
       )}
     </button>

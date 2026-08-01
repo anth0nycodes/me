@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useWebHaptics } from "web-haptics/react";
-import { ThemeToggler } from "./theme-toggler";
 
 export default function Navbar() {
   const router = useRouter();
@@ -56,12 +55,11 @@ export default function Navbar() {
           key={item.text}
           href={item.href}
           onClick={() => trigger("light")}
-          className="hover:text-primary text-muted-foreground transition-colors"
+          className="text-sm hover:text-primary text-muted-foreground transition-colors"
         >
           {item.text}
         </Link>
       ))}
-      <ThemeToggler />
     </div>
   );
 }

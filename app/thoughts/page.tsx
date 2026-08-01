@@ -11,38 +11,41 @@ export default async function ThoughtsPage() {
   const posts = await getBlogPosts();
 
   return (
-    <section>
-      <h1 className="lowercase text-3xl mb-8 tracking-tighter font-medium">
-        <span className="inline-flex gap-3 items-center">
-          💭
-          <span>my thoughts</span>
+    <section className="flex flex-col gap-4">
+      <h1 className="lowercase border-b pb-2 border-[#222222] text-base font-medium">
+        <span>
+          my thoughts
+          <sup className="ml-1.5 select-none text-muted-foreground text-xs">
+            ({posts.length})
+          </sup>
         </span>
       </h1>
-      {posts
-        .sort((a, b) => {
-          if (
-            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
-          ) {
-            return -1;
-          }
-          return 1;
-        })
-        .map((post, id) => (
-          <Link
-            key={id}
-            className="flex flex-col space-y-1 mb-4"
-            href={`/thoughts/${post.slug}`}
-          >
-            <div className="w-full group flex flex-col">
-              <p className="tracking-tight group-hover:text-primary duration-200">
+      <div className="flex flex-col gap-2">
+        {posts
+          .sort((a, b) => {
+            if (
+              new Date(a.metadata.publishedAt) >
+              new Date(b.metadata.publishedAt)
+            ) {
+              return -1;
+            }
+            return 1;
+          })
+          .map((post, id) => (
+            <Link
+              key={id}
+              className="group flex flex-col hover:bg-accent rounded-sm p-3 -mx-3 duration-150"
+              href={`/thoughts/${post.slug}`}
+            >
+              <p className="text-sm font-semibold mb-1 group-hover:text-primary duration-200">
                 {post.metadata.title}
               </p>
-              <p className="h-6 text-xs text-muted-foreground">
+              <p className="text-xs text-muted-foreground">
                 {post.metadata.publishedAt}
               </p>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+      </div>
     </section>
   );
 }

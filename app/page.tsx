@@ -9,19 +9,9 @@ import { CreativeWorksSection } from "@/components/creative-works-section";
 
 const sections = [
   <Header key="header" />,
-  <SectionList
-    key="work"
-    title="prior to roblox game dev"
-    emoji="💼"
-    items={DATA.work}
-  />,
+  <SectionList key="work" title="work experience" items={DATA.work} />,
   <CreativeWorksSection key="creative-works" />,
-  <SectionList
-    key="projects"
-    title="other works"
-    emoji="🗂️"
-    items={DATA.projects}
-  />,
+  <SectionList key="projects" title="other works" items={DATA.projects} />,
   <SkillsSection key="skills" />,
   <Testimonials key="testimonials" />,
   <LinksSection key="links" />,

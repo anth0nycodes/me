@@ -17,7 +17,6 @@ export type Item = {
 
 type SectionListProps = {
   title: string;
-  emoji: string;
   items: readonly Item[];
   viewAllHref?: string;
   viewAllText?: string;
@@ -25,7 +24,6 @@ type SectionListProps = {
 
 export function SectionList({
   title,
-  emoji,
   items,
   viewAllHref,
   viewAllText,
@@ -46,28 +44,38 @@ export function SectionList({
   }, [hoveredItem]);
 
   return (
-    <section className="flex flex-col gap-5">
-      <h2 className="text-2xl flex items-center gap-3 font-medium">
-        <span>{emoji}</span>
-        {title}
-      </h2>
-      <div className="flex flex-col gap-8">
+    <section className="flex flex-col gap-2">
+      <h3 className="border-b pb-2 border-[#222222] text-base font-medium">
+        <span>
+          {title}
+          <sup className="ml-1.5 select-none text-muted-foreground text-xs">
+            ({items.length})
+          </sup>
+        </span>
+      </h3>
+      <div className="flex flex-col gap-2">
         {items.map((item, index) => (
           <div
             key={index}
-            className="hover:bg-accent hover:cursor-pointer relative rounded-lg p-2 duration-200"
+            className="hover:bg-accent hover:cursor-pointer relative rounded-sm p-3 -mx-3 duration-150"
             onMouseEnter={() => {
               setHoveredItem(item);
               trigger("selection");
             }}
             onMouseLeave={() => setHoveredItem(null)}
           >
-            <Link href={item.href} target="_blank" onClick={() => trigger("light")}>
-              <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
-              <p className="text-sm mb-2">
+            <Link
+              href={item.href}
+              target="_blank"
+              onClick={() => trigger("light")}
+            >
+              <h3 className="text-sm font-semibold mb-1">{item.title}</h3>
+              <p className="text-[13px] mb-2">
                 {item.role} {item.period && `(${item.period})`}
               </p>
-              <p>{item.description}</p>
+              <p className="text-xs text-muted-foreground">
+                {item.description}
+              </p>
             </Link>
             {displayedItem?.title === item.title && displayedItem?.image && (
               <div className="absolute right-0 top-full mt-2 2xl:left-auto 2xl:top-0 2xl:mt-0 2xl:-translate-y-1/4 2xl:translate-x-[105%] pointer-events-none z-50 hidden md:block">

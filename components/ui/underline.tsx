@@ -43,9 +43,9 @@ export function Underline({
         onClick={onShoot}
         className="inline cursor-pointer bg-no-repeat pb-0.5"
         initial={{
-          backgroundSize: prefersReducedMotion ? "100% 3px" : "0% 3px",
+          backgroundSize: prefersReducedMotion ? "100% 2px" : "0% 2px",
         }}
-        whileInView={{ backgroundSize: "100% 3px" }}
+        whileInView={{ backgroundSize: "100% 2px" }}
         viewport={{ once: true }}
         transition={{
           delay: prefersReducedMotion ? 0 : delay,

@@ -29,11 +29,16 @@ export function CreativeWorksSection() {
 
   return (
     <section id="creative-works">
-      <div className="flex min-h-0 flex-col gap-5">
-        <h2 className="text-2xl flex items-center gap-3 font-medium">
-          <span>🎬</span> creative works
-        </h2>
-        <div className="flex flex-col gap-8">
+      <div className="flex min-h-0 flex-col gap-2">
+        <h3 className="text-base border-b border-[#222222] pb-2 font-medium">
+          <span>
+            creative works
+            <sup className="ml-1.5 select-none text-muted-foreground text-xs">
+              ({DATA.works.length})
+            </sup>
+          </span>
+        </h3>
+        <div className="flex flex-col gap-2">
           {DATA.works.map((work) => (
             <div
               key={work.title}
@@ -108,17 +113,22 @@ export const CreativeWorkCard = ({
   onLinkClick,
 }: CreativeWorkCardProps) => {
   return (
-    <Link href={href || "#"} target="_blank" className="block cursor-pointer" onClick={onLinkClick}>
+    <Link
+      href={href || "#"}
+      target="_blank"
+      className="block cursor-pointer"
+      onClick={onLinkClick}
+    >
       <div>
-        <div className="items-center flex-col hover:bg-accent rounded-lg p-2 duration-200">
+        <div className="items-center flex-col hover:bg-accent rounded-sm p-3 -mx-3 duration-200">
           <div>
             <div className="flex items-center justify-between gap-x-2 text-base">
-              <h3 className="inline-flex items-center justify-center font-semibold mb-1 text-xl">
+              <h3 className="text-sm inline-flex items-center justify-center font-semibold mb-1">
                 {title}
               </h3>
             </div>
             {description && (
-              <p className="text-sm text-muted-foreground">{description}</p>
+              <p className="text-xs text-muted-foreground">{description}</p>
             )}
           </div>
         </div>

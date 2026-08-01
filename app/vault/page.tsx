@@ -9,15 +9,17 @@ export const metadata: Metadata = {
 
 export default async function ThoughtsPage() {
   return (
-    <section className="flex flex-col gap-8">
-      <h1 className="lowercase text-3xl tracking-tighter font-medium">
-        <span className="inline-flex gap-3 items-center">
-          🔒
-          <span>welcome to my vault</span>
+    <section className="flex flex-col gap-4">
+      <h1 className="lowercase border-b pb-2 border-[#222222] text-base font-medium">
+        <span>
+          welcome to my vault
+          <sup className="ml-1.5 select-none text-muted-foreground text-xs">
+            ({DATA.resources.length})
+          </sup>
         </span>
       </h1>
-      <div className="flex flex-col gap-6">
-        <p>
+      <div className="flex flex-col gap-4">
+        <p className="text-sm">
           below are some of my favorite resources! i&apos;ll continually add to
           this list as i find more gems :)
         </p>

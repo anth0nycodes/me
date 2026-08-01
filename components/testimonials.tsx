@@ -34,7 +34,13 @@ const reviews = [
   },
 ];
 
-const ReviewCard = ({ name, role, body, src, onMouseEnter }: ReviewCardProps) => {
+const ReviewCard = ({
+  name,
+  role,
+  body,
+  src,
+  onMouseEnter,
+}: ReviewCardProps) => {
   return (
     <figure
       className="relative size-full max-w-sm cursor-grab overflow-hidden rounded-xl border border-border bg-card p-4 select-none hover:border-foreground/30 transition-colors"
@@ -54,7 +60,9 @@ const ReviewCard = ({ name, role, body, src, onMouseEnter }: ReviewCardProps) =>
           <p className="text-xs font-medium text-muted-foreground">{role}</p>
         </div>
       </div>
-      <blockquote className="mt-2 text-sm normal-case">{body}</blockquote>
+      <blockquote className="mt-2 text-xs normal-case leading-relaxed">
+        {body}
+      </blockquote>
     </figure>
   );
 };
@@ -73,26 +81,32 @@ export function Testimonials() {
   const duplicatedReviews = [...reviews, ...reviews, ...reviews, ...reviews];
 
   return (
-    <div className="flex min-h-0 flex-col gap-5">
-      <h2 className="text-2xl flex items-center gap-3 font-medium">
-        <span>💬</span> cool people said this
-      </h2>
+    <div className="flex min-h-0 flex-col gap-4">
+      <h3 className="border-b pb-2 border-[#222222] text-base font-medium">
+        cool people said this
+        <sup className="ml-1.5 select-none text-muted-foreground text-xs">
+          ({reviews.length})
+        </sup>
+      </h3>
       <div className="relative overflow-hidden" ref={emblaRef}>
         <div className="flex gap-4">
           {duplicatedReviews.map((review, index) => (
             <div
               key={index}
-              className={`flex-[0_0_auto] min-w-0 w-[300px] sm:w-max ${
+              className={`flex-[0_0_auto] min-w-0 w-75 sm:w-max ${
                 index === duplicatedReviews.length - 1 ? "mr-4" : ""
               }`}
             >
-              <ReviewCard {...review} onMouseEnter={() => trigger("selection")} />
+              <ReviewCard
+                {...review}
+                onMouseEnter={() => trigger("selection")}
+              />
             </div>
           ))}
         </div>
 
-        <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
-        <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
+        <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r"></div>
+        <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l"></div>
       </div>
     </div>
   );

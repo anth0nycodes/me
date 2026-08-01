@@ -23,7 +23,7 @@
 }
 
 .dark {
-  --background: #09090b;
+  --background: #141414;
   --foreground: #fafaf9;
   --card: #18181b;
   --card-foreground: #fafaf9;
@@ -32,8 +32,8 @@
   --secondary: #27272a;
   --secondary-foreground: #fafaf9;
   --muted: #27272a;
-  --muted-foreground: #a1a1aa;
-  --accent: #27272a;
+  --muted-foreground: #6e6e6e;
+  --accent: #1b1b1b;
   --accent-foreground: #fafaf9;
   --border: #27272a;
   --input: #27272a;

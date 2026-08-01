@@ -7,13 +7,13 @@ const parentVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.2 },
+    transition: { staggerChildren: 0.25 },
   },
 };
 
 const childVariants = {
-  hidden: { opacity: 0, x: -10 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.275 } },
 };
 
 export function MotionWrapper({ children }: { children: ReactNode }) {
@@ -21,7 +21,7 @@ export function MotionWrapper({ children }: { children: ReactNode }) {
 
   return (
     <motion.div
-      className="flex flex-col gap-16 lowercase mx-auto max-w-2xl w-full"
+      className="flex flex-col gap-14 lowercase mx-auto max-w-2xl w-full"
       variants={prefersReducedMotion ? {} : parentVariants}
       initial="hidden"
       whileInView="visible"
