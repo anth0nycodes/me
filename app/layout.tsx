@@ -7,6 +7,7 @@ import { ReactNode } from "react";
 import { ReactLenis } from "@/utils/lenis";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ImagePreloader } from "@/components/image-preloader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -80,6 +81,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <ImagePreloader />
+      </head>
       <ReactLenis root>
         <body
           className={`${geistSans.variable} ${geistMono.variable} w-full font-mono antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
