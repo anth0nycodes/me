@@ -77,7 +77,6 @@ export function SectionList({
             <Link
               href={item.href}
               target="_blank"
-              className="relative"
               onClick={() => trigger("light")}
             >
               <h3 className="text-sm font-semibold mb-1">{item.title}</h3>
@@ -87,17 +86,17 @@ export function SectionList({
               <p className="text-xs text-muted-foreground">
                 {item.description}
               </p>
-              {item.status && (
-                <span
-                  className={cn(
-                    "absolute top-1 right-1 px-2 py-1 text-[11px] rounded-md",
-                    determineStatusColor(item.status),
-                  )}
-                >
-                  {item.status}
-                </span>
-              )}
             </Link>
+            {item.status && (
+              <span
+                className={cn(
+                  "absolute top-3 right-3 px-2 py-1 text-[11px] rounded-md",
+                  determineStatusColor(item.status),
+                )}
+              >
+                {item.status}
+              </span>
+            )}
             {displayedItem?.title === item.title && displayedItem?.image && (
               <div className="absolute right-0 top-full mt-2 2xl:left-auto 2xl:top-0 2xl:mt-0 2xl:-translate-y-1/4 2xl:translate-x-[105%] pointer-events-none z-50 hidden md:block">
                 <AnimatePresence>
