@@ -184,13 +184,13 @@ export const DATA = {
       image: "/posters/tracemark.png",
     },
     {
-      title: "mm2-weapons-scraper",
+      title: "mm2-item-info",
       role: "creator / maintainer",
       status: "in development",
       description:
-        "data scraper for mm2.cheap that retrieves Murder Mystery 2 weapon listings for price and value analysis",
-      href: "https://github.com/anth0nycodes/mm2-weapons-scraper",
-      image: "/posters/mm2-weapons-scraper.png",
+        "open-source CLI tool that returns you the information of a weapon/pet/misc item in Murder Mystery 2",
+      href: "https://github.com/anth0nycodes/mm2-item-info",
+      image: "/posters/mm2-item-info.png",
     },
     {
       title: "fabric-history",
@@ -205,7 +205,8 @@ export const DATA = {
       title: "license-generator",
       status: "released",
       role: "creator / maintainer",
-      description: "open-source license generator for your repositories",
+      description:
+        "open-source CLI tool that generates licenses for your repositories",
       href: "https://github.com/anth0nycodes/license-generator",
       image: "/posters/license-demo.jpg",
     },
