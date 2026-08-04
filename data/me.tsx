@@ -186,7 +186,7 @@ export const DATA = {
     {
       title: "mm2-item-info",
       role: "creator / maintainer",
-      status: "in development",
+      status: "released",
       description:
         "open-source CLI tool that returns you the information of a weapon/pet/misc item in Murder Mystery 2",
       href: "https://github.com/anth0nycodes/mm2-item-info",
