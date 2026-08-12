@@ -177,7 +177,7 @@ export const DATA = {
     {
       title: "tracemark",
       role: "creator / maintainer",
-      status: "in development",
+      status: "released",
       description:
         "chrome extension that lets you markup/annotate any webpage and copy/export the result as an image",
       href: "https://github.com/anth0nycodes/tracemark",
