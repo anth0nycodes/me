@@ -175,6 +175,15 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "resume-analyzer",
+      role: "creator / maintainer",
+      status: "in development",
+      description:
+        "open-source AI CLI tool that analyzes resumes against job descriptions",
+      href: "https://github.com/anth0nycodes/resume-analyzer",
+      image: "/posters/resume-analyzer.png",
+    },
+    {
       title: "tracemark",
       role: "creator / maintainer",
       status: "released",
