@@ -177,9 +177,9 @@ export const DATA = {
     {
       title: "resume-analyzer",
       role: "creator / maintainer",
-      status: "in development",
+      status: "released",
       description:
-        "open-source AI CLI tool that analyzes resumes against job descriptions",
+        "open-source AI CLI tool that analyzes your resume against a job description and scores how well they match",
       href: "https://github.com/anth0nycodes/resume-analyzer",
       image: "/posters/resume-analyzer.png",
     },
