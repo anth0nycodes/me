@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { useWebHaptics } from "web-haptics/react";
+import { useSound } from "use-sound";
 import { cn } from "@/lib/utils";
 
 export type Item = {
@@ -20,11 +21,12 @@ export type Item = {
 type SectionListProps = {
   title: string;
   items: readonly Item[];
+  itemsCount?: number;
   viewAllHref?: string;
   viewAllText?: string;
 };
 
-function determineStatusColor(status: string) {
+export function determineStatusColor(status: string) {
   if (status.toLowerCase() === "in development") {
     return "border bg-yellow-500/15 border-yellow-600 text-yellow-600/80";
   }
@@ -35,6 +37,7 @@ function determineStatusColor(status: string) {
 export function SectionList({
   title,
   items,
+  itemsCount,
   viewAllHref,
   viewAllText,
 }: SectionListProps) {
@@ -42,6 +45,7 @@ export function SectionList({
   const [hoveredItem, setHoveredItem] = useState<Item | null>(null);
   const [displayedItem, setDisplayedItem] = useState<Item | null>(null);
   const { trigger } = useWebHaptics();
+  const [playHoverSFX] = useSound("/audio/hover.mp3", { volume: 0.125 });
 
   const prefersReducedMotion = useReducedMotion();
 
@@ -55,14 +59,25 @@ export function SectionList({
 
   return (
     <section className="flex flex-col gap-2">
-      <h3 className="border-b pb-2 border-[#222222] text-base font-medium">
-        <span>
+      <div className="border-b pb-2 border-[#222222] flex justify-between">
+        <h3 className="font-medium">
           {title}
           <sup className="ml-1.5 select-none text-muted-foreground text-xs">
-            ({items.length})
+            ({itemsCount ? itemsCount : items.length})
           </sup>
-        </span>
-      </h3>
+        </h3>
+        {viewAllHref && (
+          <Link
+            href={viewAllHref}
+            onMouseEnter={() => playHoverSFX()}
+            onClick={() => trigger("light")}
+            className="text-sm text-[#8fb7b7] inline-flex items-center gap-1 font-medium hover:underline group"
+          >
+            {viewAllText}{" "}
+            <ArrowUpRight className="size-4 text-foreground transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </Link>
+        )}
+      </div>
       <div className="flex flex-col gap-2">
         {items.map((item, index) => (
           <div
@@ -135,16 +150,6 @@ export function SectionList({
           </div>
         ))}
       </div>
-      {viewAllHref && (
-        <Link
-          href={viewAllHref}
-          onClick={() => trigger("light")}
-          className="inline-flex items-center gap-1 mt-6 text-foreground hover:underline group"
-        >
-          {viewAllText}{" "}
-          <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
-        </Link>
-      )}
     </section>
   );
 }

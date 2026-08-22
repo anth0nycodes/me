@@ -7,11 +7,23 @@ import { Testimonials } from "@/components/testimonials";
 import { MotionSection, MotionWrapper } from "@/components/motion-wrapper";
 import { CreativeWorksSection } from "@/components/creative-works-section";
 
+const projectsList =
+  DATA.projects.length > 3
+    ? DATA.projects.filter((p) => p.primary)
+    : DATA.projects;
+
 const sections = [
   <Header key="header" />,
   <SectionList key="work" title="work experience" items={DATA.work} />,
   <CreativeWorksSection key="creative-works" />,
-  <SectionList key="projects" title="projects" items={DATA.projects} />,
+  <SectionList
+    key="projects"
+    title="projects"
+    items={projectsList}
+    itemsCount={DATA.projects.length}
+    viewAllHref="/projects"
+    viewAllText="all projects"
+  />,
   <SkillsSection key="skills" />,
   <Testimonials key="testimonials" />,
   <LinksSection key="links" />,

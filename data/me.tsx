@@ -177,7 +177,16 @@ export const DATA = {
     {
       title: "resume-analyzer",
       role: "creator / maintainer",
+      primary: true,
       status: "released",
+      techStack: [
+        "TypeScript",
+        "Node.js",
+        "Vercel AI SDK",
+        "Commander.js",
+        "Clack",
+        "Zod",
+      ],
       description:
         "open-source AI CLI tool that analyzes your resume against a job description and scores how well they match",
       href: "https://github.com/anth0nycodes/resume-analyzer",
@@ -186,7 +195,9 @@ export const DATA = {
     {
       title: "tracemark",
       role: "creator / maintainer",
+      primary: true,
       status: "released",
+      techStack: ["React.js", "TypeScript", "Fabric.js", "WXT", "Shadcn UI"],
       description:
         "chrome extension that lets you markup/annotate any webpage and copy/export the result as an image",
       href: "https://github.com/anth0nycodes/tracemark",
@@ -195,7 +206,9 @@ export const DATA = {
     {
       title: "mm2-item-info",
       role: "creator / maintainer",
+      primary: false,
       status: "released",
+      techStack: ["TypeScript", "Node.js", "Commander.js", "Clack"],
       description:
         "open-source CLI tool that returns you the information of a weapon/pet/misc item in Murder Mystery 2",
       href: "https://github.com/anth0nycodes/mm2-item-info",
@@ -203,8 +216,10 @@ export const DATA = {
     },
     {
       title: "fabric-history",
-      status: "released",
       role: "creator / maintainer",
+      primary: false,
+      status: "released",
+      techStack: ["TypeScript", "Vitest"],
       description:
         "a library built on top of Fabric.js that adds undo/redo functionality + canvas state history",
       href: "https://github.com/anth0nycodes/fabric-history",
@@ -212,12 +227,14 @@ export const DATA = {
     },
     {
       title: "license-generator",
-      status: "released",
       role: "creator / maintainer",
+      primary: true,
+      status: "released",
+      techStack: ["TypeScript", "Node.js", "Commander.js", "Clack"],
       description:
         "open-source CLI tool that generates licenses for your repositories",
       href: "https://github.com/anth0nycodes/license-generator",
-      image: "/posters/license-demo.jpg",
+      image: "/posters/license-generator.png",
     },
     // {
     //   title: "observatory",

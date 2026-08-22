@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useWebHaptics } from "web-haptics/react";
+import { useSound } from "use-sound";
 
 interface VaultCardProps {
   title: string;
@@ -12,13 +13,17 @@ interface VaultCardProps {
 
 export function VaultCard({ title, src, author, description }: VaultCardProps) {
   const { trigger } = useWebHaptics();
+  const [playHoverSFX] = useSound("/audio/hover.mp3", { volume: 0.125 });
 
   return (
     <Link
       key={title}
       target="_blank"
       href={src}
-      onMouseEnter={() => trigger("selection")}
+      onMouseEnter={() => {
+        trigger("selection");
+        playHoverSFX();
+      }}
       onClick={() => trigger("light")}
     >
       <div className="flex flex-col justify-between p-6 h-full border border-muted rounded-lg hover:bg-accent transition-colors group">
