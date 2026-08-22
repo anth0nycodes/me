@@ -13,7 +13,8 @@ interface Project {
   status: string;
   techStack: readonly string[];
   description: string;
-  href: string;
+  projectHref: string;
+  sourceCodeHref: string;
   image: string;
 }
 
@@ -55,18 +56,30 @@ export function ProjectCard({ project }: ProjectCardProps) {
                   transition={{ ease: "easeInOut", duration: 0.25 }}
                   className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-2"
                 >
-                  <button
-                    onMouseEnter={() => playHoverSFX()}
-                    className="cursor-pointer px-2 py-1 text-sm bg-background hover:opacity-75 transition rounded-sm"
-                  >
-                    View project
-                  </button>
-                  <button
-                    onMouseEnter={() => playHoverSFX()}
-                    className="cursor-pointer px-2 py-1 text-sm bg-background hover:opacity-75 transition rounded-sm"
-                  >
-                    Source code
-                  </button>
+                  {project.projectHref && (
+                    <a
+                      href={project.projectHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onMouseEnter={() => playHoverSFX()}
+                      onClick={() => trigger("light")}
+                      className="cursor-pointer px-2 py-1 text-sm bg-background hover:opacity-75 transition rounded-sm"
+                    >
+                      View project
+                    </a>
+                  )}
+                  {project.sourceCodeHref && (
+                    <a
+                      href={project.sourceCodeHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onMouseEnter={() => playHoverSFX()}
+                      onClick={() => trigger("light")}
+                      className="cursor-pointer px-2 py-1 text-sm bg-background hover:opacity-75 transition rounded-sm"
+                    >
+                      Source code
+                    </a>
+                  )}
                 </motion.div>
               </>
             )}
