@@ -105,7 +105,7 @@ export function SectionList({
             {item.status && (
               <span
                 className={cn(
-                  "absolute top-3 right-3 px-2 py-1 text-[11px] rounded-md",
+                  "absolute pointer-events-none top-3 right-3 px-2 py-1 text-[11px] rounded-md",
                   determineStatusColor(item.status),
                 )}
               >

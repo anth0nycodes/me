@@ -24,6 +24,7 @@ export function ImagePreloader() {
       <link rel="preload" as="image" href="/posters/mtc-01.jpg" />
 
       {/* project previews */}
+      <link rel="preload" as="image" href="/posters/recall.png" />
       <link rel="preload" as="image" href="/posters/resume-analyzer.png" />
       <link rel="preload" as="image" href="/posters/tracemark.png" />
       <link rel="preload" as="image" href="/posters/mm2-item-info.png" />

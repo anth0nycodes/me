@@ -175,6 +175,25 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "recall",
+      role: "creator / maintainer",
+      primary: true,
+      status: "in development",
+      techStack: [
+        "Electron.js",
+        "React.js",
+        "TypeScript",
+        "OpenRouter SDK",
+        "SQLite",
+        "Drizzle ORM",
+        "Shadcn UI",
+      ],
+      description: "a better way to index and search your iMessage history",
+      projectHref: "https://tryrecall.app/",
+      sourceCodeHref: "https://github.com/anth0nycodes/recall",
+      image: "/posters/recall.png",
+    },
+    {
       title: "resume-analyzer",
       role: "creator / maintainer",
       primary: true,
@@ -233,7 +252,7 @@ export const DATA = {
     {
       title: "license-generator",
       role: "creator / maintainer",
-      primary: true,
+      primary: false,
       status: "released",
       techStack: ["TypeScript", "Node.js", "Commander.js", "Clack"],
       description:
