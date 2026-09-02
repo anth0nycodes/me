@@ -10,6 +10,10 @@ const links = [
   { title: "coffee chat ☕️", href: "https://cal.com/anth0nycodes" },
   { title: "resume", href: "https://anthonyhoang.dev/resume.pdf" },
   { title: "email", href: "mailto:hoanganthony2207@gmail.com" },
+  {
+    title: "design playground 🎨",
+    href: "https://www.figma.com/design/cVCS3lKtT23stQWnnUAMGa/design-playground?node-id=0-1&t=g4NbBNdZ9dm1F2xO-1",
+  },
 ];
 
 export function LinksSection() {
@@ -21,7 +25,7 @@ export function LinksSection() {
         <span>
           where to find me
           <sup className="ml-1.5 select-none text-muted-foreground text-xs">
-            (5)
+            ({links.length})
           </sup>
         </span>
       </h3>
