@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import useSound from "use-sound";
 import { useWebHaptics } from "web-haptics/react";
 
 const links = [
@@ -17,6 +18,7 @@ const links = [
 ];
 
 export function LinksSection() {
+  const [playHoverSFX] = useSound("/audio/hover.mp3", { volume: 0.125 });
   const { trigger } = useWebHaptics();
 
   return (
@@ -35,6 +37,7 @@ export function LinksSection() {
             key={index}
             href={link.href}
             target="_blank"
+            onMouseEnter={() => playHoverSFX()}
             onClick={() => trigger("light")}
             className="text-muted-foreground hover:text-primary transition-colors duration-200"
           >
