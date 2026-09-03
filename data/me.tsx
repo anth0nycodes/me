@@ -9,6 +9,14 @@ export const DATA = {
     "fullstack engineer. professional doomscroller. i love building things that feel and look nice.",
   summary:
     "hey — my name is Anthony Hoang and I'm based in NYC. I like creating cool things and learning new things. Whenever I'm not coding, I'm either spending time with loved ones, consuming gym videos, or going to the gym.",
+  images: [
+    "/pfp.png",
+    "/pfp2.png",
+    "/pfp3.png",
+    "/pfp4.jpg",
+    "/pfp5.jpg",
+    "/pfp6.png",
+  ],
   avatarUrl: "/pfp.png",
   skills: [
     // Frontend Frameworks & Platforms

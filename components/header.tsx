@@ -1,11 +1,29 @@
 "use client";
+
 import { Dithering } from "@paper-design/shaders-react";
 import { DATA } from "@/data/me";
 import { Building2, MapPin } from "lucide-react";
 import Image from "next/image";
 import { Underline } from "./ui/underline";
+import { useState } from "react";
+import useSound from "use-sound";
+
+function getRandomImage(images: readonly string[]) {
+  const randomIndex = Math.floor(Math.random() * images.length);
+  return images[randomIndex];
+}
 
 export function Header() {
+  const [clickLowSFX] = useSound("/audio/hover.mp3", {
+    volume: 0.125,
+    playbackRate: 0.5,
+  });
+  const [clickHighSFX] = useSound("/audio/hover.mp3", {
+    volume: 0.125,
+    playbackRate: 0.75,
+  });
+  const [avatarImage, setAvatarImage] = useState<string>(DATA.avatarUrl);
+
   const headerInfo = [
     {
       icon: MapPin,
@@ -20,13 +38,23 @@ export function Header() {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-3 items-center">
-        <Image
-          src={DATA.avatarUrl}
-          className="rounded-xl"
-          width={50}
-          height={50}
-          alt="Picture of me"
-        />
+        <button
+          onClick={() => {
+            const randomImage = getRandomImage(DATA.images);
+            setAvatarImage(randomImage);
+            clickHighSFX();
+          }}
+          onMouseDown={() => clickLowSFX()}
+          className="cursor-pointer size-12.5 active:scale-95 transition-transform duration-200 rounded-xl overflow-clip"
+        >
+          <Image
+            src={avatarImage}
+            className="object-cover size-full"
+            width={50}
+            height={50}
+            alt="Picture of me"
+          />
+        </button>
         <div className="flex flex-col gap-1">
           <h1 className="font-medium lowercase">
             <span className="inline-block">{DATA.name}</span>

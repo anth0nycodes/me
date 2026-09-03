@@ -18,7 +18,7 @@ export default function ProjectsPage() {
           </sup>
         </span>
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-6">
         {DATA.projects.map((project) => (
           <ProjectCard key={project.title} project={project} />
         ))}

@@ -22,12 +22,65 @@ interface ProjectCardProps {
   project: Project;
 }
 
+interface ProjectButtonProps {
+  href: string;
+  label: string;
+  onMouseDown?: () => void;
+  onMouseEnter?: () => void;
+  onClick?: () => void;
+}
+
+function ProjectButton({
+  href,
+  label,
+  onMouseDown,
+  onMouseEnter,
+  onClick,
+}: ProjectButtonProps) {
+  return (
+    <button
+      className="cursor-pointer active:scale-95 px-2 py-1 bg-background hover:opacity-85 transition rounded-sm"
+      onMouseDown={onMouseDown}
+      onMouseEnter={onMouseEnter}
+      onClick={onClick}
+    >
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm"
+      >
+        {" "}
+        {label}
+      </a>
+    </button>
+  );
+}
+
 export function ProjectCard({ project }: ProjectCardProps) {
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
   const { trigger } = useWebHaptics();
   const [playHoverSFX] = useSound("/audio/hover.mp3", { volume: 0.125 });
+  const [clickLowSFX] = useSound("/audio/hover.mp3", {
+    volume: 0.125,
+    playbackRate: 0.5,
+  });
+  const [clickHighSFX] = useSound("/audio/hover.mp3", {
+    volume: 0.125,
+    playbackRate: 0.75,
+  });
   const activeProject = project === hoveredProject;
   const prefersReducedMotion = useReducedMotion();
+  const overlayButtons = [
+    {
+      label: "View project",
+      href: project.projectHref,
+    },
+    {
+      label: "Source code",
+      href: project.sourceCodeHref,
+    },
+  ];
 
   return (
     <div className="flex flex-col gap-4">
@@ -65,26 +118,19 @@ export function ProjectCard({ project }: ProjectCardProps) {
                   }
                   className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-2"
                 >
-                  <a
-                    href={project.projectHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onMouseEnter={() => playHoverSFX()}
-                    onClick={() => trigger("light")}
-                    className="cursor-pointer px-2 py-1 text-sm bg-background hover:opacity-75 transition rounded-sm"
-                  >
-                    View project
-                  </a>
-                  <a
-                    href={project.sourceCodeHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onMouseEnter={() => playHoverSFX()}
-                    onClick={() => trigger("light")}
-                    className="cursor-pointer px-2 py-1 text-sm bg-background hover:opacity-75 transition rounded-sm"
-                  >
-                    Source code
-                  </a>
+                  {overlayButtons.map((button) => (
+                    <ProjectButton
+                      key={button.label}
+                      href={button.href}
+                      label={button.label}
+                      onMouseEnter={playHoverSFX}
+                      onMouseDown={() => clickLowSFX()}
+                      onClick={() => {
+                        trigger("light");
+                        clickHighSFX();
+                      }}
+                    />
+                  ))}
                 </motion.div>
               </>
             )}
