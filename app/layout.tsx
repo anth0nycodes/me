@@ -4,7 +4,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { DATA } from "@/data/me";
 import { ReactNode } from "react";
-import { ReactLenis } from "@/utils/lenis";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ImagePreloader } from "@/components/image-preloader";
@@ -84,23 +83,21 @@ export default function RootLayout({
       <head>
         <ImagePreloader />
       </head>
-      <ReactLenis root>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} w-full font-sans antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} w-full font-sans antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          forcedTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            forcedTheme="dark"
-            enableSystem={false}
-            disableTransitionOnChange
-          >
-            <Navbar />
-            {children}
-            <Analytics />
-          </ThemeProvider>
-        </body>
-      </ReactLenis>
+          <Navbar />
+          {children}
+          <Analytics />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
