@@ -141,36 +141,36 @@ export const DATA = {
       end: "2025",
     },
   ],
-  works: [
+  creativeWorks: [
     {
       title: "deep24-01",
       description: "Landing page I built for Deep24",
       href: "https://www.youtube.com/watch?v=0BPYzD_GVNI",
-      thumbnailUrl: "/posters/deep24-01.jpg",
+      image: "/posters/deep24-01.jpg",
     },
     {
       title: "design-stuff-01",
       description: "Recreation of Magic UI's animated list",
       href: "https://www.youtube.com/watch?v=rgZ0mqzkr8s",
-      thumbnailUrl: "/posters/design-stuff-01.jpg",
+      image: "/posters/design-stuff-01.jpg",
     },
     {
       title: "magic-hour-02",
       description: "Landing page I built for Magic Hour",
       href: "https://www.youtube.com/watch?v=zSmqfayeMuQ",
-      thumbnailUrl: "/posters/magic-hour-02.jpg",
+      image: "/posters/magic-hour-02.jpg",
     },
     {
       title: "magic-hour-01",
       description: "Library page UI work for Magic Hour",
       href: "https://www.youtube.com/watch?v=GQv17nBuV70",
-      thumbnailUrl: "/posters/magic-hour-01.jpg",
+      image: "/posters/magic-hour-01.jpg",
     },
     {
       title: "mtc",
       description: "Community website I built for Muslim Tech Collaborative",
       href: "https://www.youtube.com/watch?v=rQvx48D8oAc",
-      thumbnailUrl: "/posters/mtc-01.jpg",
+      image: "/posters/mtc-01.jpg",
     },
   ],
   projects: [

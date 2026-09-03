@@ -1,11 +1,8 @@
 import { Header } from "@/components/header";
 import { SectionList } from "@/components/section";
 import { LinksSection } from "@/components/links-section";
-import { SkillsSection } from "@/components/skills-section";
 import { DATA } from "@/data/me";
-import { Testimonials } from "@/components/testimonials";
 import { MotionSection, MotionWrapper } from "@/components/motion-wrapper";
-import { CreativeWorksSection } from "@/components/creative-works-section";
 
 const projectsList = (
   DATA.projects.length > 3
@@ -22,18 +19,20 @@ const projectsList = (
 
 const sections = [
   <Header key="header" />,
-  <SectionList key="work" title="work experience" items={DATA.work} />,
-  <CreativeWorksSection key="creative-works" />,
+  <SectionList key="work" sectionTitle="work experience" items={DATA.work} />,
+  <SectionList
+    key="creative-works"
+    sectionTitle="creative works"
+    items={DATA.creativeWorks}
+  />,
   <SectionList
     key="projects"
-    title="projects"
+    sectionTitle="projects"
     items={projectsList}
     itemsCount={DATA.projects.length}
     viewAllHref="/projects"
     viewAllText="all projects"
   />,
-  <SkillsSection key="skills" />,
-  <Testimonials key="testimonials" />,
   <LinksSection key="links" />,
 ];
 
