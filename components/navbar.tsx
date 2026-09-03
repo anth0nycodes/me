@@ -88,7 +88,7 @@ export default function Navbar() {
       </div>
       <button
         onClick={() => setAudioEnabled((prev) => !prev)}
-        className="flex justify-center items-center hover:bg-accent rounded-md p-2 text-muted-foreground"
+        className="flex cursor-pointer justify-center items-center hover:bg-accent rounded-md p-2 text-muted-foreground"
       >
         {audioEnabled ? (
           <Volume2 className="size-4" aria-hidden="true" />
