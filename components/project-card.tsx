@@ -151,7 +151,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <h3 className="text-sm font-semibold mb-1">{project.title}</h3>
           <span
             className={cn(
-              " px-2 py-1 text-[11px] rounded-md",
+              "px-2 py-1 select-none text-[11px] rounded-md",
               determineStatusColor(project.status),
             )}
           >

@@ -46,7 +46,7 @@ export function Header() {
             clickHighSFX();
           }}
           onMouseDown={() => clickLowSFX()}
-          className="cursor-pointer size-12.5 active:scale-95 transition-transform duration-200 rounded-xl overflow-clip"
+          className="cursor-pointer select-none size-12.5 active:scale-95 transition-transform duration-200 rounded-xl overflow-clip"
         >
           <Image
             src={avatarImage}

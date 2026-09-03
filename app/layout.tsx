@@ -84,7 +84,7 @@ export default function RootLayout({
         <ImagePreloader />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} w-full font-sans antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
+        className={`${geistSans.variable} ${geistMono.variable} w-full selection:bg-foreground/15 font-sans antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
       >
         <ThemeProvider
           attribute="class"
