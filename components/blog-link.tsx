@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSound } from "use-sound";
 import { useWebHaptics } from "web-haptics/react";
+import { useAudioEnabled } from "@/context/use-audio-enabled";
 
 interface BlogPost {
   metadata: {
@@ -17,8 +18,10 @@ interface BlogPostsProps {
 
 export function BlogLink({ post }: BlogPostsProps) {
   const { trigger } = useWebHaptics();
+  const { audioEnabled } = useAudioEnabled();
   const [playHoverSFX] = useSound("/audio/hover.mp3", {
     volume: 0.125,
+    soundEnabled: audioEnabled,
   });
 
   return (

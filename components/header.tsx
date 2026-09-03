@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Underline } from "./ui/underline";
 import { useState } from "react";
 import useSound from "use-sound";
+import { useAudioEnabled } from "@/context/use-audio-enabled";
 
 function getRandomImage(images: readonly string[], exclude?: string) {
   const pool = exclude ? images.filter((image) => image !== exclude) : images;
@@ -15,13 +16,16 @@ function getRandomImage(images: readonly string[], exclude?: string) {
 }
 
 export function Header() {
+  const { audioEnabled } = useAudioEnabled();
   const [clickLowSFX] = useSound("/audio/hover.mp3", {
     volume: 0.125,
     playbackRate: 0.5,
+    soundEnabled: audioEnabled,
   });
   const [clickHighSFX] = useSound("/audio/hover.mp3", {
     volume: 0.125,
     playbackRate: 0.75,
+    soundEnabled: audioEnabled,
   });
   const [avatarImage, setAvatarImage] = useState<string>(DATA.avatarUrl);
 

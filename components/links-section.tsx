@@ -3,6 +3,7 @@
 import Link from "next/link";
 import useSound from "use-sound";
 import { useWebHaptics } from "web-haptics/react";
+import { useAudioEnabled } from "@/context/use-audio-enabled";
 
 const links = [
   { title: "github", href: "https://github.com/anth0nycodes" },
@@ -18,7 +19,11 @@ const links = [
 ];
 
 export function LinksSection() {
-  const [playHoverSFX] = useSound("/audio/hover.mp3", { volume: 0.125 });
+  const { audioEnabled } = useAudioEnabled();
+  const [playHoverSFX] = useSound("/audio/hover.mp3", {
+    volume: 0.125,
+    soundEnabled: audioEnabled,
+  });
   const { trigger } = useWebHaptics();
 
   return (

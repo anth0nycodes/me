@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useWebHaptics } from "web-haptics/react";
 import { determineStatusColor } from "./section";
 import { useState } from "react";
+import { useAudioEnabled } from "@/context/use-audio-enabled";
 
 interface Project {
   title: string;
@@ -60,14 +61,20 @@ function ProjectButton({
 export function ProjectCard({ project }: ProjectCardProps) {
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
   const { trigger } = useWebHaptics();
-  const [playHoverSFX] = useSound("/audio/hover.mp3", { volume: 0.125 });
+  const { audioEnabled } = useAudioEnabled();
+  const [playHoverSFX] = useSound("/audio/hover.mp3", {
+    volume: 0.125,
+    soundEnabled: audioEnabled,
+  });
   const [clickLowSFX] = useSound("/audio/hover.mp3", {
     volume: 0.125,
     playbackRate: 0.5,
+    soundEnabled: audioEnabled,
   });
   const [clickHighSFX] = useSound("/audio/hover.mp3", {
     volume: 0.125,
     playbackRate: 0.75,
+    soundEnabled: audioEnabled,
   });
   const activeProject = project === hoveredProject;
   const prefersReducedMotion = useReducedMotion();

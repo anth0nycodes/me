@@ -7,6 +7,7 @@ import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { useWebHaptics } from "web-haptics/react";
 import { useSound } from "use-sound";
 import { cn } from "@/lib/utils";
+import { useAudioEnabled } from "@/context/use-audio-enabled";
 
 export type Item = {
   title: string;
@@ -36,8 +37,10 @@ export function determineStatusColor(status: string) {
 
 function SectionCards({ items }: { items: readonly Item[] }) {
   const { trigger } = useWebHaptics();
+  const { audioEnabled } = useAudioEnabled();
   const [playHoverSFX] = useSound("/audio/hover.mp3", {
     volume: 0.125,
+    soundEnabled: audioEnabled,
   });
   const prefersReducedMotion = useReducedMotion();
 
@@ -135,7 +138,11 @@ export function SectionList({
   viewAllText,
 }: SectionListProps) {
   const { trigger } = useWebHaptics();
-  const [playHoverSFX] = useSound("/audio/hover.mp3", { volume: 0.125 });
+  const { audioEnabled } = useAudioEnabled();
+  const [playHoverSFX] = useSound("/audio/hover.mp3", {
+    volume: 0.125,
+    soundEnabled: audioEnabled,
+  });
 
   return (
     <section className="flex flex-col gap-2">

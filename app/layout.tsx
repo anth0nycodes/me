@@ -7,6 +7,7 @@ import { ReactNode } from "react";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ImagePreloader } from "@/components/image-preloader";
+import { AudioProvider } from "@/context/AudioProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -86,17 +87,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} w-full selection:bg-foreground/15 font-sans antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          forcedTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <Navbar />
-          {children}
-          <Analytics />
-        </ThemeProvider>
+        <AudioProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            forcedTheme="dark"
+            enableSystem={false}
+            disableTransitionOnChange
+          >
+            <Navbar />
+            {children}
+            <Analytics />
+          </ThemeProvider>
+        </AudioProvider>
       </body>
     </html>
   );

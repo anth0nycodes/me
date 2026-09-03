@@ -5,11 +5,17 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useWebHaptics } from "web-haptics/react";
 import { useSound } from "use-sound";
+import { useAudioEnabled } from "@/context/use-audio-enabled";
+import { Volume2, VolumeOff } from "lucide-react";
 
 export default function Navbar() {
+  const { audioEnabled, setAudioEnabled } = useAudioEnabled();
   const router = useRouter();
   const { trigger } = useWebHaptics();
-  const [playHoverSFX] = useSound("/audio/hover.mp3", { volume: 0.125 });
+  const [playHoverSFX] = useSound("/audio/hover.mp3", {
+    volume: 0.125,
+    soundEnabled: audioEnabled,
+  });
   const triggerRef = useRef(trigger);
   triggerRef.current = trigger;
 
@@ -65,19 +71,31 @@ export default function Navbar() {
   }, [router]);
 
   return (
-    <div className="flex gap-3 items-center max-w-2xl mx-auto mb-5">
-      {navItems.map((item) => (
-        <Link
-          key={item.text}
-          href={item.href}
-          onMouseEnter={() => playHoverSFX()}
-          onClick={() => trigger("light")}
-          className="text-sm flex gap-2 items-center hover:text-primary text-muted-foreground transition-colors"
-        >
-          <span className="hidden sm:inline-block">{item.prefix}</span>
-          {item.text}
-        </Link>
-      ))}
+    <div className="flex items-center justify-between max-w-2xl mx-auto mb-5">
+      <div className="flex gap-3 items-center">
+        {navItems.map((item) => (
+          <Link
+            key={item.text}
+            href={item.href}
+            onMouseEnter={() => playHoverSFX()}
+            onClick={() => trigger("light")}
+            className="text-sm flex gap-2 items-center hover:text-primary text-muted-foreground transition-colors"
+          >
+            <span className="hidden sm:inline-block">{item.prefix}</span>
+            {item.text}
+          </Link>
+        ))}
+      </div>
+      <button
+        onClick={() => setAudioEnabled((prev) => !prev)}
+        className="flex justify-center items-center hover:bg-accent rounded-md p-2 text-muted-foreground"
+      >
+        {audioEnabled ? (
+          <Volume2 className="size-4" aria-hidden="true" />
+        ) : (
+          <VolumeOff className="size-4" aria-hidden="true" />
+        )}
+      </button>
     </div>
   );
 }
