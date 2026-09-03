@@ -18,30 +18,44 @@ const projectsList = (
 }));
 
 const sections = [
-  <Header key="header" />,
-  <SectionList key="work" sectionTitle="work experience" items={DATA.work} />,
-  <SectionList
-    key="creative-works"
-    sectionTitle="creative works"
-    items={DATA.creativeWorks}
-  />,
-  <SectionList
-    key="projects"
-    sectionTitle="projects"
-    items={projectsList}
-    itemsCount={DATA.projects.length}
-    viewAllHref="/projects"
-    viewAllText="all projects"
-  />,
-  <LinksSection key="links" />,
+  {
+    id: "header",
+    component: <Header />,
+  },
+  {
+    id: "work experience",
+    component: <SectionList sectionTitle="work experience" items={DATA.work} />,
+  },
+  {
+    id: "creative-works",
+    component: (
+      <SectionList sectionTitle="creative works" items={DATA.creativeWorks} />
+    ),
+  },
+  {
+    id: "projects",
+    component: (
+      <SectionList
+        sectionTitle="projects"
+        items={projectsList}
+        itemsCount={DATA.projects.length}
+        viewAllHref="/projects"
+        viewAllText="all projects"
+      />
+    ),
+  },
+  {
+    id: "links",
+    component: <LinksSection />,
+  },
 ];
 
 export default function HomePage() {
   return (
     <main>
       <MotionWrapper>
-        {sections.map((section, idx) => (
-          <MotionSection key={idx}>{section}</MotionSection>
+        {sections.map((section) => (
+          <MotionSection key={section.id}>{section.component}</MotionSection>
         ))}
       </MotionWrapper>
     </main>

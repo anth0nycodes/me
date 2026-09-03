@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { BlogDate } from "@/components/blog-date";
 
 export async function generateStaticParams() {
-  const posts = await getBlogPosts();
+  const posts = getBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
 

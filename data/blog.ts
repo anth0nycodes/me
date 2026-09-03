@@ -43,21 +43,19 @@ export async function getPost(slug: string) {
   };
 }
 
-async function getAllPosts(dir: string) {
+function getAllPosts(dir: string) {
   const mdxFiles = getMDXFiles(dir);
-  return Promise.all(
-    mdxFiles.map(async (file) => {
-      const slug = path.basename(file, path.extname(file));
-      const { metadata, source } = await getPost(slug);
-      return {
-        metadata,
-        slug,
-        source,
-      };
-    }),
-  );
+  return mdxFiles.map((file) => {
+    const slug = path.basename(file, path.extname(file));
+    const source = fs.readFileSync(path.join(dir, file), "utf-8");
+    const { data: metadata } = matter(source);
+    return {
+      metadata,
+      slug,
+    };
+  });
 }
 
-export async function getBlogPosts() {
+export function getBlogPosts() {
   return getAllPosts(path.join(process.cwd(), "content"));
 }

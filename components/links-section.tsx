@@ -32,9 +32,9 @@ export function LinksSection() {
         </span>
       </h3>
       <div className="flex flex-wrap gap-4 text-sm">
-        {links.map((link, index) => (
+        {links.map((link) => (
           <Link
-            key={index}
+            key={link.title}
             href={link.href}
             target="_blank"
             onMouseEnter={() => playHoverSFX()}

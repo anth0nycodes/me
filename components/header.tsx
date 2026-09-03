@@ -61,10 +61,10 @@ export function Header() {
             <span className="inline-block">{DATA.name}</span>
           </h1>
           <div className="text-sm flex gap-4">
-            {headerInfo.map((item, index) => (
+            {headerInfo.map((item) => (
               <div
                 className="flex items-center text-muted-foreground gap-2"
-                key={index}
+                key={item.text}
               >
                 <item.icon className="size-4" />
                 <p>{item.text}</p>

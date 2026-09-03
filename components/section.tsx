@@ -36,6 +36,9 @@ export function determineStatusColor(status: string) {
 
 function SectionCards({ items }: { items: readonly Item[] }) {
   const { trigger } = useWebHaptics();
+  const [playHoverSFX] = useSound("/audio/hover.mp3", {
+    volume: 0.125,
+  });
   const prefersReducedMotion = useReducedMotion();
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -54,18 +57,19 @@ function SectionCards({ items }: { items: readonly Item[] }) {
   const settled = { top: panelTop, y: "-50%" };
 
   return (
-    <div className="relative flex flex-col gap-2">
+    <div className="group relative flex flex-col">
       {items.map((item, index) => (
         <div
-          key={`${item.title}-${index}`}
+          key={item.title}
           ref={(el) => {
             cardRefs.current[index] = el;
           }}
-          className="hover:bg-accent hover:cursor-pointer relative rounded-sm p-3 -mx-3"
+          className="group-hover:opacity-40 hover:opacity-100 hover:cursor-pointer relative rounded-sm py-3"
           onMouseEnter={() => {
             lastIndexRef.current = index;
             setHoveredIndex(index);
             trigger("selection");
+            playHoverSFX();
           }}
           onMouseLeave={() => setHoveredIndex(null)}
         >

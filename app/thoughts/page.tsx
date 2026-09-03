@@ -1,14 +1,14 @@
+import { BlogLink } from "@/components/blog-link";
 import { getBlogPosts } from "@/data/blog";
 import { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Blog",
   description: "My thoughts on software development, life, and more.",
 };
 
-export default async function ThoughtsPage() {
-  const posts = await getBlogPosts();
+export default function ThoughtsPage() {
+  const posts = getBlogPosts();
 
   return (
     <section className="flex flex-col gap-4">
@@ -20,7 +20,7 @@ export default async function ThoughtsPage() {
           </sup>
         </span>
       </h1>
-      <div className="flex flex-col gap-2">
+      <div className="group flex flex-col">
         {posts
           .sort((a, b) => {
             if (
@@ -31,19 +31,8 @@ export default async function ThoughtsPage() {
             }
             return 1;
           })
-          .map((post, id) => (
-            <Link
-              key={id}
-              className="group flex flex-col hover:bg-accent rounded-sm p-3 -mx-3 duration-150"
-              href={`/thoughts/${post.slug}`}
-            >
-              <p className="text-sm font-semibold mb-1 group-hover:text-primary duration-200">
-                {post.metadata.title}
-              </p>
-              <p className="text-xs text-muted-foreground">
-                {post.metadata.publishedAt}
-              </p>
-            </Link>
+          .map((post) => (
+            <BlogLink key={post.slug} post={post} />
           ))}
       </div>
     </section>
