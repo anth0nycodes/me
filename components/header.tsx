@@ -8,9 +8,10 @@ import { Underline } from "./ui/underline";
 import { useState } from "react";
 import useSound from "use-sound";
 
-function getRandomImage(images: readonly string[]) {
-  const randomIndex = Math.floor(Math.random() * images.length);
-  return images[randomIndex];
+function getRandomImage(images: readonly string[], exclude?: string) {
+  const pool = exclude ? images.filter((image) => image !== exclude) : images;
+  const randomIndex = Math.floor(Math.random() * pool.length);
+  return pool[randomIndex];
 }
 
 export function Header() {
@@ -40,7 +41,7 @@ export function Header() {
       <div className="flex gap-3 items-center">
         <button
           onClick={() => {
-            const randomImage = getRandomImage(DATA.images);
+            const randomImage = getRandomImage(DATA.images, avatarImage);
             setAvatarImage(randomImage);
             clickHighSFX();
           }}
