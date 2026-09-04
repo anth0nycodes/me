@@ -81,7 +81,7 @@ export function Header() {
         <p>
           hey, I&apos;m Anthony — a{" "}
           <Underline hexcode="#22a8f5" delay={0.65} duration={1}>
-            fullstack engineer
+            design engineer
           </Underline>{" "}
           based in NYC. I enjoy building beautiful and{" "}
           <Underline hexcode="#58CC02" delay={1.5} duration={1}>
@@ -94,8 +94,8 @@ export function Header() {
           along the way.
         </p>{" "}
         <p>
-          when I&apos;m not coding, I&apos;m usually at the gym or spending time
-          with people i care about.
+          when I&apos;m not coding, I&apos;m usually doomscrolling or laying in
+          bed, or both 😂
         </p>
       </div>
       <Dithering
