@@ -8,9 +8,7 @@ export function CraftCard({ craft }: CraftCardProps) {
   return (
     <div className="flex flex-col gap-2 items-center">
       <div className="relative border border-accent rounded-lg overflow-clip w-full aspect-video">
-        <div className="absolute inset-0 flex items-center justify-center [&>svg]:h-full [&>svg]:w-auto">
-          {craft.component}
-        </div>
+        <div className="absolute inset-0">{craft.component}</div>
         <div className="absolute right-4 top-4 flex gap-2">
           {craft.techStack.map((tech) => (
             <span

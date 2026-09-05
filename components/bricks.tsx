@@ -34,266 +34,257 @@ export function Bricks(props: SVGProps<SVGSVGElement>) {
   transform-origin: 0 0;
   animation: kf_Orange_transform_0 7.5s linear infinite;
 }
-@keyframes kf_Blue_offset_distance_0 {
+@keyframes kf_Blue_transform_0 {
   0% {
-    offset-distance: 0%;
+    transform: translate(0px, 29.006px);
   }
   2.5% {
-    offset-distance: 0%;
+    transform: translate(0px, 29.006px);
   }
   3.75% {
-    offset-distance: 6.118%;
+    transform: translate(0px, 8.638px);
   }
   5% {
-    offset-distance: 9.177%;
+    transform: translate(0px, -1.546px);
   }
   6.25% {
-    offset-distance: 10.051%;
+    transform: translate(0px, -4.456px);
   }
   7.16% {
-    offset-distance: 10.488%;
+    transform: translate(0px, -5.906px);
   }
   13.454% {
-    offset-distance: 10.488%;
+    transform: translate(0px, -5.906px);
   }
   13.75% {
-    offset-distance: 15.287%;
+    transform: translate(0px, 10.07px);
   }
   15% {
-    offset-distance: 22.485%;
+    transform: translate(0px, 34.033px);
   }
   16.25% {
-    offset-distance: 26.484%;
+    transform: translate(0px, 47.347px);
   }
   17.5% {
-    offset-distance: 28.084%;
+    transform: translate(0px, 52.673px);
   }
   18.75% {
-    offset-distance: 29.684%;
+    transform: translate(0px, 58px);
   }
   46.683% {
-    offset-distance: 29.684%;
+    transform: translate(0px, 58px);
   }
   47.5% {
-    offset-distance: 40.03%;
+    transform: translate(0px, 23.558px);
   }
   48.75% {
-    offset-distance: 49.225%;
+    transform: translate(0px, -7.053px);
   }
   50% {
-    offset-distance: 54.973%;
+    transform: translate(0px, -26.189px);
   }
   51.25% {
-    offset-distance: 57.271%;
+    transform: translate(0px, -33.84px);
   }
   53.59% {
-    offset-distance: 57.271%;
+    transform: translate(0px, -33.84px);
   }
   53.75% {
-    offset-distance: 58.455%;
+    transform: translate(-3.941px, -33.84px);
   }
   55% {
-    offset-distance: 65.554%;
+    transform: translate(-27.575px, -33.84px);
   }
   56.25% {
-    offset-distance: 69.103%;
+    transform: translate(-39.39px, -33.84px);
   }
   57.5% {
-    offset-distance: 70.878%;
+    transform: translate(-45.299px, -33.84px);
   }
   58.75% {
-    offset-distance: 71.47%;
+    transform: translate(-47.269px, -33.839px);
   }
   60.045% {
-    offset-distance: 71.47%;
+    transform: translate(-47.269px, -33.839px);
   }
   61.25% {
-    offset-distance: 78.077%;
+    transform: translate(-47.269px, -11.844px);
   }
   62.5% {
-    offset-distance: 81.931%;
+    transform: translate(-47.269px, 0.987px);
   }
   63.75% {
-    offset-distance: 83.583%;
+    transform: translate(-47.269px, 6.487px);
   }
   65% {
-    offset-distance: 84.684%;
+    transform: translate(-47.269px, 10.152px);
   }
   67.5% {
-    offset-distance: 84.684%;
+    transform: translate(-47.269px, 10.152px);
   }
   68.75% {
-    offset-distance: 91.704%;
+    transform: translate(-25.545px, 18.769px);
   }
   70% {
-    offset-distance: 95.533%;
+    transform: translate(-13.696px, 23.469px);
   }
   71.25% {
-    offset-distance: 98.086%;
+    transform: translate(-5.795px, 26.603px);
   }
   72.5% {
-    offset-distance: 99.362%;
+    transform: translate(-1.846px, 28.169px);
   }
   73.75% {
-    offset-distance: 100%;
+    transform: translate(0.128px, 28.952px);
   }
   100% {
-    offset-distance: 100%;
+    transform: translate(0.128px, 28.952px);
   }
 }
 #Blue {
   transform-origin: 0 0;
-  transform-box: view-box;
-  offset-path: path('M0 0 C0 -11.638 0 -23.276 0 -34.914 C0 -13.612 0 7.69 0 28.993 C0 28.994 0 28.994 0 28.995 C0 -1.619 0 -32.232 0 -62.846 C-15.756 -62.846 -31.512 -62.846 -47.269 -62.846 C-47.269 -48.182 -47.269 -33.518 -47.269 -18.854 C-31.47 -12.587 -15.671 -6.32 0.128 -0.054');
-  offset-rotate: 0deg;
-  offset-anchor: 0px 0px;
-  animation: kf_Blue_offset_distance_0 7.5s linear infinite;
+  animation: kf_Blue_transform_0 7.5s linear infinite;
 }
-@keyframes kf_Green_offset_distance_0 {
+@keyframes kf_Green_transform_0 {
   0% {
-    offset-distance: 0%;
+    transform: translate(0px, 0px);
   }
   1.25% {
-    offset-distance: 4.23%;
+    transform: translate(0px, -21.82px);
   }
   2.5% {
-    offset-distance: 6.205%;
+    transform: translate(0px, -32.007px);
   }
   3.75% {
-    offset-distance: 6.769%;
+    transform: translate(0px, -34.912px);
   }
   19.115% {
-    offset-distance: 6.769%;
+    transform: translate(0px, -34.912px);
   }
   20% {
-    offset-distance: 11.415%;
+    transform: translate(0px, -10.946px);
   }
   21.25% {
-    offset-distance: 15.03%;
+    transform: translate(0px, 7.701px);
   }
   22.5% {
-    offset-distance: 17.611%;
+    transform: translate(0px, 21.014px);
   }
   23.75% {
-    offset-distance: 18.644%;
+    transform: translate(0px, 26.343px);
   }
   25% {
-    offset-distance: 19.16%;
+    transform: translate(0px, 29.005px);
   }
   25.629% {
-    offset-distance: 19.16%;
+    transform: translate(0px, 29.005px);
   }
   26.25% {
-    offset-distance: 22.258%;
+    transform: translate(0px, 13.027px);
   }
   27.5% {
-    offset-distance: 26.389%;
+    transform: translate(0px, -8.282px);
   }
   28.75% {
-    offset-distance: 28.97%;
+    transform: translate(0px, -21.595px);
   }
   30% {
-    offset-distance: 30.519%;
+    transform: translate(0px, -29.586px);
   }
   31.25% {
-    offset-distance: 31.552%;
+    transform: translate(0px, -34.914px);
   }
   32.749% {
-    offset-distance: 31.552%;
+    transform: translate(0px, -34.914px);
   }
   33.75% {
-    offset-distance: 35.752%;
+    transform: translate(21.665px, -34.914px);
   }
   35% {
-    offset-distance: 38.807%;
+    transform: translate(37.423px, -34.914px);
   }
   36.25% {
-    offset-distance: 40.334%;
+    transform: translate(45.3px, -34.914px);
   }
   37.5% {
-    offset-distance: 40.716%;
+    transform: translate(47.269px, -34.912px);
   }
   38.832% {
-    offset-distance: 40.716%;
+    transform: translate(47.269px, -34.912px);
   }
   40% {
-    offset-distance: 49.747%;
+    transform: translate(47.269px, 11.672px);
   }
   41.25% {
-    offset-distance: 55.166%;
+    transform: translate(47.269px, 39.625px);
   }
   42.5% {
-    offset-distance: 58.779%;
+    transform: translate(47.269px, 58.262px);
   }
   43.75% {
-    offset-distance: 61.489%;
+    transform: translate(47.269px, 72.24px);
   }
   45% {
-    offset-distance: 62.392%;
+    transform: translate(47.269px, 76.896px);
   }
   74.683% {
-    offset-distance: 62.392%;
+    transform: translate(47.269px, 76.896px);
   }
   75% {
-    offset-distance: 66.004%;
+    transform: translate(47.269px, 58.264px);
   }
   76.25% {
-    offset-distance: 74.133%;
+    transform: translate(47.269px, 16.332px);
   }
   77.5% {
-    offset-distance: 79.552%;
+    transform: translate(47.269px, -11.62px);
   }
   78.75% {
-    offset-distance: 82.261%;
+    transform: translate(47.269px, -25.594px);
   }
   80% {
-    offset-distance: 84.068%;
+    transform: translate(47.268px, -34.914px);
   }
   81.518% {
-    offset-distance: 84.068%;
+    transform: translate(47.268px, -34.914px);
   }
   82.5% {
-    offset-distance: 88.268%;
+    transform: translate(25.603px, -34.914px);
   }
   83.75% {
-    offset-distance: 90.941%;
+    transform: translate(11.815px, -34.914px);
   }
   85% {
-    offset-distance: 92.468%;
+    transform: translate(3.938px, -34.914px);
   }
   86.25% {
-    offset-distance: 93.231%;
+    transform: translate(0.002px, -34.914px);
   }
   88.358% {
-    offset-distance: 93.231%;
+    transform: translate(0.002px, -34.914px);
   }
   88.75% {
-    offset-distance: 94.642%;
+    transform: translate(0px, -27.638px);
   }
   90% {
-    offset-distance: 97.18%;
+    transform: translate(0px, -14.546px);
   }
   91.25% {
-    offset-distance: 98.872%;
+    transform: translate(0px, -5.819px);
   }
   92.5% {
-    offset-distance: 99.718%;
+    transform: translate(0px, -1.455px);
   }
   93.75% {
-    offset-distance: 100%;
+    transform: translate(0px, 0px);
   }
   100% {
-    offset-distance: 100%;
+    transform: translate(0px, 0px);
   }
 }
 #Green {
-  translate: 0px 0px;
   transform-origin: 0 0;
-  transform-box: view-box;
-  offset-path: path('M0 0 C0 -11.638 0 -23.276 0 -34.914 C0 -13.608 0 7.699 0 29.006 C0 7.699 0 -13.608 0 -34.914 C15.756 -34.914 31.512 -34.914 47.269 -34.914 C47.269 2.356 47.269 39.627 47.269 76.897 C47.269 39.627 47.269 2.356 47.269 -34.914 C31.512 -34.914 15.756 -34.914 0 -34.914 C0 -23.276 0 -11.638 0 0');
-  offset-rotate: 0deg;
-  offset-anchor: 0px 0px;
-  animation: kf_Green_offset_distance_0 7.5s linear infinite;
+  animation: kf_Green_transform_0 7.5s linear infinite;
 }
 `;
 
