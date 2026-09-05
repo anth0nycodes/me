@@ -31,6 +31,11 @@ export default function Navbar() {
       href: "/projects",
     },
     {
+      prefix: "[c]",
+      text: "craft",
+      href: "/craft",
+    },
+    {
       prefix: "[t]",
       text: "thoughts",
       href: "/thoughts",
@@ -52,6 +57,10 @@ export default function Navbar() {
         case "p":
           triggerRef.current("light");
           router.push("/projects");
+          break;
+        case "c":
+          triggerRef.current("light");
+          router.push("/craft");
           break;
         case "t":
           triggerRef.current("light");

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="mx-auto w-full max-w-2xl flex flex-col gap-4 min-h-screen bg-background">
+    <section className="mx-auto w-full max-w-2xl flex flex-col gap-4 min-h-screen bg-background">
       <h1 className="lowercase border-b pb-2 border-[#222222] text-base font-medium">
         <span>
           my projects
@@ -23,6 +23,6 @@ export default function ProjectsPage() {
           <ProjectCard key={project.title} project={project} />
         ))}
       </div>
-    </div>
+    </section>
   );
 }
