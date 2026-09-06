@@ -5,6 +5,7 @@ import { useSound } from "use-sound";
 import { useWebHaptics } from "web-haptics/react";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
 import type { Post } from "@/data/blog";
+import { formatDate } from "@/lib/utils";
 
 interface BlogPostsProps {
   post: Post;
@@ -29,7 +30,7 @@ export function BlogLink({ post }: BlogPostsProps) {
     >
       <p className="text-sm font-semibold mb-1">{post.metadata.title}</p>
       <p className="text-xs text-muted-foreground">
-        {post.metadata.publishedAt}
+        {formatDate(post.metadata.publishedAt)}
       </p>
     </Link>
   );
