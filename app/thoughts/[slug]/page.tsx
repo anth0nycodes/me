@@ -1,11 +1,11 @@
-import { getBlogPosts, getPost } from "@/data/blog";
+import { BlogDate } from "@/components/blog-date";
+import { getBlogPosts, type PostMetadata } from "@/data/blog";
 import { DATA } from "@/data/me";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { BlogDate } from "@/components/blog-date";
+import { ComponentType } from "react";
 
 export async function generateStaticParams() {
-  const posts = getBlogPosts();
+  const posts = await getBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
 
@@ -17,14 +17,16 @@ export async function generateMetadata({
   }>;
 }): Promise<Metadata | undefined> {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const { metadata } = (await import(`@/content/${slug}.mdx`)) as {
+    metadata: PostMetadata;
+  };
 
   const {
     title,
     publishedAt: publishedTime,
     summary: description,
     image,
-  } = post.metadata;
+  } = metadata;
   const ogImage = image
     ? `${DATA.url}${image}`
     : `${DATA.url}/og?title=${title}`;
@@ -37,7 +39,7 @@ export async function generateMetadata({
       description,
       type: "article",
       publishedTime,
-      url: `${DATA.url}/thoughts/${post.slug}`,
+      url: `${DATA.url}/thoughts/${slug}`,
       images: [
         {
           url: ogImage,
@@ -61,11 +63,12 @@ export default async function Blog({
   }>;
 }) {
   const { slug } = await params;
-  const post = await getPost(slug);
-
-  if (!post) {
-    notFound();
-  }
+  const { default: Post, metadata } = (await import(
+    `@/content/${slug}.mdx`
+  )) as {
+    default: ComponentType;
+    metadata: PostMetadata;
+  };
 
   return (
     <section id="blog">
@@ -76,14 +79,14 @@ export default async function Blog({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${DATA.url}${post.metadata.image}`
-              : `${DATA.url}/og?title=${post.metadata.title}`,
-            url: `${DATA.url}/thoughts/${post.slug}`,
+            headline: metadata.title,
+            datePublished: metadata.publishedAt,
+            dateModified: metadata.publishedAt,
+            description: metadata.summary,
+            image: metadata.image
+              ? `${DATA.url}${metadata.image}`
+              : `${DATA.url}/og?title=${metadata.title}`,
+            url: `${DATA.url}/thoughts/${slug}`,
             author: {
               "@type": "Person",
               name: DATA.name,
@@ -91,16 +94,17 @@ export default async function Blog({
           }),
         }}
       />
-      <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
-        <span className="inline-block">{post.metadata.title}</span>
+      <h1 className="title font-medium text-2xl tracking-tighter max-w-162">
+        <span className="inline-block">{metadata.title}</span>
       </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
-        <BlogDate date={post.metadata.publishedAt} />
+      <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-162">
+        <BlogDate date={metadata.publishedAt} />
       </div>
-      <article
-        className="prose max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground"
-        dangerouslySetInnerHTML={{ __html: post.source }}
-      ></article>
+      <article className="prose max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground">
+        <Post />
+      </article>
     </section>
   );
 }
+
+export const dynamicParams = false;

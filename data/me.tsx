@@ -1,23 +1,19 @@
 export const DATA = {
   name: "Anthony Hoang",
-  initials: "AH",
   url: "https://anthonyhoang.dev",
   location: "nyc",
   occupation: "Design Engineer",
-  locationLink: "https://www.google.com/maps/place/bronx",
   description:
     "design engineer. professional doomscroller. i love building things that feel and look nice.",
-  summary:
-    "hey — my name is Anthony Hoang and I'm based in NYC. I like creating cool things and learning new things. Whenever I'm not coding, I'm either spending time with loved ones, consuming gym videos, or going to the gym.",
   images: [
-    "/pfp.png",
-    "/pfp2.png",
-    "/pfp3.png",
-    "/pfp4.jpg",
-    "/pfp5.jpg",
-    "/pfp6.png",
+    "/pfps/pfp.png",
+    "/pfps/pfp2.png",
+    "/pfps/pfp3.png",
+    "/pfps/pfp4.jpg",
+    "/pfps/pfp5.jpg",
+    "/pfps/pfp6.png",
   ],
-  avatarUrl: "/pfp.png",
+  avatarUrl: "/pfps/pfp.png",
   skills: [
     // Frontend Frameworks & Platforms
     { name: "Next.js", src: "https://nextjs.org/" },
@@ -104,7 +100,7 @@ export const DATA = {
       period: "mar 2026 - apr 2026",
       description: "helping students get jobs",
       href: "https://deep24.com",
-      image: "/d24.png",
+      image: "/work-experience/d24.png",
     },
     {
       title: "magic hour (yc w24)",
@@ -112,7 +108,7 @@ export const DATA = {
       period: "mar 2025 - sep 2025",
       description: "polishing UI/UX and building ai-powered tools for creators",
       href: "https://magichour.ai",
-      image: "/mh.png",
+      image: "/work-experience/mh.png",
     },
     {
       title: "revisiondojo (yc f24)",
@@ -120,7 +116,7 @@ export const DATA = {
       period: "jan 2025 - mar 2025",
       description: "figma stuff + UI polishing",
       href: "https://revisiondojo.com",
-      image: "/rd.png",
+      image: "/work-experience/rd.png",
     },
     {
       title: "muslim tech collaborative",
@@ -128,25 +124,7 @@ export const DATA = {
       period: "dec 2024 - jan 2025",
       description: "revamped and rebuilt the community website",
       href: "https://mtc.so",
-      image: "/mtc.png",
-    },
-  ],
-  education: [
-    {
-      school: "Lehman College",
-      href: "https://www.lehman.cuny.edu/",
-      degree: "B.S. in Computer Science",
-      logoUrl: "/lc.png",
-      start: "2025",
-      end: "Dropped Out 😎",
-    },
-    {
-      school: "DeWitt Clinton HS",
-      href: "https://www.dewittclintonhs.com/",
-      degree: "High School Diploma",
-      logoUrl: "/dwc.png",
-      start: "2021",
-      end: "2025",
+      image: "/work-experience/mtc.png",
     },
   ],
   creativeWorks: [
@@ -270,20 +248,5 @@ export const DATA = {
       sourceCodeHref: "https://github.com/anth0nycodes/license-generator",
       image: "/posters/license-generator.png",
     },
-    // {
-    //   title: "observatory",
-    //   role: "contributor",
-    //   description: "open-source package for AI-agent observability",
-    //   href: "https://github.com/The-Context-Company/observatory/commits/main/?author=anth0nycodes",
-    //   image: "/ob.png",
-    // },
-    // {
-    //   title: "typescript-oop-guide",
-    //   role: "creator / maintainer",
-    //   description:
-    //     "comprehensive learning guide for OOP in TypeScript with 37 hands-on exercises",
-    //   href: "https://github.com/ah-materials/typescript-oop-guide",
-    //   image: "/ts.png",
-    // },
   ],
 } as const;

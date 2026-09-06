@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description: "My thoughts on software development, life, and more.",
 };
 
-export default function ThoughtsPage() {
-  const posts = getBlogPosts();
+export default async function ThoughtsPage() {
+  const posts = await getBlogPosts();
 
   return (
     <section className="flex flex-col gap-4">

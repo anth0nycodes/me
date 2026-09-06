@@ -4,16 +4,10 @@ import Link from "next/link";
 import { useSound } from "use-sound";
 import { useWebHaptics } from "web-haptics/react";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
-
-interface BlogPost {
-  metadata: {
-    [key: string]: any;
-  };
-  slug: string;
-}
+import type { Post } from "@/data/blog";
 
 interface BlogPostsProps {
-  post: BlogPost;
+  post: Post;
 }
 
 export function BlogLink({ post }: BlogPostsProps) {
