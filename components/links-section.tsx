@@ -44,7 +44,7 @@ export function LinksSection() {
             target="_blank"
             onMouseEnter={() => playHoverSFX()}
             onClick={() => trigger("light")}
-            className="text-muted-foreground hover:text-primary transition-colors duration-200"
+            className="text-muted-foreground hover:text-primary"
           >
             {link.title}
           </Link>

@@ -88,7 +88,7 @@ export default function Navbar() {
             href={item.href}
             onMouseEnter={() => playHoverSFX()}
             onClick={() => trigger("light")}
-            className="text-sm flex gap-2 items-center hover:text-primary text-muted-foreground transition-colors"
+            className="text-sm flex gap-2 items-center hover:text-primary text-muted-foreground"
           >
             <span className="hidden sm:inline-block">{item.prefix}</span>
             {item.text}
