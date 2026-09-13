@@ -25,6 +25,8 @@ export function ScrollToTop() {
   return (
     <button
       onClick={handleScrollToTop}
+      tabIndex={isVisible ? 0 : -1}
+      aria-hidden={!isVisible}
       className={cn(
         "fixed bottom-5 right-5 flex cursor-pointer transition-all duration-300 ease-out items-center justify-center size-12 rounded-full bg-muted text-foreground group hover:scale-105",
         isVisible
