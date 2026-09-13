@@ -1,3 +1,4 @@
+import { ScrollToTop } from "@/components/scroll-to-top";
 import { ReactNode } from "react";
 
 export default function ThoughtsLayout({
@@ -8,6 +9,7 @@ export default function ThoughtsLayout({
   return (
     <div className="mx-auto w-full max-w-2xl min-h-screen bg-background">
       {children}
+      <ScrollToTop />
     </div>
   );
 }
