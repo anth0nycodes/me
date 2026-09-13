@@ -100,7 +100,7 @@ export function Header() {
       </div>
       <Dithering
         className="-z-1 w-full h-28"
-        colorBack="#141414"
+        colorBack="#0F0F0F"
         colorFront="#8fb7b7"
         shape="warp"
         type="4x4"

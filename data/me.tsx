@@ -53,6 +53,18 @@ export const DATA = {
   ],
   resources: [
     {
+      title: "animations.dev",
+      description: "learn the theory and practice behind great animations",
+      author: "Emil Kowalski",
+      src: "https://animations.dev/",
+    },
+    {
+      title: "easings.co",
+      description: "visualize and compare easing curves for animations",
+      author: "Paul Macgregor",
+      src: "https://easings.co/",
+    },
+    {
       title: "Refactoring UI",
       description:
         "learn how to design beautiful user interfaces without relying on a designer",

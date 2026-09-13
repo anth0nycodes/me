@@ -1,6 +1,8 @@
 "use client";
 
+import { useAudioEnabled } from "@/context/use-audio-enabled";
 import Link from "next/link";
+import { useSound } from "use-sound";
 import { useWebHaptics } from "web-haptics/react";
 
 interface VaultCardProps {
@@ -12,13 +14,21 @@ interface VaultCardProps {
 
 export function VaultCard({ title, src, author, description }: VaultCardProps) {
   const { trigger } = useWebHaptics();
+  const { audioEnabled } = useAudioEnabled();
+  const [playHoverSFX] = useSound("/audio/hover.mp3", {
+    volume: 0.125,
+    soundEnabled: audioEnabled,
+  });
 
   return (
     <Link
       key={title}
       target="_blank"
       href={src}
-      onMouseEnter={() => trigger("selection")}
+      onMouseEnter={() => {
+        trigger("selection");
+        playHoverSFX();
+      }}
       onClick={() => trigger("light")}
     >
       <div className="flex flex-col justify-between p-6 h-full border border-muted rounded-lg hover:bg-accent group">
