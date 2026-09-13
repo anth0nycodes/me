@@ -86,14 +86,14 @@ function SectionCards({ items }: { items: readonly Item[] }) {
             <p className="text-xs text-muted-foreground">{item.description}</p>
           </Link>
           {item.period && (
-            <span className="absolute top-0 select-none pointer-events-none right-3 text-[11px] px-2 py-1 bg-muted rounded-md">
+            <span className="absolute select-none pointer-events-none top-3 right-3 px-2 py-1 text-[11px] bg-muted rounded-md">
               {item.period}
             </span>
           )}
           {item.status && (
             <span
               className={cn(
-                "absolute select-none pointer-events-none top-0 right-3 px-2 py-1 text-[11px] rounded-md",
+                "absolute select-none pointer-events-none top-3 right-3 px-2 py-1 text-[11px] rounded-md",
                 determineStatusColor(item.status),
               )}
             >
