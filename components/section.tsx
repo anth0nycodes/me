@@ -79,28 +79,27 @@ function SectionCards({ items }: { items: readonly Item[] }) {
           <Link
             href={item.href}
             target="_blank"
-            className="relative"
             onClick={() => trigger("light")}
           >
             <h3 className="text-sm font-semibold mb-1">{item.title}</h3>
             <p className="text-[13px] mb-2">{item.role}</p>
             <p className="text-xs text-muted-foreground">{item.description}</p>
-            {item.period && (
-              <span className="absolute top-0 select-none pointer-events-none right-3 text-[11px] px-2 py-1 bg-muted rounded-md">
-                {item.period}
-              </span>
-            )}
-            {item.status && (
-              <span
-                className={cn(
-                  "absolute select-none pointer-events-none top-0 right-3 px-2 py-1 text-[11px] rounded-md",
-                  determineStatusColor(item.status),
-                )}
-              >
-                {item.status}
-              </span>
-            )}
           </Link>
+          {item.period && (
+            <span className="absolute top-0 select-none pointer-events-none right-3 text-[11px] px-2 py-1 bg-muted rounded-md">
+              {item.period}
+            </span>
+          )}
+          {item.status && (
+            <span
+              className={cn(
+                "absolute select-none pointer-events-none top-0 right-3 px-2 py-1 text-[11px] rounded-md",
+                determineStatusColor(item.status),
+              )}
+            >
+              {item.status}
+            </span>
+          )}
         </div>
       ))}
 
