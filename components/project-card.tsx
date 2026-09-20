@@ -1,12 +1,10 @@
 "use client";
 
 import { useSound } from "use-sound";
-import { cn } from "@/lib/utils";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useWebHaptics } from "web-haptics/react";
-import { determineStatusColor } from "./section";
-import { useState } from "react";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
+import { cn } from "@/lib/utils";
+import { determineStatusColor } from "./section";
 
 interface Project {
   title: string;
@@ -39,27 +37,21 @@ function ProjectButton({
   onClick,
 }: ProjectButtonProps) {
   return (
-    <button
-      className="cursor-pointer active:scale-95 px-2 py-1 bg-background hover:opacity-85 transition rounded-sm"
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-background inline-block cursor-pointer rounded-sm px-3 py-1.5 text-sm transition hover:opacity-85 active:scale-95"
       onMouseDown={onMouseDown}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
     >
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-sm"
-      >
-        {" "}
-        {label}
-      </a>
-    </button>
+      {label}
+    </a>
   );
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
   const { trigger } = useWebHaptics();
   const { audioEnabled } = useAudioEnabled();
   const [playHoverSFX] = useSound("/audio/hover.mp3", {
@@ -76,8 +68,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
     playbackRate: 0.75,
     soundEnabled: audioEnabled,
   });
-  const activeProject = project === hoveredProject;
-  const prefersReducedMotion = useReducedMotion();
   const overlayButtons = [
     {
       label: "View project",
@@ -95,83 +85,51 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <div
           className="group"
           onMouseEnter={() => {
-            setHoveredProject(project);
             trigger("selection");
           }}
-          onMouseLeave={() => setHoveredProject(null)}
         >
-          <AnimatePresence>
-            {activeProject && (
-              <>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={
-                    prefersReducedMotion
-                      ? { duration: 0 }
-                      : { ease: "easeInOut", duration: 0.15 }
-                  }
-                  className="absolute backdrop-blur-xs inset-0 z-10 bg-background/80"
-                />
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 15 }}
-                  transition={
-                    prefersReducedMotion
-                      ? { duration: 0 }
-                      : { ease: "easeInOut", duration: 0.25 }
-                  }
-                  className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-2"
-                >
-                  {overlayButtons.map((button) => (
-                    <ProjectButton
-                      key={button.label}
-                      href={button.href}
-                      label={button.label}
-                      onMouseEnter={playHoverSFX}
-                      onMouseDown={() => clickLowSFX()}
-                      onClick={() => {
-                        trigger("light");
-                        clickHighSFX();
-                      }}
-                    />
-                  ))}
-                </motion.div>
-              </>
-            )}
-          </AnimatePresence>
+          <div className="bg-background/80 absolute inset-0 z-30 opacity-0 backdrop-blur-xs transition-opacity duration-250 group-hover:opacity-100 group-has-focus-visible:opacity-100 motion-reduce:duration-0" />
+          <div className="pointer-events-none absolute z-40 flex size-full translate-y-3.75 flex-col items-center justify-center gap-2 opacity-0 transition duration-350 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-has-focus-visible:pointer-events-auto group-has-focus-visible:translate-y-0 group-has-focus-visible:opacity-100 motion-reduce:duration-0">
+            {overlayButtons.map((button) => (
+              <ProjectButton
+                key={button.label}
+                href={button.href}
+                label={button.label}
+                onMouseEnter={playHoverSFX}
+                onMouseDown={() => clickLowSFX()}
+                onClick={() => {
+                  trigger("light");
+                  clickHighSFX();
+                }}
+              />
+            ))}
+          </div>
           <img
             src={project.image}
             alt={project.title}
-            className={cn(
-              "w-full h-45 object-cover",
-              hoveredProject ? "scale-115" : "scale-100",
-              !prefersReducedMotion && "transition-transform duration-500",
-            )}
+            className="h-45 w-full object-cover transition-transform duration-500 group-hover:scale-115 group-has-focus-visible:scale-115 motion-reduce:duration-0 motion-reduce:group-hover:scale-100 motion-reduce:group-has-focus-visible:scale-100"
           />
         </div>
       </div>
       <div>
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold mb-1">{project.title}</h3>
+          <h3 className="mb-1 text-sm font-semibold">{project.title}</h3>
           <span
             className={cn(
-              "px-2 py-1 select-none text-[11px] rounded-md",
-              determineStatusColor(project.status),
+              "rounded-md px-2 py-1 text-[11px] select-none",
+              determineStatusColor(project.status)
             )}
           >
             {project.status}
           </span>
         </div>
-        <p className="text-[13px] mb-2">{project.role}</p>
+        <p className="mb-2 text-[13px]">{project.role}</p>
         <div className="flex flex-col gap-2">
-          <p className="text-xs text-muted-foreground">{project.description}</p>
+          <p className="text-muted-foreground text-xs">{project.description}</p>
           <div className="flex flex-wrap gap-2">
             {project.techStack.map((tech) => (
               <div
-                className="py-0.5 px-1.5 border border-border rounded-md bg-card"
+                className="border-border bg-card rounded-md border px-1.5 py-0.5"
                 key={tech}
               >
                 <span className="text-[11px]">{tech}</span>
