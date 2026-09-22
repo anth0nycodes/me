@@ -19,7 +19,7 @@ export function CreateCoolThings() {
     <div
       ref={contentRef}
       onMouseMove={updateSliderPosition}
-      className="relative grid h-full overflow-clip rounded-xl bg-black text-6xl"
+      className="relative grid h-full overflow-clip rounded-xl bg-black"
     >
       <div
         style={{
@@ -33,7 +33,7 @@ export function CreateCoolThings() {
         }}
         className="col-start-1 row-start-1 flex items-center justify-center"
       >
-        <SloganOutline className="h-[1em] w-max" />
+        <SloganOutline className="h-auto w-[85%]" />
       </div>
       <div
         style={{
@@ -41,7 +41,7 @@ export function CreateCoolThings() {
         }}
         className="col-start-1 row-start-1 flex items-center justify-center"
       >
-        <SloganNormal className="h-[1em] w-max" />
+        <SloganNormal className="h-auto w-[85%]" />
       </div>
     </div>
   );
