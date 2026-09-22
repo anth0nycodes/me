@@ -21,7 +21,7 @@ export interface Craft {
 const crafts: Craft[] = [
   {
     id: "create-cool-things",
-    description: "Clip path text",
+    description: "Clip path comparison slider",
     inspirationSource: "animations.dev",
     inspirationHref:
       "https://animations.dev/learn/css-animations/the-magic-of-clip-path#comparison-sliders",
