@@ -1,7 +1,8 @@
-import { Bricks } from "@/components/bricks";
-import { CraftCard } from "@/components/craft-card";
-import { Metadata } from "next";
 import { ReactNode } from "react";
+import { Metadata } from "next";
+import { CraftCard } from "@/components/craft-card";
+import { Bricks } from "@/components/craft/bricks";
+import { CreateCoolThings } from "@/components/craft/CreateCoolThings";
 
 export const metadata: Metadata = {
   title: "Craft",
@@ -19,6 +20,15 @@ export interface Craft {
 
 const crafts: Craft[] = [
   {
+    id: "create-cool-things",
+    description: "Clip path text",
+    inspirationSource: "animations.dev",
+    inspirationHref:
+      "https://animations.dev/learn/css-animations/the-magic-of-clip-path#comparison-sliders",
+    techStack: ["React.js", "CSS"],
+    component: <CreateCoolThings />,
+  },
+  {
     id: "bricks",
     description: "Stacking lego bricks",
     inspirationSource: "SVGator",
@@ -31,11 +41,11 @@ const crafts: Craft[] = [
 
 export default function CraftPage() {
   return (
-    <section className="mx-auto w-full max-w-2xl flex flex-col gap-4 min-h-screen bg-background">
-      <h1 className="lowercase border-b pb-2 border-[#222222] text-base font-medium">
+    <section className="bg-background mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-4">
+      <h1 className="border-b border-[#222222] pb-2 text-base font-medium lowercase">
         <span>
           my craft
-          <sup className="ml-1.5 select-none text-muted-foreground text-xs">
+          <sup className="text-muted-foreground ml-1.5 text-xs select-none">
             ({crafts.length})
           </sup>
         </span>
