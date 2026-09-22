@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 const parentVariants = {
@@ -16,15 +16,22 @@ const childVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.275 } },
 };
 
+let hasPlayed = false;
+
 export function MotionWrapper({ children }: { children: ReactNode }) {
   const prefersReducedMotion = useReducedMotion();
+  const [skipIntro] = useState(hasPlayed);
+
+  useEffect(() => {
+    hasPlayed = true;
+  }, []);
 
   return (
     <motion.div
-      className="flex flex-col gap-12 lowercase mx-auto max-w-2xl w-full"
+      className="mx-auto flex w-full max-w-2xl flex-col gap-12 lowercase"
       variants={prefersReducedMotion ? {} : parentVariants}
-      initial="hidden"
-      whileInView="visible"
+      initial={skipIntro ? "visible" : "hidden"}
+      animate="visible"
     >
       {children}
     </motion.div>
