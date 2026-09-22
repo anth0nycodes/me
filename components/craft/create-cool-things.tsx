@@ -51,10 +51,7 @@ export function CreateCoolThings() {
   };
 
   return (
-    <div
-      ref={contentRef}
-      className="relative grid h-full touch-pan-y overflow-clip rounded-xl bg-black select-none"
-    >
+    <div ref={contentRef} className="relative grid h-full bg-black select-none">
       <div
         style={{
           top: `${percentage}%`,

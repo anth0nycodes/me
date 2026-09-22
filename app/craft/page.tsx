@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Metadata } from "next";
 import { CraftCard } from "@/components/craft-card";
 import { Bricks } from "@/components/craft/bricks";
-import { CreateCoolThings } from "@/components/craft/CreateCoolThings";
+import { CreateCoolThings } from "@/components/craft/create-cool-things";
 
 export const metadata: Metadata = {
   title: "Craft",
