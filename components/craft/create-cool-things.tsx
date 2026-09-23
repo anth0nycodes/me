@@ -56,7 +56,7 @@ export function CreateCoolThings() {
         style={{
           top: `${percentage}%`,
         }}
-        className="absolute inset-x-0 z-10 h-1 -translate-y-1/2 bg-[#0D99FF90]"
+        className="absolute inset-x-0 z-10 h-0.75 -translate-y-1/2 bg-[#0D99FF90] sm:h-1"
       />
       <div
         role="slider"
@@ -78,7 +78,7 @@ export function CreateCoolThings() {
       >
         <span
           data-dragging={isDragging || undefined}
-          className="size-5 rounded-full border-2 border-[#0D99FF] bg-white shadow-md transition-transform duration-150 ease-out group-focus-visible:ring-2 group-focus-visible:ring-white/70 data-dragging:scale-90"
+          className="size-4 rounded-full border-2 border-[#0D99FF] bg-white shadow-md transition-transform duration-150 ease-out group-focus-visible:ring-2 group-focus-visible:ring-white/70 data-dragging:scale-90 sm:size-5"
         />
       </div>
       <div

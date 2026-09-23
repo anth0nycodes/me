@@ -22,7 +22,7 @@ export interface Craft {
 const crafts: Craft[] = [
   {
     id: "navlinks-clip",
-    description: "Tabs with clip-path",
+    description: "Clip Path Tabs",
     source:
       "https://github.com/anth0nycodes/me/blob/main/components/craft/navlinks-clip.tsx",
     reference:
@@ -32,7 +32,7 @@ const crafts: Craft[] = [
   },
   {
     id: "create-cool-things",
-    description: "Clip path comparison slider",
+    description: "Clip Path Slider",
     source:
       "https://github.com/anth0nycodes/me/blob/main/components/craft/create-cool-things.tsx",
     reference:
@@ -42,7 +42,7 @@ const crafts: Craft[] = [
   },
   {
     id: "bricks",
-    description: "Stacking lego bricks",
+    description: "Stacking Lego Bricks",
     source:
       "https://www.figma.com/design/cVCS3lKtT23stQWnnUAMGa/design-playground?node-id=253-1702",
     reference:
