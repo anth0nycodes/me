@@ -28,7 +28,7 @@ export function CraftCard({ craft }: CraftCardProps) {
       </div>
       <div className="flex items-center justify-between gap-4">
         <span className="text-foreground text-sm">{craft.description}</span>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           {craft.reference && (
             <CraftLink label="reference" href={craft.reference} />
           )}
