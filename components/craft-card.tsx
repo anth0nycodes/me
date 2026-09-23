@@ -13,22 +13,12 @@ interface CraftCardProps {
 export function CraftCard({ craft }: CraftCardProps) {
   return (
     <div className="flex flex-col gap-2">
-      <div className="border-accent relative aspect-video w-full overflow-clip rounded-lg border">
-        <div className="absolute inset-0">{craft.component}</div>
-        <div className="absolute top-4 right-4 flex gap-2">
-          {craft.techStack.map((tech) => (
-            <span
-              key={tech}
-              className="bg-background rounded-md px-2 py-1 text-xs font-medium select-none sm:text-sm"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+      <div className="border-accent aspect-video w-full overflow-clip rounded-lg border">
+        {craft.component}
       </div>
       <div className="flex items-center justify-between gap-4">
         <span className="text-foreground text-sm">{craft.description}</span>
-        <div className="flex items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-2">
           {craft.reference && (
             <CraftLink label="reference" href={craft.reference} />
           )}

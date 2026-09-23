@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { CraftCard } from "@/components/craft-card";
 import { Bricks } from "@/components/craft/bricks";
 import { CreateCoolThings } from "@/components/craft/create-cool-things";
+import { MetalCard } from "@/components/craft/metal-card";
 import { NavlinksClip } from "@/components/craft/navlinks-clip";
 
 export const metadata: Metadata = {
@@ -15,11 +16,18 @@ export interface Craft {
   description: string;
   source: string;
   reference?: string;
-  techStack: string[];
   component: ReactNode;
 }
 
 const crafts: Craft[] = [
+  {
+    id: "metal-card",
+    description: "Metal Card",
+    source:
+      "https://github.com/anth0nycodes/me/blob/main/components/craft/metal-card.tsx",
+    reference: "https://sanyam.sh/lab/foil-card",
+    component: <MetalCard />,
+  },
   {
     id: "navlinks-clip",
     description: "Clip Path Tabs",
@@ -27,7 +35,6 @@ const crafts: Craft[] = [
       "https://github.com/anth0nycodes/me/blob/main/components/craft/navlinks-clip.tsx",
     reference:
       "https://pqoqubbw.dev/crafts/mintlify-landing-page#:~:text=tabs%20with%20clip%2Dpath",
-    techStack: ["React.js", "Tailwind"],
     component: <NavlinksClip />,
   },
   {
@@ -37,7 +44,6 @@ const crafts: Craft[] = [
       "https://github.com/anth0nycodes/me/blob/main/components/craft/create-cool-things.tsx",
     reference:
       "https://animations.dev/learn/css-animations/the-magic-of-clip-path#:~:text=technically",
-    techStack: ["React.js", "Tailwind"],
     component: <CreateCoolThings />,
   },
   {
@@ -47,7 +53,6 @@ const crafts: Craft[] = [
       "https://www.figma.com/design/cVCS3lKtT23stQWnnUAMGa/design-playground?node-id=253-1702",
     reference:
       "https://www.svgator.com/integrations/figma-plugin#you-can-preview-and-present",
-    techStack: ["Figma Motion"],
     component: <Bricks />,
   },
 ];

@@ -103,7 +103,6 @@ export function NavlinksClip() {
                 <li key={link.label}>
                   <button
                     ref={activeTab === link.label ? activeTabElementRef : null}
-                    tabIndex={activeTab === link.label ? 0 : -1}
                     onMouseDown={(e) => e.preventDefault()}
                     onClick={() => setActiveTab(link.label)}
                     className="text-background flex cursor-pointer items-center gap-2 px-4 py-1.75"
