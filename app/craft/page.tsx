@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { CraftCard } from "@/components/craft-card";
 import { Bricks } from "@/components/craft/bricks";
 import { CreateCoolThings } from "@/components/craft/create-cool-things";
+import { NavlinksClip } from "@/components/craft/navlinks-clip";
 
 export const metadata: Metadata = {
   title: "Craft",
@@ -20,12 +21,18 @@ export interface Craft {
 
 const crafts: Craft[] = [
   {
+    id: "navlinks-clip",
+    description: "Tabs with clip-path",
+    techStack: ["React.js", "Tailwind"],
+    component: <NavlinksClip />,
+  },
+  {
     id: "create-cool-things",
     description: "Clip path comparison slider",
     inspirationSource: "animations.dev",
     inspirationHref:
       "https://animations.dev/learn/css-animations/the-magic-of-clip-path#comparison-sliders",
-    techStack: ["React.js", "CSS"],
+    techStack: ["React.js", "Tailwind"],
     component: <CreateCoolThings />,
   },
   {
@@ -34,7 +41,7 @@ const crafts: Craft[] = [
     inspirationSource: "SVGator",
     inspirationHref:
       "https://www.svgator.com/integrations/figma-plugin#you-can-preview-and-present",
-    techStack: ["Figma"],
+    techStack: ["Figma Motion"],
     component: <Bricks />,
   },
 ];
