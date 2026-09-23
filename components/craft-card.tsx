@@ -1,4 +1,10 @@
+"use client";
+
+import { ArrowUpRight } from "lucide-react";
+import { useSound } from "use-sound";
+import { useWebHaptics } from "web-haptics/react";
 import { type Craft } from "@/app/craft/page";
+import { useAudioEnabled } from "@/context/use-audio-enabled";
 
 interface CraftCardProps {
   craft: Craft;
@@ -6,37 +12,57 @@ interface CraftCardProps {
 
 export function CraftCard({ craft }: CraftCardProps) {
   return (
-    <div className="flex flex-col gap-2 items-center">
-      <div className="relative border border-accent rounded-lg overflow-clip w-full aspect-video">
+    <div className="flex flex-col gap-2">
+      <div className="border-accent relative aspect-video w-full overflow-clip rounded-lg border">
         <div className="absolute inset-0">{craft.component}</div>
-        <div className="absolute right-4 top-4 flex gap-2">
+        <div className="absolute top-4 right-4 flex gap-2">
           {craft.techStack.map((tech) => (
             <span
               key={tech}
-              className="px-2 py-1 bg-background font-medium select-none text-xs sm:text-sm rounded-md"
+              className="bg-background rounded-md px-2 py-1 text-xs font-medium select-none sm:text-sm"
             >
               {tech}
             </span>
           ))}
         </div>
       </div>
-      <span className="text-center text-sm sm:text-base w-full text-foreground italic">
-        {craft.description}
-        {craft.inspirationSource && craft.inspirationHref && (
-          <>
-            , inspired by{" "}
-            <a
-              href={craft.inspirationHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline"
-            >
-              {craft.inspirationSource}
-            </a>
-            .
-          </>
-        )}
-      </span>
+      <div className="flex items-center justify-between gap-4">
+        <span className="text-foreground text-sm">{craft.description}</span>
+        <div className="flex items-center gap-4">
+          {craft.reference && (
+            <CraftLink label="reference" href={craft.reference} />
+          )}
+          <CraftLink label="source" href={craft.source} />
+        </div>
+      </div>
     </div>
+  );
+}
+
+function CraftLink({ label, href }: { label: string; href: string }) {
+  const { trigger } = useWebHaptics();
+  const { audioEnabled } = useAudioEnabled();
+  const [playHoverSFX] = useSound("/audio/hover.mp3", {
+    volume: 0.125,
+    soundEnabled: audioEnabled,
+  });
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center gap-1 text-xs font-medium text-[#8fb7b7] sm:text-sm"
+      onMouseEnter={() => {
+        trigger("light");
+        playHoverSFX();
+      }}
+    >
+      <span className="group-hover:underline">{label}</span>
+      <ArrowUpRight
+        className="text-foreground size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+        aria-hidden
+      />
+    </a>
   );
 }
