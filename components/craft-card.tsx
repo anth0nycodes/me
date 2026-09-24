@@ -19,10 +19,16 @@ export function CraftCard({ craft }: CraftCardProps) {
       </div>
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center">
-          <span className="group/title text-foreground -ml-5 flex items-center gap-1.5 text-sm">
-            <AnchorLink id={craft.id} />
+          <Link
+            href={`#${craft.id}`}
+            className="group/title text-foreground flex items-center gap-1.5 text-sm sm:-ml-5"
+          >
+            <LinkIcon
+              className="text-muted-foreground group-hover/title:text-foreground hidden size-3.5 opacity-0 transition-opacity group-hover/title:opacity-100 group-focus-visible/title:opacity-100 sm:block"
+              aria-hidden
+            />
             {craft.description}
-          </span>
+          </Link>
         </div>
         <div className="flex items-center gap-2">
           {craft.reference && (
@@ -32,18 +38,6 @@ export function CraftCard({ craft }: CraftCardProps) {
         </div>
       </div>
     </section>
-  );
-}
-
-function AnchorLink({ id }: { id: string }) {
-  return (
-    <Link
-      href={`#${id}`}
-      aria-label="Link to this craft"
-      className="text-muted-foreground hover:text-foreground flex items-center transition-opacity focus-visible:opacity-100 sm:opacity-0 sm:group-hover/title:opacity-100"
-    >
-      <LinkIcon className="size-3.5" aria-hidden />
-    </Link>
   );
 }
 
