@@ -17,10 +17,12 @@ export function CraftCard({ craft }: CraftCardProps) {
       <div className="border-accent aspect-16/12 size-full max-h-94 overflow-clip rounded-lg border">
         {craft.component}
       </div>
-      <div className="group/row flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-4">
         <div className="flex items-center">
-          <AnchorLink id={craft.id} />
-          <span className="text-foreground text-sm">{craft.description}</span>
+          <span className="group/title text-foreground -ml-5 flex items-center gap-1.5 text-sm">
+            <AnchorLink id={craft.id} />
+            {craft.description}
+          </span>
         </div>
         <div className="flex items-center gap-2">
           {craft.reference && (
@@ -38,7 +40,7 @@ function AnchorLink({ id }: { id: string }) {
     <Link
       href={`#${id}`}
       aria-label="Link to this craft"
-      className="text-muted-foreground hover:text-foreground mr-1.5 -ml-5 flex items-center transition-opacity focus-visible:opacity-100 sm:opacity-0 sm:group-hover/row:opacity-100"
+      className="text-muted-foreground hover:text-foreground flex items-center transition-opacity focus-visible:opacity-100 sm:opacity-0 sm:group-hover/title:opacity-100"
     >
       <LinkIcon className="size-3.5" aria-hidden />
     </Link>
