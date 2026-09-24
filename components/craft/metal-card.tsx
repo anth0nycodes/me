@@ -120,7 +120,7 @@ export function MetalCard() {
   };
 
   return (
-    <div className="bg-foreground @container flex size-full items-center justify-center select-none">
+    <div className="bg-foreground flex size-full items-center justify-center select-none">
       <div
         onPointerMove={handlePointerMove}
         onPointerEnter={() => setIsHovering(true)}
