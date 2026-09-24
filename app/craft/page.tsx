@@ -1,10 +1,14 @@
 import { ReactNode } from "react";
 import { Metadata } from "next";
 import { CraftCard } from "@/components/craft-card";
+import { AnimatedList } from "@/components/craft/animated-list";
 import { Bricks } from "@/components/craft/bricks";
 import { CreateCoolThings } from "@/components/craft/create-cool-things";
 import { MetalCard } from "@/components/craft/metal-card";
 import { NavlinksClip } from "@/components/craft/navlinks-clip";
+
+// TODO: animated dashed border component
+// TODO: file tree component from scratch
 
 export const metadata: Metadata = {
   title: "Craft",
@@ -20,6 +24,14 @@ export interface Craft {
 }
 
 const crafts: Craft[] = [
+  {
+    id: "animated-list",
+    description: "Animated List",
+    source:
+      "https://github.com/anth0nycodes/me/blob/main/components/craft/animated-list.tsx",
+    reference: "https://magicui.design/docs/components/animated-list",
+    component: <AnimatedList />,
+  },
   {
     id: "metal-card",
     description: "Metal Card",

@@ -1,8 +1,8 @@
 import { Header } from "@/components/header";
-import { SectionList } from "@/components/section";
 import { LinksSection } from "@/components/links-section";
-import { DATA } from "@/data/me";
 import { MotionSection, MotionWrapper } from "@/components/motion-wrapper";
+import { SectionList } from "@/components/section";
+import { DATA } from "@/data/me";
 
 const projectsList = (
   DATA.projects.length > 3
@@ -25,12 +25,6 @@ const sections = [
   {
     id: "work experience",
     component: <SectionList sectionTitle="work experience" items={DATA.work} />,
-  },
-  {
-    id: "creative-works",
-    component: (
-      <SectionList sectionTitle="creative works" items={DATA.creativeWorks} />
-    ),
   },
   {
     id: "projects",

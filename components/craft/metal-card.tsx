@@ -73,20 +73,9 @@ export function MetalCard() {
     setPointer({ x: 0, y: 0 });
   };
 
-  const handleRelease = (e: PointerEvent<HTMLButtonElement>) => {
+  const handleRelease = () => {
     setIsPressing(false);
-
-    // the button covers the unrotated wrapper, so its rect tells us if the release happened outside
-    const { left, right, top, bottom } =
-      e.currentTarget.getBoundingClientRect();
-    const isOutside =
-      e.clientX < left ||
-      e.clientX > right ||
-      e.clientY < top ||
-      e.clientY > bottom;
-
-    // touch has no hover to fall back to, so always settle the card
-    if (isOutside || e.pointerType !== "mouse") resetPointer();
+    resetPointer();
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
@@ -207,12 +196,8 @@ export function MetalCard() {
           onPointerCancel={handleRelease}
           onKeyDown={handleKeyDown}
           onKeyUp={handleKeyUp}
-          onBlur={() => {
-            setIsPressing(false);
-            resetPointer();
-          }}
+          onBlur={handleRelease}
           aria-label="Tilt card with arrow keys"
-          // stop the browser from claiming the touch for scrolling, which would cancel the drag
           className="absolute inset-0 z-10 cursor-pointer touch-none"
         />
       </div>

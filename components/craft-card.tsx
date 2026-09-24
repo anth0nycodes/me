@@ -13,7 +13,7 @@ interface CraftCardProps {
 export function CraftCard({ craft }: CraftCardProps) {
   return (
     <div className="flex flex-col gap-2">
-      <div className="border-accent aspect-video w-full overflow-clip rounded-lg border">
+      <div className="border-accent aspect-16/12 size-full max-h-94 overflow-clip rounded-lg border">
         {craft.component}
       </div>
       <div className="flex items-center justify-between gap-4">
