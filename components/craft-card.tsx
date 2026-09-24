@@ -1,6 +1,7 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, LinkIcon } from "lucide-react";
 import { useSound } from "use-sound";
 import { useWebHaptics } from "web-haptics/react";
 import { type Craft } from "@/app/craft/page";
@@ -12,12 +13,15 @@ interface CraftCardProps {
 
 export function CraftCard({ craft }: CraftCardProps) {
   return (
-    <div className="flex flex-col gap-2">
+    <section id={craft.id} className="flex scroll-mt-4 flex-col gap-2">
       <div className="border-accent aspect-16/12 size-full max-h-94 overflow-clip rounded-lg border">
         {craft.component}
       </div>
-      <div className="flex items-center justify-between gap-4">
-        <span className="text-foreground text-sm">{craft.description}</span>
+      <div className="group/row flex items-center justify-between gap-4">
+        <div className="flex items-center">
+          <AnchorLink id={craft.id} />
+          <span className="text-foreground text-sm">{craft.description}</span>
+        </div>
         <div className="flex items-center gap-2">
           {craft.reference && (
             <CraftLink label="reference" href={craft.reference} />
@@ -25,7 +29,19 @@ export function CraftCard({ craft }: CraftCardProps) {
           <CraftLink label="source" href={craft.source} />
         </div>
       </div>
-    </div>
+    </section>
+  );
+}
+
+function AnchorLink({ id }: { id: string }) {
+  return (
+    <Link
+      href={`#${id}`}
+      aria-label="Link to this craft"
+      className="text-muted-foreground hover:text-foreground mr-1.5 -ml-5 flex items-center transition-opacity focus-visible:opacity-100 sm:opacity-0 sm:group-hover/row:opacity-100"
+    >
+      <LinkIcon className="size-3.5" aria-hidden />
+    </Link>
   );
 }
 
