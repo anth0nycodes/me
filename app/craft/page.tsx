@@ -6,6 +6,7 @@ import { Bricks } from "@/components/craft/bricks";
 import { CreateCoolThings } from "@/components/craft/create-cool-things";
 import { MetalCard } from "@/components/craft/metal-card";
 import { NavlinksClip } from "@/components/craft/navlinks-clip";
+import { RainbowText } from "@/components/rainbow-text";
 
 // TODO: animated dashed border component
 // TODO: file tree component from scratch
@@ -72,13 +73,20 @@ const crafts: Craft[] = [
 export default function CraftPage() {
   return (
     <section className="bg-background mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-4">
-      <h1 className="border-b border-[#222222] pb-2 text-base font-medium lowercase">
+      <h1 className="flex items-center justify-between border-b border-[#222222] pb-2 text-base font-medium lowercase">
         <span>
           my craft
           <sup className="text-muted-foreground ml-1.5 text-xs select-none">
             ({crafts.length})
           </sup>
         </span>
+        <a
+          href="https://www.figma.com/design/cVCS3lKtT23stQWnnUAMGa/design-playground?node-id=0-1&t=g4NbBNdZ9dm1F2xO-1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <RainbowText text="figma playground" />
+        </a>
       </h1>
       <div className="grid grid-cols-1 gap-8">
         {crafts.map((craft) => (
