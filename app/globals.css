@@ -63,23 +63,30 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-minecraft: var(--font-minecraft);
-  --animate-marquee: marquee var(--duration) infinite linear;
-  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(calc(-100% - var(--gap)));
-    }
+}
+
+@utility shimmer-rainbow {
+  background: linear-gradient(
+    90deg,
+    #ff4d4d,
+    #ff9933,
+    #ffe033,
+    #33cc66,
+    #4d79ff,
+    #7052b8,
+    #a64dff,
+    #ff4d4d
+  );
+  background-size: 200% auto;
+  animation: shimmer 4s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% center;
   }
-  @keyframes marquee-vertical {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(calc(-100% - var(--gap)));
-    }
+  100% {
+    background-position: -200% center;
   }
 }
 

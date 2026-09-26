@@ -30,25 +30,13 @@ export function RainbowText({ text }: RainbowTextProps) {
 
   return (
     <span
+      className="shimmer-rainbow bg-clip-text text-transparent"
       onMouseEnter={() => {
         trigger("light");
         playHoverSFX();
       }}
     >
-      {[...text].map((char, index) => (
-        <motion.span
-          key={index}
-          animate={{ color: rainbowColors }}
-          transition={{
-            duration: 3,
-            ease: "linear",
-            repeat: Infinity,
-            delay: index * 0.15,
-          }}
-        >
-          {char === " " ? " " : char}
-        </motion.span>
-      ))}
+      {text}
     </span>
   );
 }
