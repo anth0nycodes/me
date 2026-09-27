@@ -166,7 +166,7 @@ function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
   const fillAmount = Math.min(((currentStep + 1) / totalSteps) * 100, 100); // +1 to account for 0-based index
 
   return (
-    <div className="relative h-2 w-full rounded-full">
+    <div className="relative h-2 w-full overflow-hidden rounded-full">
       <div
         className="absolute inset-y-0 z-2 bg-zinc-300 transition-[width] duration-350 ease-[ease] motion-reduce:duration-0"
         style={{ width: `${fillAmount}%` }}
