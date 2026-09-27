@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
   CircleCheck,
   DottedLine,
@@ -16,6 +16,7 @@ export function FeedbackPopover() {
   const [open, setOpen] = useState(false);
   const [formState, setFormState] = useState<FormState>("idle");
   const [feedback, setFeedback] = useState("");
+  const prefersReducedMotion = useReducedMotion();
 
   function handleClickOutside(e: MouseEvent | TouchEvent) {
     if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
@@ -68,9 +69,17 @@ export function FeedbackPopover() {
     if (formState === "success") {
       return (
         <motion.div
-          key="success"
-          initial={{ opacity: 0, y: -32, filter: "blur(4px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          key={prefersReducedMotion ? "" : "success"}
+          initial={
+            prefersReducedMotion
+              ? {}
+              : { opacity: 0, y: -32, filter: "blur(4px)" }
+          }
+          animate={
+            prefersReducedMotion
+              ? {}
+              : { opacity: 1, y: 0, filter: "blur(0px)" }
+          }
           transition={{ type: "spring", duration: 0.4, bounce: 0 }}
           className="flex h-full flex-col items-center justify-center gap-2"
         >
@@ -85,7 +94,6 @@ export function FeedbackPopover() {
 
     return (
       <motion.form
-        key="form"
         id="feedback-form"
         exit={{ y: 8, opacity: 0, filter: "blur(4px)" }}
         transition={{ type: "spring", duration: 0.4, bounce: 0 }}
@@ -117,9 +125,9 @@ export function FeedbackPopover() {
               <motion.span
                 key={formState}
                 className="text-foreground flex w-full items-center justify-center [text-shadow:0px_1px_1.5px_rgba(0,0,0,0.16)]"
-                initial={{ opacity: 0, y: -25 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 25 }}
+                initial={prefersReducedMotion ? {} : { opacity: 0, y: -25 }}
+                animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+                exit={prefersReducedMotion ? {} : { opacity: 0, y: 25 }}
                 transition={{
                   type: "spring",
                   duration: 0.3,
@@ -142,7 +150,11 @@ export function FeedbackPopover() {
   return (
     <div className="bg-foreground flex size-full items-center justify-center">
       <motion.button
-        layoutId="wrapper"
+        {...(prefersReducedMotion
+          ? {}
+          : {
+              layoutId: "wrapper",
+            })}
         onClick={() => {
           setOpen(true);
           setFeedback("");
@@ -154,7 +166,11 @@ export function FeedbackPopover() {
         }}
       >
         <motion.span
-          layoutId="title"
+          {...(prefersReducedMotion
+            ? {}
+            : {
+                layoutId: "title",
+              })}
           className="text-background block sm:text-sm"
         >
           Feedback
@@ -164,14 +180,22 @@ export function FeedbackPopover() {
         {open && (
           <motion.div
             ref={wrapperRef}
-            layoutId="wrapper"
+            {...(prefersReducedMotion
+              ? {}
+              : {
+                  layoutId: "wrapper",
+                })}
             className="absolute h-48 w-[calc(100%-100px)] overflow-hidden bg-[#F5F6F7] p-1 shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_2px_rgba(0,0,0,0.04)] outline-none sm:w-91"
             style={{
               borderRadius: "12px",
             }}
           >
             <motion.span
-              layoutId="title"
+              {...(prefersReducedMotion
+                ? {}
+                : {
+                    layoutId: "title",
+                  })}
               data-feedback={feedback ? true : false}
               className="absolute top-4.25 left-4.25 text-[#63635d] data-[feedback=true]:opacity-0! sm:text-sm"
             >

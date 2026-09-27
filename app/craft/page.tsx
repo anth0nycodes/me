@@ -6,6 +6,7 @@ import { Bricks } from "@/components/craft/bricks";
 import { CreateCoolThings } from "@/components/craft/create-cool-things";
 import { FeedbackPopover } from "@/components/craft/feedback-popover";
 import { MetalCard } from "@/components/craft/metal-card";
+import { MultiStepForm } from "@/components/craft/multistep-form";
 import { NavlinksClip } from "@/components/craft/navlinks-clip";
 import { RainbowText } from "@/components/rainbow-text";
 
@@ -26,6 +27,15 @@ export interface Craft {
 }
 
 const crafts: Craft[] = [
+  {
+    id: "multistep-form",
+    description: "Multistep Form",
+    source:
+      "https://github.com/anth0nycodes/me/blob/main/components/craft/multistep-form.tsx",
+    reference:
+      "https://animations.dev/learn/framer-motion/multi-step-component",
+    component: <MultiStepForm />,
+  },
   {
     id: "feedback-popover",
     description: "Feedback Popover",
