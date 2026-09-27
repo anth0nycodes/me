@@ -49,8 +49,13 @@ export default function Navbar() {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      // Don't trigger keyboard shortcuts on touch devices
-      if (navigator.maxTouchPoints > 0) return;
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement ||
+        (e.target as HTMLElement).isContentEditable
+      ) {
+        return;
+      }
 
       switch (e.key) {
         case "h":
