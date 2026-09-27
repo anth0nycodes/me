@@ -1,12 +1,12 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
-import { useWebHaptics } from "web-haptics/react";
-import { useSound } from "use-sound";
-import { useAudioEnabled } from "@/context/use-audio-enabled";
 import { Volume2, VolumeOff } from "lucide-react";
+import { useSound } from "use-sound";
+import { useWebHaptics } from "web-haptics/react";
+import { useAudioEnabled } from "@/context/use-audio-enabled";
 
 export default function Navbar() {
   const { audioEnabled, setAudioEnabled } = useAudioEnabled();
@@ -49,6 +49,9 @@ export default function Navbar() {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      // Don't trigger keyboard shortcuts on touch devices
+      if (navigator.maxTouchPoints > 0) return;
+
       switch (e.key) {
         case "h":
           triggerRef.current("light");
@@ -80,15 +83,15 @@ export default function Navbar() {
   }, [router]);
 
   return (
-    <div className="flex items-center justify-between max-w-2xl mx-auto mb-5">
-      <div className="flex gap-3 items-center">
+    <div className="mx-auto mb-5 flex max-w-2xl items-center justify-between">
+      <div className="flex items-center gap-3">
         {navItems.map((item) => (
           <Link
             key={item.text}
             href={item.href}
             onMouseEnter={() => playHoverSFX()}
             onClick={() => trigger("light")}
-            className="text-sm flex gap-2 items-center hover:text-primary text-muted-foreground"
+            className="hover:text-primary text-muted-foreground flex items-center gap-2 text-sm"
           >
             <span className="hidden sm:inline-block">{item.prefix}</span>
             {item.text}
@@ -97,7 +100,7 @@ export default function Navbar() {
       </div>
       <button
         onClick={() => setAudioEnabled((prev) => !prev)}
-        className="flex cursor-pointer justify-center items-center hover:bg-accent rounded-md p-2 text-muted-foreground"
+        className="hover:bg-accent text-muted-foreground flex cursor-pointer items-center justify-center rounded-md p-2"
       >
         {audioEnabled ? (
           <Volume2 className="size-4" aria-hidden="true" />

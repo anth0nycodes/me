@@ -4,6 +4,7 @@ import { CraftCard } from "@/components/craft-card";
 import { AnimatedList } from "@/components/craft/animated-list";
 import { Bricks } from "@/components/craft/bricks";
 import { CreateCoolThings } from "@/components/craft/create-cool-things";
+import { FeedbackPopover } from "@/components/craft/feedback-popover";
 import { MetalCard } from "@/components/craft/metal-card";
 import { NavlinksClip } from "@/components/craft/navlinks-clip";
 import { RainbowText } from "@/components/rainbow-text";
@@ -25,6 +26,14 @@ export interface Craft {
 }
 
 const crafts: Craft[] = [
+  {
+    id: "feedback-popover",
+    description: "Feedback Popover",
+    source:
+      "https://github.com/anth0nycodes/me/blob/main/components/craft/feedback-popover.tsx",
+    reference: "https://animations.dev/learn/framer-motion/feedback-popover",
+    component: <FeedbackPopover />,
+  },
   {
     id: "animated-list",
     description: "Animated List",
