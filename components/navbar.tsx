@@ -57,6 +57,10 @@ export default function Navbar() {
         return;
       }
 
+      if (e.metaKey || e.ctrlKey || e.altKey) {
+        return;
+      }
+
       switch (e.key) {
         case "h":
           triggerRef.current("light");
