@@ -1,13 +1,13 @@
 "use client";
 
-import { Dithering } from "@paper-design/shaders-react";
-import { DATA } from "@/data/me";
-import { Building2, MapPin } from "lucide-react";
-import Image from "next/image";
-import { Underline } from "./ui/underline";
 import { useState } from "react";
+import Image from "next/image";
+import { Dithering } from "@paper-design/shaders-react";
+import { Building2, MapPin } from "lucide-react";
 import useSound from "use-sound";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
+import { DATA } from "@/data/me";
+import { Underline } from "./ui/underline";
 
 function getRandomImage(images: readonly string[], exclude?: string) {
   const pool = exclude ? images.filter((image) => image !== exclude) : images;
@@ -42,7 +42,7 @@ export function Header() {
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex gap-3 items-center">
+      <div className="flex items-center gap-3">
         <button
           onClick={() => {
             const randomImage = getRandomImage(DATA.images, avatarImage);
@@ -50,11 +50,11 @@ export function Header() {
             clickHighSFX();
           }}
           onMouseDown={() => clickLowSFX()}
-          className="cursor-pointer select-none size-12.5 active:scale-95 transition-transform duration-200 rounded-xl overflow-clip"
+          className="size-12.5 cursor-pointer overflow-clip rounded-xl transition-transform duration-200 select-none active:scale-95"
         >
           <Image
             src={avatarImage}
-            className="object-cover size-full"
+            className="size-full object-cover"
             width={50}
             height={50}
             alt="Picture of me"
@@ -64,12 +64,9 @@ export function Header() {
           <h1 className="font-medium lowercase">
             <span className="inline-block">{DATA.name}</span>
           </h1>
-          <div className="text-sm flex gap-4">
+          <div className="flex gap-4 text-sm">
             {headerInfo.map((item) => (
-              <div
-                className="flex items-center text-muted-foreground gap-2"
-                key={item.text}
-              >
+              <div className="text-muted-foreground flex items-center gap-2" key={item.text}>
                 <item.icon className="size-4" />
                 <p>{item.text}</p>
               </div>
@@ -77,7 +74,7 @@ export function Header() {
           </div>
         </div>
       </div>
-      <div className="text-sm flex flex-col gap-3">
+      <div className="flex flex-col gap-3 text-sm">
         <p>
           hey, I&apos;m Anthony — a{" "}
           <Underline hexcode="#22a8f5" delay={0.65} duration={1}>
@@ -93,13 +90,10 @@ export function Header() {
           </Underline>{" "}
           along the way.
         </p>{" "}
-        <p>
-          when I&apos;m not coding, I&apos;m usually doomscrolling or laying in
-          bed, or both 😂
-        </p>
+        <p>when I&apos;m not coding, I&apos;m usually doomscrolling or laying in bed, or both 😂</p>
       </div>
       <Dithering
-        className="-z-1 w-full h-28"
+        className="-z-1 h-28 w-full"
         colorBack="#0F0F0F"
         colorFront="#8fb7b7"
         shape="warp"
