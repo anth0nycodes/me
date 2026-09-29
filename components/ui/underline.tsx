@@ -3,7 +3,9 @@
 import { motion, useReducedMotion } from "motion/react";
 import { ReactNode, useRef } from "react";
 import Realistic from "react-canvas-confetti/dist/presets/realistic";
+import { useSound } from "use-sound";
 import { useWebHaptics } from "web-haptics/react";
+import { useAudioEnabled } from "@/context/use-audio-enabled";
 
 interface UnderlineProps {
   hexcode: string;
@@ -20,6 +22,11 @@ export function Underline({
 }: UnderlineProps) {
   const controller = useRef<{ shoot: () => void } | null>(null);
   const { trigger } = useWebHaptics();
+  const { audioEnabled } = useAudioEnabled();
+  const [playConfettiSFX] = useSound("/audio/confetti.mp3", {
+    volume: 0.25,
+    soundEnabled: audioEnabled,
+  });
 
   const onInitHandler = ({
     conductor,
@@ -32,6 +39,7 @@ export function Underline({
   const onShoot = () => {
     controller.current?.shoot();
     trigger("success");
+    playConfettiSFX();
   };
 
   const prefersReducedMotion = useReducedMotion();
