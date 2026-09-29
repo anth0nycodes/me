@@ -97,7 +97,7 @@ export function FileTree() {
   );
 }
 
-function renderChevronIcon(node: FileNode, isExpanded?: boolean) {
+function renderChevronIcon(node: FileNode, isExpanded: boolean) {
   if (!node.children) return <span className="size-4 shrink-0" aria-hidden />;
 
   return (
@@ -109,7 +109,7 @@ function renderChevronIcon(node: FileNode, isExpanded?: boolean) {
   );
 }
 
-function renderNodeIcon(node: FileNode, isExpanded?: boolean) {
+function renderNodeIcon(node: FileNode, isExpanded: boolean) {
   if (!node.children) {
     return <FileIcon className="size-4 shrink-0 transform-gpu sm:size-5" aria-hidden />;
   }
