@@ -81,6 +81,27 @@
   animation: shimmer 4s linear infinite;
 }
 
+@utility scrollbar-thin-rounded {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #e7e7e7;
+    border-radius: 9999px;
+  }
+
+  /* Firefox ignores ::-webkit-scrollbar; Chromium ignores it once these are set, so scope them */
+  @supports (-moz-appearance: none) {
+    scrollbar-width: thin;
+    scrollbar-color: #e7e7e7 transparent;
+  }
+}
+
 @keyframes shimmer {
   0% {
     background-position: 0% center;
