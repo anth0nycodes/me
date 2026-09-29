@@ -8,7 +8,7 @@ import { useReplay } from "@/hooks/use-replay";
 import { cn } from "@/lib/utils";
 
 export function ResizableText() {
-  const [dimensions, setDimensions] = useState({ width: 380, height: 60 });
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [isClicked, setIsClicked] = useState(false);
   const { runId, isReplayDisabled, replay, enableReplay } = useReplay(() => setIsClicked(false));
   const containerRef = useRef<HTMLDivElement>(null);
