@@ -6,6 +6,7 @@ import { Bricks } from "@/components/craft/bricks";
 import { CreateCoolThings } from "@/components/craft/create-cool-things";
 import { FeedbackPopover } from "@/components/craft/feedback-popover";
 import { FileTree } from "@/components/craft/file-tree";
+import { Lightswitch } from "@/components/craft/light-switch";
 import { MetalCard } from "@/components/craft/metal-card";
 import { MultiStepForm } from "@/components/craft/multistep-form";
 import { NavlinksClip } from "@/components/craft/navlinks-clip";
@@ -28,6 +29,12 @@ export interface Craft {
 }
 
 const crafts: Craft[] = [
+  {
+    id: "light-switch",
+    description: "Light Switch",
+    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/lightswitch.tsx",
+    component: <Lightswitch />,
+  },
   {
     id: "file-tree",
     description: "File Tree",
