@@ -1,0 +1,82 @@
+@utility animate-pointer-move {
+  animation:
+    pointer-enter 800ms cubic-bezier(0.25, 1, 0.5, 1) both,
+    pointer-to-edge 500ms cubic-bezier(0.645, 0.045, 0.355, 1) 1400ms forwards,
+    pointer-leave-x 600ms cubic-bezier(0.25, 1, 0.5, 1) 3700ms forwards,
+    pointer-leave-y 600ms cubic-bezier(0.25, 1, 0.5, 1) 3700ms forwards,
+    pointer-exit 300ms ease-out 4800ms forwards;
+}
+
+@utility animate-pointer-press {
+  animation:
+    pointer-click 160ms ease-out 1000ms,
+    pointer-drag 1500ms ease-out 2000ms,
+    pointer-click 160ms ease-out 4400ms;
+}
+
+@utility animate-text-squeeze {
+  animation: text-squeeze 1400ms cubic-bezier(0.645, 0.045, 0.355, 1) 2100ms;
+}
+
+/* translate is relative to the pointer's anchor on the right border */
+@keyframes pointer-enter {
+  from {
+    opacity: 0;
+    translate: 9px 38px;
+  }
+  to {
+    opacity: 1;
+    translate: -23px 6px;
+  }
+}
+
+@keyframes pointer-click {
+  50% {
+    scale: 0.85;
+  }
+}
+
+@keyframes pointer-to-edge {
+  from {
+    translate: -23px 6px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+/* held down for the whole squeeze, released at the end */
+@keyframes pointer-drag {
+  7%,
+  93% {
+    scale: 0.85;
+  }
+}
+
+@keyframes pointer-leave-x {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 10px 0;
+  }
+}
+
+@keyframes pointer-leave-y {
+  to {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes pointer-exit {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes text-squeeze {
+  40%,
+  57% {
+    letter-spacing: -0.1em;
+  }
+}

@@ -3,17 +3,17 @@ import { Metadata } from "next";
 import { CraftCard } from "@/components/craft-card";
 import { AnimatedList } from "@/components/craft/animated-list";
 import { Bricks } from "@/components/craft/bricks";
-import { CreateCoolThings } from "@/components/craft/create-cool-things";
-import { FeedbackPopover } from "@/components/craft/feedback-popover";
-import { FileTree } from "@/components/craft/file-tree";
+import { CreateCoolThings } from "@/components/craft/create-cool-things/create-cool-things";
+import { FeedbackPopover } from "@/components/craft/feedback-popover/feedback-popover";
+import { FileTree } from "@/components/craft/file-tree/file-tree";
 import { Lightswitch } from "@/components/craft/light-switch";
 import { MetalCard } from "@/components/craft/metal-card";
 import { MultiStepForm } from "@/components/craft/multistep-form";
 import { NavlinksClip } from "@/components/craft/navlinks-clip";
-import { RainbowText } from "@/components/rainbow-text";
+import { ResizableText } from "@/components/craft/resizable-text/resizable-text";
+import { RainbowText } from "@/components/rainbow-text/rainbow-text";
 
 // TODO: animated dashed border component
-// TODO: file tree component from scratch
 
 export const metadata: Metadata = {
   title: "Craft",
@@ -30,6 +30,13 @@ export interface Craft {
 
 const crafts: Craft[] = [
   {
+    id: "resizable-text",
+    description: "Resizable Text",
+    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/resizable-text/resizable-text.tsx",
+    reference: "https://www.figma.com",
+    component: <ResizableText />,
+  },
+  {
     id: "light-switch",
     description: "Light Switch",
     source: "https://github.com/anth0nycodes/me/blob/main/components/craft/lightswitch.tsx",
@@ -38,7 +45,7 @@ const crafts: Craft[] = [
   {
     id: "file-tree",
     description: "File Tree",
-    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/file-tree.tsx",
+    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/file-tree/file-tree.tsx",
     reference: "https://sanyam.sh/lab/file-tree-explorer",
     component: <FileTree />,
   },
@@ -52,7 +59,7 @@ const crafts: Craft[] = [
   {
     id: "feedback-popover",
     description: "Feedback Popover",
-    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/feedback-popover.tsx",
+    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/feedback-popover/feedback-popover.tsx",
     reference: "https://animations.dev/learn/framer-motion/feedback-popover",
     component: <FeedbackPopover />,
   },
@@ -81,7 +88,7 @@ const crafts: Craft[] = [
   {
     id: "create-cool-things",
     description: "Clip Path Slider",
-    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/create-cool-things.tsx",
+    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/create-cool-things/create-cool-things.tsx",
     reference:
       "https://animations.dev/learn/css-animations/the-magic-of-clip-path#:~:text=technically",
     component: <CreateCoolThings />,

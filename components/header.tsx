@@ -7,7 +7,7 @@ import { Building2, MapPin } from "lucide-react";
 import useSound from "use-sound";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
 import { DATA } from "@/data/me";
-import { Underline } from "./ui/underline";
+import { Underline } from "./ui/underline/underline";
 
 function getRandomImage(images: readonly string[], exclude?: string) {
   const pool = exclude ? images.filter((image) => image !== exclude) : images;

@@ -2,7 +2,7 @@
 
 import { KeyboardEvent, PointerEvent, useRef, useState } from "react";
 import { clamp } from "@/lib/utils";
-import { SloganNormal, SloganOutline } from "../svgs/slogan";
+import { SloganNormal, SloganOutline } from "./slogan";
 
 export function CreateCoolThings() {
   const contentRef = useRef<HTMLDivElement>(null);

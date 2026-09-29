@@ -7,7 +7,7 @@ import {
   CircleCheck,
   DottedLine,
   HalfCircle,
-} from "../svgs/feedback-popover-svgs";
+} from "./feedback-popover-svgs";
 
 type FormState = "idle" | "loading" | "success";
 

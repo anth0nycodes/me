@@ -2,6 +2,12 @@
 @plugin "@tailwindcss/typography";
 @import "tw-animate-css";
 
+/* component-specific utilities and keyframes */
+@import "../components/rainbow-text/rainbow-text.css";
+@import "../components/ui/underline/underline.css";
+@import "../components/craft/file-tree/file-tree.css";
+@import "../components/craft/resizable-text/resizable-text.css";
+
 :root {
   --background: #fafaf9;
   --foreground: #18181b;
@@ -63,65 +69,6 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-minecraft: var(--font-minecraft);
-}
-
-@utility shimmer-rainbow {
-  background: linear-gradient(
-    90deg,
-    #ff4d4d,
-    #ff9933,
-    #ffe033,
-    #33cc66,
-    #4d79ff,
-    #7052b8,
-    #a64dff,
-    #ff4d4d
-  );
-  background-size: 200% auto;
-  animation: shimmer 4s linear infinite;
-}
-
-@utility animate-underline-grow {
-  animation: underline-grow var(--duration) ease var(--delay) both;
-}
-
-@utility scrollbar-thin-rounded {
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #e7e7e7;
-    border-radius: 9999px;
-  }
-
-  /* Firefox ignores ::-webkit-scrollbar; Chromium ignores it once these are set, so scope them */
-  @supports (-moz-appearance: none) {
-    scrollbar-width: thin;
-    scrollbar-color: #e7e7e7 transparent;
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 0% center;
-  }
-  100% {
-    background-position: -200% center;
-  }
-}
-
-@keyframes underline-grow {
-  from {
-    background-size: 0% 2px;
-  }
-  to {
-    background-size: 100% 2px;
-  }
 }
 
 body {

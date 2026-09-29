@@ -1,7 +1,8 @@
 "use client";
 
 import { CSSProperties, useEffect, useRef, useState } from "react";
-import { RotateCcw } from "lucide-react";
+import { ReplayButton } from "@/components/ui/replay-button";
+import { useReplay } from "@/hooks/use-replay";
 
 interface AnimatedListItem {
   label: string;
@@ -56,20 +57,19 @@ const ITEMS: AnimatedListItem[] = [
 export function AnimatedList() {
   const currentItemIndex = useRef(0);
   const [poppedItems, setPoppedItems] = useState<PoppedItem[]>([]);
-  const [runId, setRunId] = useState(0);
-  const [isRestartDisabled, setIsRestartDisabled] = useState(true);
-
-  const restart = () => {
+  const { runId, isReplayDisabled, replay, enableReplay } = useReplay(() => {
     currentItemIndex.current = 0;
     setPoppedItems([]);
-    setRunId((prev) => prev + 1);
-    setIsRestartDisabled(true);
-  };
+  });
+  const [isInView, setIsInView] = useState(false);
+  const targetElementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!isInView) return;
+
     const intervalId = setInterval(() => {
       if (currentItemIndex.current >= ITEMS.length) {
-        setIsRestartDisabled(false);
+        enableReplay();
         clearInterval(intervalId);
         return;
       }
@@ -77,22 +77,33 @@ export function AnimatedList() {
       const currentItem = ITEMS[id];
       setPoppedItems((prevItems) => [{ ...currentItem, id }, ...prevItems]);
       currentItemIndex.current += 1;
-    }, 1000);
+    }, 850);
 
     return () => clearInterval(intervalId);
-  }, [runId]);
+  }, [isInView, runId, enableReplay]);
+
+  useEffect(() => {
+    const targetElement = targetElementRef.current;
+    if (!targetElement) return;
+
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setIsInView(true);
+        intersectionObserver.disconnect();
+      },
+      { threshold: 0.3 },
+    );
+
+    intersectionObserver.observe(targetElement);
+
+    return () => intersectionObserver.disconnect();
+  }, []);
 
   return (
     <div className="bg-foreground relative flex size-full items-center justify-center">
-      <button
-        onClick={restart}
-        aria-label="Restart animation"
-        disabled={isRestartDisabled}
-        className="text-foreground absolute top-4 right-4 z-10 cursor-pointer rounded-md bg-[#F4F4F5] p-1 text-sm shadow-[0px_0px_0px_1px_rgba(0,0,0,0.08),0px_1px_2px_-1px_rgba(0,0,0,0.08),0px_2px_4px_0px_rgba(0,0,0,0.04)] transition-all hover:bg-[#E9E9E9] active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        <RotateCcw className="text-muted-foreground size-3.5" aria-hidden />
-      </button>
-      <div className="relative flex size-full flex-col gap-4 p-4">
+      <ReplayButton onClick={replay} disabled={isReplayDisabled} />
+      <div ref={targetElementRef} className="relative flex size-full flex-col gap-4 p-4">
         {poppedItems.map((item, i) => (
           <AnimatedListItem
             key={item.id}
@@ -133,9 +144,7 @@ function AnimatedListItem({ item, style }: AnimatedListItemProps) {
           <div className="flex items-center text-lg font-medium whitespace-pre">
             <span className="truncate text-sm sm:text-lg">{item.label}</span>
             <span className="mx-1 shrink-0">·</span>
-            <span className="shrink-0 text-xs text-gray-500">
-              {item.timeAgo}
-            </span>
+            <span className="shrink-0 text-xs text-gray-500">{item.timeAgo}</span>
           </div>
           <p className="truncate text-sm">{item.description}</p>
         </div>
