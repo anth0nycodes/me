@@ -162,7 +162,7 @@ export function MetalCard() {
                 <span className="text-background leading-tight">
                   anthony hoang
                 </span>
-                <span className="leading-tight text-[#6B6B6B]">
+                <span className="leading-tight text-[#555555]">
                   design engineer
                 </span>
               </div>
@@ -177,7 +177,7 @@ export function MetalCard() {
               </div>
             </div>
             <div className="flex items-center justify-between text-[0.875em]">
-              <span className="leading-none text-[#9B9B9B]">united states</span>
+              <span className="leading-none text-[#6B6B6B]">united states</span>
               <span className="leading-none text-[#6B6B6B]">
                 anthonyhoang.dev
               </span>

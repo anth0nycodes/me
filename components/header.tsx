@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Dithering } from "@paper-design/shaders-react";
 import { Building2, MapPin } from "lucide-react";
+import { useReducedMotion } from "motion/react";
 import useSound from "use-sound";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
 import { DATA } from "@/data/me";
@@ -28,6 +29,7 @@ export function Header() {
     soundEnabled: audioEnabled,
   });
   const [avatarImage, setAvatarImage] = useState<string>(DATA.avatarUrl);
+  const prefersReducedMotion = useReducedMotion();
 
   const headerInfo = [
     {
@@ -50,6 +52,7 @@ export function Header() {
             clickHighSFX();
           }}
           onMouseDown={() => clickLowSFX()}
+          aria-label="Shuffle profile picture"
           className="size-12.5 cursor-pointer overflow-clip rounded-xl transition-transform duration-200 select-none active:scale-95"
         >
           <Image
@@ -99,7 +102,7 @@ export function Header() {
         shape="warp"
         type="4x4"
         size={2.375}
-        speed={0.25}
+        speed={prefersReducedMotion ? 0 : 0.25}
       />
     </div>
   );

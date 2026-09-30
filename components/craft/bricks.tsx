@@ -1,7 +1,9 @@
 import { SVGProps } from "react";
 
 export function Bricks(props: SVGProps<SVGSVGElement>) {
+  // under reduced motion nothing applies, so each brick rests at its svg transform (which matches the 0% frame)
   const styles = `
+@media (prefers-reduced-motion: no-preference) {
 @keyframes kf_Orange_transform_0 {
   0% {
     transform: translateY(56.937px) translateX(0px) translateY(0px);
@@ -285,6 +287,7 @@ export function Bricks(props: SVGProps<SVGSVGElement>) {
 #Green {
   transform-origin: 0 0;
   animation: kf_Green_transform_0 7.5s linear infinite;
+}
 }
 `;
 

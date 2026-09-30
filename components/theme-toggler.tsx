@@ -26,6 +26,7 @@ export function ThemeToggler() {
   return (
     <button
       onClick={cycleTheme}
+      aria-label={`Change theme (current: ${theme})`}
       className="hover:text-primary text-muted-foreground cursor-pointer transition-colors"
     >
       {theme === "system" ? (

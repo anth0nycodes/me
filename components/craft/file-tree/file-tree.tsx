@@ -80,6 +80,7 @@ export function FileTree() {
         <div className="ml-auto pt-1.5 pr-1.5">
           <button
             onClick={() => setExpandedNodes(new Set())}
+            aria-label="Collapse all folders"
             className="w-max cursor-pointer rounded-sm bg-[#EFEFEF] p-0.75 transition-transform duration-200 active:scale-95 sm:p-1"
           >
             <Minimize2 className="size-2.5 stroke-[1.5] sm:size-3" aria-hidden />
@@ -153,6 +154,7 @@ function Tree({ nodes, expandedNodes, setExpandedNodes, parentPath = "" }: TreeP
           <div key={fullPath}>
             <button
               onClick={() => handleNodeClick(node, fullPath)}
+              aria-expanded={node.children ? isExpanded : undefined}
               className="flex w-full cursor-pointer items-center gap-1.5 rounded-md p-1.5 pl-[calc(var(--depth)*0.75rem+0.375rem)] hover:bg-[#EFEFEF] sm:gap-2 sm:p-2 sm:pl-[calc(var(--depth)*1rem+0.5rem)]"
               style={{ "--depth": depth } as CSSProperties}
             >

@@ -32,7 +32,7 @@ export function determineStatusColor(status: string) {
     return "border bg-yellow-500/15 border-yellow-600 text-yellow-600/80";
   }
 
-  return "border bg-green-800/15 border-green-600 text-green-600/80";
+  return "border bg-green-800/15 border-green-600 text-green-500";
 }
 
 function SectionCards({ items }: { items: readonly Item[] }) {
@@ -150,12 +150,12 @@ export function SectionList({
   return (
     <section className="flex flex-col gap-2">
       <div className="border-b pb-2 border-[#222222] flex justify-between">
-        <h3 className="font-medium">
+        <h2 className="font-medium">
           {sectionTitle}
           <sup className="ml-1.5 select-none text-muted-foreground text-xs">
             ({itemsCount ? itemsCount : items.length})
           </sup>
-        </h3>
+        </h2>
         {viewAllHref && (
           <Link
             href={viewAllHref}

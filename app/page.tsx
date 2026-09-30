@@ -46,12 +46,10 @@ const sections = [
 
 export default function HomePage() {
   return (
-    <main>
-      <MotionWrapper>
-        {sections.map((section) => (
-          <MotionSection key={section.id}>{section.component}</MotionSection>
-        ))}
-      </MotionWrapper>
-    </main>
+    <MotionWrapper>
+      {sections.map((section) => (
+        <MotionSection key={section.id}>{section.component}</MotionSection>
+      ))}
+    </MotionWrapper>
   );
 }

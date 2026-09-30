@@ -87,7 +87,7 @@ export function CreateCoolThings() {
         }}
         className="col-start-1 row-start-1 flex items-center justify-center"
       >
-        <SloganOutline className="h-auto w-[85%]" />
+        <SloganOutline aria-hidden className="h-auto w-[85%]" />
       </div>
       <div
         style={{
@@ -95,7 +95,7 @@ export function CreateCoolThings() {
         }}
         className="col-start-1 row-start-1 flex items-center justify-center"
       >
-        <SloganNormal className="h-auto w-[85%]" />
+        <SloganNormal role="img" aria-label="create cool things." className="h-auto w-[85%]" />
       </div>
     </div>
   );

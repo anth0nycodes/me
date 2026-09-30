@@ -96,7 +96,7 @@ export function ResizableText() {
       <div
         style={{ top: `calc(50% + ${dimensions.height / 2}px + 0.5rem)` }}
         className={cn(
-          "absolute left-1/2 flex w-16 -translate-x-1/2 items-center justify-center gap-px rounded-sm bg-[#0E8CE9] py-0.75 text-xs font-medium whitespace-nowrap tabular-nums select-none",
+          "absolute left-1/2 flex w-16 -translate-x-1/2 items-center justify-center gap-px rounded-sm bg-[#0B74C4] py-0.75 text-xs font-medium whitespace-nowrap tabular-nums select-none",
           !isSelected && "invisible",
         )}
       >

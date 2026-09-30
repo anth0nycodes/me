@@ -13,6 +13,8 @@ type FormState = "idle" | "loading" | "success";
 
 export function FeedbackPopover() {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const wasOpenRef = useRef(false);
   const [open, setOpen] = useState(false);
   const [formState, setFormState] = useState<FormState>("idle");
   const [feedback, setFeedback] = useState("");
@@ -53,6 +55,26 @@ export function FeedbackPopover() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [formState, open]);
+
+  // on close, hand focus back to the trigger so keyboard users aren't dropped at the top of the page.
+  // skipped when focus already moved elsewhere (e.g. clicking another control)
+  useEffect(() => {
+    if (open) {
+      wasOpenRef.current = true;
+      return;
+    }
+    if (!wasOpenRef.current) return;
+    wasOpenRef.current = false;
+
+    const activeElement = document.activeElement;
+    if (
+      !activeElement ||
+      activeElement === document.body ||
+      wrapperRef.current?.contains(activeElement)
+    ) {
+      triggerRef.current?.focus();
+    }
+  }, [open]);
 
   function handleSubmit() {
     setFormState("loading");
@@ -106,6 +128,7 @@ export function FeedbackPopover() {
       >
         <textarea
           autoFocus
+          aria-label="Feedback"
           placeholder="Feedback"
           onChange={(e) => setFeedback(e.target.value)}
           className="text-background h-32 w-full resize-none p-3 outline-none selection:bg-[Highlight]! placeholder:opacity-0 sm:text-sm"
@@ -119,7 +142,7 @@ export function FeedbackPopover() {
             type="submit"
             disabled={formState === "loading"}
             form="feedback-form"
-            className="relative ml-auto flex h-6 w-26 cursor-pointer items-center justify-center overflow-hidden rounded-md bg-[linear-gradient(180deg,#1994ff_0%,#157cff_100%)] text-xs font-semibold shadow-[0_0_1px_1px_rgba(255,255,255,0.08)_inset,0_1px_1.5px_0_rgba(0,0,0,0.32),0_0_0_0.5px_#1a94ff]"
+            className="relative ml-auto flex h-6 w-26 cursor-pointer items-center justify-center overflow-hidden rounded-md bg-[linear-gradient(180deg,#0b6fe0_0%,#0a5fd0_100%)] text-xs font-semibold shadow-[0_0_1px_1px_rgba(255,255,255,0.08)_inset,0_1px_1.5px_0_rgba(0,0,0,0.32),0_0_0_0.5px_#0b6fe0]"
           >
             <AnimatePresence mode="popLayout" initial={false}>
               <motion.span
@@ -135,7 +158,7 @@ export function FeedbackPopover() {
                 }}
               >
                 {formState === "loading" ? (
-                  <Loader2 className="size-4 animate-spin duration-200" />
+                  <Loader2 className="size-4 animate-spin duration-200" aria-label="Sending" />
                 ) : (
                   "Send feedback"
                 )}
@@ -149,7 +172,12 @@ export function FeedbackPopover() {
 
   return (
     <div className="bg-foreground flex size-full items-center justify-center">
+      {/* always mounted so screen readers announce the change; a region mounted with its text is often skipped */}
+      <span role="status" className="sr-only">
+        {formState === "success" ? "Feedback received! Thanks for playing with the form." : ""}
+      </span>
       <motion.button
+        ref={triggerRef}
         {...(prefersReducedMotion
           ? {}
           : {
@@ -160,7 +188,7 @@ export function FeedbackPopover() {
           setFeedback("");
           setFormState("idle");
         }}
-        className="bg-foreground flex h-9 cursor-pointer items-center border border-[#E9E9E7] px-3 font-medium transition-[scale] outline-none active:scale-97"
+        className="bg-foreground flex h-9 cursor-pointer items-center border border-[#E9E9E7] px-3 font-medium outline-offset-2 transition-[scale] focus-visible:outline-2 focus-visible:outline-[#1994ff] active:scale-97"
         style={{
           borderRadius: "8px",
         }}

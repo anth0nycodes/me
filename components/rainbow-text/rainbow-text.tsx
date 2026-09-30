@@ -18,7 +18,7 @@ export function RainbowText({ text }: RainbowTextProps) {
 
   return (
     <span
-      className="shimmer-rainbow bg-clip-text text-transparent"
+      className="shimmer-rainbow bg-clip-text text-transparent motion-reduce:animate-none"
       onMouseEnter={() => {
         trigger("light");
         playHoverSFX();

@@ -87,7 +87,7 @@ export function MultiStepForm() {
               </button>
 
               <button
-                className="cursor-pointer rounded-full bg-purple-500 px-7 py-1.5 text-xs font-semibold text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-40 sm:px-10 sm:py-2 sm:text-sm"
+                className="cursor-pointer rounded-full bg-purple-600 px-7 py-1.5 text-xs font-semibold text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-40 sm:px-10 sm:py-2 sm:text-sm"
                 onClick={() => setCurrentStep(currentStep + 1)}
                 disabled={currentStep === STEPS.length - 1}
               >

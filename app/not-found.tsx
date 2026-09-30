@@ -4,7 +4,8 @@ export default function NotFound() {
   return (
     <div className="flex items-center justify-center">
       <div className="space-y-6 text-center">
-        <pre className="whitespace-pre">
+        <h1 className="sr-only">404, page not found</h1>
+        <pre aria-hidden className="whitespace-pre">
           {`
  __    __   ______   __    __ 
 /  |  /  | /      \ /  |  /  |

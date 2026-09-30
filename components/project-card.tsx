@@ -113,7 +113,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
       <div>
         <div className="flex items-center justify-between">
-          <h3 className="mb-1 text-sm font-semibold">{project.title}</h3>
+          <h2 className="mb-1 text-sm font-semibold">{project.title}</h2>
           <span
             className={cn(
               "rounded-md px-2 py-1 text-[11px] select-none",

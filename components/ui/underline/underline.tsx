@@ -59,6 +59,13 @@ export function Underline({ hexcode, delay, duration, children }: UnderlineProps
       <span
         ref={spanRef}
         onClick={onShoot}
+        role={prefersReducedMotion ? undefined : "button"}
+        tabIndex={prefersReducedMotion ? undefined : 0}
+        onKeyDown={(e) => {
+          if (e.key !== "Enter" && e.key !== " ") return;
+          e.preventDefault();
+          onShoot();
+        }}
         className="motion-safe:data-in-view:animate-underline-grow inline cursor-pointer bg-linear-to-r from-(--color) to-(--color) bg-size-[0%_2px] bg-position-[0_calc(100%-1px)] bg-no-repeat pb-0.5 motion-reduce:cursor-auto motion-reduce:bg-size-[100%_2px]"
         style={
           {

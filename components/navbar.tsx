@@ -49,10 +49,11 @@ export default function Navbar() {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      // skip while focus is on anything interactive so keystrokes (or dictated words) aimed at it don't navigate away
+      const target = e.target as HTMLElement;
       if (
-        e.target instanceof HTMLInputElement ||
-        e.target instanceof HTMLTextAreaElement ||
-        (e.target as HTMLElement).isContentEditable
+        target.isContentEditable ||
+        target.closest("input, textarea, select, button, a, [role='slider'], [role='switch']")
       ) {
         return;
       }
@@ -92,7 +93,7 @@ export default function Navbar() {
   }, [router]);
 
   return (
-    <div className="mx-auto mb-5 flex max-w-2xl items-center justify-between">
+    <nav aria-label="Main" className="mx-auto mb-5 flex max-w-2xl items-center justify-between">
       <div className="flex items-center gap-3">
         {navItems.map((item) => (
           <Link
@@ -110,6 +111,7 @@ export default function Navbar() {
       <button
         onClick={() => setAudioEnabled((prev) => !prev)}
         className="hover:bg-accent text-muted-foreground flex cursor-pointer items-center justify-center rounded-md p-2"
+        aria-label={audioEnabled ? "Disable audio" : "Enable audio"}
       >
         {audioEnabled ? (
           <Volume2 className="size-4" aria-hidden="true" />
@@ -117,6 +119,6 @@ export default function Navbar() {
           <VolumeOff className="size-4" aria-hidden="true" />
         )}
       </button>
-    </div>
+    </nav>
   );
 }
