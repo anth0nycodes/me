@@ -32,8 +32,9 @@ const crafts: Craft[] = [
   {
     id: "resizable-text",
     description: "Resizable Text",
-    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/resizable-text/resizable-text.tsx",
-    reference: "https://www.figma.com",
+    source:
+      "https://github.com/anth0nycodes/me/blob/main/components/craft/resizable-text/resizable-text.tsx",
+    reference: "https://vercel.com/design",
     component: <ResizableText />,
   },
   {
@@ -59,7 +60,8 @@ const crafts: Craft[] = [
   {
     id: "feedback-popover",
     description: "Feedback Popover",
-    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/feedback-popover/feedback-popover.tsx",
+    source:
+      "https://github.com/anth0nycodes/me/blob/main/components/craft/feedback-popover/feedback-popover.tsx",
     reference: "https://animations.dev/learn/framer-motion/feedback-popover",
     component: <FeedbackPopover />,
   },
@@ -88,7 +90,8 @@ const crafts: Craft[] = [
   {
     id: "create-cool-things",
     description: "Clip Path Slider",
-    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/create-cool-things/create-cool-things.tsx",
+    source:
+      "https://github.com/anth0nycodes/me/blob/main/components/craft/create-cool-things/create-cool-things.tsx",
     reference:
       "https://animations.dev/learn/css-animations/the-magic-of-clip-path#:~:text=technically",
     component: <CreateCoolThings />,
