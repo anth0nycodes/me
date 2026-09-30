@@ -12,7 +12,7 @@ export function ReplayButton({ className, ...props }: ComponentProps<"button">) 
       )}
       {...props}
     >
-      <RotateCcw className="text-muted-foreground size-3.5" aria-hidden />
+      <RotateCcw className="text-muted-inverse size-3.5" aria-hidden />
     </button>
   );
 }

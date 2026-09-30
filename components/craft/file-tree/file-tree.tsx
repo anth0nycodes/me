@@ -76,7 +76,7 @@ export function FileTree() {
 
   return (
     <div className="bg-foreground flex size-full items-center justify-center">
-      <div className="text-muted-foreground ring-muted-foreground/30 flex size-full max-h-[213.75px] max-w-63 flex-col gap-1 rounded-md ring sm:max-h-65.5">
+      <div className="text-muted-inverse ring-muted-foreground/30 flex size-full max-h-[213.75px] max-w-63 flex-col gap-1 rounded-md ring sm:max-h-65.5">
         <div className="ml-auto pt-1.5 pr-1.5">
           <button
             onClick={() => setExpandedNodes(new Set())}
@@ -162,7 +162,7 @@ function Tree({ nodes, expandedNodes, setExpandedNodes, parentPath = "" }: TreeP
               {renderNodeIcon(node, isExpanded)}
               <span
                 className={cn(
-                  node.children ? "text-background font-medium" : "text-muted-foreground",
+                  node.children ? "text-background font-medium" : "text-muted-inverse",
                 )}
               >
                 {node.path}

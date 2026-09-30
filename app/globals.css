@@ -19,6 +19,7 @@
   --secondary-foreground: #18181b;
   --muted: #f4f4f5;
   --muted-foreground: #71717a;
+  --muted-inverse: #666666;
   --accent: #f4f4f5;
   --accent-foreground: #18181b;
   --border: #e4e4e7;
@@ -39,6 +40,8 @@
   --secondary-foreground: #fafaf9;
   --muted: #27272a;
   --muted-foreground: #858585;
+  /* muted text on the light craft surfaces (bg-foreground) */
+  --muted-inverse: #666666;
   --accent: #1b1b1b;
   --accent-foreground: #fafaf9;
   --border: #27272a;
@@ -59,6 +62,7 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-muted-inverse: var(--muted-inverse);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);

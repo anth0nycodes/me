@@ -113,7 +113,7 @@ function StepLayout({ step, children }: StepLayoutProps) {
         <h2 className="text-background text-sm leading-none font-semibold sm:text-base">
           {step.label}
         </h2>
-        <p className="text-muted-foreground text-xs sm:text-base">
+        <p className="text-muted-inverse text-xs sm:text-base">
           {step.description}
         </p>
       </div>
