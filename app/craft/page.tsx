@@ -40,7 +40,7 @@ const crafts: Craft[] = [
   {
     id: "light-switch",
     description: "Light Switch",
-    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/lightswitch.tsx",
+    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/light-switch.tsx",
     component: <Lightswitch />,
   },
   {
