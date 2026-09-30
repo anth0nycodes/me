@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSound } from "use-sound";
-import { useWebHaptics } from "web-haptics/react";
+import { useHaptics } from "@/hooks/use-haptics";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
 import type { Post } from "@/data/blog";
 import { formatDate } from "@/lib/utils";
@@ -12,7 +12,7 @@ interface BlogPostsProps {
 }
 
 export function BlogLink({ post }: BlogPostsProps) {
-  const { trigger } = useWebHaptics();
+  const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
   const [playHoverSFX] = useSound("/audio/hover.mp3", {
     volume: 0.125,

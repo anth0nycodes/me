@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import useSound from "use-sound";
-import { useWebHaptics } from "web-haptics/react";
+import { useHaptics } from "@/hooks/use-haptics";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
 
 const links = [
@@ -20,7 +20,7 @@ export function LinksSection() {
     volume: 0.125,
     soundEnabled: audioEnabled,
   });
-  const { trigger } = useWebHaptics();
+  const { trigger } = useHaptics();
 
   return (
     <section className="flex flex-col gap-6">

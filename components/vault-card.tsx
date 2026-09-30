@@ -3,7 +3,7 @@
 import { useAudioEnabled } from "@/context/use-audio-enabled";
 import Link from "next/link";
 import { useSound } from "use-sound";
-import { useWebHaptics } from "web-haptics/react";
+import { useHaptics } from "@/hooks/use-haptics";
 
 interface VaultCardProps {
   title: string;
@@ -13,7 +13,7 @@ interface VaultCardProps {
 }
 
 export function VaultCard({ title, src, author, description }: VaultCardProps) {
-  const { trigger } = useWebHaptics();
+  const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
   const [playHoverSFX] = useSound("/audio/hover.mp3", {
     volume: 0.125,

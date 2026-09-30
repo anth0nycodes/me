@@ -3,12 +3,12 @@
 import { MonitorCog, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { useWebHaptics } from "web-haptics/react";
+import { useHaptics } from "@/hooks/use-haptics";
 
 export function ThemeToggler() {
   const { theme, resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const { trigger } = useWebHaptics();
+  const { trigger } = useHaptics();
 
   useEffect(() => {
     setMounted(true);

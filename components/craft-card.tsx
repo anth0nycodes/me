@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight, LinkIcon } from "lucide-react";
 import { useSound } from "use-sound";
-import { useWebHaptics } from "web-haptics/react";
+import { useHaptics } from "@/hooks/use-haptics";
 import { type Craft } from "@/app/craft/page";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
 
@@ -42,7 +42,7 @@ export function CraftCard({ craft }: CraftCardProps) {
 }
 
 function CraftLink({ label, href }: { label: string; href: string }) {
-  const { trigger } = useWebHaptics();
+  const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
   const [playHoverSFX] = useSound("/audio/hover.mp3", {
     volume: 0.125,

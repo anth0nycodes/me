@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useSound } from "use-sound";
-import { useWebHaptics } from "web-haptics/react";
+import { useHaptics } from "@/hooks/use-haptics";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
 import { cn } from "@/lib/utils";
 import { determineStatusColor } from "./section";
@@ -47,7 +47,7 @@ function ProjectButton({ href, label, onMouseDown, onMouseEnter, onClick }: Proj
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const { trigger } = useWebHaptics();
+  const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
   const [playHoverSFX] = useSound("/audio/hover.mp3", {
     volume: 0.125,

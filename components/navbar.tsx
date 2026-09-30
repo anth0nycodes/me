@@ -5,13 +5,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Volume2, VolumeOff } from "lucide-react";
 import { useSound } from "use-sound";
-import { useWebHaptics } from "web-haptics/react";
+import { useHaptics } from "@/hooks/use-haptics";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
 
 export default function Navbar() {
   const { audioEnabled, setAudioEnabled } = useAudioEnabled();
   const router = useRouter();
-  const { trigger } = useWebHaptics();
+  const { trigger } = useHaptics();
   const [playHoverSFX] = useSound("/audio/hover.mp3", {
     volume: 0.125,
     soundEnabled: audioEnabled,

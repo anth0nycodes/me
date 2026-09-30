@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
-import { useWebHaptics } from "web-haptics/react";
+import { useHaptics } from "@/hooks/use-haptics";
 import { useSound } from "use-sound";
 import { cn } from "@/lib/utils";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
@@ -37,7 +37,7 @@ export function determineStatusColor(status: string) {
 }
 
 function SectionCards({ items }: { items: readonly Item[] }) {
-  const { trigger } = useWebHaptics();
+  const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
   const [playHoverSFX] = useSound("/audio/hover.mp3", {
     volume: 0.125,
@@ -144,7 +144,7 @@ export function SectionList({
   viewAllHref,
   viewAllText,
 }: SectionListProps) {
-  const { trigger } = useWebHaptics();
+  const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
   const [playHoverSFX] = useSound("/audio/hover.mp3", {
     volume: 0.125,
