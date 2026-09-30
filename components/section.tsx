@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useState, useRef } from "react";
@@ -120,9 +121,12 @@ function SectionCards({ items }: { items: readonly Item[] }) {
             }
           >
             <div className="relative md:w-xs 2xl:w-sm overflow-hidden rounded-xl border border-white/10 bg-black/50 shadow-2xl backdrop-blur-sm">
-              <img
+              <Image
                 src={activeItem.image}
                 alt={activeItem.title}
+                width={384}
+                height={216}
+                sizes="(min-width: 1536px) 384px, 320px"
                 className="h-auto w-full object-cover"
               />
             </div>

@@ -43,9 +43,7 @@ export function MetalCard() {
   // `rotate` property (same axis as the tilt) so it can share the scale's duration
   const tilt = Math.hypot(rotateX, rotateY);
   const pressRotate =
-    tilt === 0
-      ? "none"
-      : `${rotateX} ${rotateY} 0 ${isPressing ? tilt * PRESS_DEPTH : 0}deg`;
+    tilt === 0 ? "none" : `${rotateX} ${rotateY} 0 ${isPressing ? tilt * PRESS_DEPTH : 0}deg`;
 
   const tiltDuration = isHovering ? 250 : 400;
   // sink in quickly, recover slowly so the release doesn't snap back
@@ -159,18 +157,14 @@ export function MetalCard() {
           <div className="flex h-full flex-col justify-between p-[1.5em]">
             <div className="flex items-center justify-between">
               <div className="flex flex-col items-start text-[1.5em]">
-                <span className="text-background leading-tight">
-                  anthony hoang
-                </span>
-                <span className="leading-tight text-[#555555]">
-                  design engineer
-                </span>
+                <span className="text-background leading-tight">anthony hoang</span>
+                <span className="leading-tight text-[#555555]">design engineer</span>
               </div>
               <div className="size-[3.75em] overflow-clip rounded-full ring-1 ring-[#EBEBEB]">
                 <Image
                   src={DATA.images[0]}
-                  width={250}
-                  height={250}
+                  width={50}
+                  height={50}
                   alt="Profile picture of me at the Golden Gate Bridge in San Francisco, California"
                   className="size-full object-cover"
                 />
@@ -178,9 +172,7 @@ export function MetalCard() {
             </div>
             <div className="flex items-center justify-between text-[0.875em]">
               <span className="leading-none text-[#6B6B6B]">united states</span>
-              <span className="leading-none text-[#6B6B6B]">
-                anthonyhoang.dev
-              </span>
+              <span className="leading-none text-[#6B6B6B]">anthonyhoang.dev</span>
             </div>
           </div>
         </div>

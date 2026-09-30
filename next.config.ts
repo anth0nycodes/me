@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   /* config options here */
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   reactCompiler: true,
+  images: {
+    // Serve AVIF when the browser supports it, WebP otherwise.
+    formats: ["image/avif", "image/webp"],
+  },
 };
 
 const withMDX = createMDX({

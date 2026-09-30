@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useSound } from "use-sound";
 import { useWebHaptics } from "web-haptics/react";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
@@ -29,13 +30,7 @@ interface ProjectButtonProps {
   onClick?: () => void;
 }
 
-function ProjectButton({
-  href,
-  label,
-  onMouseDown,
-  onMouseEnter,
-  onClick,
-}: ProjectButtonProps) {
+function ProjectButton({ href, label, onMouseDown, onMouseEnter, onClick }: ProjectButtonProps) {
   return (
     <a
       href={href}
@@ -104,9 +99,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
               />
             ))}
           </div>
-          <img
+          <Image
             src={project.image}
             alt={project.title}
+            width={500}
+            height={180}
+            sizes="(min-width: 640px) 336px, 100vw"
             className="h-45 w-full object-cover transition-transform duration-500 group-hover:scale-115 group-has-focus-visible:scale-115 motion-reduce:duration-0 motion-reduce:group-hover:scale-100 motion-reduce:group-has-focus-visible:scale-100"
           />
         </div>
@@ -117,7 +115,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <span
             className={cn(
               "rounded-md px-2 py-1 text-[11px] select-none",
-              determineStatusColor(project.status)
+              determineStatusColor(project.status),
             )}
           >
             {project.status}
@@ -128,10 +126,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <p className="text-muted-foreground text-xs">{project.description}</p>
           <div className="flex flex-wrap gap-2">
             {project.techStack.map((tech) => (
-              <div
-                className="border-border bg-card rounded-md border px-1.5 py-0.5"
-                key={tech}
-              >
+              <div className="border-border bg-card rounded-md border px-1.5 py-0.5" key={tech}>
                 <span className="text-[11px]">{tech}</span>
               </div>
             ))}
