@@ -13,7 +13,7 @@ export function TrashBack(props: SVGProps<SVGSVGElement>) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M225 80C340.98 80 435 62.5391 435 41H436L391.869 410.202C380 467.5 307.723 491 225 491C142.277 491 66.5 463 58.131 410.202L14 41H15C15 62.5391 109.02 80 225 80Z"
-        fill="#E2E8F0"
+        fill="#D5DCE6"
       />
       <path
         fillRule="evenodd"
@@ -33,7 +33,7 @@ export function TrashBack(props: SVGProps<SVGSVGElement>) {
           fillRule="evenodd"
           clipRule="evenodd"
           d="M225 80C340.98 80 435 62.5391 435 41H436L391.869 410.202C380 467.5 307.723 491 225 491C142.277 491 66.5 463 58.131 410.202L14 41H15C15 62.5391 109.02 80 225 80Z"
-          fill="#E2E8F0"
+          fill="#D5DCE6"
         />
         <path
           fillRule="evenodd"
@@ -138,10 +138,10 @@ export function TrashBack(props: SVGProps<SVGSVGElement>) {
           y2={266}
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="white" stopOpacity={0} />
-          <stop offset={0.3} stopColor="white" />
-          <stop offset={0.6999} stopColor="white" />
-          <stop offset={1} stopColor="white" stopOpacity={0} />
+          <stop stopColor="#E7ECF2" stopOpacity={0} />
+          <stop offset={0.3} stopColor="#E7ECF2" />
+          <stop offset={0.6999} stopColor="#E7ECF2" />
+          <stop offset={1} stopColor="#E7ECF2" stopOpacity={0} />
         </linearGradient>
         <linearGradient
           id="paint2_linear_371_372"
@@ -162,10 +162,10 @@ export function TrashBack(props: SVGProps<SVGSVGElement>) {
           y2={266}
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="white" stopOpacity={0} />
-          <stop offset={0.3} stopColor="white" />
-          <stop offset={0.6999} stopColor="white" />
-          <stop offset={1} stopColor="white" stopOpacity={0} />
+          <stop stopColor="#E7ECF2" stopOpacity={0} />
+          <stop offset={0.3} stopColor="#E7ECF2" />
+          <stop offset={0.6999} stopColor="#E7ECF2" />
+          <stop offset={1} stopColor="#E7ECF2" stopOpacity={0} />
         </linearGradient>
         <linearGradient
           id="paint4_linear_371_372"
@@ -186,8 +186,8 @@ export function TrashBack(props: SVGProps<SVGSVGElement>) {
           y2={82}
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#F8FAFC" />
-          <stop offset={1} stopColor="white" />
+          <stop stopColor="#EEF2F6" />
+          <stop offset={1} stopColor="#F8FAFC" />
         </linearGradient>
       </defs>
     </svg>
@@ -215,7 +215,7 @@ export function TrashFront(props: SVGProps<SVGSVGElement>) {
           fillRule="evenodd"
           clipRule="evenodd"
           d="M211 78C326.98 78 421 60.5391 421 39H422L377.869 408.202C366 465.5 293.723 489 211 489C128.277 489 52.5 461 44.131 408.202L0 39H1C1 60.5391 95.0202 78 211 78Z"
-          fill="#E2E8F0"
+          fill="#D5DCE6"
         />
         <path
           fillRule="evenodd"
@@ -235,7 +235,7 @@ export function TrashFront(props: SVGProps<SVGSVGElement>) {
             fillRule="evenodd"
             clipRule="evenodd"
             d="M211 78C326.98 78 421 60.5391 421 39H422L377.869 408.202C366 465.5 293.723 489 211 489C128.277 489 52.5 461 44.131 408.202L0 39H1C1 60.5391 95.0202 78 211 78Z"
-            fill="#E2E8F0"
+            fill="#D5DCE6"
           />
           <path
             fillRule="evenodd"
@@ -332,10 +332,10 @@ export function TrashFront(props: SVGProps<SVGSVGElement>) {
           y2={264}
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="white" stopOpacity={0} />
-          <stop offset={0.3} stopColor="white" />
-          <stop offset={0.6999} stopColor="white" />
-          <stop offset={1} stopColor="white" stopOpacity={0} />
+          <stop stopColor="#E7ECF2" stopOpacity={0} />
+          <stop offset={0.3} stopColor="#E7ECF2" />
+          <stop offset={0.6999} stopColor="#E7ECF2" />
+          <stop offset={1} stopColor="#E7ECF2" stopOpacity={0} />
         </linearGradient>
         <linearGradient
           id="paint1_linear_371_371"
@@ -356,10 +356,10 @@ export function TrashFront(props: SVGProps<SVGSVGElement>) {
           y2={264}
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="white" stopOpacity={0} />
-          <stop offset={0.3} stopColor="white" />
-          <stop offset={0.6999} stopColor="white" />
-          <stop offset={1} stopColor="white" stopOpacity={0} />
+          <stop stopColor="#E7ECF2" stopOpacity={0} />
+          <stop offset={0.3} stopColor="#E7ECF2" />
+          <stop offset={0.6999} stopColor="#E7ECF2" />
+          <stop offset={1} stopColor="#E7ECF2" stopOpacity={0} />
         </linearGradient>
         <linearGradient
           id="paint3_linear_371_371"
@@ -380,8 +380,8 @@ export function TrashFront(props: SVGProps<SVGSVGElement>) {
           y2={80}
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#F8FAFC" />
-          <stop offset={1} stopColor="white" />
+          <stop stopColor="#EEF2F6" />
+          <stop offset={1} stopColor="#F8FAFC" />
         </linearGradient>
       </defs>
     </svg>
