@@ -191,14 +191,10 @@ export function HoldToDelete() {
                       toggleChecked(task);
                     }
                   }}
-                  className="group flex cursor-pointer items-center justify-between gap-6 rounded-md py-3 pr-3 pl-2 hover:bg-[#1A1A1B] focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-[#5E6AD2] data-[checked=true]:bg-[#1C1E38] data-[checked=true]:hover:bg-[#232648] data-[join-bottom=true]:rounded-b-none data-[join-top=true]:rounded-t-none max-sm:data-[mobile-hidden=true]:hidden"
-                  initial={
-                    prefersReducedMotion ? {} : { opacity: 0, scale: 0.9, filter: "blur(4px)" }
-                  }
-                  animate={
-                    prefersReducedMotion ? {} : { opacity: 1, scale: 1, filter: "blur(0px)" }
-                  }
-                  exit={prefersReducedMotion ? {} : { opacity: 0, scale: 0.9, filter: "blur(4px)" }}
+                  className="group flex cursor-pointer items-center justify-between gap-6 rounded-md py-3 pr-3 pl-2 will-change-transform hover:bg-[#1A1A1B] focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-[#5E6AD2] data-[checked=true]:bg-[#1C1E38] data-[checked=true]:hover:bg-[#232648] data-[join-bottom=true]:rounded-b-none data-[join-top=true]:rounded-t-none max-sm:data-[mobile-hidden=true]:hidden"
+                  initial={prefersReducedMotion ? {} : { opacity: 0, filter: "blur(4px)" }}
+                  animate={prefersReducedMotion ? {} : { opacity: 1, filter: "blur(0px)" }}
+                  exit={prefersReducedMotion ? {} : { opacity: 0, filter: "blur(4px)" }}
                   transition={
                     prefersReducedMotion ? {} : { type: "spring", duration: 0.3, bounce: 0 }
                   }
