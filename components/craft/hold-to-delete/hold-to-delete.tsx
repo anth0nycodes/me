@@ -3,13 +3,7 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ReplayButton } from "@/components/ui/replay-button";
-import {
-  Checked,
-  InProgress,
-  Marker,
-  PriorityBars,
-  type Priority,
-} from "./svgs";
+import { Checked, InProgress, Marker, PriorityBars, type Priority } from "./svgs";
 
 interface Task {
   id: string;
@@ -65,9 +59,7 @@ const TASKS: Task[] = [
 
 // Tasks past this count are hidden below the sm breakpoint
 const MOBILE_TASKS_COUNT = 3;
-const MOBILE_HIDDEN_IDS = new Set(
-  TASKS.slice(MOBILE_TASKS_COUNT).map((task) => task.id)
-);
+const MOBILE_HIDDEN_IDS = new Set(TASKS.slice(MOBILE_TASKS_COUNT).map((task) => task.id));
 
 export function HoldToDelete() {
   const prefersReducedMotion = useReducedMotion();
@@ -114,8 +106,7 @@ export function HoldToDelete() {
       ref={cardRef}
       tabIndex={-1}
       onKeyDown={(e) => {
-        if (e.key === " " && !(e.target instanceof HTMLButtonElement))
-          e.preventDefault();
+        if (e.key === " " && !(e.target instanceof HTMLButtonElement)) e.preventDefault();
       }}
       className="relative flex size-full justify-center bg-[#121213] py-8 outline-hidden sm:py-6"
     >
@@ -148,9 +139,7 @@ export function HoldToDelete() {
               />
             </button>
             <InProgress className="size-3 sm:size-3.25" aria-hidden />
-            <span className="text-xs font-medium sm:text-[13px]">
-              In Progress
-            </span>
+            <span className="text-xs font-medium sm:text-[13px]">In Progress</span>
             <span className="text-xs text-[#A1988D] sm:text-[13px]">
               <span className="sm:hidden">
                 {tasks.filter((task) => !MOBILE_HIDDEN_IDS.has(task.id)).length}
@@ -163,11 +152,7 @@ export function HoldToDelete() {
                 <span>
                   <span className="max-sm:hidden">{checkedTasks.size}</span>
                   <span className="sm:hidden">
-                    {
-                      [...checkedTasks].filter(
-                        (taskId) => !MOBILE_HIDDEN_IDS.has(taskId)
-                      ).length
-                    }
+                    {[...checkedTasks].filter((taskId) => !MOBILE_HIDDEN_IDS.has(taskId)).length}
                   </span>{" "}
                   selected
                 </span>
@@ -175,10 +160,7 @@ export function HoldToDelete() {
             )}
           </div>
         </div>
-        <div
-          data-expanded={isExpanded}
-          className="relative data-[expanded=false]:invisible"
-        >
+        <div data-expanded={isExpanded} className="relative data-[expanded=false]:invisible">
           <AnimatePresence mode="popLayout" initial={false}>
             {tasks.map((task, index) => {
               const parts = task.author.split(" ");
@@ -186,11 +168,9 @@ export function HoldToDelete() {
               const lastName = parts[1];
               const initials = `${firstName[0]}${lastName[0]}`;
               const isChecked = checkedTasks.has(task.id);
-              const isPrevChecked =
-                index > 0 && checkedTasks.has(tasks[index - 1].id);
+              const isPrevChecked = index > 0 && checkedTasks.has(tasks[index - 1].id);
               const isNextChecked =
-                index < tasks.length - 1 &&
-                checkedTasks.has(tasks[index + 1].id);
+                index < tasks.length - 1 && checkedTasks.has(tasks[index + 1].id);
 
               return (
                 <motion.div
@@ -213,24 +193,14 @@ export function HoldToDelete() {
                   }}
                   className="group flex cursor-pointer items-center justify-between gap-6 rounded-md py-3 pr-3 pl-2 hover:bg-[#1A1A1B] focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-[#5E6AD2] data-[checked=true]:bg-[#1C1E38] data-[checked=true]:hover:bg-[#232648] data-[join-bottom=true]:rounded-b-none data-[join-top=true]:rounded-t-none max-sm:data-[mobile-hidden=true]:hidden"
                   initial={
-                    prefersReducedMotion
-                      ? {}
-                      : { opacity: 0, scale: 0.9, filter: "blur(4px)" }
+                    prefersReducedMotion ? {} : { opacity: 0, scale: 0.9, filter: "blur(4px)" }
                   }
                   animate={
-                    prefersReducedMotion
-                      ? {}
-                      : { opacity: 1, scale: 1, filter: "blur(0px)" }
+                    prefersReducedMotion ? {} : { opacity: 1, scale: 1, filter: "blur(0px)" }
                   }
-                  exit={
-                    prefersReducedMotion
-                      ? {}
-                      : { opacity: 0, scale: 0.9, filter: "blur(4px)" }
-                  }
+                  exit={prefersReducedMotion ? {} : { opacity: 0, scale: 0.9, filter: "blur(4px)" }}
                   transition={
-                    prefersReducedMotion
-                      ? {}
-                      : { type: "spring", duration: 0.3, bounce: 0 }
+                    prefersReducedMotion ? {} : { type: "spring", duration: 0.3, bounce: 0 }
                   }
                 >
                   <div className="flex min-w-0 items-center gap-2">
@@ -248,10 +218,7 @@ export function HoldToDelete() {
                     <span className="hidden w-14 shrink-0 text-[13px] text-[#959597] uppercase tabular-nums sm:block">
                       {task.id}
                     </span>
-                    <InProgress
-                      className="size-3 shrink-0 sm:size-3.25"
-                      aria-hidden
-                    />
+                    <InProgress className="size-3 shrink-0 sm:size-3.25" aria-hidden />
                     <span className="truncate text-xs font-medium sm:text-[13px]">
                       {task.label}
                     </span>
@@ -281,11 +248,7 @@ export function HoldToDelete() {
             <span className="inline-block w-[1ch] text-center tabular-nums">
               <span className="max-sm:hidden">{checkedTasks.size}</span>
               <span className="sm:hidden">
-                {
-                  [...checkedTasks].filter(
-                    (taskId) => !MOBILE_HIDDEN_IDS.has(taskId)
-                  ).length
-                }
+                {[...checkedTasks].filter((taskId) => !MOBILE_HIDDEN_IDS.has(taskId)).length}
               </span>
             </span>{" "}
             selected
@@ -310,7 +273,7 @@ export function HoldToDelete() {
               }}
               onKeyUp={() => setIsHolding(false)}
               onBlur={() => setIsHolding(false)}
-              className="group relative flex cursor-pointer overflow-clip rounded-full bg-[#D14D41] px-3 py-1.5 transition-transform duration-160 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-[#5E6AD2] active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100"
+              className="group relative flex cursor-pointer overflow-clip rounded-full bg-[#D14D41] px-3 py-1.5 transition-transform duration-160 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] select-none focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-[#5E6AD2] active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100"
             >
               {/* Fill is kept under reduced motion: it is the hold progress, and its transitionend triggers the delete */}
               <div
