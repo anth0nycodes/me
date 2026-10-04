@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type JSX } from "react";
-import { AnimatePresence, motion, MotionConfig } from "motion/react";
+import { AnimatePresence, motion, MotionConfig, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, CircleCheck, Trash, TrashBack, TrashFront } from "./svgs";
 
@@ -43,6 +43,7 @@ const IMAGES: Image[] = [
 const IMAGE_TILT_AMOUNT = 4;
 
 export function TrashInteraction() {
+  const prefersReducedMotion = useReducedMotion();
   const [imagesToRemove, setImagesToRemove] = useState<Image[]>([]);
   const [readyToRemove, setReadyToRemove] = useState(false);
   const [removed, setRemoved] = useState(false);
@@ -80,7 +81,11 @@ export function TrashInteraction() {
   }, [removed]);
 
   return (
-    <MotionConfig transition={{ type: "spring", duration: 0.5, bounce: 0.2 }}>
+    <MotionConfig
+      transition={
+        prefersReducedMotion ? { duration: 0 } : { type: "spring", duration: 0.5, bounce: 0.2 }
+      }
+    >
       <div className="bg-foreground relative flex size-full items-center justify-center">
         <motion.div initial={false} animate={{ opacity: visible ? 1 : 0 }}>
           <ul className="grid grid-cols-2 gap-2 sm:gap-3">
@@ -93,7 +98,7 @@ export function TrashInteraction() {
                       key={image.id}
                       className="relative size-22 sm:size-25"
                       exit={
-                        isImageSelected
+                        isImageSelected || prefersReducedMotion
                           ? {}
                           : {
                               opacity: 0,
@@ -110,18 +115,26 @@ export function TrashInteraction() {
                           {isImageSelected && (
                             <motion.div
                               aria-label={`Selected ${image.id} image`}
-                              initial={{ opacity: 0, scale: 0.9 }}
+                              initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.9 }}
                               animate={{ opacity: 1, scale: 1.1 }}
-                              exit={{
-                                opacity: 0,
-                                scale: 0.9,
-                                transition: { duration: 0.1 },
-                              }}
-                              transition={{
-                                type: "spring",
-                                duration: 0.25,
-                                bounce: 0,
-                              }}
+                              exit={
+                                prefersReducedMotion
+                                  ? {}
+                                  : {
+                                      opacity: 0,
+                                      scale: 0.9,
+                                      transition: { duration: 0.1 },
+                                    }
+                              }
+                              transition={
+                                prefersReducedMotion
+                                  ? { duration: 0 }
+                                  : {
+                                      type: "spring",
+                                      duration: 0.25,
+                                      bounce: 0,
+                                    }
+                              }
                             >
                               <div className="absolute inset-0.5 rounded-full bg-white" />
                               <CircleCheck />
@@ -143,7 +156,7 @@ export function TrashInteraction() {
                         }}
                       >
                         <motion.img
-                          layoutId={image.id}
+                          {...(prefersReducedMotion ? {} : { layoutId: image.id })}
                           className="size-full rounded-xl object-cover"
                           alt={image.alt}
                           src={image.src}
@@ -159,10 +172,12 @@ export function TrashInteraction() {
             {imagesToRemove.length > 0 && !readyToRemove && (
               <motion.div
                 key="toolbar"
-                initial={{ opacity: 0, x: 8, filter: "blur(4px)" }}
-                animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, x: 8, filter: "blur(4px)" }}
-                transition={{ type: "spring", duration: 0.3, bounce: 0 }}
+                initial={prefersReducedMotion ? {} : { opacity: 0, x: 8, filter: "blur(4px)" }}
+                animate={prefersReducedMotion ? {} : { opacity: 1, x: 0, filter: "blur(0px)" }}
+                exit={prefersReducedMotion ? {} : { opacity: 0, x: 8, filter: "blur(4px)" }}
+                transition={
+                  prefersReducedMotion ? {} : { type: "spring", duration: 0.3, bounce: 0 }
+                }
                 className="bg-foreground absolute top-1/2 right-3 flex -translate-y-1/2 flex-col gap-1 rounded-xl p-1 shadow-md ring ring-[#E9E9E8] sm:right-13"
               >
                 {TOOLBAR_ITEMS.map((item) => {
@@ -189,11 +204,15 @@ export function TrashInteraction() {
                 <motion.button
                   disabled={removed}
                   onClick={() => setRemoved(true)}
-                  className="absolute bottom-4.5 flex h-8 w-50 cursor-pointer items-center justify-center rounded-full bg-[#FF3F40] text-xs font-semibold transition-[scale] duration-200 active:scale-97 disabled:pointer-events-none disabled:cursor-not-allowed sm:bottom-8 sm:text-[13px]"
-                  initial={{ opacity: 0, y: 15 }}
+                  className="absolute bottom-4.5 flex h-8 w-50 cursor-pointer items-center justify-center rounded-full bg-[#FF3F40] text-xs font-semibold transition-[scale] duration-200 active:scale-97 disabled:pointer-events-none disabled:cursor-not-allowed motion-reduce:transition-none motion-reduce:active:scale-100 sm:bottom-8 sm:text-[13px]"
+                  initial={prefersReducedMotion ? {} : { opacity: 0, y: 15 }}
                   animate={{ opacity: removed ? 0.5 : 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ type: "spring", duration: 0.4, bounce: 0 }}
+                  exit={prefersReducedMotion ? {} : { opacity: 0 }}
+                  transition={
+                    prefersReducedMotion
+                      ? { duration: 0 }
+                      : { type: "spring", duration: 0.4, bounce: 0 }
+                  }
                 >
                   Trash {imagesToRemove.length}{" "}
                   {imagesToRemove.length === 1 ? "Collectible" : "Collectibles"}
@@ -201,27 +220,41 @@ export function TrashInteraction() {
 
                 <div className="absolute top-1/2 z-10 h-25 w-21 -translate-y-1/2 sm:h-28.5 sm:w-24">
                   <motion.div
-                    initial={{ opacity: 0, scale: 1.2, filter: "blur(4px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, scale: 1.2, filter: "blur(4px)" }}
+                    initial={
+                      prefersReducedMotion ? {} : { opacity: 0, scale: 1.2, filter: "blur(4px)" }
+                    }
+                    animate={
+                      prefersReducedMotion ? {} : { opacity: 1, scale: 1, filter: "blur(0px)" }
+                    }
+                    exit={
+                      prefersReducedMotion ? {} : { opacity: 0, scale: 1.2, filter: "blur(4px)" }
+                    }
                   >
                     <TrashBack />
                   </motion.div>
                   <motion.div
                     className="absolute grid w-full -translate-y-61.5 place-items-center sm:-translate-y-65"
-                    animate={{
-                      y: removed ? 170 : 130,
-                      scale: removed ? 0.7 : 1,
-                      filter: removed ? "blur(4px)" : "blur(0px)",
-                    }}
-                    exit={{ opacity: 0, filter: "blur(4px)" }}
+                    animate={
+                      prefersReducedMotion
+                        ? { y: 130, opacity: removed ? 0 : 1 }
+                        : {
+                            y: removed ? 170 : 130,
+                            scale: removed ? 0.7 : 1,
+                            filter: removed ? "blur(4px)" : "blur(0px)",
+                          }
+                    }
+                    exit={prefersReducedMotion ? {} : { opacity: 0, filter: "blur(4px)" }}
                     transition={
-                      removed ? { type: "spring", duration: 0.3, bounce: 0 } : { delay: 0.13 }
+                      prefersReducedMotion
+                        ? { duration: 0 }
+                        : removed
+                          ? { type: "spring", duration: 0.3, bounce: 0 }
+                          : { delay: 0.13 }
                     }
                   >
                     {imagesToRemove.map((image, i) => (
                       <motion.img
-                        layoutId={image.id}
+                        {...(prefersReducedMotion ? {} : { layoutId: image.id })}
                         key={image.id}
                         src={image.src}
                         alt={image.alt}
@@ -236,10 +269,12 @@ export function TrashInteraction() {
                   </motion.div>
                   <motion.div
                     className="absolute inset-0 left-0.5 w-20 sm:left-0.75 sm:w-22.5"
-                    initial={{ opacity: 0 }}
+                    initial={prefersReducedMotion ? {} : { opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, filter: "blur(4px)" }}
-                    transition={{ delay: 0.175, duration: 0 }}
+                    exit={prefersReducedMotion ? {} : { opacity: 0, filter: "blur(4px)" }}
+                    transition={
+                      prefersReducedMotion ? { duration: 0 } : { delay: 0.175, duration: 0 }
+                    }
                   >
                     <TrashFront />
                   </motion.div>
