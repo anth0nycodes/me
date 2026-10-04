@@ -6,6 +6,7 @@ import { Bricks } from "@/components/craft/bricks";
 import { CreateCoolThings } from "@/components/craft/create-cool-things/create-cool-things";
 import { FeedbackPopover } from "@/components/craft/feedback-popover/feedback-popover";
 import { FileTree } from "@/components/craft/file-tree/file-tree";
+import { HoldToDelete } from "@/components/craft/hold-to-delete/hold-to-delete";
 import { Lightswitch } from "@/components/craft/light-switch";
 import { MetalCard } from "@/components/craft/metal-card";
 import { MultiStepForm } from "@/components/craft/multistep-form";
@@ -30,6 +31,14 @@ export interface Craft {
 }
 
 const crafts: Craft[] = [
+  {
+    id: "hold-to-delete",
+    description: "Hold to Delete",
+    source:
+      "https://github.com/anth0nycodes/me/blob/main/components/craft/hold-to-delete/hold-to-delete.tsx",
+    reference: "https://linear.app/",
+    component: <HoldToDelete />,
+  },
   {
     id: "trash-interaction",
     description: "Trash Interaction",

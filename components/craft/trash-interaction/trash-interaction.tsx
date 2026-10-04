@@ -3,7 +3,7 @@
 import { useEffect, useState, type JSX } from "react";
 import { AnimatePresence, motion, MotionConfig } from "motion/react";
 import { cn } from "@/lib/utils";
-import { ArrowLeft, CircleCheck, Trash, TrashBack, TrashFront } from "./trash-interaction-svgs";
+import { ArrowLeft, CircleCheck, Trash, TrashBack, TrashFront } from "./svgs";
 
 interface Image {
   id: string;

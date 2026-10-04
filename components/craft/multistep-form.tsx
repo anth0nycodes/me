@@ -64,11 +64,8 @@ export function MultiStepForm() {
                             transitionEnd: { visibility: "hidden" },
                           }
                     }
-
                     transition={
-                      prefersReducedMotion
-                        ? {}
-                        : { duration: 0.5, type: "spring", bounce: 0 }
+                      prefersReducedMotion ? {} : { duration: 0.5, type: "spring", bounce: 0 }
                     }
                   >
                     {renderStepContent(index)}
@@ -87,7 +84,7 @@ export function MultiStepForm() {
               </button>
 
               <button
-                className="cursor-pointer rounded-full bg-purple-600 px-7 py-1.5 text-xs font-semibold text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-40 sm:px-10 sm:py-2 sm:text-sm"
+                className="cursor-pointer rounded-full bg-purple-600 px-7 py-1.5 text-xs font-semibold transition-opacity disabled:cursor-not-allowed disabled:opacity-40 sm:px-10 sm:py-2 sm:text-sm"
                 onClick={() => setCurrentStep(currentStep + 1)}
                 disabled={currentStep === STEPS.length - 1}
               >
@@ -113,9 +110,7 @@ function StepLayout({ step, children }: StepLayoutProps) {
         <h2 className="text-background text-sm leading-none font-semibold sm:text-base">
           {step.label}
         </h2>
-        <p className="text-muted-inverse text-xs sm:text-base">
-          {step.description}
-        </p>
+        <p className="text-muted-inverse text-xs sm:text-base">{step.description}</p>
       </div>
       <div className="flex flex-col gap-1.5 sm:gap-2">{children}</div>
     </div>
@@ -184,10 +179,7 @@ interface SkeletonProps {
 function Skeleton({ className, style }: SkeletonProps) {
   return (
     <div
-      className={cn(
-        "h-3 animate-pulse rounded-md bg-[#F2F1F0] sm:h-4",
-        className
-      )}
+      className={cn("h-3 animate-pulse rounded-md bg-[#F2F1F0] sm:h-4", className)}
       style={{ width: "100%", ...style }}
     />
   );

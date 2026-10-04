@@ -3,11 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import {
-  CircleCheck,
-  DottedLine,
-  HalfCircle,
-} from "./feedback-popover-svgs";
+import { CircleCheck, DottedLine, HalfCircle } from "./svgs";
 
 type FormState = "idle" | "loading" | "success";
 
@@ -42,12 +38,7 @@ export function FeedbackPopover() {
       if (e.key === "Escape") {
         setOpen(false);
       }
-      if (
-        (e.ctrlKey || e.metaKey) &&
-        e.key === "Enter" &&
-        open &&
-        formState === "idle"
-      ) {
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter" && open && formState === "idle") {
         handleSubmit();
       }
     }
@@ -92,16 +83,8 @@ export function FeedbackPopover() {
       return (
         <motion.div
           key={prefersReducedMotion ? "" : "success"}
-          initial={
-            prefersReducedMotion
-              ? {}
-              : { opacity: 0, y: -32, filter: "blur(4px)" }
-          }
-          animate={
-            prefersReducedMotion
-              ? {}
-              : { opacity: 1, y: 0, filter: "blur(0px)" }
-          }
+          initial={prefersReducedMotion ? {} : { opacity: 0, y: -32, filter: "blur(4px)" }}
+          animate={prefersReducedMotion ? {} : { opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ type: "spring", duration: 0.4, bounce: 0 }}
           className="flex h-full flex-col items-center justify-center gap-2"
         >
@@ -229,9 +212,7 @@ export function FeedbackPopover() {
             >
               Feedback
             </motion.span>
-            <AnimatePresence mode="popLayout">
-              {renderFormStateContent()}
-            </AnimatePresence>
+            <AnimatePresence mode="popLayout">{renderFormStateContent()}</AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>
