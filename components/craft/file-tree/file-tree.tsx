@@ -99,7 +99,7 @@ export function FileTree() {
 }
 
 function renderChevronIcon(node: FileNode, isExpanded: boolean) {
-  if (!node.children) return <span className="size-4 shrink-0" aria-hidden />;
+  if (!node.children) return <span className="size-3 shrink-0 sm:size-4" aria-hidden />;
 
   return (
     <ChevronRight
@@ -112,14 +112,14 @@ function renderChevronIcon(node: FileNode, isExpanded: boolean) {
 
 function renderNodeIcon(node: FileNode, isExpanded: boolean) {
   if (!node.children) {
-    return <FileIcon className="size-4 shrink-0 transform-gpu sm:size-5" aria-hidden />;
+    return <FileIcon className="size-3 shrink-0 transform-gpu sm:size-4" aria-hidden />;
   }
 
   if (isExpanded) {
-    return <FolderOpen className="size-4 shrink-0 transform-gpu sm:size-5" aria-hidden />;
+    return <FolderOpen className="size-3 shrink-0 transform-gpu sm:size-4" aria-hidden />;
   }
 
-  return <FolderIcon className="size-4 shrink-0 transform-gpu sm:size-5" aria-hidden />;
+  return <FolderIcon className="size-3 shrink-0 transform-gpu sm:size-4" aria-hidden />;
 }
 
 interface TreeProps {
@@ -155,15 +155,13 @@ function Tree({ nodes, expandedNodes, setExpandedNodes, parentPath = "" }: TreeP
             <button
               onClick={() => handleNodeClick(node, fullPath)}
               aria-expanded={node.children ? isExpanded : undefined}
-              className="flex w-full cursor-pointer items-center gap-1.5 rounded-md p-1.5 pl-[calc(var(--depth)*0.75rem+0.375rem)] hover:bg-[#EFEFEF] sm:gap-2 sm:p-2 sm:pl-[calc(var(--depth)*1rem+0.5rem)]"
+              className="flex w-full cursor-pointer items-center gap-1.5 rounded-md p-1.5 pl-[calc(var(--depth)*1.125rem+0.375rem)] hover:bg-[#EFEFEF] sm:gap-2 sm:p-2 sm:pl-[calc(var(--depth)*1.5rem+0.5rem)]"
               style={{ "--depth": depth } as CSSProperties}
             >
               {renderChevronIcon(node, isExpanded)}
               {renderNodeIcon(node, isExpanded)}
               <span
-                className={cn(
-                  node.children ? "text-background font-medium" : "text-muted-inverse",
-                )}
+                className={cn(node.children ? "text-background font-medium" : "text-muted-inverse")}
               >
                 {node.path}
               </span>
