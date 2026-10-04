@@ -11,6 +11,7 @@ import { MetalCard } from "@/components/craft/metal-card";
 import { MultiStepForm } from "@/components/craft/multistep-form";
 import { NavlinksClip } from "@/components/craft/navlinks-clip";
 import { ResizableText } from "@/components/craft/resizable-text/resizable-text";
+import { TrashInteraction } from "@/components/craft/trash-interaction/trash-interaction";
 import { RainbowText } from "@/components/rainbow-text/rainbow-text";
 
 // TODO: animated dashed border component
@@ -29,6 +30,14 @@ export interface Craft {
 }
 
 const crafts: Craft[] = [
+  {
+    id: "trash-interaction",
+    description: "Trash Interaction",
+    source:
+      "https://github.com/anth0nycodes/me/blob/main/components/craft/trash-interaction/trash-interaction.tsx",
+    reference: "https://animations.dev/learn/framer-motion/trash-interaction",
+    component: <TrashInteraction />,
+  },
   {
     id: "resizable-text",
     description: "Resizable Text",
