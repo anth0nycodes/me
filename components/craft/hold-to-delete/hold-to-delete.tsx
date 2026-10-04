@@ -268,7 +268,7 @@ export function HoldToDelete() {
               onKeyDown={(e) => {
                 if (e.key === " " || e.key === "Enter") {
                   e.preventDefault();
-                  if (!e.repeat) setIsHolding(true);
+                  setIsHolding(true);
                 }
               }}
               onKeyUp={() => setIsHolding(false)}
