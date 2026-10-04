@@ -111,10 +111,7 @@ export function HoldToDelete() {
       className="relative flex size-full justify-center bg-[#121213] py-8 outline-hidden sm:py-6"
     >
       <ReplayButton aria-label="Restart" onClick={restart} />
-      <motion.div
-        layout={prefersReducedMotion ? false : "position"}
-        className="flex w-5/6 flex-col gap-0.5 sm:w-6/7"
-      >
+      <div className="flex w-5/6 flex-col gap-0.5 sm:w-6/7">
         <div
           tabIndex={0}
           onClick={toggleExpanded}
@@ -237,7 +234,7 @@ export function HoldToDelete() {
             })}
           </AnimatePresence>
         </div>
-      </motion.div>
+      </div>
       {checkedTasks.size > 0 && (
         <div className="absolute bottom-4.5 flex translate-y-0 items-center justify-between gap-12 rounded-full bg-[#1A1A1B] px-4 py-2 text-xs font-medium opacity-100 shadow-md transition-[opacity,translate] duration-300 ease-[ease] motion-reduce:transition-none sm:text-[13px] starting:translate-y-3 starting:opacity-0">
           <span>
