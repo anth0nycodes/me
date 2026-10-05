@@ -236,7 +236,7 @@ export function HoldToDelete() {
         </div>
       </div>
       {checkedTasks.size > 0 && (
-        <div className="absolute bottom-4.5 flex translate-y-0 items-center justify-between gap-12 rounded-full bg-[#1A1A1B] px-4 py-2 text-xs font-medium opacity-100 shadow-md transition-[opacity,translate] duration-300 ease-[ease] motion-reduce:transition-none sm:text-[13px] starting:translate-y-3 starting:opacity-0">
+        <div className="absolute bottom-4.5 flex translate-y-0 items-center justify-between gap-12 rounded-full bg-[#1A1A1B] px-4 py-2 text-xs font-medium opacity-100 shadow-md transition-[opacity,translate] duration-300 ease-[ease] motion-reduce:transition-none sm:text-[13px] starting:[translate:0_12px] starting:opacity-0">
           <span>
             <span className="inline-block w-[1ch] text-center tabular-nums">
               <span className="max-sm:hidden">{checkedTasks.size}</span>
