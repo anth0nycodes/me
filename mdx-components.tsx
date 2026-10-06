@@ -1,5 +1,5 @@
-import type { MDXComponents } from "mdx/types";
 import Image, { type ImageProps } from "next/image";
+import type { MDXComponents } from "mdx/types";
 
 const components: MDXComponents = {
   img: (props) => {
@@ -8,6 +8,7 @@ const components: MDXComponents = {
       <Image
         {...(props as ImageProps)}
         alt={props.alt ?? ""}
+        className="border-muted border-2"
         width={0}
         height={0}
         sizes="(max-width: 650px) 100vw, 650px"
