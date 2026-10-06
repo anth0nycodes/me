@@ -7,7 +7,7 @@ export default function ThoughtsLayout({
   children: ReactNode;
 }>) {
   return (
-    <div className="mx-auto w-full max-w-2xl min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       {children}
       <ScrollToTop />
     </div>

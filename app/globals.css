@@ -4,7 +4,6 @@
 
 /* component-specific utilities and keyframes */
 @import "../components/rainbow-text/rainbow-text.css";
-@import "../components/ui/underline/underline.css";
 @import "../components/craft/file-tree/file-tree.css";
 @import "../components/craft/resizable-text/resizable-text.css";
 @import "shadcn/tailwind.css";

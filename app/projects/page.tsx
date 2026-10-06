@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <section className="mx-auto w-full max-w-2xl flex flex-col gap-4 min-h-screen bg-background">
-      <h1 className="lowercase border-b pb-2 border-[#222222] text-base font-medium">
+    <section className="flex flex-col gap-4 min-h-screen bg-background">
+      <h1 className="text-muted-foreground dark:text-foreground border-separator border-b pb-2 text-base font-medium lowercase">
         <span>
           my projects
           <sup className="ml-1.5 select-none text-muted-foreground text-xs">
@@ -18,7 +18,7 @@ export default function ProjectsPage() {
           </sup>
         </span>
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-6">
+      <div className="flex flex-col gap-10">
         {DATA.projects.map((project) => (
           <ProjectCard key={project.title} project={project} />
         ))}

@@ -126,8 +126,8 @@ const crafts: Craft[] = [
 
 export default function CraftPage() {
   return (
-    <section className="bg-background mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-4">
-      <h1 className="flex items-center justify-between border-b border-[#222222] pb-2 text-base font-medium lowercase">
+    <section className="bg-background flex min-h-screen flex-col gap-4">
+      <h1 className="text-muted-foreground dark:text-foreground flex items-center justify-between border-separator border-b pb-2 text-base font-medium lowercase">
         <span>
           my craft
           <sup className="text-muted-foreground ml-1.5 text-xs select-none">({crafts.length})</sup>
