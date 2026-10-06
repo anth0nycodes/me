@@ -113,6 +113,10 @@ export const DATA = {
       description: "helping students get jobs",
       href: "https://deep24.com",
       image: "/work-experience/d24.png",
+      // follows the company badge in the landing page sentence
+      highlight: "redesigning the landing page and shipping core product features",
+      favicon: "/favicons/deep24-light.png",
+      faviconDark: "/favicons/deep24-dark.png",
     },
     {
       title: "magic hour (yc w24)",
@@ -121,6 +125,9 @@ export const DATA = {
       description: "polishing UI/UX and building ai-powered tools for creators",
       href: "https://magichour.ai",
       image: "/work-experience/mh.png",
+      // follows the company badge in the landing page sentence
+      highlight: "polishing UI/UX for AI creator tools",
+      favicon: "/favicons/magichour.png",
     },
     {
       title: "revisiondojo (yc f24)",
@@ -129,6 +136,9 @@ export const DATA = {
       description: "figma stuff + UI polishing",
       href: "https://revisiondojo.com",
       image: "/work-experience/rd.png",
+      // follows the company badge in the landing page sentence
+      highlight: "doing figma work and UI polish",
+      favicon: "/favicons/revisiondojo.png",
     },
     {
       title: "muslim tech collaborative",
@@ -137,6 +147,9 @@ export const DATA = {
       description: "revamped and rebuilt the community website",
       href: "https://mtc.so",
       image: "/work-experience/mtc.png",
+      // follows the company badge in the landing page sentence
+      highlight: "rebuilding their community website",
+      favicon: "/favicons/mtc.png",
     },
   ],
   creativeWorks: [
@@ -222,6 +235,7 @@ export const DATA = {
       projectHref: "https://tracemark.fun/",
       sourceCodeHref: "https://github.com/anth0nycodes/tracemark",
       image: "/posters/tracemark.png",
+      favicon: "/favicons/tracemark.png",
     },
     {
       title: "mm2-item-info",
