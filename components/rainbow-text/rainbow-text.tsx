@@ -11,7 +11,7 @@ interface RainbowTextProps {
 export function RainbowText({ text }: RainbowTextProps) {
   const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
-  const [playHoverSFX] = useSound("/audio/hover.mp3", {
+  const [playHoverSFX] = useSound("/audio/hover-tick.wav", {
     volume: 0.125,
     soundEnabled: audioEnabled,
   });
