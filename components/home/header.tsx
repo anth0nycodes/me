@@ -43,12 +43,12 @@ const projectBadges = DATA.projects
 
 export function Header() {
   const { audioEnabled } = useAudioEnabled();
-  const [clickLowSFX] = useSound("/audio/hover.mp3", {
+  const [clickLowSFX] = useSound("/audio/press.mp3", {
     volume: 0.125,
     playbackRate: 0.5,
     soundEnabled: audioEnabled,
   });
-  const [clickHighSFX] = useSound("/audio/hover.mp3", {
+  const [clickHighSFX] = useSound("/audio/press.mp3", {
     volume: 0.125,
     playbackRate: 0.75,
     soundEnabled: audioEnabled,

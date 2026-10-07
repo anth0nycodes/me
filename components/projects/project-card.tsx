@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { useSound } from "use-sound";
-import { useHaptics } from "@/hooks/use-haptics";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
+import { useHaptics } from "@/hooks/use-haptics";
 import { determineStatusColor } from "@/lib/status";
 import { cn } from "@/lib/utils";
 
@@ -35,7 +35,7 @@ function ProjectButton({ href, label, onMouseDown, onMouseEnter, onClick }: Proj
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="bg-background ring-border inline-block cursor-pointer rounded-sm px-3 ring-1 py-1.5 text-sm transition hover:opacity-85 active:scale-95 dark:ring-0"
+      className="bg-background ring-border inline-block cursor-pointer rounded-sm px-3 py-1.5 text-sm ring-1 transition hover:opacity-85 active:scale-95 dark:ring-0"
       onMouseDown={onMouseDown}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
@@ -52,12 +52,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
     volume: 0.125,
     soundEnabled: audioEnabled,
   });
-  const [clickLowSFX] = useSound("/audio/hover.mp3", {
+  const [clickLowSFX] = useSound("/audio/press.mp3", {
     volume: 0.125,
     playbackRate: 0.5,
     soundEnabled: audioEnabled,
   });
-  const [clickHighSFX] = useSound("/audio/hover.mp3", {
+  const [clickHighSFX] = useSound("/audio/press.mp3", {
     volume: 0.125,
     playbackRate: 0.75,
     soundEnabled: audioEnabled,
@@ -104,7 +104,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             width={500}
             height={180}
             sizes="(min-width: 640px) 576px, 100vw"
-            className="h-45 w-full object-cover select-none sm:h-60 transition-transform duration-500 group-hover:scale-115 group-has-focus-visible:scale-115 motion-reduce:duration-0 motion-reduce:group-hover:scale-100 motion-reduce:group-has-focus-visible:scale-100"
+            className="h-45 w-full object-cover transition-transform duration-500 select-none group-hover:scale-115 group-has-focus-visible:scale-115 motion-reduce:duration-0 motion-reduce:group-hover:scale-100 motion-reduce:group-has-focus-visible:scale-100 sm:h-60"
           />
         </div>
       </div>
@@ -125,7 +125,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
         <div className="flex flex-wrap gap-2">
           {project.techStack.map((tech) => (
-            <div className="border-border bg-card flex items-center justify-center rounded-md border px-1.5 py-0.5 leading-6 select-none" key={tech}>
+            <div
+              className="border-border bg-card flex items-center justify-center rounded-md border px-1.5 py-0.5 leading-6 select-none"
+              key={tech}
+            >
               <span className="text-[11px]">{tech}</span>
             </div>
           ))}
