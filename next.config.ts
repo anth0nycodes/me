@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   images: {
     // Serve AVIF when the browser supports it, WebP otherwise.
     formats: ["image/avif", "image/webp"],
+    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
   },
 };
 

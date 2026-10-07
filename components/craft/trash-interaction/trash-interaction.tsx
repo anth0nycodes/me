@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type JSX } from "react";
+import NextImage from "next/image";
 import { AnimatePresence, motion, MotionConfig, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, CircleCheck, Trash, TrashBack, TrashFront } from "./svgs";
@@ -41,6 +42,8 @@ const IMAGES: Image[] = [
 ];
 
 const IMAGE_TILT_AMOUNT = 4;
+// Largest displayed size; next/image emits 1x/2x variants from this.
+const IMAGE_SIZE = 100;
 
 export function TrashInteraction() {
   const prefersReducedMotion = useReducedMotion();
@@ -155,15 +158,20 @@ export function TrashInteraction() {
                           setImagesToRemove((prev) => [...prev, image]);
                         }}
                       >
-                        <motion.img
+                        <motion.div
                           {...(prefersReducedMotion ? {} : { layoutId: image.id })}
-                          className="size-full rounded-xl object-cover"
-                          alt={image.alt}
-                          src={image.src}
-                          width={200}
-                          height={200}
-                          fetchPriority="high"
-                        />
+                          className="size-full overflow-hidden rounded-xl"
+                        >
+                          <NextImage
+                            className="size-full object-cover"
+                            alt={image.alt}
+                            src={image.src}
+                            width={IMAGE_SIZE}
+                            height={IMAGE_SIZE}
+                            fetchPriority="high"
+                            loading="eager"
+                          />
+                        </motion.div>
                       </button>
                     </motion.li>
                   );
@@ -256,18 +264,25 @@ export function TrashInteraction() {
                     }
                   >
                     {imagesToRemove.map((image, i) => (
-                      <motion.img
+                      <motion.div
                         {...(prefersReducedMotion ? {} : { layoutId: image.id })}
                         key={image.id}
-                        src={image.src}
-                        alt={image.alt}
-                        className="col-start-1 row-start-1 size-14.25 rounded-md sm:size-16.25"
+                        className="col-start-1 row-start-1 size-14.25 overflow-hidden rounded-md sm:size-16.25"
                         style={{
                           rotate:
                             (i % 2 === 0 ? IMAGE_TILT_AMOUNT : -IMAGE_TILT_AMOUNT) *
                             (imagesToRemove.length - i + 1),
                         }}
-                      />
+                      >
+                        <NextImage
+                          className="size-full object-cover"
+                          src={image.src}
+                          alt={image.alt}
+                          width={IMAGE_SIZE}
+                          height={IMAGE_SIZE}
+                          loading="eager"
+                        />
+                      </motion.div>
                     ))}
                   </motion.div>
                   <motion.div
