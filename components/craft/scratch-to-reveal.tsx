@@ -167,8 +167,11 @@ export function ScratchToReveal() {
             disabled={!isRevealed}
             aria-label={isCopied ? "Copied promo code" : "Copy promo code"}
             className={cn(
-              "text-background/60 hover:text-background absolute inset-y-0 right-0 flex w-10 cursor-pointer items-center justify-center transition-[opacity,scale,color] duration-200 ease-out",
-              !isRevealed && "pointer-events-none scale-90 opacity-0",
+              "text-background/60 hover:text-background absolute inset-y-0 right-0 flex w-10 cursor-pointer items-center justify-center",
+              // Transition only lives on the revealed state, so it fades in but hides instantly on restart
+              isRevealed
+                ? "transition-[opacity,scale,color] duration-200 ease-out"
+                : "pointer-events-none scale-90 opacity-0",
             )}
           >
             {isCopied ? (
