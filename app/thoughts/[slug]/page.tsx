@@ -1,4 +1,4 @@
-import { BlogDate } from "@/components/blog-date";
+import { BlogDate } from "@/components/thoughts/blog-date";
 import { getBlogPosts, type PostMetadata } from "@/data/blog";
 import { DATA } from "@/data/me";
 import type { Metadata } from "next";

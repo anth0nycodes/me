@@ -1,124 +1,47 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Volume2, VolumeOff } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 import { useSound } from "use-sound";
-import { useHaptics } from "@/hooks/use-haptics";
+import { AudioToggle } from "@/components/audio-toggle";
+import { ThemeToggler } from "@/components/theme-toggler";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
+import { useHaptics } from "@/hooks/use-haptics";
 
 export default function Navbar() {
-  const { audioEnabled, setAudioEnabled } = useAudioEnabled();
-  const router = useRouter();
+  const { audioEnabled } = useAudioEnabled();
+  const pathname = usePathname();
   const { trigger } = useHaptics();
-  const [playHoverSFX] = useSound("/audio/hover.mp3", {
+  const [playHoverSFX] = useSound("/audio/hover-tick.wav", {
     volume: 0.125,
     soundEnabled: audioEnabled,
   });
-  const triggerRef = useRef(trigger);
-  triggerRef.current = trigger;
 
-  const navItems = [
-    {
-      prefix: "[h]",
-      text: "home",
-      href: "/",
-    },
-    {
-      prefix: "[p]",
-      text: "projects",
-      href: "/projects",
-    },
-    {
-      prefix: "[c]",
-      text: "craft",
-      href: "/craft",
-    },
-    {
-      prefix: "[t]",
-      text: "thoughts",
-      href: "/thoughts",
-    },
-    {
-      prefix: "[v]",
-      text: "vault",
-      href: "/vault",
-    },
-  ];
-
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      // skip while focus is on anything interactive so keystrokes (or dictated words) aimed at it don't navigate away
-      const target = e.target as HTMLElement;
-      if (
-        target.isContentEditable ||
-        target.closest("input, textarea, select, button, a, [role='slider'], [role='switch']")
-      ) {
-        return;
-      }
-
-      if (e.metaKey || e.ctrlKey || e.altKey) {
-        return;
-      }
-
-      switch (e.key) {
-        case "h":
-          triggerRef.current("light");
-          router.push("/");
-          break;
-        case "p":
-          triggerRef.current("light");
-          router.push("/projects");
-          break;
-        case "c":
-          triggerRef.current("light");
-          router.push("/craft");
-          break;
-        case "t":
-          triggerRef.current("light");
-          router.push("/thoughts");
-          break;
-        case "v":
-          triggerRef.current("light");
-          router.push("/vault");
-          break;
-        default:
-          break;
-      }
-    };
-
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [router]);
+  // home carries its navigation inline in the header text
+  if (pathname === "/") return null;
 
   return (
-    <nav aria-label="Main" className="mx-auto mb-5 flex max-w-2xl items-center justify-between">
-      <div className="flex items-center gap-3">
-        {navItems.map((item) => (
-          <Link
-            key={item.text}
-            href={item.href}
-            onMouseEnter={() => playHoverSFX()}
-            onClick={() => trigger("light")}
-            className="hover:text-primary text-muted-foreground flex items-center gap-2 text-sm"
-          >
-            <span className="hidden sm:inline-block">{item.prefix}</span>
-            {item.text}
-          </Link>
-        ))}
-      </div>
-      <button
-        onClick={() => setAudioEnabled((prev) => !prev)}
-        className="hover:bg-accent text-muted-foreground flex cursor-pointer items-center justify-center rounded-md p-2"
-        aria-label={audioEnabled ? "Disable audio" : "Enable audio"}
+    <nav
+      aria-label="Main"
+      className="mx-auto mb-5 flex w-full max-w-150 items-center justify-between"
+    >
+      <Link
+        href="/"
+        onMouseEnter={() => playHoverSFX()}
+        onClick={() => trigger("light")}
+        className="group text-muted-foreground hover:text-primary flex items-center gap-1.5 text-sm"
       >
-        {audioEnabled ? (
-          <Volume2 className="size-4" aria-hidden="true" />
-        ) : (
-          <VolumeOff className="size-4" aria-hidden="true" />
-        )}
-      </button>
+        <ArrowLeft
+          className="size-4 transition-transform duration-200 group-hover:-translate-x-0.5"
+          aria-hidden="true"
+        />
+        back
+      </Link>
+      <div className="flex items-center gap-1">
+        <AudioToggle />
+        <ThemeToggler />
+      </div>
     </nav>
   );
 }

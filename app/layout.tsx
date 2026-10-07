@@ -1,13 +1,14 @@
-import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { DATA } from "@/data/me";
 import { ReactNode } from "react";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ImagePreloader } from "@/components/image-preloader";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { AudioProvider } from "@/context/AudioProvider";
+import { DATA } from "@/data/me";
+import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -80,23 +81,19 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <ImagePreloader />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} w-full selection:bg-foreground/15 font-sans antialiased min-h-screen bg-background py-12 sm:py-24 px-6`}
-      >
+    <html lang="en" className={cn("font-sans", geistSans.variable, geistMono.variable)}>
+      <body className="bg-background flex min-h-screen w-full flex-col justify-center px-6 py-12 font-sans antialiased selection:bg-(--selection) sm:py-24">
         <AudioProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
-            forcedTheme="dark"
-            enableSystem={false}
+            defaultTheme="light"
+            enableSystem
             disableTransitionOnChange
           >
-            <Navbar />
-            <main>{children}</main>
+            <TooltipProvider>
+              <Navbar />
+              <main className="mx-auto w-full max-w-150">{children}</main>
+            </TooltipProvider>
             <Analytics />
           </ThemeProvider>
         </AudioProvider>

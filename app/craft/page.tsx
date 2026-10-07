@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Metadata } from "next";
-import { CraftCard } from "@/components/craft-card";
+import { CraftCard } from "@/components/craft/craft-card";
 import { AnimatedList } from "@/components/craft/animated-list";
 import { Bricks } from "@/components/craft/bricks";
 import { CreateCoolThings } from "@/components/craft/create-cool-things/create-cool-things";
@@ -13,7 +13,7 @@ import { MultiStepForm } from "@/components/craft/multistep-form";
 import { NavlinksClip } from "@/components/craft/navlinks-clip";
 import { ResizableText } from "@/components/craft/resizable-text/resizable-text";
 import { TrashInteraction } from "@/components/craft/trash-interaction/trash-interaction";
-import { RainbowText } from "@/components/rainbow-text/rainbow-text";
+import { RainbowText } from "@/components/craft/rainbow-text/rainbow-text";
 
 // TODO: animated dashed border component
 
@@ -126,8 +126,8 @@ const crafts: Craft[] = [
 
 export default function CraftPage() {
   return (
-    <section className="bg-background mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-4">
-      <h1 className="flex items-center justify-between border-b border-[#222222] pb-2 text-base font-medium lowercase">
+    <section className="bg-background flex min-h-screen flex-col gap-4">
+      <h1 className="text-muted-foreground dark:text-foreground flex items-center justify-between border-separator border-b pb-2 text-base font-medium lowercase">
         <span>
           my craft
           <sup className="text-muted-foreground ml-1.5 text-xs select-none">({crafts.length})</sup>

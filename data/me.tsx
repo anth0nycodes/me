@@ -14,43 +14,6 @@ export const DATA = {
     "/pfps/pfp6.png",
   ],
   avatarUrl: "/pfps/pfp.png",
-  skills: [
-    // Frontend Frameworks & Platforms
-    { name: "Next.js", src: "https://nextjs.org/" },
-    { name: "React.js", src: "https://react.dev/" },
-
-    // Languages
-    { name: "TypeScript", src: "https://www.typescriptlang.org/" },
-
-    // Styling & UI Libraries
-    { name: "Tailwind CSS", src: "https://tailwindcss.com/" },
-    { name: "Shadcn UI", src: "https://ui.shadcn.com/" },
-    { name: "Framer Motion", src: "https://motion.dev/" },
-
-    // Backend Frameworks
-    { name: "Express.js", src: "https://expressjs.com/" },
-    { name: "Node.js", src: "https://nodejs.org/" },
-    { name: "tRPC", src: "https://trpc.io/" },
-
-    // Databases & ORM
-    { name: "PostgreSQL", src: "https://www.postgresql.org/" },
-    { name: "Prisma", src: "https://www.prisma.io/" },
-    { name: "Drizzle", src: "https://orm.drizzle.team/" },
-    { name: "Supabase", src: "https://supabase.com/" },
-
-    // Testing
-    { name: "Vitest", src: "https://vitest.dev/" },
-    { name: "Jest", src: "https://jestjs.io/" },
-
-    // Deployment & Infrastructure
-    { name: "Vercel", src: "https://vercel.com/" },
-
-    // Developer Tools
-    { name: "Linear", src: "https://linear.app/" },
-
-    // Design Tools
-    { name: "Figma", src: "https://www.figma.com/" },
-  ],
   resources: [
     {
       title: "animations.dev",
@@ -112,7 +75,10 @@ export const DATA = {
       period: "mar 2026 - apr 2026",
       description: "helping students get jobs",
       href: "https://deep24.com",
-      image: "/work-experience/d24.png",
+      // follows the company badge in the landing page sentence
+      highlight: "redesigning the landing page and shipping core product features",
+      favicon: "/favicons/deep24-light.png",
+      faviconDark: "/favicons/deep24-dark.png",
     },
     {
       title: "magic hour (yc w24)",
@@ -120,7 +86,9 @@ export const DATA = {
       period: "mar 2025 - sep 2025",
       description: "polishing UI/UX and building ai-powered tools for creators",
       href: "https://magichour.ai",
-      image: "/work-experience/mh.png",
+      // follows the company badge in the landing page sentence
+      highlight: "polishing UI/UX for AI creator tools",
+      favicon: "/favicons/magichour.png",
     },
     {
       title: "revisiondojo (yc f24)",
@@ -128,7 +96,9 @@ export const DATA = {
       period: "jan 2025 - mar 2025",
       description: "figma stuff + UI polishing",
       href: "https://revisiondojo.com",
-      image: "/work-experience/rd.png",
+      // follows the company badge in the landing page sentence
+      highlight: "doing figma work and UI polish",
+      favicon: "/favicons/revisiondojo.png",
     },
     {
       title: "muslim tech collaborative",
@@ -136,61 +106,12 @@ export const DATA = {
       period: "dec 2024 - jan 2025",
       description: "revamped and rebuilt the community website",
       href: "https://mtc.so",
-      image: "/work-experience/mtc.png",
-    },
-  ],
-  creativeWorks: [
-    {
-      title: "deep24-01",
-      description: "Landing page I built for Deep24",
-      href: "https://www.youtube.com/watch?v=0BPYzD_GVNI",
-      image: "/posters/deep24-01.jpg",
-    },
-    {
-      title: "design-stuff-01",
-      description: "Recreation of Magic UI's animated list",
-      href: "https://www.youtube.com/watch?v=rgZ0mqzkr8s",
-      image: "/posters/design-stuff-01.jpg",
-    },
-    {
-      title: "magic-hour-02",
-      description: "Landing page I built for Magic Hour",
-      href: "https://www.youtube.com/watch?v=zSmqfayeMuQ",
-      image: "/posters/magic-hour-02.jpg",
-    },
-    {
-      title: "magic-hour-01",
-      description: "Library page UI work for Magic Hour",
-      href: "https://www.youtube.com/watch?v=GQv17nBuV70",
-      image: "/posters/magic-hour-01.jpg",
-    },
-    {
-      title: "mtc",
-      description: "Community website I built for Muslim Tech Collaborative",
-      href: "https://www.youtube.com/watch?v=rQvx48D8oAc",
-      image: "/posters/mtc-01.jpg",
+      // follows the company badge in the landing page sentence
+      highlight: "rebuilding their community website",
+      favicon: "/favicons/mtc.png",
     },
   ],
   projects: [
-    // {
-    //   title: "recall",
-    //   role: "creator / maintainer",
-    //   primary: true,
-    //   status: "in development",
-    //   techStack: [
-    //     "Electron.js",
-    //     "React.js",
-    //     "TypeScript",
-    //     "OpenRouter SDK",
-    //     "SQLite",
-    //     "Drizzle ORM",
-    //     "Shadcn UI",
-    //   ],
-    //   description: "a better way to index and search your iMessage history",
-    //   projectHref: "https://tryrecall.app/",
-    //   sourceCodeHref: "https://github.com/anth0nycodes/recall",
-    //   image: "/posters/recall.png",
-    // },
     {
       title: "resume-analyzer",
       role: "creator / maintainer",
@@ -222,6 +143,7 @@ export const DATA = {
       projectHref: "https://tracemark.fun/",
       sourceCodeHref: "https://github.com/anth0nycodes/tracemark",
       image: "/posters/tracemark.png",
+      favicon: "/favicons/tracemark.png",
     },
     {
       title: "mm2-item-info",

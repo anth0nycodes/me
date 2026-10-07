@@ -1,4 +1,4 @@
-import { VaultCard } from "@/components/vault-card";
+import { VaultCard } from "@/components/vault/vault-card";
 import { DATA } from "@/data/me";
 import { Metadata } from "next";
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default async function ThoughtsPage() {
   return (
     <section className="flex flex-col gap-4">
-      <h1 className="lowercase border-b pb-2 border-[#222222] text-base font-medium">
+      <h1 className="text-muted-foreground dark:text-foreground border-separator border-b pb-2 text-base font-medium lowercase">
         <span>
           welcome to my vault
           <sup className="ml-1.5 select-none text-muted-foreground text-xs">

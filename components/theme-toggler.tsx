@@ -27,20 +27,14 @@ export function ThemeToggler() {
     <button
       onClick={cycleTheme}
       aria-label={`Change theme (current: ${theme})`}
-      className="hover:text-primary text-muted-foreground cursor-pointer transition-colors"
+      className="hover:bg-accent text-muted-foreground flex cursor-pointer items-center justify-center rounded-md p-2"
     >
       {theme === "system" ? (
-        <span className="flex items-center gap-1">
-          <MonitorCog className="size-3.5" aria-hidden="true" />
-        </span>
+        <MonitorCog className="size-4" aria-hidden="true" />
       ) : resolvedTheme === "dark" ? (
-        <span className="flex items-center gap-1">
-          <Moon className="size-3.5" aria-hidden="true" />
-        </span>
+        <Moon className="size-4" aria-hidden="true" />
       ) : (
-        <span className="flex items-center gap-1">
-          <Sun className="size-3.5" aria-hidden="true" />
-        </span>
+        <Sun className="size-4" aria-hidden="true" />
       )}
     </button>
   );

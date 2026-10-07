@@ -1,42 +1,10 @@
-import { Header } from "@/components/header";
-import { LinksSection } from "@/components/links-section";
-import { MotionSection, MotionWrapper } from "@/components/motion-wrapper";
-import { SectionList } from "@/components/section";
-import { DATA } from "@/data/me";
-
-const projectsList = (
-  DATA.projects.length > 3
-    ? DATA.projects.filter((p) => p.primary)
-    : DATA.projects
-).map((p) => ({
-  title: p.title,
-  role: p.role,
-  status: p.status,
-  description: p.description,
-  href: p.sourceCodeHref,
-  image: p.image,
-}));
+import { Header } from "@/components/home/header";
+import { LinksSection } from "@/components/home/links-section";
 
 const sections = [
   {
     id: "header",
     component: <Header />,
-  },
-  {
-    id: "work experience",
-    component: <SectionList sectionTitle="work experience" items={DATA.work} />,
-  },
-  {
-    id: "projects",
-    component: (
-      <SectionList
-        sectionTitle="projects"
-        items={projectsList}
-        itemsCount={DATA.projects.length}
-        viewAllHref="/projects"
-        viewAllText="all projects"
-      />
-    ),
   },
   {
     id: "links",
@@ -46,10 +14,10 @@ const sections = [
 
 export default function HomePage() {
   return (
-    <MotionWrapper>
+    <div className="flex flex-col gap-8 lowercase">
       {sections.map((section) => (
-        <MotionSection key={section.id}>{section.component}</MotionSection>
+        <div key={section.id}>{section.component}</div>
       ))}
-    </MotionWrapper>
+    </div>
   );
 }

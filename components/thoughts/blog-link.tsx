@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useSound } from "use-sound";
-import { useHaptics } from "@/hooks/use-haptics";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
 import type { Post } from "@/data/blog";
+import { useHaptics } from "@/hooks/use-haptics";
 import { formatDate } from "@/lib/utils";
 
 interface BlogPostsProps {
@@ -14,24 +14,22 @@ interface BlogPostsProps {
 export function BlogLink({ post }: BlogPostsProps) {
   const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
-  const [playHoverSFX] = useSound("/audio/hover.mp3", {
+  const [playHoverSFX] = useSound("/audio/hover-tick.wav", {
     volume: 0.125,
     soundEnabled: audioEnabled,
   });
 
   return (
     <Link
-      className="group-hover:opacity-40 hover:opacity-100 relative flex flex-col py-3"
+      className="relative flex flex-col py-3 group-hover:opacity-40 hover:opacity-100"
       onMouseEnter={() => {
         trigger("light");
         playHoverSFX();
       }}
       href={`/thoughts/${post.slug}`}
     >
-      <p className="text-sm font-semibold mb-1">{post.metadata.title}</p>
-      <p className="text-xs text-muted-foreground">
-        {formatDate(post.metadata.publishedAt)}
-      </p>
+      <p className="mb-1 text-sm font-medium">{post.metadata.title}</p>
+      <p className="text-muted-foreground text-xs">{formatDate(post.metadata.publishedAt)}</p>
     </Link>
   );
 }

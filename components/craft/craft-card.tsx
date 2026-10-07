@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { ArrowUpRight, LinkIcon } from "lucide-react";
 import { useSound } from "use-sound";
-import { useHaptics } from "@/hooks/use-haptics";
 import { type Craft } from "@/app/craft/page";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
+import { useHaptics } from "@/hooks/use-haptics";
 
 interface CraftCardProps {
   craft: Craft;
@@ -14,8 +14,9 @@ interface CraftCardProps {
 export function CraftCard({ craft }: CraftCardProps) {
   return (
     <section id={craft.id} className="flex scroll-mt-4 flex-col gap-2">
-      <div className="border-accent aspect-16/12 size-full max-h-94 overflow-clip rounded-lg border">
-        {craft.component}
+      <div className="ring-accent aspect-16/12 size-full max-h-93.5 overflow-clip rounded-lg ring-2 dark:ring-1">
+        {/* demos are built against the dark palette, so pin it here regardless of site theme */}
+        <div className="dark text-foreground size-full">{craft.component}</div>
       </div>
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center">
@@ -31,9 +32,7 @@ export function CraftCard({ craft }: CraftCardProps) {
           </Link>
         </div>
         <div className="flex items-center gap-2">
-          {craft.reference && (
-            <CraftLink label="reference" href={craft.reference} />
-          )}
+          {craft.reference && <CraftLink label="reference" href={craft.reference} />}
           <CraftLink label="source" href={craft.source} />
         </div>
       </div>
@@ -44,7 +43,7 @@ export function CraftCard({ craft }: CraftCardProps) {
 function CraftLink({ label, href }: { label: string; href: string }) {
   const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
-  const [playHoverSFX] = useSound("/audio/hover.mp3", {
+  const [playHoverSFX] = useSound("/audio/hover-tick.wav", {
     volume: 0.125,
     soundEnabled: audioEnabled,
   });
@@ -54,7 +53,7 @@ function CraftLink({ label, href }: { label: string; href: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex items-center gap-1 text-xs font-medium text-[#8fb7b7] sm:text-sm"
+      className="group text-muted-foreground hover:text-foreground flex items-center gap-1 text-xs font-medium transition-colors sm:text-sm"
       onMouseEnter={() => {
         trigger("light");
         playHoverSFX();
@@ -62,7 +61,7 @@ function CraftLink({ label, href }: { label: string; href: string }) {
     >
       <span className="group-hover:underline">{label}</span>
       <ArrowUpRight
-        className="text-foreground size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+        className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
         aria-hidden
       />
     </a>

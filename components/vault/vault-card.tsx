@@ -1,8 +1,8 @@
 "use client";
 
-import { useAudioEnabled } from "@/context/use-audio-enabled";
 import Link from "next/link";
 import { useSound } from "use-sound";
+import { useAudioEnabled } from "@/context/use-audio-enabled";
 import { useHaptics } from "@/hooks/use-haptics";
 
 interface VaultCardProps {
@@ -15,7 +15,7 @@ interface VaultCardProps {
 export function VaultCard({ title, src, author, description }: VaultCardProps) {
   const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
-  const [playHoverSFX] = useSound("/audio/hover.mp3", {
+  const [playHoverSFX] = useSound("/audio/hover-tick.wav", {
     volume: 0.125,
     soundEnabled: audioEnabled,
   });
@@ -31,17 +31,13 @@ export function VaultCard({ title, src, author, description }: VaultCardProps) {
       }}
       onClick={() => trigger("light")}
     >
-      <div className="flex flex-col justify-between p-6 h-full border border-muted rounded-lg hover:bg-accent group">
+      <div className="border-muted hover:bg-accent group flex h-full flex-col justify-between rounded-lg border-2 p-6">
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
-            <p className="text-sm font-semibold tracking-tighter group-hover:underline">
-              {title}
-            </p>
-            <p className="text-xs text-muted-foreground">{description}</p>
+            <p className="text-sm font-medium tracking-tighter group-hover:underline">{title}</p>
+            <p className="text-muted-foreground text-xs">{description}</p>
           </div>
-          <p className="text-xs tracking-tighter font-medium text-muted-foreground">
-            by {author}
-          </p>
+          <p className="text-muted-foreground text-xs font-medium tracking-tighter">by {author}</p>
         </div>
       </div>
     </Link>
