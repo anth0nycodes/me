@@ -24,6 +24,17 @@ export function FeedbackPopover() {
     }
   }
 
+  function handleSubmit() {
+    setFormState("loading");
+    setTimeout(() => {
+      setFormState("success");
+    }, 1500);
+
+    setTimeout(() => {
+      setOpen(false);
+    }, 3300);
+  }
+
   useEffect(() => {
     window.addEventListener("mousedown", handleClickOutside);
     window.addEventListener("touchstart", handleClickOutside);
@@ -66,17 +77,6 @@ export function FeedbackPopover() {
       triggerRef.current?.focus();
     }
   }, [open]);
-
-  function handleSubmit() {
-    setFormState("loading");
-    setTimeout(() => {
-      setFormState("success");
-    }, 1500);
-
-    setTimeout(() => {
-      setOpen(false);
-    }, 3300);
-  }
 
   function renderFormStateContent() {
     if (formState === "success") {
