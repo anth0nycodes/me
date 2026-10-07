@@ -208,7 +208,7 @@ export function HoldToDelete() {
                       className="size-3.5 shrink-0 sm:size-4"
                       priority={task.priority}
                     />
-                    <span className="hidden w-14 shrink-0 text-[13px] text-[#959597] uppercase tabular-nums sm:block">
+                    <span className="hidden w-max shrink-0 text-[13px] text-[#959597] uppercase tabular-nums sm:block">
                       {task.id}
                     </span>
                     <InProgress className="size-3 shrink-0 sm:size-3.25" aria-hidden />
@@ -225,7 +225,7 @@ export function HoldToDelete() {
                         {initials}
                       </span>
                     </div>
-                    <span className="w-9 text-right text-[11px] text-[#959597] tabular-nums sm:w-10 sm:text-xs">
+                    <span className="w-10 text-right text-[11px] text-[#959597] tabular-nums sm:text-xs">
                       {task.date}
                     </span>
                   </div>

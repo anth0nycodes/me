@@ -114,7 +114,7 @@ export function FeedbackPopover() {
           aria-label="Feedback"
           placeholder="Feedback"
           onChange={(e) => setFeedback(e.target.value)}
-          className="text-background h-32 w-full resize-none p-3 outline-none selection:bg-[Highlight]! placeholder:opacity-0 sm:text-sm"
+          className="text-background h-32 w-full resize-none p-3 text-[16px] outline-none selection:bg-[Highlight]! placeholder:opacity-0 sm:text-sm"
           required
         />
         <div className="relative flex h-12 w-full items-center px-2.5">
@@ -182,7 +182,7 @@ export function FeedbackPopover() {
             : {
                 layoutId: "title",
               })}
-          className="text-background block sm:text-sm"
+          className="text-background block text-[16px] sm:text-sm"
         >
           Feedback
         </motion.span>
@@ -208,7 +208,7 @@ export function FeedbackPopover() {
                     layoutId: "title",
                   })}
               data-feedback={feedback ? true : false}
-              className="absolute top-4.25 left-4.25 text-[#63635d] data-[feedback=true]:opacity-0! sm:text-sm"
+              className="absolute top-4.25 left-4.25 text-[16px] text-[#63635d] data-[feedback=true]:opacity-0! sm:text-sm"
             >
               Feedback
             </motion.span>
