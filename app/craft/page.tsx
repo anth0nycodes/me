@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import { Metadata } from "next";
-import { CraftCard } from "@/components/craft/craft-card";
 import { AnimatedList } from "@/components/craft/animated-list";
 import { Bricks } from "@/components/craft/bricks";
+import { CraftCard } from "@/components/craft/craft-card";
 import { CreateCoolThings } from "@/components/craft/create-cool-things/create-cool-things";
 import { FeedbackPopover } from "@/components/craft/feedback-popover/feedback-popover";
 import { FileTree } from "@/components/craft/file-tree/file-tree";
@@ -11,9 +11,10 @@ import { Lightswitch } from "@/components/craft/light-switch";
 import { MetalCard } from "@/components/craft/metal-card";
 import { MultiStepForm } from "@/components/craft/multistep-form";
 import { NavlinksClip } from "@/components/craft/navlinks-clip";
-import { ResizableText } from "@/components/craft/resizable-text/resizable-text";
-import { TrashInteraction } from "@/components/craft/trash-interaction/trash-interaction";
 import { RainbowText } from "@/components/craft/rainbow-text/rainbow-text";
+import { ResizableText } from "@/components/craft/resizable-text/resizable-text";
+import { ScratchToReveal } from "@/components/craft/scratch-to-reveal";
+import { TrashInteraction } from "@/components/craft/trash-interaction/trash-interaction";
 
 // TODO: animated dashed border component
 
@@ -31,6 +32,12 @@ export interface Craft {
 }
 
 const crafts: Craft[] = [
+  {
+    id: "scratch-to-reveal",
+    description: "Scratch to Reveal",
+    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/scratch-to-reveal.tsx",
+    component: <ScratchToReveal />,
+  },
   {
     id: "hold-to-delete",
     description: "Hold to Delete",
@@ -127,7 +134,7 @@ const crafts: Craft[] = [
 export default function CraftPage() {
   return (
     <section className="bg-background flex min-h-screen flex-col gap-4">
-      <h1 className="text-muted-foreground dark:text-foreground flex items-center justify-between border-separator border-b pb-2 text-base font-medium lowercase">
+      <h1 className="text-muted-foreground dark:text-foreground border-separator flex items-center justify-between border-b pb-2 text-base font-medium lowercase">
         <span>
           my craft
           <sup className="text-muted-foreground ml-1.5 text-xs select-none">({crafts.length})</sup>
