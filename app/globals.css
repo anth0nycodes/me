@@ -149,8 +149,8 @@
     @apply border-border outline-ring/50;
   }
   :focus-visible {
-    outline: 2px solid var(--selection);
-    outline-offset: 2px;
+    outline: 1px solid var(--selection);
+    outline-offset: -1px;
   }
   body {
     @apply bg-background text-foreground;
