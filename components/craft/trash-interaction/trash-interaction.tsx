@@ -20,22 +20,22 @@ interface ToolbarItemProps {
 const IMAGES: Image[] = [
   {
     id: "mountains",
-    src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80",
+    src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop&auto=format&q=70",
     alt: "Mountain peaks above the clouds",
   },
   {
     id: "lake",
-    src: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&q=80",
+    src: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=200&h=200&fit=crop&auto=format&q=70",
     alt: "Lake surrounded by mountains",
   },
   {
     id: "valley",
-    src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&q=80",
+    src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=200&h=200&fit=crop&auto=format&q=70",
     alt: "Foggy green valley",
   },
   {
     id: "forest",
-    src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&q=80",
+    src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=200&fit=crop&auto=format&q=70",
     alt: "Sunlight through a forest",
   },
 ];
@@ -160,6 +160,9 @@ export function TrashInteraction() {
                           className="size-full rounded-xl object-cover"
                           alt={image.alt}
                           src={image.src}
+                          width={200}
+                          height={200}
+                          fetchPriority="high"
                         />
                       </button>
                     </motion.li>
