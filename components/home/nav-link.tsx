@@ -38,7 +38,7 @@ export function NavLink({ href, color, children }: NavLinkProps) {
         {children}
         <span
           aria-hidden="true"
-          className="absolute inset-x-0 top-full mt-px h-0.5 rounded-full bg-(--color) transition-colors duration-250 ease-out group-hover:bg-(--color-dark) group-focus-visible:bg-(--color-dark) motion-reduce:transition-none"
+          className="absolute inset-x-0 top-full h-0.5 rounded-full bg-(--color) transition-colors duration-250 ease-out group-hover:bg-(--color-dark) group-focus-visible:bg-(--color-dark) motion-reduce:transition-none"
         />
       </span>
     </Link>
