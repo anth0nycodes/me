@@ -20,7 +20,7 @@ const TASKS: Task[] = [
     label: "migrate to new design system",
     date: "Jun 6",
     author: "Anthony Hoang",
-    authorColor: "#5E6AD2",
+    authorColor: "#5763C3",
     priority: "high",
   },
   {
@@ -28,7 +28,7 @@ const TASKS: Task[] = [
     label: "fix popover flicker on safari",
     date: "Jun 8",
     author: "Maya Chen",
-    authorColor: "#C2477F",
+    authorColor: "#B44276",
     priority: "medium",
   },
   {
@@ -36,7 +36,7 @@ const TASKS: Task[] = [
     label: "add haptics to drag handle",
     date: "Jun 11",
     author: "Daniel Ortiz",
-    authorColor: "#C7632B",
+    authorColor: "#A95425",
     priority: "low",
   },
   {
@@ -44,7 +44,7 @@ const TASKS: Task[] = [
     label: "audit reduced motion fallbacks",
     date: "Jun 14",
     author: "Priya Nair",
-    authorColor: "#2B8A6E",
+    authorColor: "#267961",
     priority: "medium",
   },
   {
@@ -52,7 +52,7 @@ const TASKS: Task[] = [
     label: "convert hero images to avif",
     date: "Jun 19",
     author: "Sam Whitfield",
-    authorColor: "#2F7BC8",
+    authorColor: "#2A6DB2",
     priority: "low",
   },
 ];
@@ -127,11 +127,11 @@ export function HoldToDelete() {
             <button
               tabIndex={-1}
               aria-expanded={isExpanded}
+              aria-label="Toggle In Progress tasks"
               className="relative cursor-pointer before:absolute before:-inset-1 before:content-['']"
             >
               <Marker
                 data-expanded={isExpanded}
-                aria-label={`${isExpanded ? "Expanded" : "Collapsed"} marker`}
                 className="size-3.5 data-[expanded=true]:rotate-90 sm:size-4"
               />
             </button>
