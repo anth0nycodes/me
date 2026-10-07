@@ -53,8 +53,8 @@ export function LinksSection() {
   const { trigger } = useHaptics();
 
   return (
-    <section className="flex items-center justify-between border-separator border-t pt-12 text-sm">
-      <span className="text-muted-inverse w-full">form and function.</span>
+    <section className="border-separator flex items-center justify-between border-t pt-12 text-sm">
+      <span className="text-muted-inverse w-full">form follows function.</span>
       <div className="flex gap-1.5">
         {links.map(({ title, href, icon: Icon }) => (
           <Tooltip key={title}>
