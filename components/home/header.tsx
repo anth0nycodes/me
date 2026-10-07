@@ -26,7 +26,13 @@ const workBadges = DATA.work.map((job) => ({
   href: job.href,
   highlight: job.highlight,
   isInternship: job.role.includes("intern"),
-  icon: <Favicon src={job.favicon} srcDark={"faviconDark" in job ? job.faviconDark : undefined} />,
+  icon: (
+    <Favicon
+      src={job.favicon}
+      srcDark={"faviconDark" in job ? job.faviconDark : undefined}
+      alt={`${job.title} logo`}
+    />
+  ),
 }));
 
 const internshipBadges = workBadges.filter((badge) => badge.isInternship);
@@ -38,7 +44,11 @@ const projectBadges = DATA.projects
     name: project.title,
     href: project.projectHref,
     icon:
-      "favicon" in project ? <Favicon src={project.favicon} /> : <NpmIcon className="size-3.5" />,
+      "favicon" in project ? (
+        <Favicon src={project.favicon} alt={`${project.title} logo`} />
+      ) : (
+        <NpmIcon className="size-3.5" />
+      ),
   }));
 
 export function Header() {
