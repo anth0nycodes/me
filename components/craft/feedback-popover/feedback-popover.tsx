@@ -114,7 +114,7 @@ export function FeedbackPopover() {
           aria-label="Feedback"
           placeholder="Feedback"
           onChange={(e) => setFeedback(e.target.value)}
-          className="text-background h-32 w-full resize-none p-3 text-[16px] outline-none selection:bg-[Highlight]! placeholder:opacity-0 sm:text-sm"
+          className="text-background h-32 w-full resize-none p-3 text-base outline-none selection:bg-[Highlight]! placeholder:opacity-0 sm:text-sm"
           required
         />
         <div className="relative flex h-12 w-full items-center px-2.5">
@@ -159,6 +159,8 @@ export function FeedbackPopover() {
       <span role="status" className="sr-only">
         {formState === "success" ? "Feedback received! Thanks for playing with the form." : ""}
       </span>
+      {/* layoutDependency forces a re-render when open flips. React Compiler otherwise memoizes the trigger,
+          so motion snapshots it against a stale page scroll offset and the popover flies in from off-card */}
       <motion.button
         ref={triggerRef}
         {...(prefersReducedMotion
@@ -166,6 +168,7 @@ export function FeedbackPopover() {
           : {
               layoutId: "wrapper",
             })}
+        layoutDependency={open}
         onClick={() => {
           setOpen(true);
           setFeedback("");
@@ -182,7 +185,8 @@ export function FeedbackPopover() {
             : {
                 layoutId: "title",
               })}
-          className="text-background block text-[16px] sm:text-sm"
+          layoutDependency={open}
+          className="text-background block text-base sm:text-sm"
         >
           Feedback
         </motion.span>
@@ -208,7 +212,7 @@ export function FeedbackPopover() {
                     layoutId: "title",
                   })}
               data-feedback={feedback ? true : false}
-              className="absolute top-4.25 left-4.25 text-[16px] text-[#63635d] data-[feedback=true]:opacity-0! sm:text-sm"
+              className="absolute top-4.25 left-4.25 text-base text-[#63635d] data-[feedback=true]:opacity-0! sm:text-sm"
             >
               Feedback
             </motion.span>
