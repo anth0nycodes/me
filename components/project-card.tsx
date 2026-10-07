@@ -4,12 +4,11 @@ import Image from "next/image";
 import { useSound } from "use-sound";
 import { useHaptics } from "@/hooks/use-haptics";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
+import { determineStatusColor } from "@/lib/status";
 import { cn } from "@/lib/utils";
-import { determineStatusColor } from "./section";
 
 interface Project {
   title: string;
-  role: string;
   status: string;
   techStack: readonly string[];
   description: string;
@@ -36,7 +35,7 @@ function ProjectButton({ href, label, onMouseDown, onMouseEnter, onClick }: Proj
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="bg-background inline-block cursor-pointer rounded-sm px-3 py-1.5 text-sm transition hover:opacity-85 active:scale-95"
+      className="bg-background ring-border inline-block cursor-pointer rounded-sm px-3 ring-1 py-1.5 text-sm transition hover:opacity-85 active:scale-95 dark:ring-0"
       onMouseDown={onMouseDown}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
@@ -49,7 +48,7 @@ function ProjectButton({ href, label, onMouseDown, onMouseEnter, onClick }: Proj
 export function ProjectCard({ project }: ProjectCardProps) {
   const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
-  const [playHoverSFX] = useSound("/audio/hover.mp3", {
+  const [playHoverSFX] = useSound("/audio/hover-tick.wav", {
     volume: 0.125,
     soundEnabled: audioEnabled,
   });
@@ -76,7 +75,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="relative overflow-clip rounded-md">
+      <div className="ring-border relative overflow-clip rounded-md ring-2 dark:ring-0">
         <div
           className="group"
           onMouseEnter={() => {
@@ -104,33 +103,32 @@ export function ProjectCard({ project }: ProjectCardProps) {
             alt={project.title}
             width={500}
             height={180}
-            sizes="(min-width: 640px) 336px, 100vw"
-            className="h-45 w-full object-cover transition-transform duration-500 group-hover:scale-115 group-has-focus-visible:scale-115 motion-reduce:duration-0 motion-reduce:group-hover:scale-100 motion-reduce:group-has-focus-visible:scale-100"
+            sizes="(min-width: 640px) 576px, 100vw"
+            className="h-45 w-full object-cover select-none sm:h-60 transition-transform duration-500 group-hover:scale-115 group-has-focus-visible:scale-115 motion-reduce:duration-0 motion-reduce:group-hover:scale-100 motion-reduce:group-has-focus-visible:scale-100"
           />
         </div>
       </div>
-      <div>
-        <div className="flex items-center justify-between">
-          <h2 className="mb-1 text-sm font-semibold">{project.title}</h2>
-          <span
-            className={cn(
-              "rounded-md px-2 py-1 text-[11px] select-none",
-              determineStatusColor(project.status),
-            )}
-          >
-            {project.status}
-          </span>
-        </div>
-        <p className="mb-2 text-[13px]">{project.role}</p>
-        <div className="flex flex-col gap-2">
-          <p className="text-muted-foreground text-xs">{project.description}</p>
-          <div className="flex flex-wrap gap-2">
-            {project.techStack.map((tech) => (
-              <div className="border-border bg-card rounded-md border px-1.5 py-0.5" key={tech}>
-                <span className="text-[11px]">{tech}</span>
-              </div>
-            ))}
+      <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-1.5">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold">{project.title}</h2>
+            <span
+              className={cn(
+                "rounded-sm px-1.5 py-0.5 text-[10px] select-none",
+                determineStatusColor(project.status),
+              )}
+            >
+              {project.status}
+            </span>
           </div>
+          <p className="text-muted-foreground text-xs">{project.description}</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {project.techStack.map((tech) => (
+            <div className="border-border bg-card flex items-center justify-center rounded-md border px-1.5 py-0.5 leading-6 select-none" key={tech}>
+              <span className="text-[11px]">{tech}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
