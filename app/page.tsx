@@ -1,5 +1,5 @@
-import { Header } from "@/components/header";
-import { LinksSection } from "@/components/links-section";
+import { Header } from "@/components/home/header";
+import { LinksSection } from "@/components/home/links-section";
 
 const sections = [
   {

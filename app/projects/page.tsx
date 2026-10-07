@@ -1,4 +1,4 @@
-import { ProjectCard } from "@/components/project-card";
+import { ProjectCard } from "@/components/projects/project-card";
 import { DATA } from "@/data/me";
 import { Metadata } from "next";
 

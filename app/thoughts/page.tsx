@@ -1,4 +1,4 @@
-import { BlogLink } from "@/components/blog-link";
+import { BlogLink } from "@/components/thoughts/blog-link";
 import { getBlogPosts } from "@/data/blog";
 import { Metadata } from "next";
 

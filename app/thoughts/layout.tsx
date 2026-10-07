@@ -1,4 +1,4 @@
-import { ScrollToTop } from "@/components/scroll-to-top";
+import { ScrollToTop } from "@/components/thoughts/scroll-to-top";
 import { ReactNode } from "react";
 
 export default function ThoughtsLayout({

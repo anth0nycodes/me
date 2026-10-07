@@ -1,4 +1,4 @@
-import { VaultCard } from "@/components/vault-card";
+import { VaultCard } from "@/components/vault/vault-card";
 import { DATA } from "@/data/me";
 import { Metadata } from "next";
 

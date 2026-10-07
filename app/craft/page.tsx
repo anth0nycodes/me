@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Metadata } from "next";
-import { CraftCard } from "@/components/craft-card";
+import { CraftCard } from "@/components/craft/craft-card";
 import { AnimatedList } from "@/components/craft/animated-list";
 import { Bricks } from "@/components/craft/bricks";
 import { CreateCoolThings } from "@/components/craft/create-cool-things/create-cool-things";
@@ -13,7 +13,7 @@ import { MultiStepForm } from "@/components/craft/multistep-form";
 import { NavlinksClip } from "@/components/craft/navlinks-clip";
 import { ResizableText } from "@/components/craft/resizable-text/resizable-text";
 import { TrashInteraction } from "@/components/craft/trash-interaction/trash-interaction";
-import { RainbowText } from "@/components/rainbow-text/rainbow-text";
+import { RainbowText } from "@/components/craft/rainbow-text/rainbow-text";
 
 // TODO: animated dashed border component
 
