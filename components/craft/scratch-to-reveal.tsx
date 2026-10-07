@@ -22,6 +22,34 @@ const REVEAL_THRESHOLD = 0.6;
 // Checking every Nth pixel is plenty to estimate how much is scratched off
 const SAMPLE_STRIDE = 8;
 const COPIED_DURATION = 1500;
+const SCRATCH_VOLUME = 0.25;
+// Pointer travel in px between two moves that plays the sound at full volume
+const SCRATCH_FULL_SPEED = 24;
+const SCRATCH_FILTER_FREQUENCY = 2400;
+// Moves stop firing when the pointer rests, so fade out once none arrive for this long
+const SCRATCH_SILENCE_DELAY = 60;
+
+type ScratchAudio = { ctx: AudioContext; gain: GainNode };
+
+// Looping white noise through a bandpass sounds like a coin on foil, no audio file needed
+function createScratchAudio(): ScratchAudio {
+  const ctx = new AudioContext();
+  const buffer = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+  const samples = buffer.getChannelData(0);
+  for (let i = 0; i < samples.length; i++) samples[i] = Math.random() * 2 - 1;
+
+  const source = new AudioBufferSourceNode(ctx, { buffer, loop: true });
+  const filter = new BiquadFilterNode(ctx, {
+    type: "bandpass",
+    frequency: SCRATCH_FILTER_FREQUENCY,
+    Q: 0.8,
+  });
+  const gain = new GainNode(ctx, { gain: 0 });
+  source.connect(filter).connect(gain).connect(ctx.destination);
+  source.start();
+
+  return { ctx, gain };
+}
 
 function getScratchedRatio(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
   const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -39,6 +67,8 @@ export function ScratchToReveal() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const lastPointRef = useRef<{ x: number; y: number } | null>(null);
   const copiedTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const audioRef = useRef<ScratchAudio | null>(null);
+  const silenceTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [isRevealed, setIsRevealed] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const { runId, isReplayDisabled, replay, enableReplay } = useReplay(() => {
@@ -48,7 +78,15 @@ export function ScratchToReveal() {
     setIsCopied(false);
   });
 
-  useEffect(() => () => clearTimeout(copiedTimeoutRef.current), []);
+  useEffect(
+    () => () => {
+      clearTimeout(copiedTimeoutRef.current);
+      clearTimeout(silenceTimeoutRef.current);
+      audioRef.current?.ctx.close();
+      audioRef.current = null;
+    },
+    [],
+  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -85,6 +123,23 @@ export function ScratchToReveal() {
     // Replaying remounts the canvas, so the fresh one needs its foil drawn
   }, [runId]);
 
+  function playScratchSound(distance: number) {
+    const audio = audioRef.current;
+    if (!audio) return;
+    // Faster drags are louder, like pressing a coin across the foil
+    const level = Math.min(distance / SCRATCH_FULL_SPEED, 1) * SCRATCH_VOLUME;
+    audio.gain.gain.setTargetAtTime(level, audio.ctx.currentTime, 0.015);
+    clearTimeout(silenceTimeoutRef.current);
+    silenceTimeoutRef.current = setTimeout(silenceScratchSound, SCRATCH_SILENCE_DELAY);
+  }
+
+  function silenceScratchSound() {
+    clearTimeout(silenceTimeoutRef.current);
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.gain.gain.setTargetAtTime(0, audio.ctx.currentTime, 0.03);
+  }
+
   function scratch(e: PointerEvent<HTMLCanvasElement>) {
     // Only scratch when the left mouse button is pressed
     if (e.buttons !== 1) {
@@ -119,18 +174,35 @@ export function ScratchToReveal() {
 
     lastPointRef.current = { x, y };
 
-    if (getScratchedRatio(canvas, ctx) >= REVEAL_THRESHOLD) setIsRevealed(true);
+    if (getScratchedRatio(canvas, ctx) >= REVEAL_THRESHOLD) {
+      setIsRevealed(true);
+      silenceScratchSound();
+    } else if (!isRevealed) {
+      // A press without a previous point still scrapes off a brush-sized dot
+      playScratchSound(lastPoint ? Math.hypot(x - lastPoint.x, y - lastPoint.y) : BRUSH_RADIUS);
+    }
   }
 
   function startScratch(e: PointerEvent<HTMLCanvasElement>) {
     // Keep receiving moves when the drag leaves the canvas, so re-entry doesn't draw a line across it
     e.currentTarget.setPointerCapture(e.pointerId);
     lastPointRef.current = null;
+    // Browsers only allow audio to start from a user gesture, so build it on the first press
+    audioRef.current ??= createScratchAudio();
+    resumeScratchAudio();
     scratch(e);
   }
 
   function endScratch() {
     lastPointRef.current = null;
+    silenceScratchSound();
+    // Touch only counts as a gesture on release, so a context blocked on press unlocks here
+    resumeScratchAudio();
+  }
+
+  function resumeScratchAudio() {
+    const ctx = audioRef.current?.ctx;
+    if (ctx?.state === "suspended") void ctx.resume();
   }
 
   async function copyCode() {
