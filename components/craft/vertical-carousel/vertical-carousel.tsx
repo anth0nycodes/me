@@ -42,7 +42,7 @@ const ITEMS: CarouselItem[] = [
 
 const GAP = 12; // px between each item's edges
 const SCALE_STEP = 0.1; // scale lost per item away from center
-const MAX_OFFSET = Math.floor(ITEMS.length / 2);
+const MAX_OFFSET = Math.floor(ITEMS.length / 2); // max distance from center before wrapping around
 
 function getOffset(index: number, activeIndex: number) {
   const distance = Math.abs(index - activeIndex);
