@@ -15,6 +15,7 @@ import { RainbowText } from "@/components/craft/rainbow-text/rainbow-text";
 import { ResizableText } from "@/components/craft/resizable-text/resizable-text";
 import { ScratchToReveal } from "@/components/craft/scratch-to-reveal";
 import { TrashInteraction } from "@/components/craft/trash-interaction/trash-interaction";
+import { VerticalCarousel } from "@/components/craft/vertical-carousel/vertical-carousel";
 
 // TODO: animated dashed border component
 
@@ -32,6 +33,13 @@ export interface Craft {
 }
 
 const crafts: Craft[] = [
+  {
+    id: "vertical-carousel",
+    description: "Vertical Carousel",
+    source:
+      "https://github.com/anth0nycodes/me/blob/main/components/craft/vertical-carousel/vertical-carousel.tsx",
+    component: <VerticalCarousel />,
+  },
   {
     id: "scratch-to-reveal",
     description: "Scratch to Reveal",

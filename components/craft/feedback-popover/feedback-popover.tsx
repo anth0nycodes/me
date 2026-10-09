@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { CircleCheck, DottedLine, HalfCircle } from "./svgs";
 
 type FormState = "idle" | "loading" | "success";
@@ -14,7 +15,7 @@ export function FeedbackPopover() {
   const [open, setOpen] = useState(false);
   const [formState, setFormState] = useState<FormState>("idle");
   const [feedback, setFeedback] = useState("");
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   function handleClickOutside(e: MouseEvent | TouchEvent) {
     if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {

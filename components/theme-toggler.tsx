@@ -2,17 +2,13 @@
 
 import { MonitorCog, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { useHaptics } from "@/hooks/use-haptics";
+import { useIsMounted } from "@/hooks/use-is-mounted";
 
 export function ThemeToggler() {
   const { theme, resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsMounted();
   const { trigger } = useHaptics();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   if (!mounted) return null;
 

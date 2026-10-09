@@ -1,7 +1,8 @@
 "use client";
 
 import { ReactNode, useState, type CSSProperties } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 
 interface Step {
@@ -34,7 +35,7 @@ function renderXOffset(currentStep: number, index: number) {
 }
 
 export function MultiStepForm() {
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const [currentStep, setCurrentStep] = useState(0);
 
   return (

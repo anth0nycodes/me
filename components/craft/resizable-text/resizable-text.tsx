@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState, type AnimationEvent, type SVGProps } from "react";
 import { X } from "lucide-react";
-import { useReducedMotion } from "motion/react";
 import { ReplayButton } from "@/components/ui/replay-button";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { useReplay } from "@/hooks/use-replay";
 import { cn } from "@/lib/utils";
 
@@ -13,7 +13,7 @@ export function ResizableText() {
   const { runId, isReplayDisabled, replay, enableReplay } = useReplay(() => setIsClicked(false));
   const containerRef = useRef<HTMLDivElement>(null);
   const elementRef = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const isSelected = isClicked || prefersReducedMotion;
 

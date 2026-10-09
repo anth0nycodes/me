@@ -2,7 +2,8 @@
 
 import { CSSProperties, Dispatch, SetStateAction, useState } from "react";
 import { ChevronRight, FileIcon, FolderIcon, FolderOpen, Minimize2 } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 
 interface FileNode {
@@ -130,7 +131,7 @@ interface TreeProps {
 }
 
 function Tree({ nodes, expandedNodes, setExpandedNodes, parentPath = "" }: TreeProps) {
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   function handleNodeClick(node: FileNode, fullPath: string) {
     if (!node.children) return;

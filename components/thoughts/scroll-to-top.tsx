@@ -1,13 +1,13 @@
 "use client";
 
 import { ChevronUp } from "lucide-react";
-import { useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 
 export function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   function handleScrollToTop() {
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });

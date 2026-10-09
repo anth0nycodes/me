@@ -87,11 +87,7 @@ export function AnimatedList() {
     if (!targetElement) return;
 
     const intersectionObserver = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        setIsInView(true);
-        intersectionObserver.disconnect();
-      },
+      ([entry]) => setIsInView(entry.isIntersecting),
       { threshold: 0.3 },
     );
 
@@ -130,10 +126,10 @@ interface AnimatedListItemProps {
 function AnimatedListItem({ item, style }: AnimatedListItemProps) {
   return (
     <div
-      className="group absolute left-1/2 w-[calc(100%-2rem)] max-w-100 origin-top -translate-x-1/2 translate-y-[calc(var(--index)*(100%+var(--gap)))] scale-100 opacity-100 transition-[scale,opacity,translate] duration-[650ms,400ms,675ms] ease-[cubic-bezier(0.29,0.95,0.27,0.97),ease-out,cubic-bezier(0.39,0.93,0.3,0.96)] starting:scale-20 starting:opacity-0"
+      className="group absolute left-1/2 w-[calc(100%-2rem)] max-w-100 origin-top -translate-x-1/2 translate-y-[calc(var(--index)*(100%+var(--gap)))] scale-100 opacity-100 transition-[scale,opacity,translate] duration-[650ms,400ms,675ms] ease-[cubic-bezier(0.29,0.95,0.27,0.97),ease-out,cubic-bezier(0.39,0.93,0.3,0.96)] motion-reduce:duration-0 starting:scale-20 starting:opacity-0"
       style={style}
     >
-      <div className="bg-foreground flex cursor-pointer items-center gap-3 rounded-2xl p-4 [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] transition-[scale] duration-200 ease-in-out group-hover:scale-103">
+      <div className="bg-foreground flex cursor-pointer items-center gap-3 rounded-2xl p-4 [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] transition-[scale] duration-200 ease-in-out group-hover:scale-103 motion-reduce:duration-0">
         <div
           className="flex size-10 shrink-0 items-center justify-center rounded-2xl"
           style={{ backgroundColor: item.iconBg }}

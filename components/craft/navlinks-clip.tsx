@@ -89,9 +89,7 @@ export function NavlinksClip() {
     <div className="bg-foreground flex size-full items-center justify-center">
       <div
         className="-ml-6 w-full max-w-130 mask-[linear-gradient(to_right,transparent_0%,white_var(--fade-size),white_calc(100%-var(--fade-right)),transparent_100%)] text-sm font-medium [--fade-size:24px]"
-        style={
-          { "--fade-right": atEnd ? "0px" : "24px" } as React.CSSProperties
-        }
+        style={{ "--fade-right": atEnd ? "0px" : "24px" } as React.CSSProperties}
       >
         <div
           ref={scrollerRef}
@@ -116,7 +114,7 @@ export function NavlinksClip() {
             </ul>
             <div
               ref={clipContainerRef}
-              className="bg-background text-foreground absolute transition-[clip-path] duration-250 ease-[ease]"
+              className="bg-background text-foreground absolute transition-[clip-path] duration-250 ease-[ease] motion-reduce:duration-0"
               style={{
                 clipPath: `inset(0px 90.27% 0px 0% round 17px)`,
               }}

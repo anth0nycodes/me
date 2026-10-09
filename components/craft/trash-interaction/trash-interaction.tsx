@@ -2,7 +2,8 @@
 
 import { useEffect, useState, type JSX } from "react";
 import NextImage from "next/image";
-import { AnimatePresence, motion, MotionConfig, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, MotionConfig } from "motion/react";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, CircleCheck, Trash, TrashBack, TrashFront } from "./svgs";
 
@@ -46,7 +47,7 @@ const IMAGE_TILT_AMOUNT = 4;
 const IMAGE_SIZE = 100;
 
 export function TrashInteraction() {
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const [imagesToRemove, setImagesToRemove] = useState<Image[]>([]);
   const [readyToRemove, setReadyToRemove] = useState(false);
   const [removed, setRemoved] = useState(false);

@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { ReplayButton } from "@/components/ui/replay-button";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { Checked, InProgress, Marker, PriorityBars, type Priority } from "./svgs";
 
 interface Task {
@@ -62,7 +63,7 @@ const MOBILE_TASKS_COUNT = 3;
 const MOBILE_HIDDEN_IDS = new Set(TASKS.slice(MOBILE_TASKS_COUNT).map((task) => task.id));
 
 export function HoldToDelete() {
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const [isExpanded, setIsExpanded] = useState(true);
   const [tasks, setTasks] = useState(TASKS);
   const [checkedTasks, setCheckedTasks] = useState<Set<string>>(new Set());
