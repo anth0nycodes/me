@@ -42,8 +42,9 @@ const ITEMS: CarouselItem[] = [
 
 const GAP = 12; // px between each item's edges
 const TILT_ANGLE = 15; // degrees of tilt for each item away from center
-const PERSPECTIVE = 4; // viewer distance in item heights, lower bends harder
+const PERSPECTIVE = 4; // amount of card-heights away from center
 const SCALE_STEP = 0.1; // scale lost per item away from center
+const HALF_CARD_HEIGHT_RATIO = 0.5;
 const MAX_OFFSET = Math.floor(ITEMS.length / 2); // max distance from center before wrapping around
 
 function getOffset(index: number, activeIndex: number) {
@@ -77,22 +78,28 @@ function getVisibleHeight(step: number) {
   return currentStepScale * Math.cos(toRadians(tiltAmount));
 }
 
-// Perspective makes the two halves of a tilted item unequal: the inner edge (facing the center)
-// leans toward the viewer and looks bigger, the outer edge leans away and looks smaller
-function getHalfHeight(step: number, edge: "inner" | "outer") {
+function getLeanAmount(step: number) {
   const tiltAmount = step * TILT_ANGLE;
-  const lean = Math.sin(toRadians(tiltAmount)) / 2; // how far the edge swung toward or away
-  const edgeDistance = edge === "inner" ? PERSPECTIVE - lean : PERSPECTIVE + lean;
-
-  return (getVisibleHeight(step) / 2) * (PERSPECTIVE / edgeDistance);
+  const leanFraction = Math.sin(toRadians(tiltAmount));
+  return HALF_CARD_HEIGHT_RATIO * leanFraction;
 }
 
 function getTranslateY(distance: number, direction: number) {
   let heights = 0;
 
-  // each step leaves one item through its outer half and enters the next through its inner half
+  /* leave the current card through its outer half (further away) and
+     enter the next through its inner half (closer) */
   for (let step = 0; step < distance; step++) {
-    heights += getHalfHeight(step, "outer") + getHalfHeight(step + 1, "inner");
+    const currentCardHalfHeight = getVisibleHeight(step) / 2;
+    const currentCardLean = getLeanAmount(step);
+    const outerHalfMultiplier = PERSPECTIVE / (PERSPECTIVE + currentCardLean);
+
+    const nextCardHalfHeight = getVisibleHeight(step + 1) / 2;
+    const nextCardLean = getLeanAmount(step + 1);
+    const innerHalfMultiplier = PERSPECTIVE / (PERSPECTIVE - nextCardLean);
+
+    heights +=
+      currentCardHalfHeight * outerHalfMultiplier + nextCardHalfHeight * innerHalfMultiplier;
   }
 
   const percentage = heights * 100;
@@ -150,7 +157,7 @@ export function VerticalCarousel() {
           const offset = getOffset(index, activeIndex);
           const distance = Math.abs(offset);
           const scale = getScale(distance);
-          const direction = offset < 0 ? -1 : 1;
+          const direction = Math.sign(offset);
           const translateY = getTranslateY(distance, direction);
           const rotateX = getRotateX(offset);
 
@@ -159,7 +166,7 @@ export function VerticalCarousel() {
               key={text}
               data-hidden={distance === MAX_OFFSET}
               data-active={distance === 0}
-              className="border-muted-foreground/35 bg-foreground text-muted absolute flex h-(--item-height) w-38 translate-y-(--translate-y) scale-(--scale) transform-[perspective(calc(var(--item-height)*var(--perspective)))_rotateX(var(--rotate-x))] items-center justify-center gap-2 rounded-lg border px-4 transition-[translate,opacity,background-color,border-color,scale,transform] duration-[1100ms,1100ms,550ms,550ms,1100ms,1300ms] ease-[cubic-bezier(0.25,1,0.5,1)] data-[active=true]:border-(--brand) data-[active=true]:bg-[color-mix(in_oklch,var(--brand)_15%,var(--foreground))] data-[hidden=true]:opacity-0 [--item-height:2.75rem] sm:w-50 sm:rounded-xl sm:[--item-height:3.75rem]"
+              className="border-muted-foreground/35 bg-foreground text-muted absolute flex h-(--item-height) w-38 translate-y-(--translate-y) scale-(--scale) transform-[perspective(calc(var(--item-height)*var(--perspective)))_rotateX(var(--rotate-x))] items-center justify-center gap-2 rounded-lg border px-4 transition-[translate,scale,transform,opacity,background-color,border-color] duration-[1100ms,1100ms,1100ms,1100ms,550ms,550ms] ease-[cubic-bezier(0.25,1,0.5,1)] [--item-height:2.75rem] data-[active=true]:border-(--brand) data-[active=true]:bg-[color-mix(in_oklch,var(--brand)_15%,var(--foreground))] data-[hidden=true]:opacity-0 sm:w-50 sm:rounded-xl sm:[--item-height:3.75rem]"
               style={
                 {
                   "--translate-y": translateY,
