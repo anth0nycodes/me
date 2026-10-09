@@ -133,7 +133,7 @@ export function VerticalCarousel() {
               key={text}
               data-hidden={distance === MAX_OFFSET}
               data-active={distance === 0}
-              className="border-muted-foreground/35 bg-foreground text-muted absolute flex h-11 w-38 translate-y-(--translate-y) scale-(--scale) items-center justify-center gap-2 rounded-lg border px-4 transition-[translate,opacity,background-color,border-color,scale] duration-1100 ease-[cubic-bezier(0.25,1,0.5,1)] data-[active=true]:border-(--brand) data-[active=true]:bg-[color-mix(in_oklch,var(--brand)_15%,var(--foreground))] data-[hidden=true]:opacity-0 sm:h-15 sm:w-50 sm:rounded-xl"
+              className="border-muted-foreground/35 bg-foreground text-muted absolute flex h-11 w-38 translate-y-(--translate-y) scale-(--scale) items-center justify-center gap-2 rounded-lg border px-4 transition-[translate,opacity,background-color,border-color,scale] duration-[1100ms,1100ms,550ms,550ms] ease-[cubic-bezier(0.25,1,0.5,1)] data-[active=true]:border-(--brand) data-[active=true]:bg-[color-mix(in_oklch,var(--brand)_15%,var(--foreground))] data-[hidden=true]:opacity-0 sm:h-15 sm:w-50 sm:rounded-xl"
               style={
                 {
                   "--translate-y": translateY,

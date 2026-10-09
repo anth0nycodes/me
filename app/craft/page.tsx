@@ -38,6 +38,7 @@ const crafts: Craft[] = [
     description: "Vertical Carousel",
     source:
       "https://github.com/anth0nycodes/me/blob/main/components/craft/vertical-carousel/vertical-carousel.tsx",
+    reference: "https://x.com/pqoqubbw/status/1864055454684344633",
     component: <VerticalCarousel />,
   },
   {
