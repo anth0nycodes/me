@@ -41,6 +41,8 @@ const ITEMS: CarouselItem[] = [
 ];
 
 const GAP = 12; // px between each item's edges
+const TILT_ANGLE = 15; // degrees of tilt for each item away from center
+const PERSPECTIVE = 4; // viewer distance in item heights, lower bends harder
 const SCALE_STEP = 0.1; // scale lost per item away from center
 const MAX_OFFSET = Math.floor(ITEMS.length / 2); // max distance from center before wrapping around
 
@@ -61,13 +63,36 @@ function getScale(distance: number) {
   return 1 - distance * SCALE_STEP;
 }
 
+function getRotateX(offset: number) {
+  return -1 * offset * TILT_ANGLE;
+}
+
+function toRadians(degrees: number) {
+  return (degrees * Math.PI) / 180;
+}
+
+function getVisibleHeight(step: number) {
+  const currentStepScale = getScale(step);
+  const tiltAmount = step * TILT_ANGLE;
+  return currentStepScale * Math.cos(toRadians(tiltAmount));
+}
+
+// Perspective makes the two halves of a tilted item unequal: the inner edge (facing the center)
+// leans toward the viewer and looks bigger, the outer edge leans away and looks smaller
+function getHalfHeight(step: number, edge: "inner" | "outer") {
+  const tiltAmount = step * TILT_ANGLE;
+  const lean = Math.sin(toRadians(tiltAmount)) / 2; // how far the edge swung toward or away
+  const edgeDistance = edge === "inner" ? PERSPECTIVE - lean : PERSPECTIVE + lean;
+
+  return (getVisibleHeight(step) / 2) * (PERSPECTIVE / edgeDistance);
+}
+
 function getTranslateY(distance: number, direction: number) {
   let heights = 0;
 
+  // each step leaves one item through its outer half and enters the next through its inner half
   for (let step = 0; step < distance; step++) {
-    const currentStepScale = getScale(step);
-    const nextStepScale = getScale(step + 1);
-    heights += currentStepScale / 2 + nextStepScale / 2;
+    heights += getHalfHeight(step, "outer") + getHalfHeight(step + 1, "inner");
   }
 
   const percentage = heights * 100;
@@ -127,17 +152,20 @@ export function VerticalCarousel() {
           const scale = getScale(distance);
           const direction = offset < 0 ? -1 : 1;
           const translateY = getTranslateY(distance, direction);
+          const rotateX = getRotateX(offset);
 
           return (
             <div
               key={text}
               data-hidden={distance === MAX_OFFSET}
               data-active={distance === 0}
-              className="border-muted-foreground/35 bg-foreground text-muted absolute flex h-11 w-38 translate-y-(--translate-y) scale-(--scale) items-center justify-center gap-2 rounded-lg border px-4 transition-[translate,opacity,background-color,border-color,scale] duration-[1100ms,1100ms,550ms,550ms] ease-[cubic-bezier(0.25,1,0.5,1)] data-[active=true]:border-(--brand) data-[active=true]:bg-[color-mix(in_oklch,var(--brand)_15%,var(--foreground))] data-[hidden=true]:opacity-0 sm:h-15 sm:w-50 sm:rounded-xl"
+              className="border-muted-foreground/35 bg-foreground text-muted absolute flex h-(--item-height) w-38 translate-y-(--translate-y) scale-(--scale) transform-[perspective(calc(var(--item-height)*var(--perspective)))_rotateX(var(--rotate-x))] items-center justify-center gap-2 rounded-lg border px-4 transition-[translate,opacity,background-color,border-color,scale,transform] duration-[1100ms,1100ms,550ms,550ms,1100ms,1300ms] ease-[cubic-bezier(0.25,1,0.5,1)] data-[active=true]:border-(--brand) data-[active=true]:bg-[color-mix(in_oklch,var(--brand)_15%,var(--foreground))] data-[hidden=true]:opacity-0 [--item-height:2.75rem] sm:w-50 sm:rounded-xl sm:[--item-height:3.75rem]"
               style={
                 {
                   "--translate-y": translateY,
                   "--scale": scale,
+                  "--rotate-x": `${rotateX}deg`,
+                  "--perspective": PERSPECTIVE,
                   "--brand": color ?? "var(--muted-foreground)",
                 } as CSSProperties
               }
