@@ -90,11 +90,11 @@ function getTranslateY(distance: number, direction: number) {
   /* leave the current card through its outer half (further away) and
      enter the next through its inner half (closer) */
   for (let step = 0; step < distance; step++) {
-    const currentCardHalfHeight = getVisibleHeight(step) / 2;
+    const currentCardHalfHeight = getVisibleHeight(step) * HALF_CARD_HEIGHT_RATIO;
     const currentCardLean = getLeanAmount(step);
     const outerHalfMultiplier = PERSPECTIVE / (PERSPECTIVE + currentCardLean);
 
-    const nextCardHalfHeight = getVisibleHeight(step + 1) / 2;
+    const nextCardHalfHeight = getVisibleHeight(step + 1) * HALF_CARD_HEIGHT_RATIO;
     const nextCardLean = getLeanAmount(step + 1);
     const innerHalfMultiplier = PERSPECTIVE / (PERSPECTIVE - nextCardLean);
 
