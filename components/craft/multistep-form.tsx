@@ -164,8 +164,8 @@ function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
   return (
     <div className="relative h-2 w-full overflow-hidden rounded-full">
       <div
-        className="absolute inset-y-0 z-2 rounded-full bg-zinc-300 transition-[width] duration-350 ease-[ease] motion-reduce:duration-0"
-        style={{ width: `${fillAmount}%` }}
+        className="absolute inset-0 z-2 rounded-full bg-zinc-300 transition-transform duration-300 ease-[ease] motion-reduce:duration-0"
+        style={{ translate: `${-1 * (100 - fillAmount)}%` }}
       />
       <div className="absolute inset-0 bg-[#F4F4F5]" />
     </div>
