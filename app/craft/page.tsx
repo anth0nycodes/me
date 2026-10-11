@@ -5,6 +5,7 @@ import { Bricks } from "@/components/craft/bricks";
 import { CraftCard } from "@/components/craft/craft-card";
 import { CreateCoolThings } from "@/components/craft/create-cool-things/create-cool-things";
 import { FeedbackPopover } from "@/components/craft/feedback-popover/feedback-popover";
+import { FigmaToolbar } from "@/components/craft/figma-toolbar/figma-toolbar";
 import { FileTree } from "@/components/craft/file-tree/file-tree";
 import { HoldToDelete } from "@/components/craft/hold-to-delete/hold-to-delete";
 import { Lightswitch } from "@/components/craft/light-switch";
@@ -33,6 +34,14 @@ export interface Craft {
 }
 
 const crafts: Craft[] = [
+  {
+    id: "figma-toolbar",
+    description: "Figma Toolbar",
+    source:
+      "https://github.com/anth0nycodes/me/blob/main/components/craft/figma-toolbar/figma-toolbar.tsx",
+    reference: "https://www.figma.com/",
+    component: <FigmaToolbar />,
+  },
   {
     id: "vertical-carousel",
     description: "Vertical Carousel",
