@@ -37,13 +37,14 @@ export function FeedbackPopover() {
   }
 
   useEffect(() => {
+    if (formState === "loading" || formState === "success") return;
     window.addEventListener("mousedown", handleClickOutside);
     window.addEventListener("touchstart", handleClickOutside);
     return () => {
       window.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("touchstart", handleClickOutside);
     };
-  }, []);
+  }, [formState]);
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
