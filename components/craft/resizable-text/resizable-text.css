@@ -2,8 +2,7 @@
   animation:
     pointer-enter 800ms cubic-bezier(0.25, 1, 0.5, 1) both,
     pointer-to-edge 500ms cubic-bezier(0.645, 0.045, 0.355, 1) 1400ms forwards,
-    pointer-leave-x 600ms cubic-bezier(0.25, 1, 0.5, 1) 3700ms forwards,
-    pointer-leave-y 600ms cubic-bezier(0.25, 1, 0.5, 1) 3700ms forwards,
+    pointer-leave 600ms cubic-bezier(0.25, 1, 0.5, 1) 3700ms forwards,
     pointer-exit 300ms ease-out 4800ms forwards;
 }
 
@@ -53,18 +52,12 @@
   }
 }
 
-@keyframes pointer-leave-x {
+@keyframes pointer-leave {
   from {
     translate: 0 0;
   }
   to {
-    translate: 10px 0;
-  }
-}
-
-@keyframes pointer-leave-y {
-  to {
-    transform: translateY(6px);
+    translate: 10px 6px;
   }
 }
 
