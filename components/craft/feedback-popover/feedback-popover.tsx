@@ -47,6 +47,7 @@ export function FeedbackPopover() {
   }, [formState]);
 
   useEffect(() => {
+    if (formState === "loading" || formState === "success") return;
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
         setOpen(false);
@@ -214,7 +215,7 @@ export function FeedbackPopover() {
                     layoutId: "title",
                   })}
               data-feedback={feedback ? true : false}
-              className="absolute top-4.25 left-4.25 text-base text-[#63635d] data-[feedback=true]:opacity-0! sm:text-sm"
+              className="pointer-events-none absolute top-4.25 left-4.25 text-base text-[#63635d] data-[feedback=true]:opacity-0! sm:text-sm"
             >
               Feedback
             </motion.span>
