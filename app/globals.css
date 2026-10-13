@@ -11,8 +11,10 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* text selection highlight, also used for the keyboard focus outline */
+  /* text selection highlight */
   --selection: #6a76e355;
+  /* keyboard focus outline, mid-luminance so it reads on both the page and the inverted craft surfaces */
+  --focus-ring: #6a76e3;
   /* hairline under page headings and above the home footer */
   --separator: #ebebeb;
   /* one colour per route, shared by the home nav links */
@@ -57,7 +59,8 @@
 }
 
 .dark {
-  --selection: oklch(0.985 0 0 / 15%);
+  /* tinted rather than white so it stays visible on the light craft surfaces (bg-foreground) */
+  --selection: #8b95f066;
   --separator: #222222;
   --background: oklch(0.1684 0 0); /* #0f0f0f */
   --foreground: oklch(0.985 0 0);
@@ -149,8 +152,8 @@
     @apply border-border outline-ring/50;
   }
   :focus-visible {
-    outline: 1px solid var(--selection);
-    outline-offset: -1px;
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
   }
   body {
     @apply bg-background text-foreground;

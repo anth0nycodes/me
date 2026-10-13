@@ -104,7 +104,8 @@ export function NavlinksClip() {
                     aria-pressed={activeTab === link.label}
                     onMouseDown={(e) => e.preventDefault()}
                     onClick={() => setActiveTab(link.label)}
-                    className="text-background flex cursor-pointer items-center gap-2 px-4 py-1.75"
+                    // focus ring lives on ::after: the scroller clips an outset outline, and the z-index keeps it above the clip overlay on the active tab
+                    className="text-background relative flex cursor-pointer items-center gap-2 rounded-full px-4 py-1.75 outline-none after:pointer-events-none after:absolute after:inset-0 after:z-10 after:rounded-full focus-visible:after:outline-2 focus-visible:after:-outline-offset-2 focus-visible:after:outline-(--focus-ring)"
                   >
                     <link.icon className="h-4 w-4" aria-hidden />
                     {link.label}
