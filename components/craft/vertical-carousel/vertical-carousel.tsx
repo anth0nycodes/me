@@ -47,6 +47,15 @@ const SCALE_STEP = 0.1; // scale lost per item away from center
 const HALF_CARD_HEIGHT_RATIO = 0.5;
 const MAX_OFFSET = Math.floor(ITEMS.length / 2); // max distance from center before wrapping around
 
+/**
+ * Calculates an offset value which represents the signed distance between `index` and `activeIndex`.
+ *
+ * @param index - The card at `index`.
+ * @param activeIndex - The card at the center of the carousel.
+ * @returns - The offset value, which is the signed distance of the card at `index` from the card at `activeIndex`.
+ *
+ * **Note:** In order for the cards to wrap around properly in the carousel, we must provide a correction factor for specific cards based on whether their unsigned distance from the center is beyond our `MAX_OFFSET` threshold. For instance, if we only allow a `MAX_OFFSET` of 4 cards to be above and below the center card at at time, then a distance of 5 cards away from the center would wrap around to the other side of the carousel. Cards on the top that exceed the `MAX_OFFSET` threshold would wrap around to the bottom, and cards on the bottom that exceed the `MAX_OFFSET` threshold would wrap around to the top. This is what allows for the infinite carousel effect.
+ */
 function getOffset(index: number, activeIndex: number) {
   const distance = Math.abs(index - activeIndex);
   let wrappedIndex = index;
@@ -60,30 +69,73 @@ function getOffset(index: number, activeIndex: number) {
   return wrappedIndex - activeIndex;
 }
 
+/**
+ * Calculates the scale value of a card based on its distance from the center of the carousel.
+ *
+ * @param distance - The distance of the card from the center of the carousel.
+ * @returns - The scale value of the card, which is between 0.6 and 1.
+ */
 function getScale(distance: number) {
   return 1 - distance * SCALE_STEP;
 }
 
+/**
+ * Calculates the `rotateX` value of a card based on its offset from the center of the carousel.
+ *
+ * @param offset - The signed distance of the card from the center of the carousel.
+ * @returns - the `rotateX` value of the card, which is between -60 and 60 degrees.
+ *
+ * **Note:** `offset` can be confused with `distance`, but they are different. `offset` is the signed distance from the center of the carousel, while `distance` is the unsigned distance from the center of the carousel.
+ *
+ * Also, we use a correction factor of `-1` to ensure that the card tilts in the correct direction. For instance, a positive `offset` would mean that the card is below the center of the carousel, resulting in a positive `rotateX` value which would tilt the bottom edge of the card towards the viewer's perspective, when we want it to tilt away from the viewer's perspective. So, that's why we multiply the `offset` by `-1`, in order for it to correct the direction of the tilt.
+ */
 function getRotateX(offset: number) {
   return -1 * offset * TILT_ANGLE;
 }
 
+/**
+ * Converts degrees to radians.
+ *
+ * @param degrees - The angle in degrees.
+ * @returns - The angle in radians.
+ */
 function toRadians(degrees: number) {
   return (degrees * Math.PI) / 180;
 }
 
+/**
+ * Calculates the visible height of a card based on its scale and tilt amount.
+ *
+ * @param step - The given step away from the center of the carousel. ex: step 3 would represent the 3rd card away from the center of the carousel, either above or below.
+ * @returns - The visible height ratio of the card, which is between 0.3 and 1.
+ *
+ * **Note:** Both `scale` and `rotateX` (tilt) are styles that affect the overall visible height of a card. So, we must combine those two values to get the final visible height ratio of the card. We also use `Math.cos` to calculate the visible height of the card based on its tilt amount. On a standard 2D plane, the card is flat. But when we view this flat card from the side, it is considered standing upright. On a standard unit circle, `Math.cos()` typically represents the horizontal axis. So, in this case, `Math.cos` would represent the vertical axis of the card, since it is standing upright, and its return value given the `tiltAmount` would represent the visible height of the card. The more the card is tilted, the less visible height it has.
+ */
 function getVisibleHeight(step: number) {
   const currentStepScale = getScale(step);
   const tiltAmount = step * TILT_ANGLE;
   return currentStepScale * Math.cos(toRadians(tiltAmount));
 }
 
+/**
+ * Calculates the lean amount of the card at `step` based on its tilt amount.
+ *
+ * @param step - The given step away from the center of the carousel. ex: step 3 would represent the 3rd card away from the center of the carousel, either above or below.
+ * @returns - The lean amount of the card, which is between 0 and 0.433. This value represents the perceived depth of the inner and outer edges of the card in card-heights, relative to the perspective of the viewer.
+ */
 function getLeanAmount(step: number) {
   const tiltAmount = step * TILT_ANGLE;
   const leanFraction = Math.sin(toRadians(tiltAmount));
   return HALF_CARD_HEIGHT_RATIO * leanFraction;
 }
 
+/**
+ * Calculates the `translateY` value of a card based on its distance from the center of the carousel and its direction (above or below).
+ *
+ * @param distance - The unsigned distance of the card from the center of the carousel.
+ * @param direction - The direction of the card based on whether it is above or below the center of the carousel. A positive value represents a card below the center, while a negative value represents a card above the center.
+ * @returns - How far to move the card from the center of the carousel, as a CSS `calc()` expression. The distance to move is expressed as a percentage of the card's own height plus a fixed gap for each card passed, and `direction` sets whether it moves up or down.
+ */
 function getTranslateY(distance: number, direction: number) {
   let heights = 0;
 
@@ -102,6 +154,7 @@ function getTranslateY(distance: number, direction: number) {
       currentCardHalfHeight * outerHalfMultiplier + nextCardHalfHeight * innerHalfMultiplier;
   }
 
+  // how far the given card's center sits from the center card's center
   const percentage = heights * 100;
 
   return `calc(${direction} * (${percentage}% + ${distance * GAP}px))`;
