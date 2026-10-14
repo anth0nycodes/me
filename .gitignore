@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Craft Notes for `/craft`
+CRAFT_NOTES.md

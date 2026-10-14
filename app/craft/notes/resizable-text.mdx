@@ -1,0 +1,30 @@
+export const metadata = {
+  title: "Resizable Text",
+  publishedAt: "2026-09-29",
+  summary:
+    "A looping demo of a design tool. A pointer selects a line of text, drags its edge to squeeze it, then clicks away, while the box's dimensions read out underneath.",
+  image: "/craft/og/resizable-text.png",
+};
+
+## The trick
+
+Nothing actually resizes the box. The drag only tightens the text's `letter-spacing`, which naturally alters the width of the box. A `ResizeObserver` reports whenever there is a change in the box's dimensions. So the numbers are real measurements.
+
+## What failed first
+
+Nothing broke in my half. What I did not know was how to sequence the keyframes, so that part was written by AI. Reading it line by line later, I found the pointer's exit split across two keyframes on two different properties for no reason, and merged them into one.
+
+## Details
+
+- The whole performance is CSS keyframes on a five-second timeline: enter, click, move to the edge, hold and squeeze, leave, click away, fade out.
+- React learns about a click from the animation itself. When the click keyframe starts, the selection flips. The same click runs twice, so the first selects and the second deselects. There are no timers to keep in sync.
+- It starts once it is fully in view, and it can be replayed.
+- Under reduced motion nothing moves. The text is shown selected, with the pointer parked beside it and the dimensions visible.
+
+## What I changed from the source
+
+Vercel's original has no pointer. I added one, made in Figma by editing Lucide's pointer icon and giving it a fill.
+
+## How it was made
+
+I built the interface, the selection box, the dimensions readout and the pointer. For the motion I asked AI for a click-driven sequence: the pointer clicks the box, drags its edge in and back out, then clicks off. I tuned its values toward what I had in mind.

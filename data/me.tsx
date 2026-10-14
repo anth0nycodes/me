@@ -4,7 +4,7 @@ export const DATA = {
   location: "nyc",
   occupation: "Design Engineer",
   description:
-    "design engineer. professional doomscroller. i love building things that feel and look nice.",
+    "design engineer in nyc building interfaces that feel as good as they look. interned at magic hour and deep24 (yc w24). made tracemark. professional doomscroller.",
   images: [
     "/pfps/pfp.png",
     "/pfps/pfp2.png",

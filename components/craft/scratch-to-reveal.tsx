@@ -14,24 +14,30 @@ const GRADIENT_STOPS = [
 ] as const;
 const GRADIENT_CSS = `linear-gradient(to right, ${GRADIENT_STOPS.map(([offset, color]) => `${color} ${offset * 100}%`).join(", ")})`;
 const GRAIN_INTENSITY = 18;
+
+// Brush related properties
 const BRUSH_RADIUS = 7.5;
 const START_ANGLE = 0;
 const END_ANGLE = Math.PI * 2;
-// Share of the foil that must be scratched off before the rest clears and the copy button shows
-const REVEAL_THRESHOLD = 0.6;
-// Checking every Nth pixel is plenty to estimate how much is scratched off
-const SAMPLE_STRIDE = 8;
+const REVEAL_THRESHOLD = 0.6; // the ratio at which the code is considered revealed
+const SAMPLE_STRIDE = 8; // check every 8th pixel for performance reasons, which is still plenty enough to get a good estimate of the scratched ratio
+
+// Audio related properties
+const SCRATCH_VOLUME = 0.25; // the maximum volume of the scratch sound
+const SCRATCH_FULL_SPEED = 24; // pointer travel in px between two moves that plays the sound at full volume
+const SCRATCH_FILTER_FREQUENCY = 2000; // the frequency of the bandpass filter applied to the white noise, which makes it sound like a scratch
+const SCRATCH_SILENCE_DELAY = 60; // moves stop firing when the pointer rests, so fade out once none arrive for this long
+const FADE_OUT_TIME = 0.03; // the time it takes to fade out the scratch sound once moves stop firing
+const FADE_IN_TIME = 0.015; // the time it takes to fade in the scratch sound once moves start firing
+
 const COPIED_DURATION = 1500;
-const SCRATCH_VOLUME = 0.25;
-// Pointer travel in px between two moves that plays the sound at full volume
-const SCRATCH_FULL_SPEED = 24;
-const SCRATCH_FILTER_FREQUENCY = 2400;
-// Moves stop firing when the pointer rests, so fade out once none arrive for this long
-const SCRATCH_SILENCE_DELAY = 60;
 
 type ScratchAudio = { ctx: AudioContext; gain: GainNode };
 
-// Looping white noise through a bandpass sounds like a coin on foil, no audio file needed
+/**
+ * Creates the scratching audio, which is just white noise filtered at a mid-high frequency.
+ * @returns - The audio context, `ctx`, and gain node, `gain`, in order to control the properties of the sound.
+ */
 function createScratchAudio(): ScratchAudio {
   const ctx = new AudioContext();
   const buffer = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
@@ -51,6 +57,12 @@ function createScratchAudio(): ScratchAudio {
   return { ctx, gain };
 }
 
+/**
+ * Calculates the ratio of the canvas that has been scratched off.
+ *
+ * @param canvas - The HTML canvas element to read back from.
+ * @param ctx - The 2D rendering context of the canvas.
+ */
 function getScratchedRatio(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
   const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
   let scratched = 0;
@@ -58,6 +70,7 @@ function getScratchedRatio(canvas: HTMLCanvasElement, ctx: CanvasRenderingContex
   // Every 4th byte is a pixel's alpha, which destination-out drops to 0
   for (let i = 3; i < data.length; i += 4 * SAMPLE_STRIDE) {
     sampled++;
+    // if the pixel is transparent, consider it scratched
     if (data[i] === 0) scratched++;
   }
   return scratched / sampled;
@@ -123,25 +136,38 @@ export function ScratchToReveal() {
     // Replaying remounts the canvas, so the fresh one needs its foil drawn
   }, [runId]);
 
+  /**
+   * Plays the scratch sound with volume based on the speed of the pointer movement, which is calculated from the `distance`.
+   *
+   * @param distance - The distance between the last pointer position and the current one.
+   */
   function playScratchSound(distance: number) {
     const audio = audioRef.current;
     if (!audio) return;
     // Faster drags are louder, like pressing a coin across the foil
     const level = Math.min(distance / SCRATCH_FULL_SPEED, 1) * SCRATCH_VOLUME;
-    audio.gain.gain.setTargetAtTime(level, audio.ctx.currentTime, 0.015);
+    audio.gain.gain.setTargetAtTime(level, audio.ctx.currentTime, FADE_IN_TIME);
     clearTimeout(silenceTimeoutRef.current);
     silenceTimeoutRef.current = setTimeout(silenceScratchSound, SCRATCH_SILENCE_DELAY);
   }
 
+  /**
+   * Silences the scratch sound by setting the gain of the sound to 0.
+   */
   function silenceScratchSound() {
     clearTimeout(silenceTimeoutRef.current);
     const audio = audioRef.current;
     if (!audio) return;
-    audio.gain.gain.setTargetAtTime(0, audio.ctx.currentTime, 0.03);
+    audio.gain.gain.setTargetAtTime(0, audio.ctx.currentTime, FADE_OUT_TIME);
   }
 
+  /**
+   * Handles the scratching logic of the canvas by drawing an arc alongside a line based on the last pointer position to the current one.
+   *
+   * @param e - The pointer event that triggered the scratch.
+   */
   function scratch(e: PointerEvent<HTMLCanvasElement>) {
-    // Only scratch when the left mouse button is pressed
+    // Only scratch when the main button, or a finger, is held down
     if (e.buttons !== 1) {
       lastPointRef.current = null;
       return;

@@ -1,46 +1,52 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, LinkIcon } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useSound } from "use-sound";
-import { type Craft } from "@/app/craft/page";
+import type { Craft } from "@/app/craft/constants";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
 import { useHaptics } from "@/hooks/use-haptics";
 
 interface CraftCardProps {
   craft: Craft;
+  isSlugRoute?: boolean;
 }
 
-export function CraftCard({ craft }: CraftCardProps) {
+export function CraftCard({ craft, isSlugRoute }: CraftCardProps) {
+  const { trigger } = useHaptics();
+  const { audioEnabled } = useAudioEnabled();
+  const [playHoverSFX] = useSound("/audio/hover-tick.wav", {
+    volume: 0.125,
+    soundEnabled: audioEnabled,
+  });
+
   return (
     <section id={craft.id} className="flex scroll-mt-4 flex-col gap-2">
       <div className="ring-accent aspect-16/12 size-full max-h-93.5 overflow-clip rounded-lg ring-2 dark:ring-1">
         {/* demos are built against the dark palette, so pin it here regardless of site theme */}
         <div className="dark text-foreground size-full">{craft.component}</div>
       </div>
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center">
-          <Link
-            href={`#${craft.id}`}
-            className="group/title text-foreground flex items-center gap-1.5 text-sm sm:-ml-5"
-          >
-            <LinkIcon
-              className="text-muted-foreground group-hover/title:text-foreground hidden size-3.5 opacity-0 transition-opacity group-hover/title:opacity-100 group-focus-visible/title:opacity-100 sm:block"
-              aria-hidden
-            />
-            {craft.description}
-          </Link>
-        </div>
-        <div className="flex items-center gap-2">
-          {craft.reference && <CraftLink label="reference" href={craft.reference} />}
-          <CraftLink label="source" href={craft.source} />
-        </div>
-      </div>
+      {!isSlugRoute && (
+        <Link
+          href={`/craft/${craft.id}`}
+          className="group text-foreground flex w-fit items-center gap-1 text-sm"
+          onMouseEnter={() => {
+            trigger("light");
+            playHoverSFX();
+          }}
+        >
+          <span className="group-hover:underline">{craft.description}</span>
+          <ArrowRight
+            className="text-muted-foreground group-hover:text-foreground size-3.5 transition-transform group-hover:translate-x-0.5"
+            aria-hidden
+          />
+        </Link>
+      )}
     </section>
   );
 }
 
-function CraftLink({ label, href }: { label: string; href: string }) {
+export function CraftLink({ label, href }: { label: string; href: string }) {
   const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
   const [playHoverSFX] = useSound("/audio/hover-tick.wav", {

@@ -1,8 +1,8 @@
+import { ComponentType } from "react";
+import type { Metadata } from "next";
 import { BlogDate } from "@/components/thoughts/blog-date";
 import { getBlogPosts, type PostMetadata } from "@/data/blog";
 import { DATA } from "@/data/me";
-import type { Metadata } from "next";
-import { ComponentType } from "react";
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
@@ -21,15 +21,8 @@ export async function generateMetadata({
     metadata: PostMetadata;
   };
 
-  const {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    image,
-  } = metadata;
-  const ogImage = image
-    ? `${DATA.url}${image}`
-    : `${DATA.url}/og?title=${title}`;
+  const { title, publishedAt: publishedTime, summary: description, image } = metadata;
+  const ogImage = image ? `${DATA.url}${image}` : `${DATA.url}/og?title=${title}`;
 
   return {
     title,
@@ -63,9 +56,7 @@ export default async function Blog({
   }>;
 }) {
   const { slug } = await params;
-  const { default: Post, metadata } = (await import(
-    `@/content/${slug}.mdx`
-  )) as {
+  const { default: Post, metadata } = (await import(`@/content/${slug}.mdx`)) as {
     default: ComponentType;
     metadata: PostMetadata;
   };
@@ -94,13 +85,11 @@ export default async function Blog({
           }),
         }}
       />
-      <h1 className="title font-medium text-2xl tracking-tighter max-w-162">
-        <span className="inline-block">{metadata.title}</span>
-      </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-162">
+      <header className="flex flex-col gap-2">
+        <h1 className="text-2xl font-medium tracking-tighter">{metadata.title}</h1>
         <BlogDate date={metadata.publishedAt} />
-      </div>
-      <article className="prose max-w-none text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground">
+      </header>
+      <article className="prose text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground max-w-none">
         <Post />
       </article>
     </section>

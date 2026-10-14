@@ -1,0 +1,26 @@
+export const metadata = {
+  title: "Light Switch",
+  publishedAt: "2026-09-29",
+  summary:
+    "A wall light switch. Press it and the rocker tips, a click sounds, and the room behind it lights up or goes dark.",
+  image: "/craft/og/light-switch.png",
+};
+
+## The trick
+
+The rocker is two halves that each tilt in 3D, both hinged on the seam where they meet, like a real rocker. Pressing one end in raises the other. The raised half tilts further, `16deg` against `4deg`, which is what makes one end read as sticking out. Perspective is what turns that tilt into depth. Without it the halves would only get shorter.
+
+## What failed first
+
+The first version was clunkier and less realistic, and it had no lighting. Nothing showed the room lit or dimmed.
+
+## Details
+
+- The depth comes from shadows, all lit from above. The plate has a bright top edge, a dark bottom edge, a tight shadow where it meets the wall and a soft one beneath it.
+- The light comes on slowly, in `400ms`, and goes off fast, in `120ms`.
+- The AI's version padded the flat state with invisible shadows, saying the browser needed them to animate. I tested without them and it animated the same.
+- It could have been two pictures swapped on click. Building it from tilts and shadows is what lets it move between the two states.
+
+## How it was made
+
+The idea and the feel are mine. AI wrote almost all of the code. Its first attempt was clunky and had no lighting, so I pushed it toward something more realistic and tuned how the switch looks and how far each half tilts. Then I went through the code until I could explain it.

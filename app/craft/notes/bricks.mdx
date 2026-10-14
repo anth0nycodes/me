@@ -1,0 +1,25 @@
+export const metadata = {
+  title: "Stacking Lego Bricks",
+  publishedAt: "2026-09-04",
+  summary:
+    "A looping animation of Lego bricks sliding apart and stacking back together, drawn and animated in Figma and exported as an SVG.",
+  image: "/craft/og/bricks.png",
+};
+
+## The trick
+
+None of the keyframes were written by hand. I drew the bricks with the pen tool and animated them on Figma Motion's keyframe timeline, where I could adjust easing and add hold frames while watching the result. Writing this many keyframes by hand would have been far slower to get right.
+
+## What failed first
+
+Two things. The bricks did not land in the right places at first, so the loop was not seamless. It was my first time using Figma Motion. Then the export did not match what I saw in Figma. One brick had picked up a duplicate transform during export, which I tracked down with AI's help and removed.
+
+## Details
+
+- The export was a bare SVG with an inline `<style>` tag. I refactored it into a proper React component.
+- The loop runs for `7.5s`.
+- Under reduced motion the animation does not play, and the bricks rest in their starting position.
+
+## What I changed from the source
+
+I redrew the bricks and rebuilt the sequence from the original, then adjusted the timing so the slides are smoother and less abrupt.

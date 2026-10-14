@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
@@ -16,6 +16,7 @@ export function FeedbackPopover() {
   const [formState, setFormState] = useState<FormState>("idle");
   const [feedback, setFeedback] = useState("");
   const prefersReducedMotion = usePrefersReducedMotion();
+  const instanceId = useId();
 
   function handleClickOutside(e: MouseEvent | TouchEvent) {
     if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
@@ -37,15 +38,17 @@ export function FeedbackPopover() {
   }
 
   useEffect(() => {
+    if (formState === "loading" || formState === "success") return;
     window.addEventListener("mousedown", handleClickOutside);
     window.addEventListener("touchstart", handleClickOutside);
     return () => {
       window.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("touchstart", handleClickOutside);
     };
-  }, []);
+  }, [formState]);
 
   useEffect(() => {
+    if (formState === "loading" || formState === "success") return;
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
         setOpen(false);
@@ -167,7 +170,7 @@ export function FeedbackPopover() {
         {...(prefersReducedMotion
           ? {}
           : {
-              layoutId: "wrapper",
+              layoutId: `${instanceId}-wrapper`,
             })}
         layoutDependency={open}
         onClick={() => {
@@ -184,7 +187,7 @@ export function FeedbackPopover() {
           {...(prefersReducedMotion
             ? {}
             : {
-                layoutId: "title",
+                layoutId: `${instanceId}-title`,
               })}
           layoutDependency={open}
           className="text-background block text-base sm:text-sm"
@@ -199,7 +202,7 @@ export function FeedbackPopover() {
             {...(prefersReducedMotion
               ? {}
               : {
-                  layoutId: "wrapper",
+                  layoutId: `${instanceId}-wrapper`,
                 })}
             className="absolute h-48 w-[calc(100%-100px)] overflow-hidden bg-[#F5F6F7] p-1 shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_2px_rgba(0,0,0,0.04)] outline-none sm:w-91"
             style={{
@@ -210,10 +213,10 @@ export function FeedbackPopover() {
               {...(prefersReducedMotion
                 ? {}
                 : {
-                    layoutId: "title",
+                    layoutId: `${instanceId}-title`,
                   })}
               data-feedback={feedback ? true : false}
-              className="absolute top-4.25 left-4.25 text-base text-[#63635d] data-[feedback=true]:opacity-0! sm:text-sm"
+              className="pointer-events-none absolute top-4.25 left-4.25 text-base text-[#63635d] data-[feedback=true]:opacity-0! sm:text-sm"
             >
               Feedback
             </motion.span>

@@ -1,0 +1,27 @@
+export const metadata = {
+  title: "Feedback Popover",
+  publishedAt: "2026-09-26",
+  summary:
+    "A feedback button that grows into a small form, shows a sending state, and confirms when it is done.",
+  image: "/craft/og/feedback-popover.png",
+};
+
+## The trick
+
+The button and the popover share a `layoutId`, so Motion animates one into the other. The word "Feedback" shares a second one, so it travels from the button's label to where a placeholder would sit. A real placeholder is only an attribute, with no element to attach a `layoutId` to. So the placeholder here is a `span` that hides once you start typing.
+
+## What failed first
+
+The popover could be closed while it was still sending, by clicking outside or pressing Escape. The timers kept running, so reopening it showed the success state when it should not have. Both ways out are now ignored until it has finished.
+
+## Details
+
+- Motion animates a size change by scaling the element, which would squash the corners. The `border-radius` is set inline so Motion knows the value and can keep the corners round.
+- The fake placeholder ignores pointer events, so a click on it lands in the `textarea` underneath, as it would with a real one.
+- `layoutDependency` is set to the open state. Without it, after scrolling, the popover flew in from the wrong place, because Motion was starting from an old measurement of the button. I confirmed this by removing it.
+- When the popover closes, focus goes back to the button.
+- Under reduced motion it opens and closes without the morph.
+
+## What I changed from the source
+
+The guards against closing mid-send, and a fake placeholder that clicks pass through.

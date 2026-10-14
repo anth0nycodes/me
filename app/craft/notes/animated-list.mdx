@@ -1,0 +1,27 @@
+export const metadata = {
+  title: "Animated List",
+  publishedAt: "2026-09-23",
+  summary:
+    "A stack of notifications where each new one grows in at the top and pushes the others down. It is built in CSS, with no animation library.",
+  image: "/craft/og/animated-list.png",
+};
+
+## The trick
+
+Cards stacked in normal page flow would jump when a new one arrives. A CSS transition only runs when a property on the element changes, and being pushed down by a neighbor changes none. So every card is absolutely positioned and placed by a `translate` calculated from its index. When a new card is added at the front, every other card's index goes up by one, its `translate` changes, and it slides.
+
+## What failed first
+
+The first time I built this I used Framer Motion, because I did not know the index trick yet. This version is plain CSS, with smoother curves that I made and tested on easings.co.
+
+## Details
+
+- The entrance uses `@starting-style`, which sets the styles an element animates from when it first appears.
+- A new card starts at `20%` of its size, not zero. Growing from nothing looks like it came from nowhere. From `20%` it reads as something already there, coming to the surface.
+- Scale, opacity and position each have their own duration and curve. Opacity is the shortest at `400ms`, so the card is fully visible while it is still growing and sliding.
+- Cards arrive every `850ms`, and only once the list is on screen.
+- Under reduced motion the cards appear and shift instantly.
+
+## What I changed from the source
+
+Magic UI's version uses Framer Motion. Mine is pure CSS.

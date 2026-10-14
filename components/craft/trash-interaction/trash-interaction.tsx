@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type JSX } from "react";
+import { useEffect, useId, useState, type JSX } from "react";
 import NextImage from "next/image";
 import { AnimatePresence, motion, MotionConfig } from "motion/react";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
@@ -48,6 +48,8 @@ const IMAGE_SIZE = 100;
 
 export function TrashInteraction() {
   const prefersReducedMotion = usePrefersReducedMotion();
+  // Scopes the layoutIds to this instance, so another copy of the demo (e.g. on the next route) can't pair with these images
+  const instanceId = useId();
   const [imagesToRemove, setImagesToRemove] = useState<Image[]>([]);
   const [readyToRemove, setReadyToRemove] = useState(false);
   const [removed, setRemoved] = useState(false);
@@ -160,12 +162,15 @@ export function TrashInteraction() {
                         }}
                       >
                         <motion.div
-                          {...(prefersReducedMotion ? {} : { layoutId: image.id })}
+                          {...(prefersReducedMotion
+                            ? {}
+                            : { layoutId: `${instanceId}-${image.id}` })}
                           className="size-full overflow-hidden rounded-xl"
                         >
                           <NextImage
                             className="size-full object-cover"
                             alt={image.alt}
+                            draggable="false"
                             src={image.src}
                             width={IMAGE_SIZE}
                             height={IMAGE_SIZE}
@@ -266,7 +271,7 @@ export function TrashInteraction() {
                   >
                     {imagesToRemove.map((image, i) => (
                       <motion.div
-                        {...(prefersReducedMotion ? {} : { layoutId: image.id })}
+                        {...(prefersReducedMotion ? {} : { layoutId: `${instanceId}-${image.id}` })}
                         key={image.id}
                         className="col-start-1 row-start-1 size-14.25 overflow-hidden rounded-md sm:size-16.25"
                         style={{
@@ -278,6 +283,7 @@ export function TrashInteraction() {
                         <NextImage
                           className="size-full object-cover"
                           src={image.src}
+                          draggable="false"
                           alt={image.alt}
                           width={IMAGE_SIZE}
                           height={IMAGE_SIZE}
