@@ -1,0 +1,27 @@
+export const metadata = {
+  title: "Clip Path Slider",
+  publishedAt: "2026-09-22",
+  summary:
+    "A slider that wipes between two versions of a slogan, the filled one and its outline, as you drag a knob up and down.",
+  // placeholder: the site-wide image, until this piece has its own
+  image: "/opengraph.png",
+};
+
+## The trick
+
+Both versions sit in the same spot at full size. Each has a `clip-path`, and the two are opposites: when one shows its top `30%`, the other shows its bottom `70%`. Nothing moves or resizes. Only which part of each is visible changes, which is why the line looks like it is uncovering a layer underneath.
+
+## What failed first
+
+The dragging. The lesson follows the mouse as it moves, with no knob, which does nothing on a phone. I added a knob you drag, and I did not know `setPointerCapture` existed. Without it, a drag stops responding as soon as the cursor leaves the knob. Capturing the pointer on press keeps the drag going wherever the cursor goes, until release.
+
+## Details
+
+- The position is the pointer's distance from the top of the box, divided by the box's height, kept between `0` and `100`.
+- `clip-path` does not affect layout, so nothing shifts while you drag.
+- The dot is small, but the area you grab is `44px`, the standard minimum for touch.
+- Arrow keys move it too, with Shift for bigger steps and Home and End for the two ends. That was added later, in an accessibility pass.
+
+## What I changed from the source
+
+The knob and the dragging, so it works on a phone as well as with a mouse, and my own slogan artwork.

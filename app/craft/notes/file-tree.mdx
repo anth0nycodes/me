@@ -1,0 +1,28 @@
+export const metadata = {
+  title: "File Tree",
+  publishedAt: "2026-09-29",
+  summary:
+    "A file tree whose folders animate open and closed, with a button that collapses everything at once.",
+  // placeholder: the site-wide image, until this piece has its own
+  image: "/opengraph.png",
+};
+
+## The trick
+
+A folder's height depends on what is inside it, so nobody knows it in advance. CSS cannot transition to `height: auto`. It jumps. Motion measures the real height and animates to that number, and `AnimatePresence` keeps a closing folder in the page long enough to animate out.
+
+## What failed first
+
+Child rows were not indented correctly. I had stepped each level in by the width of the icon alone and forgot the gap beside it, so a child did not line up under its parent. Each level now steps in by one icon plus one gap.
+
+## Details
+
+- Open folders are stored as full paths, such as `app/api/auth`, in one `Set` above the tree. Two folders with the same name cannot be confused.
+- Because that state lives above the tree, one button can collapse everything. It also means closing a parent and reopening it restores the folders that were open inside.
+- The indent is computed from depth with a CSS variable, so the tree can nest to any level.
+- The animated container hides its overflow, so a folder's contents do not spill over the rows below while it opens.
+- Under reduced motion, folders open and close instantly.
+
+## What I changed from the source
+
+My hover states are instant, and opening and closing is quicker, closer to how a real file tree feels. Real file trees do not animate at all. I would not ship this animation in a product, but as a demo it is pleasant to use.

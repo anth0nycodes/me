@@ -1,0 +1,29 @@
+export const metadata = {
+  title: "Clip Path Tabs",
+  publishedAt: "2026-09-22",
+  summary:
+    "A row of tabs where the highlight slides from one tab to the next, and the text changes color exactly as the highlight passes over it.",
+  // placeholder: the site-wide image, until this piece has its own
+  image: "/opengraph.png",
+};
+
+## The trick
+
+The tabs are drawn twice. The second copy is styled as active and sits on top of the first, and a `clip-path` shows only a window of it, the size of one tab. Clicking a tab moves the window, not the list. So the color changes exactly where the highlight is, and a word can be half light and half dark mid-move.
+
+## What failed first
+
+The `clip-path` values from the lesson stopped being reliable as I added more tabs. I replaced them with a calculation from the active tab's own position: its `offsetLeft` on the left, and the container's width minus where the tab ends on the right. It is exact to the pixel however many tabs there are.
+
+## Details
+
+- The simpler build is one list, a pill sliding behind it, and the active text turning white. But then the text flips at the click, before the pill arrives.
+- Without the clip, every tab would look active at once.
+- The copy is hidden from screen readers with `aria-hidden`, and its buttons are taken out of the tab order, so nobody meets each tab twice.
+- The strip scrolls sideways. Its edges fade so the cut-off is soft, and the right fade goes away at the end of the scroll so the last tab is fully visible.
+- The window moves in `250ms`, and instantly under reduced motion.
+- The very first paint uses a hard-coded clip, so the highlight is already on the first tab before the code has measured anything. It is replaced by the exact value as soon as the page is interactive.
+
+## What I changed from the source
+
+The pixel-exact clip calculation, which holds for any number of tabs, and the fading edges on the scrolling strip.

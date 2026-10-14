@@ -1,0 +1,29 @@
+export const metadata = {
+  title: "Scratch to Reveal",
+  publishedAt: "2026-10-07",
+  summary:
+    "A promo code hidden under gold foil that you scratch off with the pointer or a finger, with a scratching sound that follows your hand.",
+  // placeholder: the site-wide image, until this piece has its own
+  image: "/opengraph.png",
+};
+
+## The trick
+
+The foil is a canvas. Drawing in erase mode makes pixels transparent instead of colored, so scratching is just drawing. And because a canvas lets you read its pixels back, the code can count how many have gone transparent and know how much has been scratched off. At `60%` the rest clears and a copy button appears.
+
+## What failed first
+
+The first version had no sound. I asked for one, then tuned the filter's frequency until I liked how it sounded.
+
+## Details
+
+- A fast drag would leave gaps, because the browser only reports the pointer so many times a second. So each move also draws a line back to the previous point.
+- Progress is measured on every move, so only every 8th pixel is checked. An estimate is enough.
+- The sound is white noise through a filter, looping silently the whole time. Scratching turns the volume up, by more the faster you move.
+- There is no event for "the pointer stopped". Each move schedules silence `60ms` later and cancels the one before, so the sound fades the moment you pause.
+- On a phone the first scratch is silent, because browsers only unlock audio once a finger lifts. I checked this on a real device.
+- A CSS gradient covers the code until the canvas has painted, so the code never flashes on load.
+
+## How it was made
+
+The idea and the feel are mine. I asked AI for a scratch-to-reveal effect over a grained gradient, then for a sound when the first version had none, and tuned the filter. Then I went through the code line by line until I could explain all of it.

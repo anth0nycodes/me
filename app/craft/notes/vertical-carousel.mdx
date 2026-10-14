@@ -1,0 +1,27 @@
+export const metadata = {
+  title: "Vertical Carousel",
+  publishedAt: "2026-10-08",
+  summary:
+    "A looping vertical carousel where cards tilt and shrink as they move away from the center, like labels on a wheel.",
+  // placeholder: the site-wide image, until this piece has its own
+  image: "/opengraph.png",
+};
+
+## The trick
+
+Every card appears a different height, so one fixed spacing does not work. Scale shrinks a card. Tilt shrinks it again, by the cosine of the angle. Perspective then makes the half leaning away look smaller than the half leaning toward you. I measure how tall each card actually appears and space them by that, so the visible gap stays at `12px` all the way out.
+
+## What failed first
+
+My first spacing only accounted for scale. Once I added the tilt, the cards looked shorter than the spacing assumed, and the gaps grew toward the ends.
+
+## Details
+
+- All the math is in card heights, which converts straight into a CSS `translate` percentage. The same code works at both card sizes, and only the `12px` gap is fixed.
+- Position, scale and tilt take `1100ms`. The color change takes half that. It advances every `1200ms`, so each move settles just before the next one starts.
+- The outermost card is faded out, which hides the jump when it wraps round to the other side.
+- It pauses when it scrolls out of view, and it does not advance by itself under reduced motion.
+
+## What I changed from the source
+
+The original only scaled its cards. I added the tilt, for a 3D wheel effect, which is what made the spacing math necessary. I also used chevrons at the sides in place of the original's wing graphics.

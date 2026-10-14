@@ -1,0 +1,27 @@
+export const metadata = {
+  title: "Trash Interaction",
+  publishedAt: "2026-10-03",
+  summary:
+    "A photo grid where you select images, send them to a bin, and watch them fly in, pile up and drop away.",
+  // placeholder: the site-wide image, until this piece has its own
+  image: "/opengraph.png",
+};
+
+## The trick
+
+Each image in the grid and its small copy in the bin share a `layoutId`, the image's own id. Motion treats them as one element and animates between the two positions and sizes. Nothing is measured by hand, so it works at any size.
+
+## What failed first
+
+Nothing broke. This piece follows the lesson closely. The approach I would avoid is working out where the bin is and animating each image's `x` and `y` to reach it, which is far more work for a less fluid result.
+
+## Details
+
+- The bin is drawn in two pieces, a back and a front, with the images between them. That is what makes them look inside it.
+- Images you did not select fade and blur out quickly, so only the chosen ones are on screen while they travel.
+- After you confirm, a short sequence resets everything: the content is hidden, the state is cleared while nothing is visible, then it comes back.
+- Under reduced motion the shared movement is switched off.
+
+## What I changed from the source
+
+The toolbar is vertical and comes in from the side, where the lesson's appears from the bottom. The Back button actually resets the selection. And once the final button has been pressed it is disabled and dimmed, so it cannot be pressed twice.

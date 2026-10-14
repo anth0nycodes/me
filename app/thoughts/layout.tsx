@@ -1,5 +1,5 @@
-import { ScrollToTop } from "@/components/thoughts/scroll-to-top";
 import { ReactNode } from "react";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 export default function ThoughtsLayout({
   children,
@@ -7,7 +7,7 @@ export default function ThoughtsLayout({
   children: ReactNode;
 }>) {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       {children}
       <ScrollToTop />
     </div>

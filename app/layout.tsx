@@ -86,7 +86,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("font-sans", geistSans.variable, geistMono.variable)}
     >
-      <body className="bg-background flex min-h-screen w-full flex-col justify-center px-6 py-12 font-sans antialiased selection:bg-(--selection) sm:py-24">
+      <body className="bg-background flex min-h-screen w-full flex-col justify-center px-6 py-12 font-sans antialiased selection:bg-(--selection) has-[[data-not-found]]:justify-start sm:py-24">
         <AudioProvider>
           <ThemeProvider
             attribute="class"

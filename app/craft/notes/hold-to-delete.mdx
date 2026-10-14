@@ -1,0 +1,27 @@
+export const metadata = {
+  title: "Hold to Delete",
+  publishedAt: "2026-10-04",
+  summary:
+    "A task list where deleting takes a 1.5 second hold on the button, so a slip cannot remove anything.",
+  // placeholder: the site-wide image, until this piece has its own
+  image: "/opengraph.png",
+};
+
+## The trick
+
+The transition is the timer. Holding the button fills it by transitioning a `clip-path` inset from `100%` to `0` over `1500ms`. When that transition ends, the code checks that the clip path has reached `inset(0px)`, and only then deletes. There is no `setTimeout`.
+
+## What failed first
+
+I did not know `onTransitionEnd` existed, so at first I had no way to tell when the hold was done. Once I found it, my first version deleted on any transition end. Letting go early sends the fill back, and that return trip is a transition that ends too, so releasing early also deleted. The fix was to check where the fill ended up: only a clip path of `inset(0px)` means the hold completed.
+
+## Details
+
+- Because the delete hangs off the transition, the duration lives in one place. A `setTimeout` would need the same number written twice and its own code to cancel on release.
+- The fill is `linear` while you hold, because it stands for time passing and a steady rate lets you judge how long is left. It retreats with `ease-out` in `300ms`, so releasing feels immediate.
+- Holding Enter or Space works the same way. `keydown` starts the hold, and `keyup` or losing focus cancels it.
+- Under reduced motion the fill stays. It is the progress indicator, and its ending is what triggers the delete.
+
+## What I changed from the source
+
+The list is styled after Linear's issue list. The hold-to-delete interaction is my own idea. Linear's selection toolbar has no hold to delete.

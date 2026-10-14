@@ -21,13 +21,24 @@ export default function Navbar() {
   // home carries its navigation inline in the header text
   if (pathname === "/") return null;
 
+  function generateBackLink() {
+    if (pathname.startsWith("/thoughts/")) return { href: "/thoughts", text: "thoughts" };
+    if (pathname.startsWith("/craft/")) {
+      const slug = pathname.slice("/craft/".length);
+      return { href: `/craft#${slug}`, text: "craft" };
+    }
+    return { href: "/", text: "home" };
+  }
+
+  const { href, text } = generateBackLink();
+
   return (
     <nav
       aria-label="Main"
       className="mx-auto mb-5 flex w-full max-w-150 items-center justify-between"
     >
       <Link
-        href="/"
+        href={href}
         onMouseEnter={() => playHoverSFX()}
         onClick={() => trigger("light")}
         className="group text-muted-foreground hover:text-primary flex items-center gap-1.5 text-sm"
@@ -36,7 +47,7 @@ export default function Navbar() {
           className="size-4 transition-transform duration-200 group-hover:-translate-x-0.5"
           aria-hidden="true"
         />
-        back
+        {text}
       </Link>
       <div className="flex items-center gap-1">
         <AudioToggle />

@@ -1,0 +1,27 @@
+export const metadata = {
+  title: "Multistep Form",
+  publishedAt: "2026-09-27",
+  summary:
+    "A three-step form that slides between steps, with a progress bar and Back and Next buttons that never move.",
+  // placeholder: the site-wide image, until this piece has its own
+  image: "/opengraph.png",
+};
+
+## The trick
+
+All three steps are on the page at once, stacked in a single grid cell. Only the current one is visible. The others wait off to one side: later steps on the right, earlier ones on the left. Changing step just slides them. And because the cell is always as tall as the tallest step, the form never changes height.
+
+## What failed first
+
+Nothing broke. The usual approach, and the course's, shows one step at a time, so the form's height changes with each step. That shifts the layout and moves the buttons out from under the cursor. Stacking the steps avoids both.
+
+## Details
+
+- Clicking Next twice quickly carries straight on to the later step. Every step is always mounted and simply moves to where it belongs, so nothing has to finish first.
+- Hidden steps are marked `inert`, hidden from screen readers, and made invisible once they finish sliding out. Nobody can tab into a step they cannot see.
+- The progress bar moves with `translate`, not by changing `width`, which skips layout work on every frame.
+- Under reduced motion the steps change without sliding.
+
+## What I changed from the source
+
+The fixed height, so nothing shifts between steps and the cursor never has to chase the buttons. I also added the progress bar.
