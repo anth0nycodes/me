@@ -162,12 +162,15 @@ export function TrashInteraction() {
                         }}
                       >
                         <motion.div
-                          {...(prefersReducedMotion ? {} : { layoutId: `${instanceId}-${image.id}` })}
+                          {...(prefersReducedMotion
+                            ? {}
+                            : { layoutId: `${instanceId}-${image.id}` })}
                           className="size-full overflow-hidden rounded-xl"
                         >
                           <NextImage
                             className="size-full object-cover"
                             alt={image.alt}
+                            draggable="false"
                             src={image.src}
                             width={IMAGE_SIZE}
                             height={IMAGE_SIZE}
@@ -280,6 +283,7 @@ export function TrashInteraction() {
                         <NextImage
                           className="size-full object-cover"
                           src={image.src}
+                          draggable="false"
                           alt={image.alt}
                           width={IMAGE_SIZE}
                           height={IMAGE_SIZE}

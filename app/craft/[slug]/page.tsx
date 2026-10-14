@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CraftCard } from "@/components/craft/craft-card";
+import { CraftCard, CraftLink } from "@/components/craft/craft-card";
 import { BlogDate } from "@/components/thoughts/blog-date";
 import { DATA } from "@/data/me";
 import { CraftNoteMetadata, CRAFTS } from "../constants";
@@ -93,7 +93,13 @@ export default async function CraftNotePage({ params }: CraftItemPageProps) {
       <div className="flex flex-col gap-4">
         <header className="flex flex-col gap-2">
           <h1 className="text-2xl font-medium tracking-tighter">{metadata.title}</h1>
-          <BlogDate date={metadata.publishedAt} />
+          <div className="flex items-center justify-between gap-4">
+            <BlogDate date={metadata.publishedAt} />
+            <div className="flex items-center gap-2">
+              {craft.reference && <CraftLink label="reference" href={craft.reference} />}
+              <CraftLink label="source" href={craft.source} />
+            </div>
+          </div>
         </header>
         <CraftCard craft={craft} isSlugRoute={true} />
       </div>
