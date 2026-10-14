@@ -22,6 +22,7 @@ export async function generateMetadata({
   }>;
 }): Promise<Metadata | undefined> {
   const { slug } = await params;
+
   const { metadata } = (await import(`../notes/${slug}.mdx`)) as {
     metadata: CraftNoteMetadata;
   };
@@ -109,3 +110,5 @@ export default async function CraftNotePage({ params }: CraftItemPageProps) {
     </div>
   );
 }
+
+export const dynamicParams = false;
