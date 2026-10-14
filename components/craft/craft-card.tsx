@@ -53,15 +53,13 @@ export function CraftLink({ label, href }: { label: string; href: string }) {
     volume: 0.125,
     soundEnabled: audioEnabled,
   });
-  const LINK_STYLES =
-    "group text-muted-foreground hover:text-foreground flex items-center gap-1 text-xs font-medium transition-colors sm:text-sm";
 
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={LINK_STYLES}
+      className="group text-muted-foreground hover:text-foreground flex items-center gap-1 text-xs font-medium transition-colors sm:text-sm"
       onMouseEnter={() => {
         trigger("light");
         playHoverSFX();
