@@ -21,7 +21,7 @@ export default function Navbar() {
   // home carries its navigation inline in the header text
   if (pathname === "/") return null;
 
-  function generateBackLink() {
+  function getBackLink() {
     if (pathname.startsWith("/thoughts/")) return { href: "/thoughts", text: "thoughts" };
     if (pathname.startsWith("/craft/")) {
       const slug = pathname.slice("/craft/".length);
@@ -30,7 +30,7 @@ export default function Navbar() {
     return { href: "/", text: "home" };
   }
 
-  const { href, text } = generateBackLink();
+  const { href, text } = getBackLink();
 
   return (
     <nav
