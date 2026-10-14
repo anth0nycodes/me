@@ -21,8 +21,9 @@ export function CraftCard({ craft, isSlugRoute }: CraftCardProps) {
   });
 
   return (
-    <section id={craft.id} className="flex scroll-mt-4 flex-col gap-2">
-      <div className="ring-accent aspect-16/12 size-full max-h-93.5 overflow-clip rounded-lg ring-2 dark:ring-1">
+    <section id={craft.id} className="@container flex scroll-mt-4 flex-col gap-2">
+      {/* 16:12 floored to a whole pixel, since a fractional bottom edge makes iOS Safari leak a 1px line of the demo's background past the rounded clip */}
+      <div className="ring-accent h-[round(down,75cqw,1px)] max-h-93.5 w-full overflow-clip rounded-lg ring-2 dark:ring-1">
         {/* demos are built against the dark palette, so pin it here regardless of site theme */}
         <div className="dark text-foreground size-full">{craft.component}</div>
       </div>
