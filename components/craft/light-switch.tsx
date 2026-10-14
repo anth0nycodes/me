@@ -15,8 +15,13 @@ const PLATE_SHADOW = [
   "0 8px 24px rgba(0, 0, 0, 0.12)",
 ].join(", ");
 
-// `dir` is the direction the half's outer end points: 1 for the bottom half, -1 for the top.
-// both states share the same shadow list shape so the browser can interpolate between them
+/**
+ * Creates a half shadow for the rocker half of the light switch, depending on whether it is raised or pressed down. The shadow is positioned on the top or bottom edge of the rocker half, depending on its state.
+ *
+ * @param isRaised - Boolean indicating whether or not the rocker half is raised or pressed down.
+ * @param direction - The direction of the rocker half, either 1 for the bottom half or -1 for the top half.
+ * @returns - A half shadow that is positioned on the top or bottom edge of the rocker half, depending on whether it is raised or pressed down.
+ */
 function halfShadow(isRaised: boolean, dir: 1 | -1) {
   return isRaised
     ? [
@@ -25,7 +30,7 @@ function halfShadow(isRaised: boolean, dir: 1 | -1) {
         // the raised end lifts off the opening and casts a shadow into it
         `0 ${7 * dir}px 14px -2px rgba(0, 0, 0, 0.4)`,
       ].join(", ")
-    : ["0 0 0 #b8b2a8", "0 0 0 -3px rgba(0, 0, 0, 0)"].join(", ");
+    : "";
 }
 
 export function Lightswitch() {

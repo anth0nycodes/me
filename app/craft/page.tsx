@@ -8,7 +8,6 @@ import { FeedbackPopover } from "@/components/craft/feedback-popover/feedback-po
 import { FileTree } from "@/components/craft/file-tree/file-tree";
 import { HoldToDelete } from "@/components/craft/hold-to-delete/hold-to-delete";
 import { Lightswitch } from "@/components/craft/light-switch";
-import { MetalCard } from "@/components/craft/metal-card";
 import { MultiStepForm } from "@/components/craft/multistep-form";
 import { NavlinksClip } from "@/components/craft/navlinks-clip";
 import { RainbowText } from "@/components/craft/rainbow-text/rainbow-text";
@@ -107,18 +106,10 @@ const crafts: Craft[] = [
     component: <AnimatedList />,
   },
   {
-    id: "metal-card",
-    description: "Metal Card",
-    source: "https://github.com/anth0nycodes/me/blob/main/components/craft/metal-card.tsx",
-    reference: "https://sanyam.sh/lab/foil-card",
-    component: <MetalCard />,
-  },
-  {
     id: "navlinks-clip",
     description: "Clip Path Tabs",
     source: "https://github.com/anth0nycodes/me/blob/main/components/craft/navlinks-clip.tsx",
-    reference:
-      "https://pqoqubbw.dev/crafts/mintlify-landing-page#:~:text=tabs%20with%20clip%2Dpath",
+    reference: "https://animations.dev/learn/css-animations/the-magic-of-clip-path#tabs-transition",
     component: <NavlinksClip />,
   },
   {
