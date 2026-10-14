@@ -27,7 +27,6 @@ const withMDX = createMDX({
         "rehype-pretty-code",
         {
           theme: { light: "min-light", dark: "min-dark" },
-          keepBackground: false,
         },
       ],
     ],

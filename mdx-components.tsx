@@ -1,6 +1,7 @@
 import { isValidElement, type ReactNode } from "react";
 import Image, { type ImageProps } from "next/image";
 import type { MDXComponents } from "mdx/types";
+import { CodeBlock } from "@/components/code-block";
 
 /**
  * Reads the plain text out of a heading's children, walking into any inline code, links or emphasis
@@ -32,6 +33,7 @@ function slugify(text: string) {
 }
 
 const components: MDXComponents = {
+  pre: (props) => <CodeBlock {...props} />,
   h2: ({ children, ...props }) => {
     const id = slugify(getText(children));
     return (
