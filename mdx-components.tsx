@@ -46,17 +46,18 @@ const components: MDXComponents = {
       </h2>
     );
   },
-  img: (props) => {
+  // width and height come from lib/rehype-image-size.mjs, read off the file at build time, so the
+  // browser reserves the right aspect ratio before the image loads. 0 is the fallback for remote images.
+  img: ({ width, height, ...props }) => {
     const src = typeof props.src === "string" ? props.src : "";
     return (
       <Image
         {...(props as ImageProps)}
         alt={props.alt ?? ""}
-        className="border-muted rounded-lg border-2 first:my-4"
-        width={0}
-        height={0}
+        width={Number(width ?? 0)}
+        height={Number(height ?? 0)}
+        className="border-muted h-auto w-full rounded-lg border-2 first:my-4"
         sizes="(max-width: 650px) 100vw, 650px"
-        style={{ width: "100%", height: "auto" }}
         // GIFs must skip optimization or next/image freezes them on one frame.
         unoptimized={src.endsWith(".gif")}
       />

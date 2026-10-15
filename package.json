@@ -21,6 +21,7 @@
     "clsx": "^2.1.1",
     "cn": "^0.4.0",
     "framer-motion": "^12.34.5",
+    "image-size": "^2.0.4",
     "lucide-react": "^0.576.0",
     "motion": "^12.34.5",
     "next": "16.1.6",

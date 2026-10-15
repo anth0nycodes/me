@@ -1,3 +1,4 @@
+import path from "node:path";
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
@@ -19,6 +20,8 @@ const withMDX = createMDX({
   options: {
     remarkPlugins: ["remark-gfm"],
     rehypePlugins: [
+      // Local plugin, so it needs an absolute path: @next/mdx resolves strings from each .mdx file's folder.
+      path.join(process.cwd(), "lib/rehype-image-size.mjs"),
       [
         "rehype-external-links",
         { target: "_blank", rel: ["noopener", "noreferrer"] },
