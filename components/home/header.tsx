@@ -9,7 +9,7 @@ import { Favicon } from "@/components/home/favicon";
 import { LinkBadge } from "@/components/home/link-badge";
 import { NavLink } from "@/components/home/nav-link";
 import { SelectionBox } from "@/components/home/selection-box";
-import { NpmIcon } from "@/components/home/svgs";
+import { NpmIcon, TracemarkIcon } from "@/components/home/svgs";
 import { ThemeToggler } from "@/components/theme-toggler";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
 import { DATA } from "@/data/me";
@@ -44,8 +44,8 @@ const projectBadges = DATA.projects
     name: project.title,
     href: project.projectHref,
     icon:
-      "favicon" in project ? (
-        <Favicon src={project.favicon} alt={`${project.title} logo`} />
+      project.title === "tracemark" ? (
+        <TracemarkIcon className="size-3.5" />
       ) : (
         <NpmIcon className="size-3.5" />
       ),

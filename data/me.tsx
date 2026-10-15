@@ -29,15 +29,13 @@ export const DATA = {
     },
     {
       title: "Refactoring UI",
-      description:
-        "learn how to design beautiful user interfaces without relying on a designer",
+      description: "learn how to design beautiful user interfaces without relying on a designer",
       author: "Adam W. & Steve S.",
       src: "https://www.refactoringui.com/",
     },
     {
       title: "Web Interface Guidelines",
-      description:
-        "comprehensive guidelines for building polished web interfaces",
+      description: "comprehensive guidelines for building polished web interfaces",
       author: "Vercel",
       src: "https://vercel.com/design/guidelines",
     },
@@ -49,8 +47,7 @@ export const DATA = {
     },
     {
       title: "Flora's Notes on Design Engineering",
-      description:
-        "thoughtful insights on the intersection of design and engineering",
+      description: "thoughtful insights on the intersection of design and engineering",
       author: "Flora G.",
       src: "https://www.floguo.com/notes/design-engineering",
     },
@@ -62,8 +59,7 @@ export const DATA = {
     },
     {
       title: "shadcn",
-      description:
-        "beautifully designed components that you can copy and paste into your apps",
+      description: "beautifully designed components that you can copy and paste into your apps",
       author: "Shadab (Shad) A.",
       src: "https://ui.shadcn.com/",
     },
@@ -113,26 +109,6 @@ export const DATA = {
   ],
   projects: [
     {
-      title: "resume-analyzer",
-      role: "creator / maintainer",
-      primary: true,
-      status: "released",
-      techStack: [
-        "TypeScript",
-        "Node.js",
-        "Vercel AI SDK",
-        "Commander.js",
-        "Clack",
-        "Zod",
-      ],
-      description:
-        "open-source AI CLI tool that analyzes your resume against a job description and scores how well they match",
-      projectHref:
-        "https://www.npmjs.com/package/@anth0nycodes/resume-analyzer",
-      sourceCodeHref: "https://github.com/anth0nycodes/resume-analyzer",
-      image: "/posters/resume-analyzer.png",
-    },
-    {
       title: "tracemark",
       role: "creator / maintainer",
       primary: true,
@@ -143,7 +119,18 @@ export const DATA = {
       projectHref: "https://tracemark.fun/",
       sourceCodeHref: "https://github.com/anth0nycodes/tracemark",
       image: "/posters/tracemark.png",
-      favicon: "/favicons/tracemark.png",
+    },
+    {
+      title: "resume-analyzer",
+      role: "creator / maintainer",
+      primary: true,
+      status: "released",
+      techStack: ["TypeScript", "Node.js", "Vercel AI SDK", "Commander.js", "Clack", "Zod"],
+      description:
+        "open-source AI CLI tool that analyzes your resume against a job description and scores how well they match",
+      projectHref: "https://www.npmjs.com/package/@anth0nycodes/resume-analyzer",
+      sourceCodeHref: "https://github.com/anth0nycodes/resume-analyzer",
+      image: "/posters/resume-analyzer.png",
     },
     {
       title: "mm2-item-info",
@@ -175,10 +162,8 @@ export const DATA = {
       primary: false,
       status: "released",
       techStack: ["TypeScript", "Node.js", "Commander.js", "Clack"],
-      description:
-        "open-source CLI tool that generates licenses for your repositories",
-      projectHref:
-        "https://www.npmjs.com/package/@anth0nycodes/license-generator",
+      description: "open-source CLI tool that generates licenses for your repositories",
+      projectHref: "https://www.npmjs.com/package/@anth0nycodes/license-generator",
       sourceCodeHref: "https://github.com/anth0nycodes/license-generator",
       image: "/posters/license-generator.png",
     },
