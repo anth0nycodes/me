@@ -86,7 +86,7 @@ export default async function ThoughtsPostPage({ params }: ThoughtsPostPageProps
         <h1 className="text-2xl font-medium tracking-tighter">{metadata.title}</h1>
         <FormattedDate date={metadata.publishedAt} />
       </header>
-      <article className="prose text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground max-w-none">
+      <article className="prose text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground prose-figcaption:text-neutral-600 dark:prose-figcaption:text-gray-500 max-w-none">
         <ThoughtPost />
       </article>
     </section>

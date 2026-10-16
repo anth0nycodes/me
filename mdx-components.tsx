@@ -34,13 +34,14 @@ function slugify(text: string) {
 
 const components: MDXComponents = {
   pre: (props) => <CodeBlock {...props} />,
+  a: (props) => <a target="_blank" rel="noopener noreferrer" className="text-bold" {...props} />,
   h2: ({ children, ...props }) => {
     const id = slugify(getText(children));
     return (
       <h2
         id={id}
         {...props}
-        className="not-prose text-foreground mt-10 mb-2 scroll-mt-4 text-xl font-medium tracking-tight first:mt-0"
+        className="not-prose text-foreground mt-10 mb-2 scroll-mt-4 text-xl font-medium tracking-tight underline underline-offset-4 first:mt-0"
       >
         <a href={`#${id}`}>{children}</a>
       </h2>
@@ -56,8 +57,9 @@ const components: MDXComponents = {
         alt={props.alt ?? ""}
         width={Number(width ?? 0)}
         height={Number(height ?? 0)}
-        className="border-muted h-auto w-full rounded-lg border-2 first:my-4"
+        className="ring-muted h-auto w-full rounded-lg ring-2 first:my-4 dark:ring-0"
         sizes="(max-width: 650px) 100vw, 650px"
+        draggable={false}
         // GIFs must skip optimization or next/image freezes them on one frame.
         unoptimized={src.endsWith(".gif")}
       />

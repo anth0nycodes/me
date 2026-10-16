@@ -192,7 +192,7 @@
 
 /* inline code in MDX: the typography plugin prints literal backticks around it, so drop those and show a chip instead */
 .prose :not(pre) > code {
-  @apply bg-muted rounded-sm px-1 py-0.5 font-mono text-[0.875em] font-normal;
+  @apply bg-muted border-border rounded-sm border px-1.25 py-0.5 font-mono text-[0.875em] font-normal whitespace-nowrap dark:border-0;
 }
 .prose :not(pre) > code::before,
 .prose :not(pre) > code::after {

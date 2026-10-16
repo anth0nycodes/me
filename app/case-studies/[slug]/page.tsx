@@ -34,7 +34,7 @@ export async function generateMetadata({
       description,
       type: "article",
       publishedTime,
-      url: `${DATA.url}/thoughts/${slug}`,
+      url: `${DATA.url}/case-studies/${slug}`,
       images: [
         {
           url: ogImage,
@@ -59,7 +59,7 @@ export default async function CaseStudyPostPage({ params }: CaseStudyPostPagePro
   const { Component: CaseStudy, metadata } = post;
 
   return (
-    <section id="thoughts">
+    <section id="case-studies">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -74,7 +74,7 @@ export default async function CaseStudyPostPage({ params }: CaseStudyPostPagePro
             image: metadata.image
               ? `${DATA.url}${metadata.image}`
               : `${DATA.url}/og?title=${metadata.title}`,
-            url: `${DATA.url}/thoughts/${slug}`,
+            url: `${DATA.url}/case-studies/${slug}`,
             author: {
               "@type": "Person",
               name: DATA.name,
@@ -86,7 +86,7 @@ export default async function CaseStudyPostPage({ params }: CaseStudyPostPagePro
         <h1 className="text-2xl font-medium tracking-tighter">{metadata.title}</h1>
         <FormattedDate date={metadata.publishedAt} />
       </header>
-      <article className="prose text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground max-w-none">
+      <article className="prose text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground prose-figcaption:text-neutral-600 dark:prose-figcaption:text-gray-500 max-w-none">
         <CaseStudy />
       </article>
     </section>
