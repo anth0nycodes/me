@@ -184,7 +184,7 @@ export function VerticalCarousel() {
 
     const intersectionObserver = new IntersectionObserver(
       ([entry]) => setIsInView(entry.isIntersecting),
-      { threshold: 0.3 },
+      { threshold: 0.5 },
     );
 
     intersectionObserver.observe(targetElement);
