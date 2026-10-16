@@ -1,12 +1,15 @@
-import { ComponentType } from "react";
 import type { Metadata } from "next";
-import { BlogDate } from "@/components/thoughts/blog-date";
-import { getBlogPosts, type PostMetadata } from "@/data/blog";
+import { notFound } from "next/navigation";
+import { FormattedDate } from "@/components/formatted-date";
 import { DATA } from "@/data/me";
+import { getThoughtPost, THOUGHT_POSTS } from "@/data/thoughts";
+
+interface ThoughtsPostPageProps {
+  params: Promise<{ slug: string }>;
+}
 
 export async function generateStaticParams() {
-  const posts = await getBlogPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  return THOUGHT_POSTS.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -17,10 +20,9 @@ export async function generateMetadata({
   }>;
 }): Promise<Metadata | undefined> {
   const { slug } = await params;
-  const { metadata } = (await import(`@/content/${slug}.mdx`)) as {
-    metadata: PostMetadata;
-  };
-
+  const post = await getThoughtPost(slug);
+  if (!post) return;
+  const { metadata } = post;
   const { title, publishedAt: publishedTime, summary: description, image } = metadata;
   const ogImage = image ? `${DATA.url}${image}` : `${DATA.url}/og?title=${title}`;
 
@@ -48,21 +50,16 @@ export async function generateMetadata({
   };
 }
 
-export default async function Blog({
-  params,
-}: {
-  params: Promise<{
-    slug: string;
-  }>;
-}) {
+export default async function ThoughtsPostPage({ params }: ThoughtsPostPageProps) {
   const { slug } = await params;
-  const { default: Post, metadata } = (await import(`@/content/${slug}.mdx`)) as {
-    default: ComponentType;
-    metadata: PostMetadata;
-  };
+  const post = await getThoughtPost(slug);
+  if (!post) {
+    notFound();
+  }
+  const { Component: ThoughtPost, metadata } = post;
 
   return (
-    <section id="blog">
+    <section id="thoughts">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -87,10 +84,10 @@ export default async function Blog({
       />
       <header className="flex flex-col gap-2">
         <h1 className="text-2xl font-medium tracking-tighter">{metadata.title}</h1>
-        <BlogDate date={metadata.publishedAt} />
+        <FormattedDate date={metadata.publishedAt} />
       </header>
-      <article className="prose text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground max-w-none">
-        <Post />
+      <article className="prose text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground prose-figcaption:text-neutral-600 dark:prose-figcaption:text-gray-500 max-w-none">
+        <ThoughtPost />
       </article>
     </section>
   );

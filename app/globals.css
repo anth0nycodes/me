@@ -21,6 +21,7 @@
   --route-projects: #6a76e3;
   --route-craft: #e0457b;
   --route-thoughts: #0e9f8e;
+  --route-case-studies: #f5a623;
   --route-vault: #e8590c;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -191,7 +192,7 @@
 
 /* inline code in MDX: the typography plugin prints literal backticks around it, so drop those and show a chip instead */
 .prose :not(pre) > code {
-  @apply bg-muted rounded-sm px-1 py-0.5 font-mono text-[0.875em] font-normal;
+  @apply bg-muted border-border rounded-sm border px-1.25 py-0.5 font-mono text-[0.875em] font-normal whitespace-nowrap dark:border-0;
 }
 .prose :not(pre) > code::before,
 .prose :not(pre) > code::after {

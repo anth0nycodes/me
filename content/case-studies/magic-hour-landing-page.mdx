@@ -1,0 +1,164 @@
+import { ImageComparison } from "@/components/ui/image-comparison";
+import { Video } from "@/components/ui/video";
+import { afterSrcSet, beforeSrcSet } from "./magic-hour-landing-page.data";
+
+export const metadata = {
+  title: "Magic Hour Landing Page",
+  summary:
+    "A case study on how I built and shipped the Magic Hour landing page revamp.",
+  publishedAt: "2026-10-16",
+  image: "/case-studies/magic-hour/magic-hour-landing-preview.png",
+};
+
+<ImageComparison
+  before={{
+    src: "/case-studies/magic-hour/comparison/magic-hour-landing-before",
+    alt: "The old Magic Hour landing page, headlined Create Engaging Videos Like a Pro",
+  }}
+  after={{
+    src: "/case-studies/magic-hour/comparison/magic-hour-landing-after",
+    alt: "The new Magic Hour landing page, headlined Create, Edit, & Ship AI Visuals 10x Faster",
+  }}
+  width={1360}
+  height={798}
+/>
+
+In the summer of 2025, I built and shipped a new landing page for [Magic Hour](https://magichour.ai/), an AI video and image generation platform. In the first month after launch, the site's signup conversion rose about <u>12%</u>.
+
+- **Team:** me and a designer
+- **Stack:** Next.js, TypeScript, Tailwind
+
+## The goal
+
+The aim was a home page that looked presentable and trustworthy, as well as one that turned more visitors into signups and, ideally, paying users.
+
+## Before
+
+<Video
+  muted
+  playsInline
+  loop
+  preload="metadata"
+  poster="/case-studies/magic-hour/comparison/magic-hour-landing-before.webp"
+  srcSet={beforeSrcSet}
+  className="aspect-[1920/1126]"
+/>
+
+The old page, as of March 2025, was pretty repetitive and bland. Every section was centered and built the same way: a heading, one line of text, and then content. Nine buttons shared the same solid purple, from the hero all the way to the six `Learn More` buttons, so there was no differentiating factor that told you which one mattered. Furthermore, nine videos were set to `autoplay` as soon as the page loaded; I'll dive into why this was so detrimental later.
+
+## What I owned
+
+The designer handed me a full Figma file covering desktop and phone, and the copy came from the team. My job was building it: turning the designs into code, and deciding the things a static design leaves open.
+
+- **Hover states.** The designs didn't specify all of them, so I picked treatments that kept good contrast.
+- **The tool carousel's speed.** Slow enough to take in each tool, but not so slow that getting through all of them felt endless.
+- **Phone layouts.** Most of the responsive work was layout and sizing within each section, following the phone frames.
+
+## Videos that only play on screen
+
+The new page has a lot of videos, roughly `64MB` worth. During pre-launch inspection, this had posed a very dire problem: on mobile, the landing page would crash the browser 9/10 times when you would try to scroll through it within the first few seconds. So, you may be wondering, how would you remedy this undesirable side effect? Well, that would be thanks to the `IntersectionObserver` API.
+
+<div className="border-l-4 border-neutral-300 pl-4 italic dark:border-[#F0F5F2]">
+  TLDR: The `IntersectionObserver` API allows you to detect when an element
+  enters or leaves the viewport. If you're interested, you can learn more about
+  the API
+  [here](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API).
+</div>
+
+The codebase had an existing `useOnScreen` hook that was powered by the `IntersectionObserver` API. Here's a rough implementation of the hook:
+
+```tsx
+import { useEffect, useState, type RefObject } from "react";
+
+export function useOnScreen(ref: RefObject<Element | null>, threshold = 0.5) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [ref, threshold]);
+
+  return isVisible;
+}
+```
+
+After discovering this hook thanks to a tip from our CTO—thanks again, [David](https://www.linkedin.com/in/davidhu2000/)!—I went out of my way to build a reusable video component that only plays when it is on screen.
+
+<div className="border-l-4 border-neutral-300 pl-4 italic dark:border-[#F0F5F2]">
+  Additional context: With the introduction of this new component, I was also
+  able to swap out every video across the entire site, leading to a great
+  overall performance win!
+</div>
+
+## The developers section
+
+Most of the landing page was made up of new, original sections, but a few parts reused components that already existed on other pages.
+
+The developers section was one of them. It shows a code snippet for API users, and Magic Hour's `/api` page already had a working code preview, so I kept its core logic and restyled it to match the new designs.
+
+<figure>
+
+![The original code preview on the /api page, with Python, Node and HTTP tabs, showing an image-to-video request](/case-studies/magic-hour/magic-hour-api-page-snippet.png)
+
+<figcaption>The original code preview on Magic Hour's `/api` page.</figcaption>
+</figure>
+
+<figure>
+
+![The restyled code preview in the landing page's developers section, showing an image-to-video request](/case-studies/magic-hour/magic-hour-code-snippet.png)
+
+<figcaption>My restyled version in the landing page's developers section.</figcaption>
+</figure>
+
+## After
+
+<Video
+  muted
+  playsInline
+  loop
+  preload="metadata"
+  poster="/case-studies/magic-hour/comparison/magic-hour-landing-after.webp"
+  srcSet={afterSrcSet}
+  className="aspect-[1920/1128]"
+/>
+
+The new page, as of September 2025. It has since been replaced, so this recording is the best record of it.
+
+## The accessibility pass
+
+A few weeks after launch, I went back for an accessibility pass: text contrast, the right roles on elements, and a semantic HTML order that made sense.
+
+One example is the hero's supporting line, under the headline. It was too dim and blended into the background. I changed it to white at 60% opacity, which raised its contrast from 5.6:1 to 7.3:1.
+
+<figure>
+
+![The hero's supporting line at launch, in a dim blue-gray on the dark background](/case-studies/magic-hour/magic-hour-contrast-before.png)
+
+<figcaption>At launch, August 2025: a blue-gray at 5.6:1.</figcaption>
+</figure>
+
+<figure>
+
+![The hero's supporting line after the fix, in a lighter neutral gray on the same background](/case-studies/magic-hour/magic-hour-contrast-after.png)
+
+<figcaption>After the pass, September 2025: white at 60% opacity, 7.3:1. The team also changed the wording in between.</figcaption>
+</figure>
+
+## What I'd do differently
+
+Since then, I've learned a lot more about accessibility and how to make the web a better experience for everyone. If I were to do this project again, here's a few additional changes I'd make:
+
+- **Respect reduced motion.** At the time I didn't know `prefers-reduced-motion` existed, so carousels that are on the page kept moving for everyone. Now, I'd stop it entirely for people who ask for less motion.
+- **Let people pause the carousels.** Carousels on the page currently move on their own and can't be stopped. WCAG's [Pause, Stop, Hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html) asks for a way to pause content like that.

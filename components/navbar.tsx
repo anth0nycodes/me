@@ -23,6 +23,8 @@ export default function Navbar() {
 
   function getBackLink() {
     if (pathname.startsWith("/thoughts/")) return { href: "/thoughts", text: "thoughts" };
+    if (pathname.startsWith("/case-studies/"))
+      return { href: "/case-studies", text: "case studies" };
     if (pathname.startsWith("/craft/")) {
       const slug = pathname.slice("/craft/".length);
       return { href: `/craft#${slug}`, text: "craft" };

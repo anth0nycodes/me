@@ -3,15 +3,16 @@
 import Link from "next/link";
 import { useSound } from "use-sound";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
-import type { Post } from "@/data/blog";
+import type { BasePost } from "@/data/mdx";
 import { useHaptics } from "@/hooks/use-haptics";
 import { formatDate } from "@/lib/utils";
 
-interface BlogPostsProps {
-  post: Post;
+interface PostLinkProps {
+  folderName: string;
+  post: BasePost;
 }
 
-export function BlogLink({ post }: BlogPostsProps) {
+export function PostLink({ folderName, post }: PostLinkProps) {
   const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
   const [playHoverSFX] = useSound("/audio/hover-tick.wav", {
@@ -26,7 +27,7 @@ export function BlogLink({ post }: BlogPostsProps) {
         trigger("light");
         playHoverSFX();
       }}
-      href={`/thoughts/${post.slug}`}
+      href={`/${folderName}/${post.slug}`}
     >
       <p className="mb-1 text-sm font-medium">{post.metadata.title}</p>
       <p className="text-muted-foreground text-xs">{formatDate(post.metadata.publishedAt)}</p>

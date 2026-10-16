@@ -21,13 +21,6 @@ export interface Craft {
   component: ReactNode;
 }
 
-export interface CraftNoteMetadata {
-  title: string;
-  publishedAt: string;
-  summary: string;
-  image: string;
-}
-
 export const CRAFTS: Craft[] = [
   {
     id: "vertical-carousel",

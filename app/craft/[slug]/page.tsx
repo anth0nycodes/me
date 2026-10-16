@@ -1,12 +1,12 @@
-import type { ComponentType } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CraftCard, CraftLink } from "@/components/craft/craft-card";
-import { BlogDate } from "@/components/thoughts/blog-date";
+import { FormattedDate } from "@/components/formatted-date";
+import { getCraftNote } from "@/data/craft";
 import { DATA } from "@/data/me";
-import { CraftNoteMetadata, CRAFTS } from "../constants";
+import { CRAFTS } from "../constants";
 
-interface CraftItemPageProps {
+interface CraftNotePageProps {
   params: Promise<{ slug: string }>;
 }
 
@@ -22,11 +22,9 @@ export async function generateMetadata({
   }>;
 }): Promise<Metadata | undefined> {
   const { slug } = await params;
-
-  const { metadata } = (await import(`../notes/${slug}.mdx`)) as {
-    metadata: CraftNoteMetadata;
-  };
-
+  const note = await getCraftNote(slug);
+  if (!note) return;
+  const { metadata } = note;
   const { title, publishedAt: publishedTime, summary: description, image } = metadata;
   const ogImage = image ? `${DATA.url}${image}` : `${DATA.url}/og?title=${title}`;
 
@@ -54,18 +52,16 @@ export async function generateMetadata({
   };
 }
 
-export default async function CraftNotePage({ params }: CraftItemPageProps) {
+export default async function CraftNotePage({ params }: CraftNotePageProps) {
   const { slug } = await params;
   const craft = CRAFTS.find((craft) => craft.id === slug);
+  const note = await getCraftNote(slug);
 
-  if (!craft) {
+  if (!craft || !note) {
     notFound();
   }
 
-  const { default: Note, metadata } = (await import(`../notes/${slug}.mdx`)) as {
-    default: ComponentType;
-    metadata: CraftNoteMetadata;
-  };
+  const { Component: Note, metadata } = note;
 
   return (
     <div className="flex flex-col gap-6">
@@ -95,7 +91,7 @@ export default async function CraftNotePage({ params }: CraftItemPageProps) {
         <header className="flex flex-col gap-2">
           <h1 className="text-2xl font-medium tracking-tighter">{metadata.title}</h1>
           <div className="flex items-center justify-between gap-4">
-            <BlogDate date={metadata.publishedAt} />
+            <FormattedDate date={metadata.publishedAt} />
             <div className="flex items-center gap-2">
               {craft.reference && <CraftLink label="reference" href={craft.reference} />}
               <CraftLink label="source" href={craft.source} />
@@ -104,7 +100,7 @@ export default async function CraftNotePage({ params }: CraftItemPageProps) {
         </header>
         <CraftCard craft={craft} isSlugRoute={true} />
       </div>
-      <article className="prose text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground max-w-none">
+      <article className="prose text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground prose-figcaption:text-neutral-600 dark:prose-figcaption:text-gray-500 max-w-none">
         <Note />
       </article>
     </div>
