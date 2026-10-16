@@ -169,7 +169,11 @@ export function Header() {
           <NavLink href="/thoughts" color={ROUTE_COLORS.thoughts}>
             thoughts
           </NavLink>{" "}
-          I&apos;ve written down, or the{" "}
+          I&apos;ve written down, the{" "}
+          <NavLink href="/case-studies" color={ROUTE_COLORS.caseStudies}>
+            case studies
+          </NavLink>{" "}
+          I&apos;ve published, or the{" "}
           <NavLink href="/vault" color={ROUTE_COLORS.vault}>
             vault
           </NavLink>{" "}

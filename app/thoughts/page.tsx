@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import { ThoughtLink } from "@/components/thoughts/thought-link";
-import { THOUGHT_POSTS } from "@/data/thoughts";
+import { PostLink } from "@/components/post-link";
+import { THOUGHT_POSTS, THOUGHTS_FOLDER_NAME } from "@/data/thoughts";
 
 export const metadata: Metadata = {
   title: "Thoughts",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default async function ThoughtsPage() {
   return (
-    <section className="flex flex-col gap-4">
+    <section data-thoughts className="flex flex-col gap-4">
       <h1 className="text-muted-foreground dark:text-foreground border-separator border-b pb-2 text-base font-medium lowercase">
         <span>
           my thoughts
@@ -20,7 +20,7 @@ export default async function ThoughtsPage() {
       </h1>
       <div className="group flex flex-col">
         {THOUGHT_POSTS.map((post) => (
-          <ThoughtLink key={post.slug} post={post} />
+          <PostLink key={post.slug} folderName={THOUGHTS_FOLDER_NAME} post={post} />
         ))}
       </div>
     </section>

@@ -3,5 +3,6 @@ export const ROUTE_COLORS = {
   projects: "var(--route-projects)",
   craft: "var(--route-craft)",
   thoughts: "var(--route-thoughts)",
+  caseStudies: "var(--route-case-studies)",
   vault: "var(--route-vault)",
 } as const;

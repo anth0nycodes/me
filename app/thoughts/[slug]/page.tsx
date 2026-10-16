@@ -4,7 +4,7 @@ import { FormattedDate } from "@/components/formatted-date";
 import { DATA } from "@/data/me";
 import { getThoughtPost, THOUGHT_POSTS } from "@/data/thoughts";
 
-interface ThoughtsPageProps {
+interface ThoughtsPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
@@ -50,7 +50,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function ThoughtsPage({ params }: ThoughtsPageProps) {
+export default async function ThoughtsPostPage({ params }: ThoughtsPostPageProps) {
   const { slug } = await params;
   const post = await getThoughtPost(slug);
   if (!post) {

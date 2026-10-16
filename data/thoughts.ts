@@ -1,6 +1,6 @@
 import { getContentPost, getContentPosts } from "./mdx";
 
-const THOUGHTS_FOLDER_NAME = "thoughts";
+export const THOUGHTS_FOLDER_NAME = "thoughts";
 
 export const THOUGHT_POSTS = await getContentPosts(THOUGHTS_FOLDER_NAME);
 
