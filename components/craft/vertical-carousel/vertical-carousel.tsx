@@ -164,17 +164,18 @@ export function VerticalCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const prefersReducedMotion = usePrefersReducedMotion();
   const [isInView, setIsInView] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const targetElementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (prefersReducedMotion || !isInView) return;
+    if (prefersReducedMotion || !isInView || isHovered) return;
 
     const intervalId = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % ITEMS.length);
     }, 1200);
 
     return () => clearInterval(intervalId);
-  }, [prefersReducedMotion, isInView]);
+  }, [prefersReducedMotion, isInView, isHovered]);
 
   // Unlike a one-shot reveal this keeps observing, so the interval pauses whenever the card leaves view
   useEffect(() => {
@@ -206,35 +207,42 @@ export function VerticalCarousel() {
       />
       <div className="relative flex size-full items-center justify-center">
         <div className="to-foreground pointer-events-none absolute inset-x-0 top-0 z-10 h-1/4 transform-gpu bg-linear-to-t from-transparent" />
-        {ITEMS.map(({ text, Icon, color }, index) => {
-          const offset = getOffset(index, activeIndex);
-          const distance = Math.abs(offset);
-          const scale = getScale(distance);
-          const direction = Math.sign(offset);
-          const translateY = getTranslateY(distance, direction);
-          const rotateX = getRotateX(offset);
+        {/* `contents` keeps the cards as flex children so they stay centered. */}
+        <div
+          className="contents"
+          onPointerEnter={() => setIsHovered(true)}
+          onPointerLeave={() => setIsHovered(false)}
+        >
+          {ITEMS.map(({ text, Icon, color }, index) => {
+            const offset = getOffset(index, activeIndex);
+            const distance = Math.abs(offset);
+            const scale = getScale(distance);
+            const direction = Math.sign(offset);
+            const translateY = getTranslateY(distance, direction);
+            const rotateX = getRotateX(offset);
 
-          return (
-            <div
-              key={text}
-              data-hidden={distance === MAX_OFFSET}
-              data-active={distance === 0}
-              className="border-muted-foreground/35 bg-foreground text-muted absolute flex h-(--item-height) w-38 translate-y-(--translate-y) scale-(--scale) transform-[perspective(calc(var(--item-height)*var(--perspective)))_rotateX(var(--rotate-x))] items-center justify-center gap-2 rounded-lg border px-4 transition-[translate,scale,transform,opacity,background-color,border-color] duration-[1100ms,1100ms,1100ms,1100ms,550ms,550ms] ease-[cubic-bezier(0.25,1,0.5,1)] [--item-height:2.75rem] data-[active=true]:border-(--brand) data-[active=true]:bg-[color-mix(in_oklch,var(--brand)_15%,var(--foreground))] data-[hidden=true]:opacity-0 sm:w-50 sm:rounded-xl sm:[--item-height:3.75rem]"
-              style={
-                {
-                  "--translate-y": translateY,
-                  "--scale": scale,
-                  "--rotate-x": `${rotateX}deg`,
-                  "--perspective": PERSPECTIVE,
-                  "--brand": color ?? "var(--muted-foreground)",
-                } as CSSProperties
-              }
-            >
-              <Icon className="size-4 shrink-0 sm:size-5" />
-              <span className="text-sm whitespace-nowrap sm:text-xl">{text}</span>
-            </div>
-          );
-        })}
+            return (
+              <div
+                key={text}
+                data-hidden={distance === MAX_OFFSET}
+                data-active={distance === 0}
+                className="border-muted-foreground/35 bg-foreground text-muted absolute flex h-(--item-height) w-38 translate-y-(--translate-y) scale-(--scale) transform-[perspective(calc(var(--item-height)*var(--perspective)))_rotateX(var(--rotate-x))] items-center justify-center gap-2 rounded-lg border px-4 transition-[translate,scale,transform,opacity,background-color,border-color] duration-[1100ms,1100ms,1100ms,1100ms,550ms,550ms] ease-[cubic-bezier(0.25,1,0.5,1)] [--item-height:2.75rem] data-[active=true]:border-(--brand) data-[active=true]:bg-[color-mix(in_oklch,var(--brand)_15%,var(--foreground))] data-[hidden=true]:pointer-events-none data-[hidden=true]:opacity-0 sm:w-50 sm:rounded-xl sm:[--item-height:3.75rem]"
+                style={
+                  {
+                    "--translate-y": translateY,
+                    "--scale": scale,
+                    "--rotate-x": `${rotateX}deg`,
+                    "--perspective": PERSPECTIVE,
+                    "--brand": color ?? "var(--muted-foreground)",
+                  } as CSSProperties
+                }
+              >
+                <Icon className="size-4 shrink-0 sm:size-5" />
+                <span className="text-sm whitespace-nowrap sm:text-xl">{text}</span>
+              </div>
+            );
+          })}
+        </div>
         <div className="from-foreground pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/4 transform-gpu bg-linear-to-t to-transparent" />
       </div>
     </div>
