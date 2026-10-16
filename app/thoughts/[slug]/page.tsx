@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BlogDate } from "@/components/thoughts/blog-date";
+import { FormattedDate } from "@/components/formatted-date";
 import { DATA } from "@/data/me";
 import { getThoughtPost, THOUGHT_POSTS } from "@/data/thoughts";
+
+interface ThoughtsPageProps {
+  params: Promise<{ slug: string }>;
+}
 
 export async function generateStaticParams() {
   return THOUGHT_POSTS.map((post) => ({ slug: post.slug }));
@@ -46,13 +50,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function Blog({
-  params,
-}: {
-  params: Promise<{
-    slug: string;
-  }>;
-}) {
+export default async function ThoughtsPage({ params }: ThoughtsPageProps) {
   const { slug } = await params;
   const post = await getThoughtPost(slug);
   if (!post) {
@@ -61,7 +59,7 @@ export default async function Blog({
   const { Component: ThoughtPost, metadata } = post;
 
   return (
-    <section id="blog">
+    <section id="thoughts">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -86,7 +84,7 @@ export default async function Blog({
       />
       <header className="flex flex-col gap-2">
         <h1 className="text-2xl font-medium tracking-tighter">{metadata.title}</h1>
-        <BlogDate date={metadata.publishedAt} />
+        <FormattedDate date={metadata.publishedAt} />
       </header>
       <article className="prose text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground max-w-none">
         <ThoughtPost />

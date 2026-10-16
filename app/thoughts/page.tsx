@@ -3,7 +3,7 @@ import { ThoughtLink } from "@/components/thoughts/thought-link";
 import { THOUGHT_POSTS } from "@/data/thoughts";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Thoughts",
   description: "My thoughts on software development, life, and more.",
 };
 

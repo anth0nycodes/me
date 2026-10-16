@@ -2,11 +2,11 @@ import type { ComponentType } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CraftCard, CraftLink } from "@/components/craft/craft-card";
-import { BlogDate } from "@/components/thoughts/blog-date";
+import { FormattedDate } from "@/components/formatted-date";
 import { DATA } from "@/data/me";
 import { CraftNoteMetadata, CRAFTS } from "../constants";
 
-interface CraftItemPageProps {
+interface CraftNotePageProps {
   params: Promise<{ slug: string }>;
 }
 
@@ -54,7 +54,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function CraftNotePage({ params }: CraftItemPageProps) {
+export default async function CraftNotePage({ params }: CraftNotePageProps) {
   const { slug } = await params;
   const craft = CRAFTS.find((craft) => craft.id === slug);
 
@@ -95,7 +95,7 @@ export default async function CraftNotePage({ params }: CraftItemPageProps) {
         <header className="flex flex-col gap-2">
           <h1 className="text-2xl font-medium tracking-tighter">{metadata.title}</h1>
           <div className="flex items-center justify-between gap-4">
-            <BlogDate date={metadata.publishedAt} />
+            <FormattedDate date={metadata.publishedAt} />
             <div className="flex items-center gap-2">
               {craft.reference && <CraftLink label="reference" href={craft.reference} />}
               <CraftLink label="source" href={craft.source} />
