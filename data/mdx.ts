@@ -7,19 +7,21 @@ type ContentModule<T> = {
   metadata: T;
 };
 
+const CONTENT_DIR = path.join(process.cwd(), "content");
+
 async function importContent<T>(folderName: string, slug: string): Promise<ContentModule<T>> {
   return import(`@/content/${folderName}/${slug}.mdx`);
 }
 
-export function getContentSlugs(directory: string) {
+function getContentSlugs(folderName: string) {
   return fs
-    .readdirSync(directory)
+    .readdirSync(path.join(CONTENT_DIR, folderName))
     .filter((file) => path.extname(file) === ".mdx")
     .map((file) => path.basename(file, ".mdx"));
 }
 
-export async function getContentPosts<T>(folderName: string, directory: string) {
-  const slugs = getContentSlugs(directory);
+export async function getContentPosts<T>(folderName: string) {
+  const slugs = getContentSlugs(folderName);
   return Promise.all(
     slugs.map(async (slug) => {
       const { metadata } = await importContent<T>(folderName, slug);

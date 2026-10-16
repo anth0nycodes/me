@@ -1,4 +1,3 @@
-import path from "path";
 import { getContentPost, getContentPosts } from "./mdx";
 
 export interface ThoughtPostMetadata {
@@ -14,10 +13,9 @@ export interface ThoughtPost {
 }
 
 const THOUGHTS_FOLDER_NAME = "thoughts";
-const THOUGHTS_CONTENT_DIR = path.join(process.cwd(), "content", THOUGHTS_FOLDER_NAME);
 
 export const THOUGHT_POSTS = (
-  await getContentPosts<ThoughtPostMetadata>(THOUGHTS_FOLDER_NAME, THOUGHTS_CONTENT_DIR)
+  await getContentPosts<ThoughtPostMetadata>(THOUGHTS_FOLDER_NAME)
 ).sort((a, b) => Date.parse(b.metadata.publishedAt) - Date.parse(a.metadata.publishedAt));
 
 export async function getThoughtPost(slug: string) {
