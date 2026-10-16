@@ -1,6 +1,6 @@
-import { BlogLink } from "@/components/thoughts/blog-link";
-import { getBlogPosts } from "@/data/blog";
 import { Metadata } from "next";
+import { ThoughtLink } from "@/components/thoughts/thought-link";
+import { THOUGHT_POSTS } from "@/data/thoughts";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -8,32 +8,20 @@ export const metadata: Metadata = {
 };
 
 export default async function ThoughtsPage() {
-  const posts = await getBlogPosts();
-
   return (
     <section className="flex flex-col gap-4">
       <h1 className="text-muted-foreground dark:text-foreground border-separator border-b pb-2 text-base font-medium lowercase">
         <span>
           my thoughts
-          <sup className="ml-1.5 select-none text-muted-foreground text-xs">
-            ({posts.length})
+          <sup className="text-muted-foreground ml-1.5 text-xs select-none">
+            ({THOUGHT_POSTS.length})
           </sup>
         </span>
       </h1>
       <div className="group flex flex-col">
-        {posts
-          .sort((a, b) => {
-            if (
-              new Date(a.metadata.publishedAt) >
-              new Date(b.metadata.publishedAt)
-            ) {
-              return -1;
-            }
-            return 1;
-          })
-          .map((post) => (
-            <BlogLink key={post.slug} post={post} />
-          ))}
+        {THOUGHT_POSTS.map((post) => (
+          <ThoughtLink key={post.slug} post={post} />
+        ))}
       </div>
     </section>
   );

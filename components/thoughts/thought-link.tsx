@@ -3,15 +3,15 @@
 import Link from "next/link";
 import { useSound } from "use-sound";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
-import type { Post } from "@/data/blog";
+import type { ThoughtPost } from "@/data/thoughts";
 import { useHaptics } from "@/hooks/use-haptics";
 import { formatDate } from "@/lib/utils";
 
-interface BlogPostsProps {
-  post: Post;
+interface ThoughtLinkProps {
+  post: ThoughtPost;
 }
 
-export function BlogLink({ post }: BlogPostsProps) {
+export function ThoughtLink({ post }: ThoughtLinkProps) {
   const { trigger } = useHaptics();
   const { audioEnabled } = useAudioEnabled();
   const [playHoverSFX] = useSound("/audio/hover-tick.wav", {
