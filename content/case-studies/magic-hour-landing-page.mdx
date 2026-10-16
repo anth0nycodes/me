@@ -56,7 +56,7 @@ The designer handed me a full Figma file covering desktop and phone, and the cop
 
 ## Videos that only play on screen
 
-The new page has a lot of videos, roughly `64MB` worth. During pre-launch inspection, this had posed a very dire problem: on mobile, the landing page would crash the browser 9/10 times when you would try to scroll through it within the first few seconds. So, you may be wondering, how would you remedy this undesirable side effect?. Well, that would be thanks to the `IntersectionObserver` API.
+The new page has a lot of videos, roughly `64MB` worth. During pre-launch inspection, this had posed a very dire problem: on mobile, the landing page would crash the browser 9/10 times when you would try to scroll through it within the first few seconds. So, you may be wondering, how would you remedy this undesirable side effect? Well, that would be thanks to the `IntersectionObserver` API.
 
 <div className="border-l-4 border-neutral-300 pl-4 italic dark:border-[#F0F5F2]">
   TLDR: The `IntersectionObserver` API allows you to detect when an element
@@ -158,7 +158,7 @@ One example is the hero's supporting line, under the headline. It was too dim an
 
 ## What I'd do differently
 
-Since then, I've learned a lot more about accessibility and how to make the web a better experience for eveyone. If I were to do this project again, here's a few additional changes I'd make:
+Since then, I've learned a lot more about accessibility and how to make the web a better experience for everyone. If I were to do this project again, here's a few additional changes I'd make:
 
 - **Respect reduced motion.** At the time I didn't know `prefers-reduced-motion` existed, so carousels that are on the page kept moving for everyone. Now, I'd stop it entirely for people who ask for less motion.
 - **Let people pause the carousels.** Carousels on the page currently move on their own and can't be stopped. WCAG's [Pause, Stop, Hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html) asks for a way to pause content like that.
