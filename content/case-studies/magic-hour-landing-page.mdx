@@ -96,6 +96,8 @@ export function useOnScreen(ref: RefObject<Element | null>, threshold = 0.5) {
 
 After discovering this hook thanks to a tip from our CTO—thanks again, [David](https://www.linkedin.com/in/davidhu2000/)!—I went out of my way to build a reusable video component that only plays when it is on screen.
 
+The heavier sections relied on `IntersectionObserver` too: they were dynamically imported once they neared the viewport, so their code didn't all load at once on the first visit.
+
 <div className="border-l-4 border-neutral-300 pl-4 italic dark:border-[#F0F5F2]">
   Additional context: With the introduction of this new component, I was also
   able to swap out every video across the entire site, leading to a great
