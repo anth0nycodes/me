@@ -2,7 +2,7 @@
  * Captures each craft demo as a 1200x630 Open Graph image in `public/craft/og/<slug>.png`.
  *
  * Needs the dev server running. Usage:
- *   pnpm og:craft                      every piece with a note in app/craft/notes
+ *   pnpm og:craft                      every piece with a note in content/craft
  *   pnpm og:craft file-tree bricks     only these slugs
  *
  * Set BASE_URL to capture from somewhere other than http://localhost:3000.
@@ -12,7 +12,7 @@ import path from "node:path";
 import { chromium } from "playwright";
 
 const BASE_URL = process.env.BASE_URL ?? "http://localhost:3000";
-const NOTES_DIR = path.resolve("app/craft/notes");
+const NOTES_DIR = path.resolve("content/craft");
 const OUT_DIR = path.resolve("public/craft/og");
 
 // Close to the demo's real on-site height (374px), widened to the 1200x630 shape so nothing is cropped.

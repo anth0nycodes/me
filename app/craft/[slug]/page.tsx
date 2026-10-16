@@ -1,10 +1,10 @@
-import type { ComponentType } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CraftCard, CraftLink } from "@/components/craft/craft-card";
 import { FormattedDate } from "@/components/formatted-date";
+import { getCraftNote } from "@/data/craft";
 import { DATA } from "@/data/me";
-import { CraftNoteMetadata, CRAFTS } from "../constants";
+import { CRAFTS } from "../constants";
 
 interface CraftNotePageProps {
   params: Promise<{ slug: string }>;
@@ -22,11 +22,9 @@ export async function generateMetadata({
   }>;
 }): Promise<Metadata | undefined> {
   const { slug } = await params;
-
-  const { metadata } = (await import(`../notes/${slug}.mdx`)) as {
-    metadata: CraftNoteMetadata;
-  };
-
+  const note = await getCraftNote(slug);
+  if (!note) return;
+  const { metadata } = note;
   const { title, publishedAt: publishedTime, summary: description, image } = metadata;
   const ogImage = image ? `${DATA.url}${image}` : `${DATA.url}/og?title=${title}`;
 
@@ -57,15 +55,13 @@ export async function generateMetadata({
 export default async function CraftNotePage({ params }: CraftNotePageProps) {
   const { slug } = await params;
   const craft = CRAFTS.find((craft) => craft.id === slug);
+  const note = await getCraftNote(slug);
 
-  if (!craft) {
+  if (!craft || !note) {
     notFound();
   }
 
-  const { default: Note, metadata } = (await import(`../notes/${slug}.mdx`)) as {
-    default: ComponentType;
-    metadata: CraftNoteMetadata;
-  };
+  const { Component: Note, metadata } = note;
 
   return (
     <div className="flex flex-col gap-6">
