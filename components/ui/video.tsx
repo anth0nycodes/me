@@ -14,9 +14,9 @@ interface SourceProps {
 
 function Source({ src }: SourceProps) {
   if (src.endsWith(".webm")) {
-    return <source src={src} type="video/webm; codecs=av01.0.05M.08" />;
+    return <source src={src} type="video/webm" />;
   }
-  return <source src={src} type="video/mp4; codecs=avc1.4d401e,mp4a.40.2" />;
+  return <source src={src} type="video/mp4" />;
 }
 
 export function Video({ srcSet, className, ...props }: VideoProps) {
