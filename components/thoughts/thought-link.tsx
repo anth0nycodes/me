@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { useSound } from "use-sound";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
-import type { ThoughtPost } from "@/data/thoughts";
+import type { BasePost } from "@/data/mdx";
 import { useHaptics } from "@/hooks/use-haptics";
 import { formatDate } from "@/lib/utils";
 
 interface ThoughtLinkProps {
-  post: ThoughtPost;
+  post: BasePost;
 }
 
 export function ThoughtLink({ post }: ThoughtLinkProps) {
