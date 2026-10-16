@@ -29,7 +29,7 @@ export function CodeBlock({ className, style, children, ...props }: ComponentPro
       <pre
         ref={preRef}
         className={cn(
-          "[&::-webkit-scrollbar-thumb]:bg-border rounded-lg [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-transparent",
+          "[&::-webkit-scrollbar-thumb]:bg-border rounded-lg [&::-webkit-scrollbar]:h-[9px] [&::-webkit-scrollbar-thumb]:rounded-[3px_3px_3px_3px/3px_3px_6px_6px] [&::-webkit-scrollbar-thumb]:border-b-[3px] [&::-webkit-scrollbar-thumb]:border-transparent [&::-webkit-scrollbar-thumb]:bg-clip-padding [&::-webkit-scrollbar-track]:mx-2.5 [&::-webkit-scrollbar-track]:bg-transparent",
           // Firefox ignores ::-webkit-scrollbar; Chromium ignores it once scrollbar-color is set, so scope it
           "supports-[-moz-appearance:none]:[scrollbar-color:var(--border)_transparent]",
           className,
