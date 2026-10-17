@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CraftCard, CraftLink } from "@/components/craft/craft-card";
+import { CraftCard } from "@/components/craft/craft-card";
 import { FormattedDate } from "@/components/formatted-date";
+import { ExternalLink } from "@/components/ui/external-link";
 import { getCraftNote } from "@/data/craft";
 import { DATA } from "@/data/me";
 import { CRAFTS } from "../constants";
@@ -93,8 +94,8 @@ export default async function CraftNotePage({ params }: CraftNotePageProps) {
           <div className="flex items-center justify-between gap-4">
             <FormattedDate date={metadata.publishedAt} />
             <div className="flex items-center gap-2">
-              {craft.reference && <CraftLink label="reference" href={craft.reference} />}
-              <CraftLink label="source" href={craft.source} />
+              {craft.reference && <ExternalLink label="reference" href={craft.reference} />}
+              <ExternalLink label="source" href={craft.source} />
             </div>
           </div>
         </header>
