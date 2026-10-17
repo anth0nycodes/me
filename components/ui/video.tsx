@@ -22,9 +22,9 @@ function Source({ src }: SourceProps) {
 
 function getAccessibleVideoProps(prefersReducedMotion: boolean) {
   if (prefersReducedMotion) {
-    return { autoPlay: false, controls: true, loop: false };
+    return { controls: true, loop: false };
   }
-  return { autoPlay: true, controls: false, loop: true };
+  return { controls: false, loop: true };
 }
 
 export function Video({ srcSet, className, ...props }: VideoProps) {
