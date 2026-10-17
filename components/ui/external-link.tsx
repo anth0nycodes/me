@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowUpRight } from "lucide-react";
 import { useSound } from "use-sound";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
