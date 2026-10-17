@@ -1,3 +1,4 @@
+import { CreativeWorksSection } from "@/components/home/creative-works-section";
 import { Header } from "@/components/home/header";
 import { LinksSection } from "@/components/home/links-section";
 
@@ -5,6 +6,10 @@ const sections = [
   {
     id: "header",
     component: <Header />,
+  },
+  {
+    id: "creative-works",
+    component: <CreativeWorksSection />,
   },
   {
     id: "links",

@@ -35,16 +35,21 @@ The aim was a home page that looked presentable and trustworthy, as well as one 
 ## Before
 
 <Video
-  muted
-  playsInline
-  loop
-  preload="metadata"
   poster="/case-studies/magic-hour/comparison/magic-hour-landing-before.webp"
   srcSet={beforeSrcSet}
   className="aspect-[1920/1126]"
+  aria-label="Before: a recording of the old Magic Hour landing page"
+  aria-describedby="before-description"
 />
 
-The old page, as of March 2025, was pretty repetitive and bland. Every section was centered and built the same way: a heading, one line of text, and then content. Nine buttons shared the same solid purple, from the hero all the way to the six `Learn More` buttons, so there was no differentiating factor that told you which one mattered. Furthermore, nine videos were set to `autoplay` as soon as the page loaded; I'll dive into why this was so detrimental later.
+<div id="before-description">
+  The old page, as of March 2025, was pretty repetitive and bland. Every section
+  was centered and built the same way: a heading, one line of text, and then
+  content. Nine buttons shared the same solid purple, from the hero all the way
+  to the six `Learn More` buttons, so there was no differentiating factor that
+  told you which one mattered. Furthermore, nine videos were set to `autoplay`
+  as soon as the page loaded; I'll dive into why this was so detrimental later.
+</div>
 
 ## What I owned
 
@@ -127,14 +132,18 @@ The developers section was one of them. It shows a code snippet for API users, a
 ## After
 
 <Video
-  muted
-  playsInline
-  loop
-  preload="metadata"
   poster="/case-studies/magic-hour/comparison/magic-hour-landing-after.webp"
   srcSet={afterSrcSet}
   className="aspect-[1920/1128]"
+  aria-label="After: a recording of the new Magic Hour landing page"
+  aria-describedby="after-description"
 />
+
+<div id="after-description" className="sr-only">
+  Scrolling through the new Magic Hour landing page: a hero headlined Create,
+  Edit, & Ship AI Visuals 10x Faster above a moving strip of tool cards,
+  followed by sections for tools, templates, teams and developers.
+</div>
 
 The new page, as of September 2025. It has since been replaced, so this recording is the best record of it.
 

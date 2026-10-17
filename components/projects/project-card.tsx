@@ -71,9 +71,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
             ))}
           </div>
         </div>
-        <div className="lgidden flex items-center gap-2 lowercase">
+        <div className="flex items-center gap-2 lowercase">
           {LINKS.map((link) => (
-            <ExternalLink key={link.label} href={link.href} label={link.label} />
+            <ExternalLink
+              key={link.label}
+              href={link.href}
+              label={link.label}
+              ariaLabel={`${link.label}: ${project.title}`}
+            />
           ))}
         </div>
       </div>

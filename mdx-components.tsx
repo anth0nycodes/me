@@ -1,5 +1,6 @@
 import { isValidElement, type ReactNode } from "react";
 import Image, { type ImageProps } from "next/image";
+import Link from "next/link";
 import type { MDXComponents } from "mdx/types";
 import { CodeBlock } from "@/components/code-block";
 
@@ -43,7 +44,7 @@ const components: MDXComponents = {
         {...props}
         className="not-prose text-foreground mt-10 mb-2 scroll-mt-4 text-xl font-medium tracking-tight underline underline-offset-4 first:mt-0"
       >
-        <a href={`#${id}`}>{children}</a>
+        <Link href={`#${id}`}>{children}</Link>
       </h2>
     );
   },

@@ -21,22 +21,19 @@ function getRandomImage(images: readonly string[], exclude?: string) {
   return pool[randomIndex];
 }
 
-const workBadges = DATA.work.map((job) => ({
-  name: job.title,
-  href: job.href,
-  highlight: job.highlight,
-  isInternship: job.role.includes("intern"),
-  icon: (
-    <Favicon
-      src={job.favicon}
-      srcDark={"faviconDark" in job ? job.faviconDark : undefined}
-      alt={`${job.title} logo`}
-    />
-  ),
-}));
-
-const internshipBadges = workBadges.filter((badge) => badge.isInternship);
-const otherWorkBadges = workBadges.filter((badge) => !badge.isInternship);
+const featuredWorkBadges = DATA.work
+  .filter((job) => "featured" in job && job.featured)
+  .map((job) => ({
+    name: job.title,
+    href: job.href,
+    icon: (
+      <Favicon
+        src={job.favicon}
+        srcDark={"faviconDark" in job ? job.faviconDark : undefined}
+        alt={`${job.title} logo`}
+      />
+    ),
+  }));
 
 const projectBadges = DATA.projects
   .filter((project) => project.primary)
@@ -117,44 +114,29 @@ export function Header() {
       </div>
       <div className="flex flex-col gap-6 text-sm leading-[1.7]">
         <p>
-          hey, I&apos;m Anthony — a <SelectionBox>design engineer</SelectionBox> based in NYC. I
-          enjoy building beautiful and thoughtful user experiences that make products feel better,
-          while continuously learning along the way.
-        </p>{" "}
-        <p>
-          previously, I interned at{" "}
-          {internshipBadges.map((badge, index) => (
-            <Fragment key={badge.name}>
-              {index > 0 && index === internshipBadges.length - 1 && "and "}
-              <LinkBadge href={badge.href} icon={badge.icon}>
-                {badge.name}
-              </LinkBadge>{" "}
-              {badge.highlight}
-              {index < internshipBadges.length - 1 ? ", " : "."}
-            </Fragment>
-          ))}
-          {otherWorkBadges.map((badge) => (
-            <Fragment key={badge.name}>
-              {" "}
-              I also worked with{" "}
-              <LinkBadge href={badge.href} icon={badge.icon}>
-                {badge.name}
-              </LinkBadge>{" "}
-              {badge.highlight}.
-            </Fragment>
-          ))}
+          hey, I&apos;m Anthony — a <SelectionBox>design engineer</SelectionBox> based in NYC who
+          likes building interfaces that feel as good as they look.
         </p>
         <p>
-          on the side, I build things like{" "}
-          {projectBadges.map((badge, index) => (
+          previously, I interned at{" "}
+          {featuredWorkBadges.map((badge, index) => (
             <Fragment key={badge.name}>
-              {index === projectBadges.length - 1 && "and "}
+              {index > 0 && (index === featuredWorkBadges.length - 1 ? " and " : ", ")}
               <LinkBadge href={badge.href} icon={badge.icon}>
                 {badge.name}
               </LinkBadge>
-              {index < projectBadges.length - 1 ? " " : "."}
             </Fragment>
           ))}
+          , and on the side I build things like{" "}
+          {projectBadges.map((badge, index) => (
+            <Fragment key={badge.name}>
+              {index > 0 && (index === projectBadges.length - 1 ? " and " : ", ")}
+              <LinkBadge href={badge.href} icon={badge.icon}>
+                {badge.name}
+              </LinkBadge>
+            </Fragment>
+          ))}
+          .
         </p>
         <p>
           take a look at my{" "}

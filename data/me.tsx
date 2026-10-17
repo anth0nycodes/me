@@ -64,6 +64,32 @@ export const DATA = {
       src: "https://ui.shadcn.com/",
     },
   ],
+  creativeWorks: [
+    {
+      title: "deep24 landing page",
+      description: "the landing page I built for deep24",
+      video: "deep24-landing-page",
+      href: "https://www.youtube.com/watch?v=0BPYzD_GVNI",
+    },
+    {
+      title: "magic hour about page",
+      description: "one of the pages I built at magic hour",
+      video: "magic-hour-about",
+      href: "https://www.youtube.com/watch?v=WNB920fO7bA",
+    },
+    {
+      title: "magic hour library",
+      description: "the library page UI I worked on at magic hour",
+      video: "magic-hour-library",
+      href: "https://www.youtube.com/watch?v=GQv17nBuV70",
+    },
+    {
+      title: "mtc website",
+      description: "the community website I rebuilt for mtc",
+      video: "mtc-website",
+      href: "https://www.youtube.com/watch?v=rQvx48D8oAc",
+    },
+  ],
   work: [
     {
       title: "deep24 (yc w24)",
@@ -71,8 +97,8 @@ export const DATA = {
       period: "mar 2026 - apr 2026",
       description: "helping students get jobs",
       href: "https://deep24.com",
-      // follows the company badge in the landing page sentence
-      highlight: "redesigning the landing page and shipping core product features",
+      // named in the home page intro
+      featured: true,
       favicon: "/favicons/deep24-light.png",
       faviconDark: "/favicons/deep24-dark.png",
     },
@@ -82,8 +108,8 @@ export const DATA = {
       period: "mar 2025 - sep 2025",
       description: "polishing UI/UX and building ai-powered tools for creators",
       href: "https://magichour.ai",
-      // follows the company badge in the landing page sentence
-      highlight: "polishing UI/UX for AI creator tools",
+      // named in the home page intro
+      featured: true,
       favicon: "/favicons/magichour.png",
     },
     {
@@ -92,8 +118,6 @@ export const DATA = {
       period: "jan 2025 - mar 2025",
       description: "figma stuff + UI polishing",
       href: "https://revisiondojo.com",
-      // follows the company badge in the landing page sentence
-      highlight: "doing figma work and UI polish",
       favicon: "/favicons/revisiondojo.png",
     },
     {
@@ -102,8 +126,6 @@ export const DATA = {
       period: "dec 2024 - jan 2025",
       description: "revamped and rebuilt the community website",
       href: "https://mtc.so",
-      // follows the company badge in the landing page sentence
-      highlight: "rebuilding their community website",
       favicon: "/favicons/mtc.png",
     },
   ],
