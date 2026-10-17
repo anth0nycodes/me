@@ -26,7 +26,7 @@ export function LinkBadge({ href, icon, children }: LinkBadgeProps) {
       rel="noopener noreferrer"
       onMouseEnter={() => playHoverSFX()}
       onClick={() => trigger("light")}
-      className="bg-muted hover:bg-foreground/10 inline-flex items-baseline gap-1.5 rounded-sm px-1.5 py-1 align-baseline leading-none whitespace-nowrap transition-colors duration-250 select-none focus-visible:outline-1 focus-visible:-outline-offset-1"
+      className="bg-muted hover:bg-foreground/10 inline-flex items-baseline gap-1.5 rounded-sm px-1.5 py-1 align-baseline leading-none whitespace-nowrap transition-[background-color] duration-250 select-none focus-visible:outline-1 focus-visible:-outline-offset-1"
     >
       {/* icon opts out of baseline alignment so the label alone sets the badge baseline */}
       <span className="flex shrink-0 self-center">{icon}</span>
