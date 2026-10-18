@@ -29,7 +29,11 @@ export function CreativeWorksSection() {
                 <h3 id={`${work.video}-title`} className="font-medium">
                   {work.title}
                 </h3>
-                <ExternalLink label={`watch ${work.title} on youtube`} href={work.href} iconOnly />
+                <ExternalLink
+                  href={work.href}
+                  iconOnly
+                  ariaLabel={`watch ${work.title} on youtube`}
+                />
               </div>
               <p id={`${work.video}-description`} className="text-muted-foreground">
                 {work.description}

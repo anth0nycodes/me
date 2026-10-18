@@ -77,7 +77,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               key={link.label}
               href={link.href}
               label={link.label}
-              ariaLabel={`${link.label}: ${project.title}`}
+              additionalContext={project.title}
             />
           ))}
         </div>
