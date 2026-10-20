@@ -31,7 +31,7 @@ export function VaultCard({ title, src, author, description }: VaultCardProps) {
       }}
       onClick={() => trigger("light")}
     >
-      <div className="border-muted hover:bg-accent group flex h-full flex-col justify-between rounded-lg border-2 p-6">
+      <div className="ring-muted hover:bg-accent group flex h-full flex-col justify-between rounded-lg p-6 ring-1 ring-inset">
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
             <p className="text-sm font-medium tracking-tighter group-hover:underline">{title}</p>

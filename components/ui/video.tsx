@@ -49,7 +49,7 @@ export function Video({ srcSet, className, ...props }: VideoProps) {
   return (
     <video
       ref={videoRef}
-      className={cn("ring-muted my-2 w-full rounded-lg ring-2 dark:ring-0", className)}
+      className={cn("ring-muted w-full rounded-lg ring-2 dark:ring-0", className)}
       preload="metadata"
       playsInline
       muted

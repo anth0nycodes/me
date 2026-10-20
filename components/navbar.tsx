@@ -22,14 +22,14 @@ export default function Navbar() {
   if (pathname === "/") return null;
 
   function getBackLink() {
-    if (pathname.startsWith("/thoughts/")) return { href: "/thoughts", text: "thoughts" };
+    if (pathname.startsWith("/thoughts/")) return { href: "/thoughts", text: "Thoughts" };
     if (pathname.startsWith("/case-studies/"))
-      return { href: "/case-studies", text: "case studies" };
+      return { href: "/case-studies", text: "Case Studies" };
     if (pathname.startsWith("/craft/")) {
       const slug = pathname.slice("/craft/".length);
-      return { href: `/craft#${slug}`, text: "craft" };
+      return { href: `/craft#${slug}`, text: "Craft" };
     }
-    return { href: "/", text: "home" };
+    return { href: "/", text: "Home" };
   }
 
   const { href, text } = getBackLink();

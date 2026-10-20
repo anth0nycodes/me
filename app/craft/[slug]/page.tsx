@@ -94,8 +94,10 @@ export default async function CraftNotePage({ params }: CraftNotePageProps) {
           <div className="flex items-center justify-between gap-4">
             <FormattedDate date={metadata.publishedAt} />
             <div className="flex items-center gap-2">
-              {craft.reference && <ExternalLink label="reference" href={craft.reference} />}
-              <ExternalLink label="source" href={craft.source} />
+              {craft.reference && (
+                <ExternalLink variant="underline" label="reference" href={craft.reference} />
+              )}
+              <ExternalLink variant="underline" label="source" href={craft.source} />
             </div>
           </div>
         </header>

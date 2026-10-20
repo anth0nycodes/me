@@ -1,7 +1,7 @@
 export const DATA = {
   name: "Anthony Hoang",
   url: "https://anthonyhoang.dev",
-  location: "nyc",
+  location: "NYC",
   occupation: "Design Engineer",
   description:
     "design engineer in nyc building interfaces that feel as good as they look. interned at magic hour and deep24 (yc w24). made tracemark. professional doomscroller.",
@@ -66,33 +66,33 @@ export const DATA = {
   ],
   creativeWorks: [
     {
-      title: "deep24 landing page",
-      description: "the landing page I built for deep24",
+      title: "Deep24 Landing Page",
+      description: "the landing page I built for Deep24",
       video: "deep24-landing-page",
       href: "https://www.youtube.com/watch?v=0BPYzD_GVNI",
     },
     {
-      title: "magic hour about page",
-      description: "one of the pages I built at magic hour",
+      title: "Magic Hour About Page",
+      description: "one of the pages I built at Magic Hour",
       video: "magic-hour-about",
       href: "https://www.youtube.com/watch?v=WNB920fO7bA",
     },
     {
-      title: "magic hour library",
-      description: "the library page UI I worked on at magic hour",
+      title: "Magic Hour Library",
+      description: "the library page UI I worked on at Magic Hour",
       video: "magic-hour-library",
       href: "https://www.youtube.com/watch?v=GQv17nBuV70",
     },
     {
-      title: "mtc website",
-      description: "the community website I rebuilt for mtc",
+      title: "MTC Website",
+      description: "the community website I rebuilt for MTC",
       video: "mtc-website",
       href: "https://www.youtube.com/watch?v=rQvx48D8oAc",
     },
   ],
   work: [
     {
-      title: "deep24 (yc w24)",
+      title: "Deep24 (YC W24)",
       role: "software engineer intern",
       period: "mar 2026 - apr 2026",
       description: "helping students get jobs",
@@ -103,7 +103,7 @@ export const DATA = {
       faviconDark: "/favicons/deep24-dark.png",
     },
     {
-      title: "magic hour (yc w24)",
+      title: "Magic Hour (YC W24)",
       role: "software engineer intern",
       period: "mar 2025 - sep 2025",
       description: "polishing UI/UX and building ai-powered tools for creators",
@@ -113,7 +113,7 @@ export const DATA = {
       favicon: "/favicons/magichour.png",
     },
     {
-      title: "revisiondojo (yc f24)",
+      title: "RevisionDojo (YC F24)",
       role: "software engineer intern",
       period: "jan 2025 - mar 2025",
       description: "figma stuff + UI polishing",
@@ -121,7 +121,7 @@ export const DATA = {
       favicon: "/favicons/revisiondojo.png",
     },
     {
-      title: "muslim tech collaborative",
+      title: "Muslim Tech Collaborative",
       role: "frontend developer",
       period: "dec 2024 - jan 2025",
       description: "revamped and rebuilt the community website",

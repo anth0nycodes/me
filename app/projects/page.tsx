@@ -1,6 +1,6 @@
+import { Metadata } from "next";
 import { ProjectCard } from "@/components/projects/project-card";
 import { DATA } from "@/data/me";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <section className="flex flex-col gap-4 min-h-screen bg-background">
-      <h1 className="text-muted-foreground dark:text-foreground border-separator border-b pb-2 text-base font-medium lowercase">
+    <section className="bg-background flex min-h-screen flex-col gap-6">
+      <h1 className="text-muted-foreground dark:text-foreground border-separator border-b pb-2 text-base font-medium capitalize">
         <span>
-          my projects
-          <sup className="ml-1.5 select-none text-muted-foreground text-xs">
+          projects
+          <sup className="text-muted-foreground ml-1.5 text-xs select-none">
             ({DATA.projects.length})
           </sup>
         </span>

@@ -19,7 +19,7 @@ const sections = [
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col gap-8 lowercase">
+    <div className="flex flex-col gap-6">
       {sections.map((section) => (
         <div key={section.id}>{section.component}</div>
       ))}

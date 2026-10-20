@@ -84,7 +84,7 @@ export function Header() {
           }}
           onMouseDown={() => clickLowSFX()}
           aria-label="Shuffle profile picture"
-          className="border-muted size-12.5 cursor-pointer overflow-clip rounded-full border-2 transition-transform duration-200 select-none active:scale-95 dark:border-none"
+          className="border-muted size-11.5 cursor-pointer overflow-clip rounded-full border-2 transition-transform duration-200 select-none active:scale-95 dark:border-none"
         >
           <Image
             src={avatarImage}
@@ -95,7 +95,7 @@ export function Header() {
           />
         </button>
         <div className="flex flex-col gap-1">
-          <h1 className="font-medium lowercase">
+          <h1 className="font-medium">
             <span className="inline-block">{DATA.name}</span>
           </h1>
           <div className="flex gap-4 text-sm">
@@ -114,11 +114,13 @@ export function Header() {
       </div>
       <div className="flex flex-col gap-6 text-sm leading-[1.7]">
         <p>
-          hey, I&apos;m Anthony — a <SelectionBox>design engineer</SelectionBox> based in NYC who
-          likes building interfaces that feel as good as they look.
+          Hey, I&apos;m {DATA.name.split(" ")[0]} — a{" "}
+          <SelectionBox className="lowercase">{DATA.occupation}</SelectionBox> that enjoys building
+          interfaces that feel as good as they look. I&apos;ve always found it so cool how you can
+          create anything you imagine with enough time, effort, and a bit of caffeine 😂
         </p>
         <p>
-          previously, I interned at{" "}
+          Previously, I interned at{" "}
           {featuredWorkBadges.map((badge, index) => (
             <Fragment key={badge.name}>
               {index > 0 && (index === featuredWorkBadges.length - 1 ? " and " : ", ")}
@@ -126,8 +128,8 @@ export function Header() {
                 {badge.name}
               </LinkBadge>
             </Fragment>
-          ))}
-          , and on the side I build things like{" "}
+          ))}{" "}
+          shipping user-facing features. On the side, I build tools like{" "}
           {projectBadges.map((badge, index) => (
             <Fragment key={badge.name}>
               {index > 0 && (index === projectBadges.length - 1 ? " and " : ", ")}
@@ -136,10 +138,9 @@ export function Header() {
               </LinkBadge>
             </Fragment>
           ))}
-          .
         </p>
         <p>
-          take a look at my{" "}
+          Take a look at my{" "}
           <NavLink href="/projects" color={ROUTE_COLORS.projects}>
             projects
           </NavLink>
@@ -161,7 +162,10 @@ export function Header() {
           </NavLink>{" "}
           of resources I keep coming back to.
         </p>
-        <p>when I&apos;m not coding, I&apos;m usually doomscrolling or laying in bed, or both 😂</p>
+        <p>
+          When I&apos;m not coding, I&apos;m usually doomscrolling, lying in bed, or doing both
+          simultaneously 😅
+        </p>
       </div>
     </div>
   );

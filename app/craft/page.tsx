@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 
 export default function CraftPage() {
   return (
-    <section className="bg-background flex min-h-screen flex-col gap-4">
-      <h1 className="text-muted-foreground dark:text-foreground border-separator flex items-center justify-between border-b pb-2 text-base font-medium lowercase">
+    <section className="bg-background flex min-h-screen flex-col gap-6">
+      <h1 className="text-muted-foreground dark:text-foreground border-separator flex items-center justify-between border-b pb-2 text-base font-medium capitalize">
         <span>
-          my craft
+          craft
           <sup className="text-muted-foreground ml-1.5 text-xs select-none">({CRAFTS.length})</sup>
         </span>
         <a

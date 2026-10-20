@@ -22,14 +22,14 @@ export function PostLink({ folderName, post }: PostLinkProps) {
 
   return (
     <Link
-      className="relative flex flex-col py-3 group-hover:opacity-40 hover:opacity-100"
+      className="relative flex flex-col gap-1.5 py-4 group-hover:opacity-40 hover:opacity-100"
       onMouseEnter={() => {
         trigger("light");
         playHoverSFX();
       }}
       href={`/${folderName}/${post.slug}`}
     >
-      <p className="mb-1 text-sm font-medium">{post.metadata.title}</p>
+      <p className="text-sm leading-none font-medium">{post.metadata.title}</p>
       <p className="text-muted-foreground text-xs">{formatDate(post.metadata.publishedAt)}</p>
     </Link>
   );

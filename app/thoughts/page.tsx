@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 
 export default async function ThoughtsPage() {
   return (
-    <section data-thoughts className="flex flex-col gap-4">
-      <h1 className="text-muted-foreground dark:text-foreground border-separator border-b pb-2 text-base font-medium lowercase">
+    <section data-thoughts className="flex flex-col gap-2">
+      <h1 className="text-muted-foreground dark:text-foreground border-separator border-b pb-2 text-base font-medium capitalize">
         <span>
-          my thoughts
+          thoughts
           <sup className="text-muted-foreground ml-1.5 text-xs select-none">
             ({THOUGHT_POSTS.length})
           </sup>
