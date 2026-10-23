@@ -88,12 +88,7 @@ export default function RootLayout({
     >
       <body className="bg-background flex min-h-screen w-full flex-col justify-center px-6 py-12 font-sans antialiased selection:bg-(--selection) has-data-case-studies:justify-start has-data-not-found:justify-start has-data-thoughts:justify-start sm:py-24">
         <AudioProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
+          <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
             <TooltipProvider>
               <Navbar />
               <main className="mx-auto w-full max-w-150">{children}</main>

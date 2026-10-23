@@ -190,6 +190,30 @@
   }
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-new(root) {
+  animation: wipe-down 480ms cubic-bezier(0.88, 0.1, 0.17, 0.99) both;
+}
+
+@keyframes wipe-down {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
 /* inline code in MDX: the typography plugin prints literal backticks around it, so drop those and show a chip instead */
 .prose :not(pre) > code {
   @apply bg-muted border-border rounded-sm border px-1.25 py-0.5 font-mono text-[0.875em] font-normal whitespace-nowrap dark:border-0;
