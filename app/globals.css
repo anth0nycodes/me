@@ -196,7 +196,7 @@
 }
 
 ::view-transition-new(root) {
-  animation: wipe-down 480ms cubic-bezier(0.88, 0.1, 0.17, 0.99) both;
+  animation: wipe-down 650ms cubic-bezier(0.88, 0.1, 0.17, 0.99) both;
 }
 
 @keyframes wipe-down {
