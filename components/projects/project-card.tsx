@@ -42,7 +42,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           loading="eager"
           sizes="(min-width: 640px) 576px, 100vw"
           draggable={false}
-          className="h-45 w-full object-cover transition-transform duration-500 select-none group-hover:scale-115 group-has-focus-visible:scale-115 motion-reduce:duration-0 motion-reduce:group-hover:scale-100 motion-reduce:group-has-focus-visible:scale-100 sm:h-60"
+          className="h-45 w-full object-cover transition-transform duration-500 select-none group-hover:scale-115 group-has-focus-visible:scale-115 motion-reduce:duration-0 motion-reduce:group-hover:scale-100 motion-reduce:group-has-focus-visible:scale-100 sm:h-72"
         />
       </div>
       <div className="flex flex-col gap-3">
