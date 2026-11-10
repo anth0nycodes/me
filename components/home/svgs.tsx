@@ -126,7 +126,7 @@ export function NpmIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
 export function TracemarkIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      viewBox="0 0 120 120"
+      viewBox="1.25 1.1 37.5 37.5"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       aria-hidden="true"
@@ -134,62 +134,29 @@ export function TracemarkIcon({ className, ...props }: SVGProps<SVGSVGElement>) 
       className={cn("size-3 shrink-0", className)}
       {...props}
     >
-      <g filter="url(#tracemark-icon-texture)">
-        <rect x="2.5" y="2.5" width="114.888" height="114.888" rx="28.472" fill="white" stroke="black" />
+      <path
+        d="M9 2.5 C 18 1.5, 26 2, 31 2.8 C 35.5 3.5, 37.5 6, 37.6 10 C 38 18, 37.8 25, 37.2 30.5 C 36.8 35, 34.5 37.3, 30 37.5 C 22 38, 15 37.8, 9.5 37.2 C 5 36.8, 2.6 34.6, 2.5 30 C 2 22, 2.2 15, 2.7 9 C 3 5, 5 3, 9 2.5 Z"
+        fill="#FFFFFF"
+        stroke="#1A1A1A"
+        strokeWidth="1.6"
+      />
+      <g transform="translate(6.8 4.6) scale(0.68)">
+        <path
+          d="M5 32.5 C 11 32, 12 23, 18.6 19.2"
+          fill="none"
+          stroke="#E04040"
+          strokeWidth="7.5"
+          strokeLinecap="round"
+        />
+        <path
+          transform="translate(17.8 10) rotate(-20) scale(1.2)"
+          d="M0 0 L0 17 L4.6 13 L7.6 19.4 L10.6 18.1 L7.7 11.9 L13.2 11.9 Z"
+          fill="#1A1A1A"
+          stroke="#FFFFFF"
+          strokeWidth="1.1"
+          strokeLinejoin="round"
+        />
       </g>
-      <path
-        d="M40.5729 93.5892L80.5886 53.5784L67.0143 39.9924L27 79.9954L40.5729 93.5892Z"
-        fill="#ECD434"
-      />
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M27 89.8582V79.9954L40.5729 93.5892H30.9196L27 89.8582Z"
-        fill="#DCB78C"
-      />
-      <path d="M27 93.5892H30.9196L27 89.8582V93.5892Z" fill="black" />
-      <path
-        d="M27 89.8582V79.9954L67.0143 39.9924L80.5886 53.5784L40.5729 93.5892H30.9196M27 79.9954L40.5729 93.5892M30.9196 93.5892H27V89.8582M30.9196 93.5892L27 89.8582"
-        stroke="black"
-      />
-      <path
-        d="M84.3594 49.75C84.3594 49.75 93.4925 42.038 93.4925 40.5883C93.4925 39.1386 81.3572 26.7721 80.1353 26.9458C78.9134 27.1194 70.8024 36.2215 70.8024 36.2215L84.3594 49.75Z"
-        fill="#E691D2"
-        stroke="black"
-        strokeWidth="0.929765"
-      />
-      <defs>
-        <filter
-          id="tracemark-icon-texture"
-          x="0"
-          y="0"
-          width="119.888"
-          height="119.888"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.1190476268529892 0.1190476268529892"
-            numOctaves="3"
-            seed="5213"
-          />
-          <feDisplacementMap
-            in="shape"
-            scale="4"
-            xChannelSelector="R"
-            yChannelSelector="G"
-            result="displacedImage"
-            width="100%"
-            height="100%"
-          />
-          <feMerge result="effect1_texture_130_15">
-            <feMergeNode in="displacedImage" />
-          </feMerge>
-        </filter>
-      </defs>
     </svg>
   );
 }
