@@ -1,0 +1,389 @@
+import { Feature, FeatureGrid } from "@/components/case-study/feature-grid";
+import { ImageGroup } from "@/components/case-study/image-group";
+import { ToolbarScan } from "@/components/case-study/toolbar-scan";
+import { Video } from "@/components/ui/video";
+import {
+  landingV1SrcSet,
+  landingV2SrcSet,
+  toolbarSnappingSrcSet,
+} from "./tracemark.data";
+
+export const metadata = {
+  title: "Tracemark: The Making of a Modern Web Markup Tool",
+  summary:
+    "A case study on designing Tracemark, a Chrome extension for marking up any website, from a friend's workflow to its v2 redesign and rebrand.",
+  publishedAt: "2026-11-13",
+  image: "/case-studies/tracemark/hero.png",
+  hero: {
+    src: "/case-studies/tracemark/hero.png",
+    alt: "The only markup tool you need: a portfolio page marked up with Tracemark, with a highlight on calm interfaces, a handwritten I like this, a red frame around the View work button asking to make it bigger, a green check, and the Tracemark toolbar snapped to the right edge",
+    background: "linear-gradient(to bottom, #4290da, #3a84ca)",
+  },
+  timeline: "January – November 2026",
+  role: "Product Designer",
+  team: "Solo",
+  tools: "Figma, Claude Code",
+  link: { label: "tracemark.fun", href: "https://tracemark.fun" },
+};
+
+## Context
+
+Tracemark is a Chrome extension that lets you annotate/markup any website, and copy the results to your clipboard or export them as an image.
+
+## Problem
+
+### Background
+
+My friend, [Arman](https://x.com/ksw_arman), likes to annotate on website UIs. He uses those annotations as an effective way of providing context for his coding agents, that way, they can make changes/adjustments to the UI to his liking.
+
+His current flow:
+
+![Arman's current flow: begin on any website, take a screenshot of a portion of the page, open Excalidraw, paste the image, annotate on top of it, export the image with the annotations, paste it in Cursor, done](/case-studies/tracemark/flow-before.png)
+
+Although this might seem like a straightforward process, there is actually a ton of friction behind the scenes, with a bulk of it spanning over the process of screenshotting a portion of UI to annotating it in Excalidraw. Frequently having to repeat this chunk of the flow over and over again just to accomplish his objective eventually got repetitive and tiring.
+
+### The Opportunity
+
+Back in January 2026, I posted on X asking for some [project ideas](https://x.com/anth0nycodes/status/2007875169013190765), because I had no idea what to work on after recently having wrapped up a previous [side project](https://github.com/anth0nycodes/license-generator).
+
+Arman commented a link on my post that referred to one of his other posts, where he described the friction he had with his aforementioned process of annotating web UI.
+
+So, I decided to pursue this project (for free, since it just sounded fun), because I thought it'd be pretty cool to solve a problem I had zero background or context in at the time; I thought it'd be a good challenge!
+
+## Research
+
+After telling Arman that I'm down to pursue the project, he initially pitched me the idea of making it a Chrome extension. But before I dug into design and development, I figured it'd make sense to first conduct some competitive analysis. I looked into existing Chrome extensions that, more or less, served as the solution to Arman's inefficient annotation workflow.
+
+- [Page Marker](https://chromewebstore.google.com/detail/page-marker-draw-on-web/jfiihjeimjpkpoaekpdpllpaeichkiod) is by far the most popular and used extension that accomplished what I was envisioning. An all in one extension that injects a toolbar full of annotation tools, ranging from text, frames, pencils, and so on.
+- [Web Paint Tool](https://chromewebstore.google.com/detail/web-paint-tool-draw-onlin/iklgljbighkgbjoecoddejooldolenbj) was the second most popular, and it essentially did everything that Page Marker did as well.
+
+You might be wondering, if there were already such existing tools, why even bother reinventing the wheel? The answer to this consists of 2 halves: UI and UX.
+
+### The UI was alright, but could've been much better
+
+Both extensions got the job done, but the UI for the toolbars felt way too clunky and awkward to navigate. They consisted of either multiple long columns or rows of different types of tools/controls, and it felt like there were multiple different elements competing with each other for attention.
+
+<ImageGroup className="grid items-end gap-4 sm:grid-cols-[1fr_3fr]">
+
+<figure className="mx-auto w-full max-w-[166px]">
+
+![Page Marker's toolbar: two long columns of tool and color buttons](/case-studies/tracemark/page-marker.png)
+
+<figcaption>Page Marker</figcaption>
+</figure>
+
+<figure>
+
+![Web Paint Tool's toolbar: a wide strip of tools, colors, and a size percentage](/case-studies/tracemark/web-paint-tool.png)
+
+<figcaption>Web Paint Tool</figcaption>
+</figure>
+
+</ImageGroup>
+
+Also, frankly speaking, these toolbars didn't look the most visually appealing, and seemed pretty outdated with today's standards for modern UI. Among some issues, there was inconsistent spacing, unclear choice of iconography, and poor visual hierarchy.
+
+### The UX vastly needed improvement
+
+I primarily wasn't the biggest fan of the toolbars spanning more than either one centralized row/column, as it would require the user to scan across multiple rows/columns which added unnecessary friction, opposed to maintaining a single, clear focal point.
+
+<ToolbarScan />
+
+Furthermore, there were other aspects of both extensions that didn't logically make sense:
+
+- Both extensions included shortcuts, but they weren't visible on each actual tool, forcing the user to have to memorize them.
+- Both extensions had vague sizing controls: Page Marker's size slider had no form of numerical/visual representation for size, so a user would just have to guess their intended size through trial and error. Web Paint Tool utilizes a percentage to determine size, but this is extremely vague and nothing can be deduced from utilizing a percentage when a user is unsure of the numerical baseline value unit.
+- Both extensions didn't return to a "Select" tool for certain objects: Using Figma and Excalidraw as a reference, for tools like shapes, text, or lines/arrows, after letting go of your cursor and creating the final shape would immediately select that same object that you just created. This way, you can immediately adjust the object, whether it be its position, size, or anything else that you might've missed/unintentionally did when initially creating the object.
+- Page Marker doesn't have an option to temporarily hide the extension from the page without completely removing it, which would get rid of all the user's annotations. Having a toggle button, or even a keybind, would be useful for when the user would want to view the entire page UI again with nothing obstructing the view.
+- Web Paint Tool doesn't have a "Select" tool in order for users to interact with annotated objects, for instance, in order to rescale or move them around (the importance of having this is as mentioned a few bullet points ago).
+
+## Design Decisions
+
+With these findings, I had a clearer idea of the kind of extension I wanted to make. So I decided to hop into a Figma file and start prototyping ideas.
+
+### v1
+
+Beginning in early January, I was referring to existing toolbar UIs such as the ones found on Figma / Excalidraw (since Arman was already familiar with this UI + I thought it looked pretty appealing) and came up with this:
+
+<ImageGroup className="grid items-center gap-4 sm:grid-cols-2">
+
+![The v1 toolbar design: a single row with a color picker, select, pencil, eraser, text, frame, line, copy, download, and a more menu](/case-studies/tracemark/v1-toolbar.png)
+
+![The v1 active tool states, each with its popover: three stroke sizes for the pencil, three dot sizes for the eraser, text alignment, and frame shapes](/case-studies/tracemark/v1-tool-states.png)
+
+</ImageGroup>
+
+I decided to keep it a single uniform row of tools/utilities, that way there is a single clear focal point in which users would only have to scan horizontally across a single row. I also tackled the unclear sizing issue that the other tools had by creating predefined stroke sizes for certain tools that would utilize it like the pencil and eraser. Doing it this way removes a lot of the potential lack of clarity that users might feel, by giving them just a few options that they would realistically only need. These option icons are also made distinctive by utilizing different stroke weight sizes, which gives a good idea of the thickness or weight that the actual size would be for the tool.
+
+I also wanted to add a few other features that I noticed that the other tools didn't have, such as additional frame-type options for the frame tool as well as a copy to clipboard button.
+
+At the time, I thought this was already decent looking. But later on, I realized that it could have been much, much better. Which leads me into the next version of Tracemark that I ended up with.
+
+### v2
+
+I took a few months off to try out other things, but eventually came back to Tracemark during the summer - fall period. During this time, I was learning more about design systems and their importance within a product, so I figured that I should really establish a formal design system for Tracemark.
+
+<ImageGroup className="grid items-start gap-4 sm:grid-cols-2">
+
+<figure>
+
+![Tracemark's v2 color system, with light and dark values for each token](/case-studies/tracemark/v2-colors.png)
+
+<figcaption>Color system</figcaption>
+</figure>
+
+<figure>
+
+![Tracemark's v2 iconography and tool variants: each tool icon in its default, hover, and active states](/case-studies/tracemark/v2-icons.png)
+
+<figcaption>Iconography and tool variants</figcaption>
+</figure>
+
+</ImageGroup>
+
+Now that I had a consistent design system to refer to, I iterated upon the v1 designs that I had for the toolbar and ended up with:
+
+<ImageGroup className="grid items-start gap-4 sm:grid-cols-2">
+
+<figure>
+
+![The v2 toolbar in light mode, shown both horizontally and vertically, with shortcut letters on each tool](/case-studies/tracemark/v2-toolbar-light.png)
+
+<figcaption>Light mode</figcaption>
+</figure>
+
+<figure>
+
+![The v2 toolbar in dark mode, shown both horizontally and vertically](/case-studies/tracemark/v2-toolbar-dark.png)
+
+<figcaption>Dark mode</figcaption>
+</figure>
+
+</ImageGroup>
+
+A majority of the design is relatively similar to v1 of Tracemark with some changes. For instance, version 1 of Tracemark had an additional menu that you could click on in order to use some secondary actions or utilities, such as clearing the canvas, exporting the whole page, or copying the whole page to your clipboard. After talking with Arman and getting his opinion on v1, I realized that the full page export / copying to clipboard options weren't too reliable because the image that would be downloaded/copied would be zoomed out to the point where it was really hard to see the annotations. So, I decided to get rid of those full page options and only kept the initial copy and export buttons for the annotations within the current viewport. I also decided that the clear canvas utility action would be placed right next to those aforementioned utilities, as a trash can icon, since it is a universally understood icon for destruction/removal.
+
+Aside from cleaning up the secondary actions, I went back to my research findings and made sure v2 actually addressed the gaps I noticed in the other extensions:
+
+<FeatureGrid>
+  <Feature title="Visible shortcuts">
+    Every tool now has its shortcut letter displayed right on it (I for
+    Interact, V for Select, P for Pencil, and so on). I swapped out the number
+    shortcuts from v1 for letters, since letters are more intuitive and match
+    what Figma and Excalidraw already use. Having the letter on the tool itself
+    means you can see it on demand, as opposed to having to remember it.
+  </Feature>
+  <Feature title="Hiding the extension">
+    You can now toggle the visibility of the toolbar and your annotations with
+    ⌘. / Ctrl+., which hides everything without getting rid of your work. This
+    was the option Page Marker was missing.
+  </Feature>
+  <Feature title="Interact tool">
+    This one came from my own use. I figured it'd be neat if you could access
+    the page underneath again, in case you wanna copy some text or do something
+    else, without having to close Tracemark and lose your annotations.
+  </Feature>
+  <Feature title="Highlighter tool">
+    A translucent stroke for marking up text, which fits right in with students
+    using Tracemark to take notes.
+  </Feature>
+  <Feature title="Edge snapping">
+    The toolbar can be dragged around, but it snaps to the edges of the screen
+    (horizontal on the top and bottom, vertical on the left and right). You can
+    still drag it to a custom spot along an edge, just not anywhere else. The
+    main focal point of most websites is essentially the center of the screen,
+    so keeping the toolbar on the edges means it never obstructs what you're
+    actually looking at. Technically nobody complained about this, but I figured
+    snapping was better UX, and it just felt better to use.
+  </Feature>
+  <Feature title="Theme toggle">
+    Depending on whether the site you were on was light or dark, the toolbar
+    could be pretty hard to see, so I added a light/dark theme toggle to account
+    for both (it follows your system by default). This also takes user
+    preference into account, and neither of the two leading extensions had it.
+  </Feature>
+  <Feature title="Close button">A close button right on the toolbar.</Feature>
+</FeatureGrid>
+
+<Video
+  poster="/case-studies/tracemark/toolbar-snapping-poster.webp"
+  srcSet={toolbarSnappingSrcSet}
+  className="aspect-[3664/2160]"
+  aria-label="The Tracemark toolbar being dragged between screen edges: it collapses into a circle while moving, then snaps to the nearest edge, horizontal on the top and bottom and vertical on the sides"
+/>
+
+Visually, I rounded the toolbar out into a pill, swapped the filled icons for outlined ones (including a custom Text icon) so everything follows the iconography in the design system, and replaced the black bar above the active tool with a simple background fill.
+
+## Branding
+
+When I first tackled v1, I didn't really take product identity or branding into account. My focus was on the toolbar itself, which is a big reason why the first iteration looked pretty lackluster, for both the product and the landing page.
+
+### v1
+
+For the logo, I went with a pencil that I created as a vector in Figma. Going into this all those months ago, I figured a pencil was a smart choice since drawing was a part of the extension.
+
+<ImageGroup>
+
+<figure className="mx-auto w-full max-w-[620px]">
+
+![The v1 logo: a yellow pencil in a hand-drawn rounded square at four sizes, and next to the tracemark wordmark](/case-studies/tracemark/logo-v1.png)
+
+</figure>
+
+</ImageGroup>
+
+<figure>
+
+<Video
+  poster="/case-studies/tracemark/landing-v1-poster.webp"
+  srcSet={landingV1SrcSet}
+  className="aspect-[3640/2148]"
+  aria-label="A recording of the v1 Tracemark landing page"
+/>
+
+<figcaption>v1 landing page</figcaption>
+</figure>
+
+### v2
+
+For v2, I started by actually defining what Tracemark is as a product before designing anything else:
+
+<ImageGroup>
+
+<figure className="mx-auto w-full max-w-[490px]">
+
+![Product info. Type: productivity tool. Purpose: to create an aesthetically pleasing yet intuitive tool for website markup/annotation. Target audience: UI/UX critics, students. Brand tone: playful, professional, expressive. Core UX: frictionless markup, annotation, and exportation.](/case-studies/tracemark/product-info.png)
+
+</figure>
+
+</ImageGroup>
+
+The target audience started out as UI/UX critics and students, but I later added developers after realizing that devs could also use Tracemark to iterate with their coding agents, similar to how Arman does.
+
+#### The logo
+
+With the brand defined, I soon realized that the pencil logo didn't really fit. The point of the extension is annotation/markup, not drawing, and real feedback from users backed this up: the pencil read as a drawing tool, and it was hard to make out at small sizes like in a navbar.
+
+![Before: the pencil logo in an outlined tile. Feedback: hard to tell it was a pencil on a monitor; a pencil reads as a drawing tool.](/case-studies/tracemark/logo-process/01-before.png)
+
+So, I went back to the drawing board and iterated back and forth with Claude (Opus) over six rounds, picking the strongest directions each round and pushing them further. Here's the whole journey at a glance:
+
+![Logo exploration, from a pencil to a pointer that marks things up: the pencil, then one pick from each of six rounds, ending in the final cursor and red marker stroke](/case-studies/tracemark/logo-process/00-evolution.png)
+
+**Round 1:** I started broad with eight directions: either circling the thing, like you would when critiquing something, or pointing at it with a cursor. The cursor trail and cursor highlight felt the most like Tracemark, so those two moved forward.
+
+![Round 1, eight directions: four hand-drawn circles and four cursors paired with a mark. Cursor trail and cursor highlight are picked.](/case-studies/tracemark/logo-process/02-round-1.png)
+
+**Round 2:** The trails were looking a bit busy, so I simplified them. The yellow highlights also kept vanishing on white backgrounds, so I tried making them bigger, outlining them, or turning them into a tile.
+
+![Round 2: four calmer red trails and four stronger yellow highlights. The highlight trail is picked.](/case-studies/tracemark/logo-process/03-round-2-yellow.png)
+
+Yellow still wasn't holding up, so I switched every mark to red. Red is the go-to color for markup, the same red you'd see on a graded paper at school, which fits since I'm marketing Tracemark towards students as well. Page Marker also uses red for its icon, and that already seemed to do well for them.
+
+![Round 2 in red: the same eight marks, all in red. The swoosh, bold S, and highlight trail are picked.](/case-studies/tracemark/logo-process/04-round-2-red.png)
+
+**Round 3:** From there, I explored different takes on the trail itself, from marker strokes to thinner line trails. The curved marker held up well even at 16px, and it still felt hand-made.
+
+![Round 3: eight red trail variants, from marker strokes to line trails. The curved marker is picked.](/case-studies/tracemark/logo-process/05-round-3.png)
+
+**Round 4:** Then I tuned the curved marker one change at a time: weight, curve, length, spacing, cursor size, tilt, outline, and tip. The gentle S felt the most freshly drawn.
+
+![Round 4: ten variants of the curved marker, each changing one thing. The gentle S is picked.](/case-studies/tracemark/logo-process/06-round-4.png)
+
+**Round 5:** A thinner stroke balanced the mark out next to the wordmark, and a small gap made the stroke and the cursor read as two clear parts.
+
+![Round 5: eight variants of the gentle S. Thinner with a gap, and thinner with a gap and tilt, are picked.](/case-studies/tracemark/logo-process/07-round-5.png)
+
+**Round 6:** Tilting the cursor added a sense of motion. Counter-clockwise read like a flick mid-gesture, so I went with −20°.
+
+![Round 6: the cursor tilted from −8° to −28° and clockwise along the stroke. −20° with a smaller gap is picked.](/case-studies/tracemark/logo-process/08-round-6.png)
+
+**Final:** Looking at it again, the gap made it read as two separate pieces rather than one mark. So, I tucked the stroke under the cursor and thinned the cursor's white outline down to a hairline, which finally made it read as one gesture. I also made a tile version that sits in a hand-drawn rounded square for app-icon spots.
+
+![Final: the stroke tucked under the cursor with a hairline outline, the full logo with the wordmark, and the rounded-square tile](/case-studies/tracemark/logo-process/09-final.png)
+
+<ImageGroup>
+
+<figure className="mx-auto w-full max-w-[633px]">
+
+![The v2 logo lockups: the tile, the mark alone, the mark with tracemark.fun, and the mark with tracemark](/case-studies/tracemark/logo-v2.png)
+
+</figure>
+
+</ImageGroup>
+
+#### Typography
+
+I wanted fonts that were a mix of professional, playful, and expressive. I ended up with Bricolage Grotesque for headings and the wordmark, since I thought it was a perfect mix of all three, and Manrope for body text, since it's refined, modern, and professional.
+
+#### Mascots
+
+To lean further into the expressive side of the brand, I also drew a few mascots in Figma for the landing page, each one matching one of the brand colors:
+
+<ImageGroup>
+
+<figure className="mx-auto w-full max-w-[402px]">
+
+![Three hand-drawn mascots: a red triangle, a blue square, and a green trapezoid, each with eyes and legs](/case-studies/tracemark/mascots.png)
+
+</figure>
+
+</ImageGroup>
+
+#### The domain
+
+Funnily enough, tracemark.com was taken, so I went with tracemark.fun instead. I guess it all ended up working out though, since I eventually wanted playfulness to be a part of the established brand anyway.
+
+<figure>
+
+<Video
+  poster="/case-studies/tracemark/landing-v2-poster.webp"
+  srcSet={landingV2SrcSet}
+  className="aspect-[3394/2030]"
+  aria-label="A recording of the v2 Tracemark landing page"
+/>
+
+<figcaption>v2 landing page</figcaption>
+</figure>
+
+## Outcome
+
+Here is Arman's new flow:
+
+![Arman's new flow: begin on any website, open Tracemark, annotate directly on the website, copy the viewport annotations to the clipboard or export them, paste in Cursor, done](/case-studies/tracemark/flow-after.png)
+
+Compared to his old flow, that's 4 steps instead of 6, and he no longer has to bounce between the website, Excalidraw, and Cursor. Everything up until pasting happens directly on the page he's already on. He still uses Tracemark to this day.
+
+As for everyone else, v1 launched on the Chrome Web Store in early August. I still wanted to get something working out there for more feedback, which is why I constantly updated the store listing with newer versions of v1 instead of waiting to ship everything at once. Those updates eventually led towards v2, which I also rolled out incrementally, starting with a renamed store listing ("Tracemark – Live Web Markup") in late October and wrapping up with the redesigned toolbar and landing page in early November.
+
+Weekly users sat in the single digits throughout v1, and are now around 15. Total installs are at 443, with daily installs jumping from 1–3 a day to around 25–30 a day once v2 started rolling out. Uninstalls stayed low at 6 total, and reviews went from 2 to 5. I also launched Tracemark on Product Hunt, where it placed #43 out of over 1,000 launches.
+
+![Chrome Web Store installs from August 16 to November 9: 443 total, flat at one to three a day until late October, then around 25 to 30 a day](/case-studies/tracemark/metrics/installs.png)
+
+![Uninstalls over the same period: 6 in total, one at a time](/case-studies/tracemark/metrics/uninstalls.png)
+
+![Impressions across the Chrome Web Store: 127, rising from late October](/case-studies/tracemark/metrics/impressions.png)
+
+![Weekly users over time: around 4 to 8 through v1, peaking at 22 in late October, now around 15](/case-studies/tracemark/metrics/weekly-users.png)
+
+One of those reviews from Runbo Li sums up the use case pretty well:
+
+> Tracemark is really helpful for quickly communicating changes related to product design. It saves me time from using GPT image to create mock-ups and skips all of the iteration. So I can just indicate exactly what I want the way I want it. It's a useful collaboration tool I recommend for any team that does a lot of design iteration.
+
+## Reflection
+
+### Establish the foundation first
+
+The biggest thing I'd do differently is establishing my ICP, brand identity, core UX, and a structured design system from the very beginning. It would've made the entire process much more structured and a lot less confusing/difficult. For instance, if I had made Figma components for the different tool states, I could've created the toolbar much quicker, as opposed to copy pasting and manually changing fill colors, icons, etc.
+
+### Your users' opinions matter most
+
+At the end of the day, your product is for your users, so their opinion matters the most. A lot of the biggest v2 changes, like removing the full page export and swapping out the pencil logo, came directly from feedback. Getting real user feedback is the most crucial thing you can do to improve a product.
+
+### Treating it like an actual product
+
+Taking a few months off ended up being one of the best things for Tracemark. When I came back, I was able to think of it through an actual product lens, as opposed to just another side project that I didn't really care about getting real users for. My mentality shifted, and I realized that I had the chance to make this a better product than what was already on the market.
+
+### What's next
+
+For now, I think Tracemark is pretty complete. But the [code is open source](https://github.com/anth0nycodes/tracemark), so anyone is welcome to contribute, or fork it and build their own version :)
