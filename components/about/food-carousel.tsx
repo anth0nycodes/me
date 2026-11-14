@@ -54,6 +54,30 @@ const PHOTOS: FoodPhoto[] = [
     width: 540,
     height: 720,
   },
+  {
+    src: "/about/food7",
+    alt: "Two iced drinks topped with lychee and mint, one cloudy white and one purple, by a window lined with plants",
+    width: 453,
+    height: 720,
+  },
+  {
+    src: "/about/food8",
+    alt: "French onion soup with a browned cheese crust, on a plate beside a carafe of water",
+    width: 540,
+    height: 720,
+  },
+  {
+    src: "/about/food9",
+    alt: "An iced matcha latte over red bean and a strawberry milk tea, both from Tea Makers",
+    width: 540,
+    height: 720,
+  },
+  {
+    src: "/about/food10",
+    alt: "Two bowls of teriyaki salmon over rice with sesame seeds, a side salad and a green drink",
+    width: 540,
+    height: 720,
+  },
 ];
 
 /**
