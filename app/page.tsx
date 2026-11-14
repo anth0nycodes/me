@@ -11,8 +11,34 @@ export default function HomePage() {
           interfaces that feel as good as they look.
         </h1>
         <p className="text-muted-foreground max-w-[40rem] leading-relaxed">
-          Previously, I interned at Magic Hour and Deep24. On the side, I made
-          Tracemark, a Chrome extension for marking up any website.
+          I started out in frontend development, interning as an engineer at{" "}
+          <a
+            href="https://magichour.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4"
+          >
+            Magic Hour
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://deep24.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4"
+          >
+            Deep24
+          </a>
+          , before moving into product design. On the side, I made{" "}
+          <a
+            href="https://chromewebstore.google.com/detail/tracemark-%E2%80%93-live-web-mark/mgckpdklnjeklihpmplgcfnhncifikjd"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4"
+          >
+            Tracemark
+          </a>
+          , a Chrome extension for marking up any website.
         </p>
       </section>
       <section
