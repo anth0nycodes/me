@@ -116,11 +116,13 @@ With these findings, I had a clearer idea of the kind of extension I wanted to m
 
 Beginning in early January, I was referring to existing toolbar UIs such as the ones found on Figma / Excalidraw (since Arman was already familiar with this UI + I thought it looked pretty appealing) and came up with this:
 
-<ImageGroup className="grid items-center gap-4 sm:grid-cols-2">
+<ImageGroup>
 
-![The v1 toolbar design: a single row with a color picker, select, pencil, eraser, text, frame, line, copy, download, and a more menu](/case-studies/tracemark/v1-toolbar.png)
+<figure className="mx-auto w-full max-w-[683px]">
 
-![The v1 active tool states, each with its popover: three stroke sizes for the pencil, three dot sizes for the eraser, text alignment, and frame shapes](/case-studies/tracemark/v1-tool-states.png)
+![The v1 toolbar design: a single row with a color picker, select, pencil, eraser, text, frame, line, copy, and download, numbered 1 to 8 for shortcuts, and a more menu for copy page, export page, and clear canvas. Below it, the active tool states, each with its popover: three stroke sizes for the pencil, three dot sizes for the eraser, text alignment, and frame shapes](/case-studies/tracemark/v1-toolbar-states.png)
+
+</figure>
 
 </ImageGroup>
 
@@ -277,6 +279,48 @@ For v2, I started by actually defining what Tracemark is as a product before des
 
 The target audience started as UI/UX critics and students. Later, I added developers after realizing they could also use Tracemark to iterate with their coding agents, similar to how Arman does.
 
+#### Typography
+
+I wanted fonts that were a mix of professional, playful, and expressive. I ended up with Bricolage Grotesque for headings and the wordmark, since I thought it perfectly mixed all three, and Manrope for body text, since it's refined, modern, and professional.
+
+<ImageGroup>
+
+<figure className="mx-auto w-full max-w-[976px]">
+
+![Typography. Primary font: Manrope at 150% line height and −2.5% letter spacing, for body text (16px), card descriptions (16px desktop, 14px mobile), and microcopy (14px). Secondary font: Bricolage Grotesque at 120% line height and −4% letter spacing, for page titles (56px desktop, 30px mobile), section titles (40px, 24px), card titles (18px, 16px), and button text (16px). A font size scale runs from xs at 12px to 6xl at 56px.](/case-studies/tracemark/typography.png)
+
+</figure>
+
+</ImageGroup>
+
+#### Colors
+
+For the landing page, I paired a neutral scale with six brand colors: red, green, yellow, and three shades of blue.
+
+<ImageGroup>
+
+<figure className="mx-auto w-full max-w-[607px]">
+
+![Landing page colors: six neutrals from near-black to off-white, and six brand colors in red, green, yellow, light blue, blue, and dark blue](/case-studies/tracemark/brand-colors.png)
+
+</figure>
+
+</ImageGroup>
+
+#### Spacing
+
+I also set up a spacing scale on a 4px grid, running from 0 to 96px, plus a 1px step.
+
+<ImageGroup>
+
+<figure className="mx-auto w-full max-w-[202px]">
+
+![Spacing scale: spacing-0 is 0px, spacing-px is 1px, then spacing-1 through spacing-24 go up in 4px steps from 4px to 96px](/case-studies/tracemark/spacing.png)
+
+</figure>
+
+</ImageGroup>
+
 #### The logo
 
 With the brand defined, I soon realized that the pencil logo didn't really fit. The point of the extension is annotation/markup, not drawing, and user feedback backed this up: the pencil read as a drawing tool, and it was hard to make out at small sizes like in a navbar.
@@ -328,10 +372,6 @@ Yellow still wasn't holding up, so I switched every mark to red. Red is the go-t
 </figure>
 
 </ImageGroup>
-
-#### Typography
-
-I wanted fonts that were a mix of professional, playful, and expressive. I ended up with Bricolage Grotesque for headings and the wordmark, since I thought it perfectly mixed all three, and Manrope for body text, since it's refined, modern, and professional.
 
 #### Mascots
 
