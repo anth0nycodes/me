@@ -1,28 +1,23 @@
 import { Metadata } from "next";
-import { PostLink } from "@/components/post-link";
-import { CASE_STUDIES, CASE_STUDIES_FOLDER_NAME } from "@/data/case-studies";
+import { CaseStudyCards } from "@/components/case-study/case-study-cards";
+import { CASE_STUDIES } from "@/data/case-studies";
 
 export const metadata: Metadata = {
   title: "Case Studies",
-  description: "My case studies on stuff I've made or contributed to.",
+  description:
+    "Product design case studies: the problem, the research, and the decisions behind each.",
 };
 
 export default async function CaseStudiesPage() {
   return (
-    <section data-case-studies className="flex flex-col gap-2">
-      <h1 className="text-muted-foreground dark:text-foreground border-separator border-b pb-2 text-base font-medium capitalize">
-        <span>
-          case studies
-          <sup className="text-muted-foreground ml-1.5 text-xs select-none">
-            ({CASE_STUDIES.length})
-          </sup>
-        </span>
+    <section
+      data-case-studies
+      className="flex flex-col gap-10 pt-14 lg:px-[5vw]"
+    >
+      <h1 className="font-heading text-[1.875rem] leading-tight tracking-[-0.01em] sm:text-[2.5rem]">
+        Case studies
       </h1>
-      <div className="group flex flex-col">
-        {CASE_STUDIES.map((post) => (
-          <PostLink key={post.slug} folderName={CASE_STUDIES_FOLDER_NAME} post={post} />
-        ))}
-      </div>
+      <CaseStudyCards posts={CASE_STUDIES} />
     </section>
   );
 }

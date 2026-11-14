@@ -7,6 +7,26 @@ interface BasePostMetadata {
   publishedAt: string;
   summary: string;
   image?: string;
+  // case studies only: the details grid under the title
+  timeline?: string;
+  role?: string;
+  team?: string;
+  tools?: string;
+  // the live product, shown as the last detail
+  link?: { label: string; href: string };
+  // case studies only: the full-width visual above the title. It fills a 5:2 box (object-cover), so
+  // art made at 5:2, like 1400×560, shows uncropped
+  hero?: {
+    src: string;
+    alt: string;
+    // optional art for lg screens and up; `src` is used below that
+    desktopSrc?: string;
+    // the desktop art is a cutout on a transparent background: fit it whole, resting on the bottom
+    // edge, over `background` instead of covering the box
+    desktopCutout?: boolean;
+    // fills the band beside the box on wide screens; match it to the image's left and right edges
+    background?: string;
+  };
 }
 
 export interface BasePost {

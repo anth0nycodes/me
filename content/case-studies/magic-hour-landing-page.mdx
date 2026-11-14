@@ -1,4 +1,4 @@
-import { ImageComparison } from "@/components/ui/image-comparison";
+import { ImageCompare } from "@/components/ui/image-compare";
 import { Video } from "@/components/ui/video";
 import { afterSrcSet, beforeSrcSet } from "./magic-hour-landing-page.data";
 
@@ -8,9 +8,24 @@ export const metadata = {
     "A case study on how I built and shipped the Magic Hour landing page revamp.",
   publishedAt: "2026-10-16",
   image: "/case-studies/magic-hour/magic-hour-landing-preview.png",
+  hero: {
+    src: "/case-studies/magic-hour/hero.png",
+    desktopSrc: "/case-studies/magic-hour/hero-desktop-cutout.png",
+    alt: "Magic Hour's old landing page, headlined Create Engaging Videos Like a Pro, behind the new one, headlined Create, Edit, & Ship AI Visuals 10x Faster",
+    desktopCutout: true,
+    // drawn here rather than baked into the art: a deep navy-purple that lifts toward a purple glow
+    // low on the right, behind the laptops. One continuous gradient, so it can't seam at the edges
+    background:
+      "radial-gradient(70% 90% at 72% 105%, #3b2f6e 0%, #2a2350 35%, transparent 75%), linear-gradient(170deg, #1d1834 0%, #17132b 55%, #1f1a3a 100%)",
+  },
+  timeline: "Summer 2025",
+  role: "Software Engineer Intern",
+  team: "Me and a designer",
+  tools: "Next.js, TypeScript, Tailwind",
+  link: { label: "magichour.ai", href: "https://magichour.ai" },
 };
 
-<ImageComparison
+<ImageCompare
   before={{
     src: "/case-studies/magic-hour/comparison/magic-hour-landing-before",
     alt: "The old Magic Hour landing page, headlined Create Engaging Videos Like a Pro",
@@ -24,9 +39,6 @@ export const metadata = {
 />
 
 In the summer of 2025, I built and shipped a new landing page for [Magic Hour](https://magichour.ai/), an AI video and image generation platform. In the first month after launch, the site's signup conversion rose about <u>12%</u>.
-
-- **Team:** me and a designer
-- **Stack:** Next.js, TypeScript, Tailwind
 
 ## The goal
 

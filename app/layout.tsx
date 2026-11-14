@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Newsreader } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { ReactNode } from "react";
+import { LinksSection } from "@/components/home/links-section";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -20,6 +21,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// headings in long-form posts: a serif so they read apart from the Geist body text. Newsreader's
+// optical-size axis gives large headings a display cut and smaller ones a sturdier reading cut
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  axes: ["opsz"],
+  style: ["normal", "italic"],
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(DATA.url),
   title: {
@@ -32,13 +42,11 @@ export const metadata: Metadata = {
     "Anthony Hoang",
     "Anthony Hoang portfolio",
     "anth0nycodes",
-    "Design Engineer",
-    "Design Engineer portfolio",
-    "Frontend Engineer",
-    "UI Engineer",
-    "Design focused engineer",
-    "Engineer with design background",
-    "Frontend portfolio",
+    "Product Designer",
+    "Product Designer portfolio",
+    "Product design case studies",
+    "UI/UX Designer",
+    "Designer who codes",
   ],
   openGraph: {
     title: `${DATA.name}`,
@@ -84,14 +92,27 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("font-sans", geistSans.variable, geistMono.variable)}
+      className={cn(
+        "font-sans",
+        geistSans.variable,
+        geistMono.variable,
+        newsreader.variable
+      )}
     >
-      <body className="bg-background flex min-h-screen w-full flex-col justify-center px-6 py-12 font-sans antialiased selection:bg-(--selection) has-data-case-studies:justify-start has-data-not-found:justify-start has-data-thoughts:justify-start sm:py-24">
+      <body className="bg-background flex min-h-screen w-full flex-col font-sans antialiased selection:bg-(--selection)">
         <AudioProvider>
-          <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            disableTransitionOnChange
+          >
             <TooltipProvider>
               <Navbar />
-              <main className="mx-auto w-full max-w-150">{children}</main>
+              <main className="w-full flex-1 px-6">{children}</main>
+              {/* the same social links at the foot of every page */}
+              <footer className="mt-24 px-6 pb-10 lg:px-[calc(5vw+1.5rem)]">
+                <LinksSection />
+              </footer>
             </TooltipProvider>
             <Analytics />
           </ThemeProvider>

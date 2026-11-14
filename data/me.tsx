@@ -2,9 +2,10 @@ export const DATA = {
   name: "Anthony Hoang",
   url: "https://anthonyhoang.dev",
   location: "NYC",
-  occupation: "Design Engineer",
+  occupation: "Product Designer",
+  email: "hoanganthony2207@gmail.com",
   description:
-    "design engineer in nyc building interfaces that feel as good as they look. interned at magic hour and deep24 (yc w24). made tracemark. professional doomscroller.",
+    "product designer in nyc designing interfaces that feel as good as they look. interned at magic hour and deep24 (yc w24). made tracemark. professional doomscroller.",
   images: [
     "/pfps/pfp.png",
     "/pfps/pfp2.png",
