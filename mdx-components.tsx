@@ -1,51 +1,40 @@
-import { isValidElement, type ReactNode } from "react";
-import Image, { type ImageProps } from "next/image";
+import type { ImageProps } from "next/image";
 import Link from "next/link";
 import type { MDXComponents } from "mdx/types";
 import { CodeBlock } from "@/components/code-block";
-
-/**
- * Reads the plain text out of a heading's children, walking into any inline code, links or emphasis
- * inside it.
- *
- * @param node - The heading's children: a string, an array of mixed pieces, or an element.
- * @returns The heading's text with all formatting stripped.
- */
-function getText(node: ReactNode): string {
-  if (typeof node === "string" || typeof node === "number") return String(node);
-  if (Array.isArray(node)) return node.map(getText).join("");
-  if (isValidElement<{ children?: ReactNode }>(node)) return getText(node.props.children);
-  return "";
-}
-
-/**
- * Turns a heading's text into a URL-safe id by lowercasing it, dropping anything that isn't a letter,
- * number, space or hyphen, then joining the words with hyphens.
- *
- * @param text - The plain text of the heading.
- * @returns The id, e.g. "This is an example" becomes "this-is-an-example".
- */
-function slugify(text: string) {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9\s-]/g, "")
-    .replace(/[\s-]+/g, "-");
-}
+import { ZoomableImage } from "@/components/ui/zoomable-image";
+import { getText, slugify } from "@/lib/slugify";
 
 const components: MDXComponents = {
   pre: (props) => <CodeBlock {...props} />,
   a: (props) => <a target="_blank" rel="noopener noreferrer" className="text-bold" {...props} />,
+  // section headings set in the serif, linked to themselves so a section can be shared by URL
   h2: ({ children, ...props }) => {
     const id = slugify(getText(children));
     return (
       <h2
         id={id}
         {...props}
-        className="not-prose text-foreground mt-10 mb-2 scroll-mt-4 text-xl font-medium tracking-tight underline underline-offset-4 first:mt-0"
+        className="not-prose font-heading text-foreground mt-14 mb-3 scroll-mt-28 text-[2rem] leading-tight font-normal tracking-[-0.01em] first:mt-0"
       >
-        <Link href={`#${id}`}>{children}</Link>
+        <Link href={`#${id}`} className="hover:text-muted-foreground transition-colors">
+          {children}
+        </Link>
       </h2>
+    );
+  },
+  h3: ({ children, ...props }) => {
+    const id = slugify(getText(children));
+    return (
+      <h3
+        id={id}
+        {...props}
+        className="not-prose font-heading text-foreground mt-10 mb-2 scroll-mt-28 text-[1.5rem] leading-snug font-normal"
+      >
+        <Link href={`#${id}`} className="hover:text-muted-foreground transition-colors">
+          {children}
+        </Link>
+      </h3>
     );
   },
   // width and height come from lib/rehype-image-size.mjs, read off the file at build time, so the
@@ -53,13 +42,13 @@ const components: MDXComponents = {
   img: ({ width, height, ...props }) => {
     const src = typeof props.src === "string" ? props.src : "";
     return (
-      <Image
+      <ZoomableImage
         {...(props as ImageProps)}
         alt={props.alt ?? ""}
         width={Number(width ?? 0)}
         height={Number(height ?? 0)}
         className="ring-muted h-auto w-full rounded-lg ring-2 first:my-4 dark:ring-0"
-        sizes="(max-width: 650px) 100vw, 650px"
+        sizes="(max-width: 1024px) 100vw, 80vw"
         draggable={false}
         // GIFs must skip optimization or next/image freezes them on one frame.
         unoptimized={src.endsWith(".gif")}
