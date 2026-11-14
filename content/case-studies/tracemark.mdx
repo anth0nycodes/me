@@ -174,7 +174,7 @@ Now that I had a consistent design system to refer to, I iterated upon the v1 de
 
 A majority of the design is relatively similar to v1 of Tracemark with some changes. For instance, version 1 of Tracemark had an additional menu that you could click on in order to use some secondary actions or utilities, such as clearing the canvas, exporting the whole page, or copying the whole page to your clipboard. After talking with Arman and getting his opinion on v1, I realized that the full page export / copying to clipboard options weren't too reliable because the image that would be downloaded/copied would be zoomed out to the point where it was really hard to see the annotations. So, I decided to get rid of those full page options and only kept the initial copy and export buttons for the annotations within the current viewport. I also decided that the clear canvas utility action would be placed right next to those aforementioned utilities, as a trash can icon, since it is a universally understood icon for destruction/removal.
 
-Aside from cleaning up the secondary actions, I went back to my research findings and made sure v2 actually addressed the gaps I noticed in the other extensions:
+Aside from cleaning up the secondary actions, I went back to my research findings and made sure v2 actually addressed the gaps I noticed in the other extensions, while keeping (and improving on) what they already got right:
 
 <FeatureGrid>
   <Feature title="Visible shortcuts">
@@ -190,13 +190,18 @@ Aside from cleaning up the secondary actions, I went back to my research finding
     was the option Page Marker was missing.
   </Feature>
   <Feature title="Interact tool">
-    This one came from my own use. I figured it'd be neat if you could access
-    the page underneath again, in case you wanna copy some text or do something
-    else, without having to close Tracemark and lose your annotations.
+    Both extensions already let you get back to the page underneath, in case you
+    wanna copy some text or click on something, but I felt my choice of icon
+    made more sense. I went with a hand, since it reads as reaching through to
+    touch the page itself, the same way Figma and Excalidraw use a hand for
+    moving around the canvas. It also keeps it clearly separate from the Select
+    tool's cursor, so you never mix up interacting with the page and selecting
+    your annotations.
   </Feature>
   <Feature title="Highlighter tool">
-    A translucent stroke for marking up text, which fits right in with students
-    using Tracemark to take notes.
+    A translucent stroke for marking up text. I took this one as a reference
+    from Page Marker, since it already had it, and it fits right in with
+    students using Tracemark to take notes.
   </Feature>
   <Feature title="Edge snapping">
     The toolbar can be dragged around, but it snaps to the edges of the screen
@@ -213,7 +218,11 @@ Aside from cleaning up the secondary actions, I went back to my research finding
     for both (it follows your system by default). This also takes user
     preference into account, and neither of the two leading extensions had it.
   </Feature>
-  <Feature title="Close button">A close button right on the toolbar.</Feature>
+  <Feature title="Close button">
+    Both extensions already had a way to close the toolbar, but I made it more
+    intuitive by using an X icon, since an X is what people usually read as
+    closing something.
+  </Feature>
 </FeatureGrid>
 
 <Video
