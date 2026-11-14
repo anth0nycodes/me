@@ -4,7 +4,8 @@ import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  allowedDevOrigins: ["192.168.1.5", "192.168.1.9"],
+  // this Mac on the local network, so phones can load the dev server (its address can change)
+  allowedDevOrigins: ["192.168.1.3", "192.168.1.5", "192.168.1.9"],
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   reactCompiler: true,
   images: {
