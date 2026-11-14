@@ -33,8 +33,10 @@ export function ScrollToTop() {
       tabIndex={isVisible ? 0 : -1}
       aria-hidden={!isVisible}
       className={cn(
-        "bg-muted text-foreground group fixed right-5 bottom-5 z-100 hidden size-12 cursor-pointer items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-105 sm:flex",
-        isVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-5 opacity-0",
+        "dark:bg-muted text-foreground group fixed right-5 bottom-5 z-100 hidden size-12 cursor-pointer items-center justify-center rounded-full bg-neutral-200 transition-all duration-300 ease-out hover:scale-105 sm:flex",
+        isVisible
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-5 opacity-0"
       )}
       aria-label="Scroll to top"
     >
