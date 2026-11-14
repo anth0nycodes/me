@@ -1,9 +1,9 @@
 import { Metadata } from "next";
+import { Age } from "@/components/about/age";
 import { AvatarShuffle } from "@/components/about/avatar-shuffle";
 import { ExperienceList } from "@/components/about/experience-list";
 import { FoodCarousel } from "@/components/about/food-carousel";
 import { Stamp } from "@/components/about/stamp";
-import { TextLink } from "@/components/ui/text-link";
 import { DATA } from "@/data/me";
 
 export const metadata: Metadata = {
@@ -29,31 +29,29 @@ export default function AboutPage() {
             </div>
             <div className="flex flex-col gap-5 leading-relaxed">
               <p>
-                Hey, I&apos;m {DATA.name.split(" ")[0]} — a product designer in
-                NYC who enjoys designing interfaces that feel as good as they
-                look. I&apos;ve always found it so cool how you can create
-                anything you imagine with enough time, effort, and a bit of
-                caffeine 😂
+                Hey, I&apos;m {DATA.name.split(" ")[0]} — a <Age />
+                -year-old product designer in NYC who enjoys designing interfaces that feel as good
+                as they look. I&apos;ve always found it so cool how you can create anything you
+                imagine with enough time, effort, and a bit of caffeine!
               </p>
               <p>
-                Previously, I interned at{" "}
-                <TextLink href="https://magichour.ai">Magic Hour</TextLink> and{" "}
-                <TextLink href="https://deep24.com">Deep24</TextLink>, shipping
-                user-facing features. On the side, I made Tracemark, a Chrome
-                extension for marking up any website. You can read how it came
-                together in its{" "}
-                <TextLink href="/case-studies/tracemark">case study</TextLink>.
+                Growing up, I was always the one noticing the tiny details most people missed, like
+                something sitting slightly crooked on the counter, a single loose thread on
+                someone&apos;s shirt, or a friend not quite sounding like their usual self — which
+                is probably why I ended up in product design, where the little details matter most
+                haha
               </p>
               <p>
-                When I&apos;m not designing, I&apos;m usually doomscrolling,
-                lying in bed, or doing both simultaneously 😅
+                I also love exploring the city, solving Rubik&apos;s cubes, and playing Roblox (my
+                favorite game ever since I was 9 😭)
+              </p>
+              <p>
+                When I&apos;m not designing, I&apos;m usually doomscrolling, lying in bed, or doing
+                both simultaneously 😂
               </p>
             </div>
           </section>
-          <section
-            aria-labelledby="experience-heading"
-            className="flex flex-col gap-4"
-          >
+          <section aria-labelledby="experience-heading" className="flex flex-col gap-4">
             <h2 id="experience-heading" className="text-sm">
               — Experience
             </h2>
