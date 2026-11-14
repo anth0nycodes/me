@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useSound } from "use-sound";
-import type { Craft } from "@/app/craft/constants";
+import type { Craft } from "@/app/_craft/constants";
 import { useAudioEnabled } from "@/context/use-audio-enabled";
 import { useHaptics } from "@/hooks/use-haptics";
 

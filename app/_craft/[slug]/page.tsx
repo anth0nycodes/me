@@ -103,7 +103,7 @@ export default async function CraftNotePage({ params }: CraftNotePageProps) {
         </header>
         <CraftCard craft={craft} isSlugRoute={true} />
       </div>
-      <article className="prose text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground prose-figcaption:text-neutral-600 dark:prose-figcaption:text-gray-500 max-w-none">
+      <article className="prose text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-a:text-foreground prose-figcaption:text-neutral-600 dark:prose-figcaption:text-muted-foreground max-w-none">
         <Note />
       </article>
     </div>
