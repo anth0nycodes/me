@@ -1,23 +1,48 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useSound } from "use-sound";
+import { useAudioEnabled } from "@/context/use-audio-enabled";
 import type { BasePost } from "@/data/mdx";
+import { useHaptics } from "@/hooks/use-haptics";
 
 /** The case studies as cards, two across on wider screens. Used on home and on /case-studies. */
 export function CaseStudyCards({ posts }: { posts: BasePost[] }) {
+  const { trigger } = useHaptics();
+  const { audioEnabled } = useAudioEnabled();
+  const [playHoverSFX] = useSound("/audio/hover-tick.wav", {
+    volume: 0.125,
+    soundEnabled: audioEnabled,
+  });
+
+  function handleMouseEnter() {
+    trigger("light");
+    playHoverSFX();
+  }
+
   return (
     <ul className="grid gap-x-6 gap-y-12 md:grid-cols-2">
       {/* the first row sits above the fold (one card on phones, two from md up), so its covers
           load eagerly; one of them is usually the page's LCP */}
       {posts.map((post, index) => (
         <li key={post.slug}>
-          <CaseStudyCard post={post} eager={index < 2} />
+          <CaseStudyCard post={post} eager={index < 2} onMouseEnter={handleMouseEnter} />
         </li>
       ))}
     </ul>
   );
 }
 
-function CaseStudyCard({ post, eager }: { post: BasePost; eager: boolean }) {
+function CaseStudyCard({
+  post,
+  eager,
+  onMouseEnter,
+}: {
+  post: BasePost;
+  eager: boolean;
+  onMouseEnter: () => void;
+}) {
   const { slug, metadata } = post;
   // the case study's hero on its own background. Phones get a taller box with the whole image fitted
   // inside (covering would crop the art's sides); from sm up it's the 5:2 box it gets on its page
@@ -27,6 +52,7 @@ function CaseStudyCard({ post, eager }: { post: BasePost; eager: boolean }) {
   return (
     <Link
       href={`/case-studies/${slug}`}
+      onMouseEnter={onMouseEnter}
       className="group flex flex-col gap-4 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-(--focus-ring) focus-visible:ring-offset-4 focus-visible:ring-offset-(--background)"
     >
       <div

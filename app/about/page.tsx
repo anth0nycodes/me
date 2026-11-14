@@ -1,8 +1,9 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { AvatarShuffle } from "@/components/about/avatar-shuffle";
+import { ExperienceList } from "@/components/about/experience-list";
 import { FoodCarousel } from "@/components/about/food-carousel";
 import { Stamp } from "@/components/about/stamp";
+import { TextLink } from "@/components/ui/text-link";
 import { DATA } from "@/data/me";
 
 export const metadata: Metadata = {
@@ -36,33 +37,12 @@ export default function AboutPage() {
               </p>
               <p>
                 Previously, I interned at{" "}
-                <a
-                  href="https://magichour.ai"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline underline-offset-4"
-                >
-                  Magic Hour
-                </a>{" "}
-                and{" "}
-                <a
-                  href="https://deep24.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline underline-offset-4"
-                >
-                  Deep24
-                </a>
-                , shipping user-facing features. On the side, I made Tracemark,
-                a Chrome extension for marking up any website. You can read how
-                it came together in its{" "}
-                <Link
-                  href="/case-studies/tracemark"
-                  className="underline underline-offset-4"
-                >
-                  case study
-                </Link>
-                .
+                <TextLink href="https://magichour.ai">Magic Hour</TextLink> and{" "}
+                <TextLink href="https://deep24.com">Deep24</TextLink>, shipping
+                user-facing features. On the side, I made Tracemark, a Chrome
+                extension for marking up any website. You can read how it came
+                together in its{" "}
+                <TextLink href="/case-studies/tracemark">case study</TextLink>.
               </p>
               <p>
                 When I&apos;m not designing, I&apos;m usually doomscrolling,
@@ -77,31 +57,7 @@ export default function AboutPage() {
             <h2 id="experience-heading" className="text-sm">
               — Experience
             </h2>
-            <ul className="divide-separator flex flex-col divide-y">
-              {DATA.work.map((job) => (
-                <li
-                  key={job.title}
-                  className="flex items-baseline justify-between gap-4 py-3 text-sm"
-                >
-                  <div className="flex flex-col gap-0.5">
-                    <a
-                      href={job.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-muted-foreground font-medium transition-colors"
-                    >
-                      {job.title}
-                    </a>
-                    <span className="text-muted-foreground capitalize">
-                      {job.role}
-                    </span>
-                  </div>
-                  <span className="text-muted-foreground shrink-0 tabular-nums">
-                    {job.period}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <ExperienceList />
           </section>
         </div>
         {/* two stamps dropped on the page, lower right beside the experience list: the setup tilted

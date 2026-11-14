@@ -1,4 +1,5 @@
 import { CaseStudyCards } from "@/components/case-study/case-study-cards";
+import { TextLink } from "@/components/ui/text-link";
 import { CASE_STUDIES } from "@/data/case-studies";
 import { DATA } from "@/data/me";
 
@@ -12,32 +13,12 @@ export default function HomePage() {
         </h1>
         <p className="text-muted-foreground max-w-[40rem] leading-relaxed">
           I started out in frontend development, interning as an engineer at{" "}
-          <a
-            href="https://magichour.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-4"
-          >
-            Magic Hour
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://deep24.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-4"
-          >
-            Deep24
-          </a>
-          , before moving into product design. On the side, I made{" "}
-          <a
-            href="https://chromewebstore.google.com/detail/tracemark-%E2%80%93-live-web-mark/mgckpdklnjeklihpmplgcfnhncifikjd"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-4"
-          >
+          <TextLink href="https://magichour.ai">Magic Hour</TextLink> and{" "}
+          <TextLink href="https://deep24.com">Deep24</TextLink>, before moving
+          into product design. On the side, I made{" "}
+          <TextLink href="https://chromewebstore.google.com/detail/tracemark-%E2%80%93-live-web-mark/mgckpdklnjeklihpmplgcfnhncifikjd">
             Tracemark
-          </a>
+          </TextLink>
           , a Chrome extension for marking up any website.
         </p>
       </section>

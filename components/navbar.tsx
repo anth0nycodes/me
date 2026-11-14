@@ -67,7 +67,6 @@ export default function Navbar() {
           onMouseEnter={() => playHoverSFX()}
           onClick={handleNavigate}
           className={cn(
-            "transition-colors duration-150",
             isCurrent
               ? "text-foreground"
               : "text-muted-foreground hover:text-foreground",
