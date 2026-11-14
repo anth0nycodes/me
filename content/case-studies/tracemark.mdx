@@ -5,7 +5,7 @@ import { Video } from "@/components/ui/video";
 import {
   landingV1SrcSet,
   landingV2SrcSet,
-  toolbarSnappingSrcSet,
+  toolbarFeaturesSrcSet,
 } from "./tracemark.data";
 
 export const metadata = {
@@ -223,10 +223,10 @@ Aside from cleaning up the secondary actions, I went back to my research finding
 </FeatureGrid>
 
 <Video
-  poster="/case-studies/tracemark/toolbar-snapping-poster.webp"
-  srcSet={toolbarSnappingSrcSet}
-  className="aspect-[3664/2160]"
-  aria-label="The Tracemark toolbar being dragged between screen edges: it collapses into a circle while moving, then snaps to the nearest edge, horizontal on the top and bottom and vertical on the sides"
+  poster="/case-studies/tracemark/toolbar-features-poster.webp"
+  srcSet={toolbarFeaturesSrcSet}
+  className="aspect-[1920/1134]"
+  aria-label="The v2 Tracemark toolbar on a landing page: highlighting the headline and subtitle in red, hiding everything with Command period and bringing it back, using the Interact tool to select text on the page, switching the toolbar to dark mode, dragging it so it snaps to each edge of the screen, and closing it with the X button"
 />
 
 Visually, I rounded the toolbar into a pill and swapped the filled icons for outlined ones (including a custom Text icon). This way, everything follows the iconography in the design system, and I replaced the black bar above the active tool with a simple background fill.
