@@ -245,12 +245,6 @@
   }
 }
 
-/* case study body: the column runs wide so images and videos can fill the screen, while running
-   text keeps a readable measure. Anything holding an image or video is left wide */
-.case-study-article > :not(figure, .image-group, .image-compare, .feature-grid, :has(img), :has(video)) {
-  max-width: 52.5rem;
-}
-
 /* a soft panel behind image sets and narrow images (components/case-study/image-group.tsx), so the
    space around them belongs to the figure instead of reading as a gap */
 .image-group {

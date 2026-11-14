@@ -6,16 +6,18 @@ import type { BasePost } from "@/data/mdx";
 export function CaseStudyCards({ posts }: { posts: BasePost[] }) {
   return (
     <ul className="grid gap-x-6 gap-y-12 md:grid-cols-2">
-      {posts.map((post) => (
+      {/* the first row sits above the fold (one card on phones, two from md up), so its covers
+          load eagerly; one of them is usually the page's LCP */}
+      {posts.map((post, index) => (
         <li key={post.slug}>
-          <CaseStudyCard post={post} />
+          <CaseStudyCard post={post} eager={index < 2} />
         </li>
       ))}
     </ul>
   );
 }
 
-function CaseStudyCard({ post }: { post: BasePost }) {
+function CaseStudyCard({ post, eager }: { post: BasePost; eager: boolean }) {
   const { slug, metadata } = post;
   // the case study's hero on its own background. Phones get a taller box with the whole image fitted
   // inside (covering would crop the art's sides); from sm up it's the 5:2 box it gets on its page
@@ -38,6 +40,7 @@ function CaseStudyCard({ post }: { post: BasePost }) {
             alt=""
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
+            loading={eager ? "eager" : "lazy"}
             className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.02] motion-reduce:transition-none"
           />
         )}

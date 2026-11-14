@@ -178,20 +178,20 @@ export default async function CaseStudyPostPage({
           )}
         </div>
       </div>
-      {/* anchored to the left of the screen, lined up with the nav: the list, then a column that runs
-          wide for images (5vw in from each side of the screen) and keeps text to a readable
-          measure (see .case-study-article) */}
-      <div className="mt-12 w-full lg:grid lg:grid-cols-[9rem_minmax(0,1fr)] lg:gap-x-10 lg:px-[5vw]">
+      {/* the content column (text and media alike) is capped at max-w-7xl and always centered on
+          screen: from lg up, matching side tracks hold it in the middle and the list sits in the left
+          one. Below lg there's no list, so the column just centers itself */}
+      <div className="mt-12 w-full lg:grid lg:grid-cols-[minmax(9rem,1fr)_minmax(0,80rem)_minmax(9rem,1fr)] lg:gap-x-10 lg:px-[5vw]">
         {/* the sticky box is a full viewport tall, so the list sits centered on screen */}
         <aside className="hidden lg:block">
           <div className="sticky top-0 flex h-dvh items-center">
             <CaseStudyToc headings={headings} triggerId={DETAILS_ID} />
           </div>
         </aside>
-        <div className="min-w-0">
+        <div className="mx-auto w-full max-w-7xl min-w-0">
           <header
             id={DETAILS_ID}
-            className="flex max-w-[52.5rem] flex-col gap-6"
+            className="flex flex-col gap-6"
           >
             <h1 className="font-heading text-[1.875rem] leading-tight tracking-[-0.01em] text-balance sm:text-[2.5rem]">
               {metadata.title}
