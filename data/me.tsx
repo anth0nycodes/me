@@ -5,7 +5,7 @@ export const DATA = {
   occupation: "Product Designer",
   email: "hoanganthony2207@gmail.com",
   description:
-    "product designer in nyc designing interfaces that feel as good as they look. interned at magic hour and deep24 (yc w24). made tracemark. professional doomscroller.",
+    "product designer in nyc designing interfaces that feel as good as they look. product design intern at magic hour, previously at deep24 (yc w24). made tracemark. professional doomscroller.",
   images: [
     "/pfps/pfp.png",
     "/pfps/pfp2.png",
@@ -92,6 +92,14 @@ export const DATA = {
     },
   ],
   work: [
+    {
+      title: "Magic Hour (YC W24)",
+      role: "product design intern",
+      period: "nov 2026 - present",
+      description: "designing ai-powered tools for creators",
+      href: "https://magichour.ai",
+      favicon: "/favicons/magichour.png",
+    },
     {
       title: "Deep24 (YC W24)",
       role: "software engineer intern",

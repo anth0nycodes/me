@@ -15,7 +15,8 @@ export default function HomePage() {
           I started out in frontend development, interning as an engineer at{" "}
           <TextLink href="https://magichour.ai">Magic Hour</TextLink> and{" "}
           <TextLink href="https://deep24.com">Deep24</TextLink>, before moving
-          into product design. On the side, I made{" "}
+          into product design. Now I&apos;m back at Magic Hour as a product
+          design intern. On the side, I made{" "}
           <TextLink href="https://chromewebstore.google.com/detail/tracemark-%E2%80%93-live-web-mark/mgckpdklnjeklihpmplgcfnhncifikjd">
             Tracemark
           </TextLink>

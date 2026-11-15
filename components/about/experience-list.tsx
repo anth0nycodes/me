@@ -17,7 +17,7 @@ export function ExperienceList() {
     // hovering (or tabbing to) one row dims the rest
     <ul className="divide-separator group/list flex flex-col divide-y">
       {DATA.work.map((job) => (
-        <li key={job.title}>
+        <li key={`${job.title}-${job.period}`}>
           <a
             href={job.href}
             target="_blank"
