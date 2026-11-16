@@ -324,7 +324,9 @@
   line-height: 1.35;
 }
 
-/* no double-tap to zoom on touch screens; pinch-to-zoom still works, and taps respond at once */
+/* no double-tap to zoom on touch screens; pinch-to-zoom still works, and taps respond at once.
+   the scrollbar's space is always kept, so locking the page (the image lightbox) doesn't shift it */
 html {
   touch-action: manipulation;
+  scrollbar-gutter: stable;
 }

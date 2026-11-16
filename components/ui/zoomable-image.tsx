@@ -28,6 +28,9 @@ const DRAG_THRESHOLD = 4;
 const OPEN_MS = 340;
 const CLOSE_MS = 240;
 const EASE_OUT = "cubic-bezier(0.23, 1, 0.32, 1)";
+// how far into the close the page image shows again and the frame fades over it; with EASE_OUT
+// the frame is ~99% of the way home by then
+const HANDOFF_AT = 0.6;
 
 type ZoomableImageProps = ImageProps & { width: number; height: number };
 
@@ -57,6 +60,9 @@ export function ZoomableImage(props: ZoomableImageProps) {
         type="button"
         aria-label={`View larger: ${props.alt}`}
         aria-haspopup="dialog"
+        // a press doesn't move focus, so closing the lightbox doesn't hand focus (and a focus ring)
+        // to the button or, in Safari, to a focusable box around it. Keyboard opens still return here
+        onMouseDown={(event) => event.preventDefault()}
         onClick={() => setIsOpen(true)}
         className="block w-full cursor-zoom-in rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-(--focus-ring)"
       >
@@ -134,6 +140,8 @@ export function ImageLightbox({
   const [isDragging, setIsDragging] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const isClosingRef = useRef(false);
+  // the page image's reveal at the end of the close, cleared once the lightbox is gone
+  const handoffRef = useRef<Animation | undefined>(undefined);
   const drag = useRef<{
     startX: number;
     startY: number;
@@ -159,9 +167,10 @@ export function ImageLightbox({
     setZoom((current) => {
       const scale = clamp(current.scale * factor, MIN_SCALE, MAX_SCALE);
       const ratio = scale / current.scale;
-      // the frame is centered on screen, so the viewport center is the zoom origin
-      const px = clientX - window.innerWidth / 2;
-      const py = clientY - window.innerHeight / 2;
+      // the frame is centered in the dialog, so its center is the zoom origin
+      const center = getStageCenter();
+      const px = clientX - center.x;
+      const py = clientY - center.y;
       return {
         scale,
         ...clampPan(
@@ -175,17 +184,52 @@ export function ImageLightbox({
   }
 
   function zoomAtCenter(factor: number) {
-    zoomAt(factor, window.innerWidth / 2, window.innerHeight / 2, true);
+    const center = getStageCenter();
+    zoomAt(factor, center.x, center.y, true);
   }
 
-  /** The transform that lays the centered frame exactly over the image on the page. */
-  function getOriginTransform() {
-    const origin = originRef.current?.getBoundingClientRect();
-    if (!origin) return null;
-    const dx = origin.left + origin.width / 2 - window.innerWidth / 2;
-    const dy = origin.top + origin.height / 2 - window.innerHeight / 2;
+  /**
+   * Where the frame is centered on screen. Measured off the dialog rather than the window: the
+   * window's size counts the scrollbar gutter, but the fixed dialog stops short of it, so the two
+   * centers are half a gutter apart and the frame would land beside the page image on close.
+   */
+  function getStageCenter() {
+    const stage = dialogRef.current?.getBoundingClientRect();
+    if (!stage) return { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    return {
+      x: stage.left + stage.width / 2,
+      y: stage.top + stage.height / 2,
+    };
+  }
+
+  /**
+   * How to lay the centered frame exactly over the image on the page: the frame's transform, and the
+   * corner radius the image layer needs so its corners, scaled down with the frame, match the page
+   * image's. The scale differs per axis, so the radius is elliptical.
+   */
+  function getOriginPose() {
+    const image = originRef.current;
+    if (!image) return null;
+    const origin = image.getBoundingClientRect();
+    const center = getStageCenter();
+    const dx = origin.left + origin.width / 2 - center.x;
+    const dy = origin.top + origin.height / 2 - center.y;
     const { width: frameWidth, height: frameHeight } = sizeRef.current;
-    return `translate(${dx}px, ${dy}px) scale(${origin.width / frameWidth}, ${origin.height / frameHeight})`;
+    const scaleX = origin.width / frameWidth;
+    const scaleY = origin.height / frameHeight;
+    const radius = getPageRadius();
+    return {
+      transform: `translate(${dx}px, ${dy}px) scale(${scaleX}, ${scaleY})`,
+      borderRadius: `${radius / scaleX}px / ${radius / scaleY}px`,
+    };
+  }
+
+  /** The page image's corner radius, which the lightbox keeps while open. */
+  function getPageRadius() {
+    const image = originRef.current;
+    return image
+      ? parseFloat(getComputedStyle(image).borderTopLeftRadius) || 0
+      : 0;
   }
 
   function close() {
@@ -194,18 +238,51 @@ export function ImageLightbox({
     setIsClosing(true);
     setZoom({ ...RESET_ZOOM, isSmooth: false });
     const frame = frameRef.current;
-    const to = getOriginTransform();
+    const layer = layerRef.current;
+    const to = getOriginPose();
+    const timing: KeyframeAnimationOptions = {
+      duration: CLOSE_MS,
+      easing: EASE_OUT,
+      fill: "forwards",
+    };
+    if (layer && to && !prefersReducedMotion) {
+      layer.animate(
+        [
+          { borderRadius: `${getPageRadius()}px` },
+          { borderRadius: to.borderRadius },
+        ],
+        timing
+      );
+    }
     const animation =
       frame && to && !prefersReducedMotion
-        ? frame.animate([{ transform: "none" }, { transform: to }], {
-            duration: CLOSE_MS,
-            easing: EASE_OUT,
-            fill: "forwards",
-          })
+        ? frame.animate(
+            [{ transform: "none" }, { transform: to.transform }],
+            timing
+          )
         : frame?.animate([{ opacity: 1 }, { opacity: 0 }], {
             duration: 150,
             fill: "forwards",
           });
+    if (frame && to && !prefersReducedMotion) {
+      // hand off to the page image over the last stretch instead of swapping on the final frame.
+      // The frame draws the image at its open size and shrinks it, so it ends a touch softer than
+      // the page image (and without its ring); a swap reads as the image twitching into place
+      const handoff = { duration: CLOSE_MS, fill: "forwards" } as const;
+      handoffRef.current = originRef.current?.animate(
+        [
+          { visibility: "hidden" },
+          { visibility: "hidden", offset: HANDOFF_AT },
+          { visibility: "visible", offset: HANDOFF_AT },
+          { visibility: "visible" },
+        ],
+        handoff
+      );
+      frame.animate(
+        [{ opacity: 1 }, { opacity: 1, offset: HANDOFF_AT }, { opacity: 0 }],
+        handoff
+      );
+    }
     (animation?.finished ?? Promise.resolve()).then(onClosed, onClosed);
   }
 
@@ -219,9 +296,7 @@ export function ImageLightbox({
 
     const root = document.documentElement;
     const previousOverflow = root.style.overflow;
-    const previousGutter = root.style.scrollbarGutter;
-    // keep the scrollbar's space so the page underneath doesn't shift when it locks
-    root.style.scrollbarGutter = "stable";
+    // html keeps a stable scrollbar gutter (globals.css), so the page underneath doesn't shift
     root.style.overflow = "hidden";
     dialog.showModal();
     closeButtonRef.current?.focus();
@@ -233,20 +308,31 @@ export function ImageLightbox({
     // the image lifts off the page rather than appearing twice
     if (origin) origin.style.visibility = "hidden";
 
-    const from = getOriginTransform();
+    const from = getOriginPose();
+    if (layerRef.current) {
+      layerRef.current.style.borderRadius = `${getPageRadius()}px`;
+    }
     if (from && !prefersReducedMotion) {
-      frame.animate([{ transform: from }, { transform: "none" }], {
-        duration: OPEN_MS,
-        easing: EASE_OUT,
-      });
+      const timing = { duration: OPEN_MS, easing: EASE_OUT };
+      frame.animate(
+        [{ transform: from.transform }, { transform: "none" }],
+        timing
+      );
+      layerRef.current?.animate(
+        [
+          { borderRadius: from.borderRadius },
+          { borderRadius: `${getPageRadius()}px` },
+        ],
+        timing
+      );
     } else {
       frame.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 150 });
     }
 
     return () => {
       root.style.overflow = previousOverflow;
-      root.style.scrollbarGutter = previousGutter;
       if (origin) origin.style.visibility = "";
+      handoffRef.current?.cancel();
       if (dialog.open) dialog.close();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- the opening animation runs once per mount
@@ -374,7 +460,7 @@ export function ImageLightbox({
           <div
             ref={layerRef}
             className={cn(
-              "absolute inset-0 touch-none bg-cover bg-center select-none",
+              "absolute inset-0 touch-none overflow-hidden bg-cover bg-center select-none",
               cursor
             )}
             style={{

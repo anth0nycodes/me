@@ -188,6 +188,9 @@ export function FoodCarousel({
                 type="button"
                 aria-label={`View larger: ${alt}`}
                 aria-haspopup="dialog"
+                // a press doesn't move focus. Safari would otherwise focus the row (it never focuses
+                // a clicked button), and closing the lightbox hands focus back there, ringing the row
+                onMouseDown={(event) => event.preventDefault()}
                 onClick={() => {
                   originRef.current = imageRefs.current[index];
                   setOpenIndex(index);
