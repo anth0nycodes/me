@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["192.168.1.3", "192.168.1.5", "192.168.1.9"],
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   reactCompiler: true,
+  experimental: {
+    agentUpgrade: "security",
+  },
   images: {
     // Serve AVIF when the browser supports it, WebP otherwise.
     formats: ["image/avif", "image/webp"],
