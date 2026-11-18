@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { MediaControlButton } from "@/components/ui/media-control-button";
@@ -80,10 +86,25 @@ const PHOTOS: FoodPhoto[] = [
   },
 ];
 
+// how far a mouse has to move before a press becomes a drag, so a slightly shaky click still clicks
+const DRAG_THRESHOLD = 4;
+// how far ahead (ms) the release velocity carries the row before it picks a photo to settle on
+const FLING_PROJECTION = 150;
+
+interface DragState {
+  pointerId: number;
+  startX: number;
+  startScroll: number;
+  dragging: boolean;
+  // recent scroll positions, to read the release velocity from
+  samples: { time: number; scroll: number }[];
+}
+
 /**
  * A row of food photos that scrolls sideways and snaps to each one. Native scrolling does the work,
  * so trackpads, touch and the keyboard (once the row is focused) all behave as people expect; the
- * arrow buttons page through it for mouse users and grey out at either end.
+ * arrow buttons page through it for mouse users and grey out at either end. A mouse can also hold
+ * and drag the row, which then settles on the nearest photo in the direction it was flung.
  */
 export function FoodCarousel({
   heading,
@@ -122,6 +143,102 @@ export function FoodCarousel({
       observer.disconnect();
     };
   }, []);
+
+  const dragRef = useRef<DragState | null>(null);
+  // set once a press turns into a drag, so the click that ends it doesn't open a photo
+  const suppressClickRef = useRef(false);
+  const restoreSnapRef = useRef<(() => void) | null>(null);
+
+  function onPointerDown(event: ReactPointerEvent<HTMLDivElement>) {
+    if (event.pointerType !== "mouse" || event.button !== 0) return;
+    const track = event.currentTarget;
+    // grabbing the row mid-settle takes over from it
+    restoreSnapRef.current?.();
+    suppressClickRef.current = false;
+    dragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startScroll: track.scrollLeft,
+      dragging: false,
+      samples: [{ time: event.timeStamp, scroll: track.scrollLeft }],
+    };
+  }
+
+  function onPointerMove(event: ReactPointerEvent<HTMLDivElement>) {
+    const drag = dragRef.current;
+    if (!drag || event.pointerId !== drag.pointerId) return;
+    const track = event.currentTarget;
+    const dx = event.clientX - drag.startX;
+    if (!drag.dragging) {
+      if (Math.abs(dx) < DRAG_THRESHOLD) return;
+      drag.dragging = true;
+      suppressClickRef.current = true;
+      track.setPointerCapture(event.pointerId);
+      // snapping would fight the row following the mouse, so it waits until the drag settles
+      track.style.scrollSnapType = "none";
+      track.dataset.dragging = "";
+    }
+    track.scrollLeft = drag.startScroll - dx;
+    drag.samples.push({ time: event.timeStamp, scroll: track.scrollLeft });
+    // only the last ~100ms matter for the release velocity
+    while (
+      drag.samples.length > 2 &&
+      event.timeStamp - drag.samples[0].time > 100
+    ) {
+      drag.samples.shift();
+    }
+  }
+
+  function endDrag(event: ReactPointerEvent<HTMLDivElement>) {
+    const drag = dragRef.current;
+    if (!drag || event.pointerId !== drag.pointerId) return;
+    dragRef.current = null;
+    if (!drag.dragging) return;
+    const track = event.currentTarget;
+    delete track.dataset.dragging;
+
+    const first = drag.samples[0];
+    const elapsed = event.timeStamp - first.time;
+    const velocity =
+      elapsed > 0 ? (track.scrollLeft - first.scroll) / elapsed : 0;
+    const projected = track.scrollLeft + velocity * FLING_PROJECTION;
+
+    // settle on the photo whose left edge is nearest where the fling would carry the row
+    const trackLeft = track.getBoundingClientRect().left;
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    let target = track.scrollLeft;
+    let best = Infinity;
+    for (const child of track.children) {
+      const snap = Math.min(
+        maxScroll,
+        Math.max(
+          0,
+          track.scrollLeft + child.getBoundingClientRect().left - trackLeft
+        )
+      );
+      if (Math.abs(snap - projected) < best) {
+        best = Math.abs(snap - projected);
+        target = snap;
+      }
+    }
+
+    let timeout = 0;
+    function restore() {
+      track.removeEventListener("scrollend", restore);
+      window.clearTimeout(timeout);
+      track.style.scrollSnapType = "";
+      restoreSnapRef.current = null;
+    }
+    restoreSnapRef.current = restore;
+    track.scrollTo({
+      left: target,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+    // snap comes back once the row has landed on a photo, so it doesn't jump there. The timeout
+    // covers browsers without scrollend, and a scroll that was already in place
+    track.addEventListener("scrollend", restore);
+    timeout = window.setTimeout(restore, 700);
+  }
 
   function page(direction: -1 | 1) {
     const track = trackRef.current;
@@ -162,7 +279,17 @@ export function FoodCarousel({
           role="region"
           aria-labelledby={labelledBy}
           tabIndex={0}
-          className="flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain rounded-xl outline-none [scrollbar-width:none] focus-visible:ring-2 focus-visible:ring-(--focus-ring) [&::-webkit-scrollbar]:hidden"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          onClickCapture={(event) => {
+            if (!suppressClickRef.current) return;
+            suppressClickRef.current = false;
+            event.preventDefault();
+            event.stopPropagation();
+          }}
+          className="flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain rounded-xl outline-none select-none [scrollbar-width:none] focus-visible:ring-2 focus-visible:ring-(--focus-ring) data-dragging:cursor-grabbing data-dragging:*:cursor-grabbing [&::-webkit-scrollbar]:hidden"
         >
           {PHOTOS.map(({ src, alt, width, height }, index) => {
             const picture = (
