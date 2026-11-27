@@ -146,7 +146,7 @@ export const DATA = {
       status: "released",
       techStack: ["React.js", "TypeScript", "Fabric.js", "WXT", "Shadcn UI"],
       description:
-        "chrome extension that lets you markup/annotate any webpage and copy/export the result as an image",
+        "chrome and firefox extension that lets you markup/annotate any webpage and copy/export the result as an image",
       projectHref: "https://tracemark.fun/",
       sourceCodeHref: "https://github.com/anth0nycodes/tracemark",
       image: "/posters/tracemark.png",

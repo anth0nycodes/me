@@ -17,10 +17,8 @@ export default function HomePage() {
           <TextLink href="https://deep24.com">Deep24</TextLink>, before moving
           into product design. Now I&apos;m back at Magic Hour as a product
           design intern. On the side, I made{" "}
-          <TextLink href="https://chromewebstore.google.com/detail/tracemark-%E2%80%93-live-web-mark/mgckpdklnjeklihpmplgcfnhncifikjd">
-            Tracemark
-          </TextLink>
-          , a Chrome extension for marking up any website.
+          <TextLink href="https://tracemark.fun">Tracemark</TextLink>, a
+          browser extension for marking up any website.
         </p>
       </section>
       <section
